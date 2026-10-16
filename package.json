@@ -39,7 +39,7 @@
     "data:videos": "tsx scripts/resolve-videos.ts",
     "data:textures": "tsx scripts/copy-textures.ts",
     "data:all": "pnpm data:textures && pnpm data:countries && pnpm data:videos && pnpm data:borders",
-    "prepare": "husky || true"
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.3.5",

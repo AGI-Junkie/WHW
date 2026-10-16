@@ -16,6 +16,7 @@ import {
   fetchSnapshot,
   fetchSnapshotIndex,
   getEras,
+  getEventById,
   getEvents,
   getTours,
 } from "@/lib/data/loaders";
@@ -35,9 +36,7 @@ import type { GlobeCameraTarget } from "@/components/globe/globe-types";
 
 export type Speed = 1 | 2 | 4;
 export type Selection =
-  | { kind: "event"; id: string }
-  | { kind: "country"; feature: BorderFeature }
-  | null;
+  { kind: "event"; id: string } | { kind: "country"; feature: BorderFeature } | null;
 
 export interface Pulse {
   id: string;
@@ -111,7 +110,7 @@ export const initialState: HistoryState = {
 
 function applyStop(s: HistoryState, tour: Tour, idx: number): HistoryState {
   const stop = tour.stops[idx];
-  const ev = stop ? getEvents().find((e) => e.id === stop.eventId) : undefined;
+  const ev = stop ? getEventById(stop.eventId) : undefined;
   if (!stop || !ev) return s;
   return {
     ...s,
@@ -161,7 +160,7 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       if (a.selection === null) return { ...s, selection: null };
       if (a.selection.kind === "event") {
         const sel = a.selection;
-        const ev = getEvents().find((e) => e.id === sel.id);
+        const ev = getEventById(sel.id);
         return {
           ...s,
           selection: sel,
@@ -243,7 +242,11 @@ function loadDiscovery(): DiscoveryState | null {
     const p = parsed as Partial<DiscoveryState>;
     const arr = (v: unknown): string[] =>
       Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
-    return { events: arr(p.events), countries: arr(p.countries), toursCompleted: arr(p.toursCompleted) };
+    return {
+      events: arr(p.events),
+      countries: arr(p.countries),
+      toursCompleted: arr(p.toursCompleted),
+    };
   } catch {
     return null;
   }
@@ -318,8 +321,12 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
-      if (target && ["INPUT", "TEXTAREA", "BUTTON", "SELECT"].includes(target.tagName)) return;
+      const tag = target?.tagName;
+      // Form fields keep every key; buttons keep Space/Enter (their own activation) but Escape and
+      // the tour arrows still work, so keyboard users can leave a panel from wherever focus is.
+      if (tag && ["INPUT", "TEXTAREA", "SELECT"].includes(tag)) return;
       if (e.code === "Space") {
+        if (tag === "BUTTON") return;
         e.preventDefault();
         dispatch({ type: "setPlaying", playing: !state.playing });
       } else if (e.key === "Escape") {

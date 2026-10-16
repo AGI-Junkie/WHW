@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import type { WikiSummaryResponse } from "@/lib/data/schemas";
+import { clientKey, createRateLimiter } from "@/lib/security/rate-limit";
 
 /**
  * The app's only server code: a same-origin proxy for the Wikipedia REST summary endpoint.
@@ -23,6 +24,7 @@ const UpstreamSchema = z.object({
 });
 
 const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/haakram/WHW)";
+const limiter = createRateLimiter(60, 60_000);
 const ALLOWED_IMAGE_HOSTS = new Set(["upload.wikimedia.org", "thumb.wikimedia.org"]);
 
 function safeImage(url: string | undefined): string | null {
@@ -43,7 +45,9 @@ function reply(body: WikiSummaryResponse, status = 200): NextResponse {
 }
 
 export async function GET(req: Request): Promise<NextResponse> {
-  if (process.env["CONTENT_PROVIDER"] === "static") return reply({ ok: false, reason: "static-mode" });
+  if (process.env["CONTENT_PROVIDER"] === "static")
+    return reply({ ok: false, reason: "static-mode" });
+  if (!limiter.hit(clientKey(req))) return reply({ ok: false, reason: "rate-limited" }, 429);
   const parsed = TitleSchema.safeParse(new URL(req.url).searchParams.get("title"));
   if (!parsed.success) return reply({ ok: false, reason: "bad-title" }, 400);
   const title = parsed.data.replace(/ /g, "_");
@@ -65,7 +69,9 @@ export async function GET(req: Request): Promise<NextResponse> {
       description: data.description ?? null,
       extract: data.extract ?? "",
       thumbnailUrl: safeImage(data.thumbnail?.source),
-      pageUrl: data.content_urls?.desktop.page ?? `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}`,
+      pageUrl:
+        data.content_urls?.desktop.page ??
+        `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}`,
     });
   } catch (e) {
     const reason = e instanceof Error && e.name === "TimeoutError" ? "timeout" : "unavailable";
