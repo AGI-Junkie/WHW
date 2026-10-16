@@ -31,6 +31,9 @@ import {
   type DiscoveryState,
 } from "@/lib/domain/discovery";
 import { polityDisplayName } from "@/lib/domain/palette";
+import { chapterDurationMs, storyFor } from "@/lib/domain/story";
+import { adjacentEvent } from "@/lib/domain/navigation";
+import { buildDeepLink, parseDeepLink } from "@/lib/domain/deep-link";
 import type { GlobeCameraTarget } from "@/components/globe/globe-types";
 
 export type Speed = 1 | 2 | 4;
@@ -54,6 +57,8 @@ export interface HistoryState {
   follow: boolean;
   selection: Selection;
   tour: { id: string; stop: number } | null;
+  /** The immersive story view: which event, which chapter, and whether it advances by itself. */
+  story: { id: string; chapter: number; autoplay: boolean } | null;
   cameraTarget: GlobeCameraTarget | null;
   pulses: Pulse[];
   discovery: DiscoveryState;
@@ -76,6 +81,13 @@ export type Action =
   | { type: "startTour"; id: string }
   | { type: "tourStep"; delta: 1 | -1 }
   | { type: "endTour" }
+  | { type: "openStory"; id: string; chapter?: number }
+  | { type: "storyStep"; delta: 1 | -1 }
+  | { type: "storyGo"; chapter: number }
+  | { type: "storyAutoplay"; autoplay: boolean }
+  | { type: "closeStory" }
+  | { type: "stepEvent"; delta: 1 | -1 }
+  | { type: "randomEvent"; seed: number }
   | { type: "flyTo"; target: GlobeCameraTarget }
   | { type: "countriesLoaded"; countries: Country[] }
   | { type: "snapshotIndexLoaded"; years: number[] }
@@ -97,6 +109,7 @@ export const initialState: HistoryState = {
   follow: false,
   selection: null,
   tour: null,
+  story: null,
   cameraTarget: null,
   pulses: [],
   discovery: EMPTY_DISCOVERY,
@@ -121,6 +134,36 @@ function applyStop(s: HistoryState, tour: Tour, idx: number): HistoryState {
     selection: { kind: "event", id: ev.id },
     cameraTarget: { lat: ev.lat, lng: ev.lng, altitude: stop.altitude, durationMs: 1800 },
     discovery: discoverEvent(s.discovery, ev.id),
+  };
+}
+
+function applyChapter(s: HistoryState, id: string, chapter: number, autoplay: boolean): HistoryState {
+  const events = getEvents();
+  const ev = events.find((e) => e.id === id);
+  if (!ev) return s;
+  const story = storyFor(ev, events);
+  const idx = Math.max(0, Math.min(story.chapters.length - 1, chapter));
+  const c = story.chapters[idx]!;
+  return {
+    ...s,
+    story: { id, chapter: idx, autoplay: autoplay && idx < story.chapters.length - 1 },
+    year: ev.year,
+    playing: false,
+    tour: null,
+    selection: { kind: "event", id },
+    cameraTarget: { lat: c.lat, lng: c.lng, altitude: c.altitude, durationMs: 2200 },
+    discovery: discoverEvent(s.discovery, id),
+  };
+}
+
+function selectEvent(s: HistoryState, ev: HistoryEvent): HistoryState {
+  return {
+    ...s,
+    year: ev.year,
+    playing: false,
+    selection: { kind: "event", id: ev.id },
+    discovery: discoverEvent(s.discovery, ev.id),
+    cameraTarget: { lat: ev.lat, lng: ev.lng, altitude: 1.3, durationMs: 1200 },
   };
 }
 
@@ -152,7 +195,7 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       };
     }
     case "setPlaying":
-      return { ...s, playing: a.playing, ...(a.playing ? { tour: null } : {}) };
+      return { ...s, playing: a.playing, ...(a.playing ? { tour: null, story: null } : {}) };
     case "setSpeed":
       return { ...s, speed: a.speed };
     case "toggleFollow":
@@ -179,7 +222,7 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
     }
     case "startTour": {
       const tour = getTours().find((t) => t.id === a.id);
-      return tour ? applyStop(s, tour, 0) : s;
+      return tour ? applyStop({ ...s, story: null }, tour, 0) : s;
     }
     case "tourStep": {
       if (!s.tour) return s;
@@ -194,6 +237,26 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
     }
     case "endTour":
       return { ...s, tour: null };
+    case "openStory":
+      return applyChapter(s, a.id, a.chapter ?? 0, a.chapter === undefined);
+    case "storyStep":
+      return s.story ? applyChapter(s, s.story.id, s.story.chapter + a.delta, s.story.autoplay) : s;
+    case "storyGo":
+      return s.story ? applyChapter(s, s.story.id, a.chapter, false) : s;
+    case "storyAutoplay":
+      return s.story ? { ...s, story: { ...s.story, autoplay: a.autoplay } } : s;
+    case "closeStory":
+      return { ...s, story: null };
+    case "stepEvent": {
+      const selectedId = s.selection?.kind === "event" ? s.selection.id : null;
+      const ev = adjacentEvent(getEvents(), s.year, selectedId, a.delta, s.hiddenCategories);
+      return ev ? selectEvent({ ...s, tour: null }, ev) : s;
+    }
+    case "randomEvent": {
+      const pool = getEvents().filter((e) => e.importance >= 3 && !s.hiddenCategories.includes(e.category));
+      const ev = pool[Math.abs(Math.floor(a.seed)) % Math.max(1, pool.length)];
+      return ev ? selectEvent({ ...s, tour: null, story: null }, ev) : s;
+    }
     case "flyTo":
       return { ...s, cameraTarget: a.target };
     case "countriesLoaded":
@@ -314,25 +377,73 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     }
   }, [state.discovery]);
 
-  // Keyboard: space = play/pause, escape = close panel / leave tour, ← → = tour stops.
+  // Story autoplay: linger on each chapter long enough to read it, then move on.
+  useEffect(() => {
+    const st = state.story;
+    if (!st?.autoplay) return;
+    const ev = events.find((e) => e.id === st.id);
+    const chapter = ev && storyFor(ev, events).chapters[st.chapter];
+    if (!chapter) return;
+    const id = window.setTimeout(() => dispatch({ type: "storyStep", delta: 1 }), chapterDurationMs(chapter));
+    return () => window.clearTimeout(id);
+  }, [state.story, events]);
+
+  // Deep links: the hash is read once on load, then kept in step with the view (replaceState, so
+  // scrubbing does not flood the history). Throttled because play mode changes the year 3–12×/s.
+  useEffect(() => {
+    const link = parseDeepLink(window.location.hash);
+    const ev = link.eventId ? events.find((e) => e.id === link.eventId) : undefined;
+    if (ev && link.story) dispatch({ type: "openStory", id: ev.id, chapter: 0 });
+    else if (ev) {
+      dispatch({ type: "setYear", year: link.year ?? ev.year });
+      dispatch({ type: "select", selection: { kind: "event", id: ev.id }, fly: true });
+    } else if (link.year !== undefined) dispatch({ type: "setYear", year: link.year });
+  }, [events]);
+  const linkYear = state.year;
+  const linkEvent = state.selection?.kind === "event" ? state.selection.id : undefined;
+  const linkStory = state.story !== null;
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      const hash = buildDeepLink({ year: linkYear, story: linkStory, ...(linkEvent ? { eventId: linkEvent } : {}) });
+      if (hash !== window.location.hash) {
+        window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}${hash}`);
+      }
+    }, 400);
+    return () => window.clearTimeout(id);
+  }, [linkYear, linkEvent, linkStory]);
+
+  // Keyboard: space = play/pause (story: autoplay), escape = close the innermost layer,
+  // ← → = story chapters, tour stops, or the previous/next event in time.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
-      if (target && ["INPUT", "TEXTAREA", "BUTTON", "SELECT"].includes(target.tagName)) return;
+      if (target && ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)) return;
+      if (target?.isContentEditable || e.metaKey || e.ctrlKey || e.altKey) return;
+      // A focused button keeps its native Space/Enter activation.
+      if (target?.tagName === "BUTTON" && (e.code === "Space" || e.key === "Enter")) return;
+      const story = state.story;
       if (e.code === "Space") {
         e.preventDefault();
-        dispatch({ type: "setPlaying", playing: !state.playing });
+        if (story) dispatch({ type: "storyAutoplay", autoplay: !story.autoplay });
+        else dispatch({ type: "setPlaying", playing: !state.playing });
       } else if (e.key === "Escape") {
-        dispatch(state.tour ? { type: "endTour" } : { type: "select", selection: null });
-      } else if (e.key === "ArrowRight" && state.tour) {
-        dispatch({ type: "tourStep", delta: 1 });
-      } else if (e.key === "ArrowLeft" && state.tour) {
-        dispatch({ type: "tourStep", delta: -1 });
+        if (story) dispatch({ type: "closeStory" });
+        else dispatch(state.tour ? { type: "endTour" } : { type: "select", selection: null });
+      } else if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        const delta = e.key === "ArrowRight" ? 1 : -1;
+        e.preventDefault();
+        if (story) dispatch({ type: "storyStep", delta });
+        else if (state.tour) dispatch({ type: "tourStep", delta });
+        else dispatch({ type: "stepEvent", delta });
+      } else if ((e.key === "s" || e.key === "Enter") && !story && state.selection?.kind === "event") {
+        dispatch({ type: "openStory", id: state.selection.id });
+      } else if (e.key === "r" && !story) {
+        dispatch({ type: "randomEvent", seed: Math.random() * 1e9 });
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [state.playing, state.tour]);
+  }, [state.playing, state.tour, state.story, state.selection]);
 
   const value = useMemo(
     () => ({ state, dispatch, events, tours, eras }),

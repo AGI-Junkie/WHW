@@ -47,17 +47,27 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
     g.pointOfView({ lat: t.lat, lng: t.lng, altitude: t.altitude }, t.durationMs ?? 1200);
   }, [props.cameraTarget]);
 
+  // The latest camera target, so a deep link that set one before the globe was ready still wins.
+  const targetRef = useRef(props.cameraTarget);
+  useEffect(() => {
+    targetRef.current = props.cameraTarget;
+  }, [props.cameraTarget]);
+
   const onReady = useCallback(() => {
     const g = globeRef.current;
     if (!g) return;
-    g.pointOfView(HOME, 0);
+    const start = () => {
+      const t = targetRef.current;
+      return t ? { lat: t.lat, lng: t.lng, altitude: t.altitude } : HOME;
+    };
+    g.pointOfView(start(), 0);
     const controls = g.controls();
     controls.autoRotate = props.autoRotate;
     controls.autoRotateSpeed = 0.35;
     controls.minDistance = 120;
     controls.maxDistance = 600;
     // Textures load a moment after the globe is ready; a second POV set avoids the default zoom.
-    window.setTimeout(() => g.pointOfView(HOME, 800), 100);
+    window.setTimeout(() => g.pointOfView(start(), 800), 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
