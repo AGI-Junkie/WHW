@@ -60,6 +60,66 @@
     ]
   },
   {
+    "id": "stonehenge",
+    "title": "Stonehenge's great sarsen circle",
+    "year": -2500,
+    "lat": 51.18,
+    "lng": -1.83,
+    "countryIso": "GB",
+    "category": "culture",
+    "importance": 3,
+    "summary": "Around 2500 BC Neolithic Britons raised the great sarsen circle and trilithons on Salisbury Plain, aligning the monument with the midsummer sunrise and midwinter sunset. The smaller bluestones had been hauled some 225 km from the Preseli Hills in Wales.",
+    "wikipediaTitle": "Stonehenge",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Stonehenge"
+    ]
+  },
+  {
+    "id": "sargon-of-akkad",
+    "title": "Sargon founds the Akkadian Empire",
+    "year": -2334,
+    "lat": 33.3,
+    "lng": 44.4,
+    "countryIso": "IQ",
+    "category": "politics",
+    "importance": 4,
+    "summary": "Sargon of Akkad conquered the Sumerian city-states around 2334 BC and joined them with northern Mesopotamia under one ruler. Often called the first empire, Akkad set the model of a multi-ethnic state held together by a standing army, royal governors and a shared administrative language.",
+    "wikipediaTitle": "Akkadian Empire",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Akkadian_Empire"
+    ]
+  },
+  {
+    "id": "epic-of-gilgamesh",
+    "title": "The Epic of Gilgamesh",
+    "year": -2100,
+    "lat": 31.4,
+    "lng": 45.7,
+    "countryIso": "IQ",
+    "category": "culture",
+    "importance": 3,
+    "summary": "Sumerian poems about Gilgamesh, a legendary king of Uruk, were written down around 2100 BC and later woven into a single Babylonian epic. Its story of friendship, a great flood and a failed quest for immortality makes it one of the oldest surviving works of literature.",
+    "wikipediaTitle": "Epic of Gilgamesh",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh"
+    ]
+  },
+  {
+    "id": "minoan-knossos",
+    "title": "The palace of Knossos",
+    "year": -1900,
+    "lat": 35.3,
+    "lng": 25.16,
+    "countryIso": "GR",
+    "category": "culture",
+    "importance": 3,
+    "summary": "On Crete, the Minoans built the sprawling palace complex of Knossos around 1900 BC, with light wells, painted frescoes and storerooms for oil and grain. The palace economy of Bronze Age Crete traded across the Aegean and shaped the later Mycenaean world.",
+    "wikipediaTitle": "Knossos",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Knossos"
+    ]
+  },
+  {
     "id": "code-of-hammurabi",
     "title": "The Code of Hammurabi",
     "year": -1754,
@@ -72,6 +132,147 @@
     "wikipediaTitle": "Code of Hammurabi",
     "sources": [
       "https://en.wikipedia.org/wiki/Code_of_Hammurabi"
+    ],
+    "story": {
+      "tagline": "A king writes the law in stone, for everyone to see.",
+      "quote": {
+        "text": "If a man put out the eye of another man, his eye shall be put out.",
+        "by": "Code of Hammurabi, law 196 (L. W. King translation)"
+      },
+      "facts": [
+        {
+          "label": "Laws",
+          "value": "282"
+        },
+        {
+          "label": "Stele height",
+          "value": "2.25 m"
+        },
+        {
+          "label": "Material",
+          "value": "Basalt"
+        },
+        {
+          "label": "Found",
+          "value": "Susa, 1901"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "c. 1792 BC",
+          "heading": "A city-state king",
+          "text": "Hammurabi inherits Babylon, one city among many rivals on the Euphrates. Over three decades of war and diplomacy he brings most of Mesopotamia under his rule.",
+          "lat": 32.54,
+          "lng": 44.42,
+          "altitude": 1.6
+        },
+        {
+          "when": "c. 1754 BC",
+          "heading": "Justice carved in basalt",
+          "text": "Late in his reign he has his rulings carved on stone stelae and set up in temples: wages, loans, marriage, theft, and penalties that depend on the social rank of victim and offender.",
+          "lat": 32.54,
+          "lng": 44.42,
+          "altitude": 0.7
+        },
+        {
+          "when": "12th century BC",
+          "heading": "Carried off as plunder",
+          "text": "Six centuries later an Elamite king hauls the stele east to Susa as war booty. It lies there until French archaeologists dig it up in 1901; it now stands in the Louvre.",
+          "lat": 32.19,
+          "lng": 48.25,
+          "altitude": 1.0
+        }
+      ],
+      "legacy": "Not the first law code, but the most complete to survive from the ancient Near East, and a lasting image of the ruler as the guarantor of justice."
+    }
+  },
+  {
+    "id": "amarna-akhenaten",
+    "title": "Akhenaten builds Amarna",
+    "year": -1346,
+    "lat": 27.65,
+    "lng": 30.9,
+    "countryIso": "EG",
+    "category": "religion",
+    "importance": 3,
+    "summary": "Pharaoh Akhenaten broke with Egypt's traditional gods to worship the sun disc Aten, and around 1346 BC founded a new capital at Amarna. The revolution in religion and art barely outlived him: his successors, among them Tutankhamun, abandoned the city and restored the old cults.",
+    "wikipediaTitle": "Amarna",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Amarna"
+    ]
+  },
+  {
+    "id": "lapita-voyagers",
+    "title": "Lapita voyagers settle the Pacific",
+    "year": -1300,
+    "lat": -1.43,
+    "lng": 149.6,
+    "countryIso": "PG",
+    "category": "exploration",
+    "importance": 3,
+    "summary": "From the Bismarck Archipelago, makers of distinctive stamped Lapita pottery sailed east in outrigger canoes, reaching Vanuatu, Fiji, Tonga and Samoa by about 850 BC. They were the ancestors of the Polynesians, who later settled the remotest islands on Earth.",
+    "wikipediaTitle": "Lapita culture",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Lapita_culture"
+    ]
+  },
+  {
+    "id": "battle-of-kadesh",
+    "title": "Battle of Kadesh",
+    "year": -1274,
+    "lat": 34.56,
+    "lng": 36.52,
+    "countryIso": "SY",
+    "category": "war",
+    "importance": 4,
+    "summary": "Ramesses II of Egypt and the Hittite king Muwatalli II fought at Kadesh on the Orontes around 1274 BC in perhaps the largest chariot battle ever fought. Neither side won outright, and some fifteen years later the two empires signed the earliest peace treaty whose text survives.",
+    "wikipediaTitle": "Battle of Kadesh",
+    "belligerents": [
+      {
+        "name": "New Kingdom of Egypt",
+        "lat": 25.7,
+        "lng": 32.64,
+        "side": "a"
+      },
+      {
+        "name": "Hittite Empire",
+        "lat": 40.02,
+        "lng": 34.62,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Kadesh"
+    ]
+  },
+  {
+    "id": "shang-oracle-bones",
+    "title": "Shang oracle bones",
+    "year": -1250,
+    "lat": 36.12,
+    "lng": 114.32,
+    "countryIso": "CN",
+    "category": "culture",
+    "importance": 4,
+    "summary": "At Anyang, the late Shang court asked its ancestors about harvests, wars and weather by cracking turtle shells and ox bones with heat and writing the question beside the cracks. These inscriptions are the earliest substantial body of Chinese writing, the direct ancestor of today's characters.",
+    "wikipediaTitle": "Oracle bone script",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Oracle_bone_script"
+    ]
+  },
+  {
+    "id": "olmec-san-lorenzo",
+    "title": "Olmec San Lorenzo",
+    "year": -1200,
+    "lat": 17.75,
+    "lng": -94.76,
+    "countryIso": "MX",
+    "category": "culture",
+    "importance": 3,
+    "summary": "On the Gulf Coast of Mexico, the Olmecs built San Lorenzo, the first great centre of Mesoamerica, and carved colossal basalt heads weighing up to 40 tonnes. Their art, ballgame and calendar ideas passed on to the Maya and later peoples.",
+    "wikipediaTitle": "San Lorenzo Tenochtitlán",
+    "sources": [
+      "https://en.wikipedia.org/wiki/San_Lorenzo_Tenochtitlán"
     ]
   },
   {
@@ -105,6 +306,36 @@
     ]
   },
   {
+    "id": "phoenician-alphabet",
+    "title": "The Phoenician alphabet",
+    "year": -1050,
+    "lat": 34.12,
+    "lng": 35.65,
+    "countryIso": "LB",
+    "category": "culture",
+    "importance": 4,
+    "summary": "Merchants of Byblos, Tyre and Sidon used a script of 22 consonant signs, one per sound, that was far easier to learn than cuneiform or hieroglyphs. Carried along their sea trade routes, it became the parent of the Greek, Latin, Hebrew and Arabic alphabets.",
+    "wikipediaTitle": "Phoenician alphabet",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Phoenician_alphabet"
+    ]
+  },
+  {
+    "id": "first-olympic-games",
+    "title": "The first Olympic Games",
+    "year": -776,
+    "lat": 37.64,
+    "lng": 21.63,
+    "countryIso": "GR",
+    "category": "culture",
+    "importance": 3,
+    "summary": "By Greek tradition the first Olympic Games were held at the sanctuary of Zeus in Olympia in 776 BC, with a single footrace. The festival grew to include wrestling, chariot racing and the pentathlon, and was held every four years for more than a millennium.",
+    "wikipediaTitle": "Ancient Olympic Games",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Ancient_Olympic_Games"
+    ]
+  },
+  {
     "id": "founding-of-rome",
     "title": "The traditional founding of Rome",
     "year": -753,
@@ -117,6 +348,56 @@
     "wikipediaTitle": "Founding of Rome",
     "sources": [
       "https://en.wikipedia.org/wiki/Founding_of_Rome"
+    ]
+  },
+  {
+    "id": "fall-of-nineveh",
+    "title": "Fall of Nineveh",
+    "year": -612,
+    "lat": 36.36,
+    "lng": 43.15,
+    "countryIso": "IQ",
+    "category": "war",
+    "importance": 3,
+    "summary": "A coalition of Babylonians and Medes besieged and sacked Nineveh in 612 BC, destroying the capital of the Assyrian Empire that had dominated the Near East for three centuries. Within a few years Assyria had vanished as a state.",
+    "wikipediaTitle": "Battle of Nineveh (612 BC)",
+    "belligerents": [
+      {
+        "name": "Babylonia",
+        "lat": 32.54,
+        "lng": 44.42,
+        "side": "a"
+      },
+      {
+        "name": "Medes",
+        "lat": 34.8,
+        "lng": 48.52,
+        "side": "a"
+      },
+      {
+        "name": "Assyria",
+        "lat": 36.36,
+        "lng": 43.15,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Nineveh_(612_BC)"
+    ]
+  },
+  {
+    "id": "cyrus-takes-babylon",
+    "title": "Cyrus the Great takes Babylon",
+    "year": -539,
+    "lat": 32.54,
+    "lng": 44.42,
+    "countryIso": "IQ",
+    "category": "politics",
+    "importance": 5,
+    "summary": "In 539 BC the Persian king Cyrus II entered Babylon almost without a fight, ending the Neo-Babylonian Empire. His Achaemenid realm became the largest the world had seen, and he let deported peoples, among them the Judeans, return to their homelands.",
+    "wikipediaTitle": "Fall of Babylon",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Fall_of_Babylon"
     ]
   },
   {
@@ -165,6 +446,110 @@
     ]
   },
   {
+    "id": "battle-of-marathon",
+    "title": "Battle of Marathon",
+    "year": -490,
+    "lat": 38.12,
+    "lng": 23.97,
+    "countryIso": "GR",
+    "category": "war",
+    "importance": 4,
+    "summary": "In 490 BC an Athenian army, helped by Plataea, defeated a larger Persian landing force on the plain of Marathon. The victory ended Darius I's first invasion of Greece and gave the young Athenian democracy enormous confidence.",
+    "wikipediaTitle": "Battle of Marathon",
+    "belligerents": [
+      {
+        "name": "Athens",
+        "lat": 37.97,
+        "lng": 23.73,
+        "side": "a"
+      },
+      {
+        "name": "Achaemenid Persia",
+        "lat": 32.19,
+        "lng": 48.25,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Marathon"
+    ]
+  },
+  {
+    "id": "battle-of-salamis",
+    "title": "Battle of Salamis",
+    "year": -480,
+    "lat": 37.95,
+    "lng": 23.57,
+    "countryIso": "GR",
+    "category": "war",
+    "importance": 4,
+    "summary": "Weeks after the stand at Thermopylae and the burning of Athens, the Greek fleet led by Themistocles lured Xerxes' navy into the narrow straits off Salamis in 480 BC and destroyed it. The defeat turned back the Persian invasion of Greece.",
+    "wikipediaTitle": "Battle of Salamis",
+    "belligerents": [
+      {
+        "name": "Greek city-states",
+        "lat": 37.07,
+        "lng": 22.43,
+        "side": "a"
+      },
+      {
+        "name": "Achaemenid Persia",
+        "lat": 29.93,
+        "lng": 52.89,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Salamis"
+    ]
+  },
+  {
+    "id": "parthenon",
+    "title": "The Parthenon",
+    "year": -447,
+    "endYear": -432,
+    "lat": 37.97,
+    "lng": 23.73,
+    "countryIso": "GR",
+    "category": "culture",
+    "importance": 4,
+    "summary": "Under Pericles, Athens spent the treasury of its Delian League on a marble temple to Athena on the Acropolis, built between 447 and 432 BC. Its sculpture and proportions became the reference point of classical architecture for the next two and a half thousand years.",
+    "wikipediaTitle": "Parthenon",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Parthenon"
+    ]
+  },
+  {
+    "id": "peloponnesian-war",
+    "title": "The Peloponnesian War",
+    "year": -431,
+    "endYear": -404,
+    "lat": 37.5,
+    "lng": 22.4,
+    "countryIso": "GR",
+    "category": "war",
+    "importance": 3,
+    "summary": "Athens and its maritime empire fought Sparta and the Peloponnesian League for 27 years, from 431 to 404 BC, through plague, a disastrous expedition to Sicily and civil strife. Athens surrendered, and Thucydides' history of the war founded political history writing.",
+    "wikipediaTitle": "Peloponnesian War",
+    "belligerents": [
+      {
+        "name": "Athens",
+        "lat": 37.97,
+        "lng": 23.73,
+        "side": "a"
+      },
+      {
+        "name": "Sparta",
+        "lat": 37.07,
+        "lng": 22.43,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Peloponnesian_War"
+    ]
+  },
+  {
     "id": "alexander-gaugamela",
     "title": "Alexander defeats Darius at Gaugamela",
     "year": -331,
@@ -191,6 +576,77 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Battle_of_Gaugamela"
+    ],
+    "story": {
+      "tagline": "Twenty-five years old, Alexander gambles everything on one charge.",
+      "facts": [
+        {
+          "label": "Date",
+          "value": "1 October 331 BC"
+        },
+        {
+          "label": "Macedonian army",
+          "value": "c. 47,000"
+        },
+        {
+          "label": "Persian army",
+          "value": "far larger; ancient figures vary"
+        },
+        {
+          "label": "Result",
+          "value": "Achaemenid collapse"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "334 BC",
+          "heading": "Across the Hellespont",
+          "text": "Alexander crosses into Asia with a Macedonian and Greek army and wins at the Granicus, then at Issus, where Darius III flees the field.",
+          "lat": 40.15,
+          "lng": 26.4,
+          "altitude": 1.6
+        },
+        {
+          "when": "332 BC",
+          "heading": "Down the coast",
+          "text": "He takes Tyre after a seven-month siege and is welcomed in Egypt as pharaoh, founding Alexandria on the way.",
+          "lat": 31.2,
+          "lng": 29.92,
+          "altitude": 1.8
+        },
+        {
+          "when": "331 BC",
+          "heading": "The plain of Gaugamela",
+          "text": "Darius chooses flat ground for his scythed chariots. Alexander draws the Persian left out wide, opens a gap in the line and leads his Companion cavalry straight at the king.",
+          "lat": 36.36,
+          "lng": 43.25,
+          "altitude": 0.8
+        },
+        {
+          "when": "330 BC",
+          "heading": "Persepolis burns",
+          "text": "Darius flees again and is murdered by his own satrap. Alexander takes Babylon, Susa and Persepolis, and burns the palace of the Persian kings.",
+          "lat": 29.93,
+          "lng": 52.89,
+          "altitude": 1.2
+        }
+      ],
+      "legacy": "The Achaemenid Empire fell, and Greek language and cities spread from Egypt to Afghanistan in the Hellenistic age."
+    }
+  },
+  {
+    "id": "library-of-alexandria",
+    "title": "The Library of Alexandria",
+    "year": -285,
+    "lat": 31.2,
+    "lng": 29.92,
+    "countryIso": "EG",
+    "category": "science",
+    "importance": 4,
+    "summary": "The Ptolemaic kings made Alexandria the scholarly capital of the Hellenistic world, collecting hundreds of thousands of scrolls in the Library and its Mouseion. Scholars working there edited Homer, measured the Earth and laid the foundations of geometry and anatomy.",
+    "wikipediaTitle": "Library of Alexandria",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Library_of_Alexandria"
     ]
   },
   {
@@ -224,6 +680,36 @@
     ]
   },
   {
+    "id": "ashoka-kalinga",
+    "title": "Ashoka renounces war after Kalinga",
+    "year": -261,
+    "lat": 25.61,
+    "lng": 85.14,
+    "countryIso": "IN",
+    "category": "religion",
+    "importance": 4,
+    "summary": "The Mauryan emperor Ashoka conquered Kalinga around 261 BC at a terrible cost in lives, then, by his own inscriptions, turned to Buddhism and a policy of moral rule. His edicts carved on rocks and pillars across South Asia and his missions helped carry Buddhism beyond India.",
+    "wikipediaTitle": "Ashoka",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Ashoka"
+    ]
+  },
+  {
+    "id": "eratosthenes-earth",
+    "title": "Eratosthenes measures the Earth",
+    "year": -240,
+    "lat": 31.0,
+    "lng": 30.5,
+    "countryIso": "EG",
+    "category": "science",
+    "importance": 3,
+    "summary": "Eratosthenes, head of the Library of Alexandria, compared the angle of the noon Sun at Alexandria and Syene and worked out the circumference of the Earth around 240 BC. Depending on the length of the stadion he used, his figure was close to the true value.",
+    "wikipediaTitle": "Eratosthenes",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Eratosthenes"
+    ]
+  },
+  {
     "id": "qin-unification",
     "title": "Qin Shi Huang unifies China",
     "year": -221,
@@ -236,6 +722,51 @@
     "wikipediaTitle": "Qin Shi Huang",
     "sources": [
       "https://en.wikipedia.org/wiki/Qin_Shi_Huang"
+    ]
+  },
+  {
+    "id": "battle-of-cannae",
+    "title": "Battle of Cannae",
+    "year": -216,
+    "lat": 41.31,
+    "lng": 16.13,
+    "countryIso": "IT",
+    "category": "war",
+    "importance": 4,
+    "summary": "In 216 BC Hannibal encircled and destroyed a much larger Roman army at Cannae in southern Italy, one of the bloodiest single days of battle in history. Rome refused to make peace, rebuilt its legions and eventually won the Second Punic War.",
+    "wikipediaTitle": "Battle of Cannae",
+    "belligerents": [
+      {
+        "name": "Carthage",
+        "lat": 36.85,
+        "lng": 10.32,
+        "side": "a"
+      },
+      {
+        "name": "Roman Republic",
+        "lat": 41.89,
+        "lng": 12.49,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Cannae"
+    ]
+  },
+  {
+    "id": "zhang-qian-silk-road",
+    "title": "Zhang Qian opens the Silk Road",
+    "year": -138,
+    "endYear": -126,
+    "lat": 34.27,
+    "lng": 108.94,
+    "countryIso": "CN",
+    "category": "economy",
+    "importance": 4,
+    "summary": "Sent west by Emperor Wu of Han in 138 BC to find allies against the Xiongnu, Zhang Qian spent years as a captive before reaching Central Asia. His reports of the lands beyond the Pamirs opened official Han contact with the west and the trade routes later called the Silk Road.",
+    "wikipediaTitle": "Zhang Qian",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Zhang_Qian"
     ]
   },
   {
@@ -280,6 +811,73 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Caesar%27s_Civil_War"
+    ],
+    "story": {
+      "tagline": "A shallow river, a legal line, and a general who refuses to stop.",
+      "quote": {
+        "text": "The die is cast.",
+        "by": "Words attributed to Caesar by Suetonius (alea iacta est)"
+      },
+      "facts": [
+        {
+          "label": "Date",
+          "value": "January 49 BC"
+        },
+        {
+          "label": "Force",
+          "value": "One legion, the XIII"
+        },
+        {
+          "label": "The law",
+          "value": "No general could bring an army into Italy"
+        },
+        {
+          "label": "Outcome",
+          "value": "Civil war, dictatorship"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "58–50 BC",
+          "heading": "The conquest of Gaul",
+          "text": "Caesar spends eight years conquering Gaul, growing rich, famous and dangerous. His enemies in the Senate want him stripped of command and put on trial.",
+          "lat": 46.5,
+          "lng": 2.5,
+          "altitude": 2.0
+        },
+        {
+          "when": "January 49 BC",
+          "heading": "At the river",
+          "text": "Ordered to disband his army, he instead leads the Thirteenth Legion over the Rubicon, the boundary of Italy. Crossing it under arms is treason.",
+          "lat": 44.09,
+          "lng": 12.4,
+          "altitude": 0.7
+        },
+        {
+          "when": "49–45 BC",
+          "heading": "Civil war",
+          "text": "Pompey and much of the Senate flee Rome. Caesar beats them in Spain, Greece, Egypt and Africa, and returns as dictator.",
+          "lat": 41.89,
+          "lng": 12.49,
+          "altitude": 1.6
+        }
+      ],
+      "legacy": "To cross the Rubicon still means to pass the point of no return; the Republic it ended never came back."
+    }
+  },
+  {
+    "id": "assassination-of-caesar",
+    "title": "Assassination of Julius Caesar",
+    "year": -44,
+    "lat": 41.895,
+    "lng": 12.477,
+    "countryIso": "IT",
+    "category": "politics",
+    "importance": 4,
+    "summary": "On the Ides of March, 44 BC, a group of senators led by Brutus and Cassius stabbed Julius Caesar to death at a meeting of the Senate. Meant to save the Republic, the murder set off civil wars that ended with Caesar's heir Octavian as sole ruler.",
+    "wikipediaTitle": "Assassination of Julius Caesar",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar"
     ]
   },
   {
@@ -313,6 +911,51 @@
     ]
   },
   {
+    "id": "vesuvius-pompeii",
+    "title": "Vesuvius buries Pompeii",
+    "year": 79,
+    "lat": 40.75,
+    "lng": 14.49,
+    "countryIso": "IT",
+    "category": "disaster",
+    "importance": 4,
+    "summary": "In AD 79 Mount Vesuvius erupted and buried Pompeii, Herculaneum and nearby towns under ash and pyroclastic flows. Pliny the Younger described the eruption in letters, and the excavated cities preserve an unequalled picture of everyday Roman life.",
+    "wikipediaTitle": "Eruption of Mount Vesuvius in 79 AD",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Eruption_of_Mount_Vesuvius_in_79_AD"
+    ]
+  },
+  {
+    "id": "cai-lun-paper",
+    "title": "Cai Lun and papermaking",
+    "year": 105,
+    "lat": 34.62,
+    "lng": 112.45,
+    "countryIso": "CN",
+    "category": "science",
+    "importance": 4,
+    "summary": "In AD 105 the Han court official Cai Lun presented the emperor with an improved method of making paper from bark, hemp, rags and fishing nets. Cheap writing material spread through East Asia and, centuries later, through the Islamic world to Europe.",
+    "wikipediaTitle": "Cai Lun",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Cai_Lun"
+    ]
+  },
+  {
+    "id": "council-of-nicaea",
+    "title": "The Council of Nicaea",
+    "year": 325,
+    "lat": 40.43,
+    "lng": 29.72,
+    "countryIso": "TR",
+    "category": "religion",
+    "importance": 3,
+    "summary": "Emperor Constantine summoned bishops from across the Roman Empire to Nicaea in 325 to settle the Arian controversy over the nature of Christ. The council produced the first version of the Nicene Creed and set a pattern of emperors shaping church doctrine.",
+    "wikipediaTitle": "First Council of Nicaea",
+    "sources": [
+      "https://en.wikipedia.org/wiki/First_Council_of_Nicaea"
+    ]
+  },
+  {
     "id": "constantinople-founded",
     "title": "Constantine founds Constantinople",
     "year": 330,
@@ -325,6 +968,50 @@
     "wikipediaTitle": "Constantinople",
     "sources": [
       "https://en.wikipedia.org/wiki/Constantinople"
+    ]
+  },
+  {
+    "id": "sack-of-rome-410",
+    "title": "The Visigoths sack Rome",
+    "year": 410,
+    "lat": 41.9,
+    "lng": 12.5,
+    "countryIso": "IT",
+    "category": "war",
+    "importance": 3,
+    "summary": "On 24 August 410 Alaric's Visigoths entered Rome and plundered it for three days, the first time in eight centuries that the city had fallen to a foreign enemy. The shock prompted Augustine to write The City of God.",
+    "wikipediaTitle": "Sack of Rome (410)",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Sack_of_Rome_(410)"
+    ]
+  },
+  {
+    "id": "catalaunian-plains",
+    "title": "Battle of the Catalaunian Plains",
+    "year": 451,
+    "lat": 48.95,
+    "lng": 4.36,
+    "countryIso": "FR",
+    "category": "war",
+    "importance": 3,
+    "summary": "In 451 a Roman and Visigothic army under Aetius met Attila's Huns and their allies in Gaul in one of the last great battles of the Western Empire. Attila withdrew, invaded Italy the next year, and died in 453; his empire broke apart soon after.",
+    "wikipediaTitle": "Battle of the Catalaunian Plains",
+    "belligerents": [
+      {
+        "name": "Western Roman Empire and Visigoths",
+        "lat": 45.44,
+        "lng": 12.33,
+        "side": "a"
+      },
+      {
+        "name": "Huns",
+        "lat": 47.5,
+        "lng": 19.04,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_the_Catalaunian_Plains"
     ]
   },
   {
@@ -343,6 +1030,52 @@
     ]
   },
   {
+    "id": "aryabhata",
+    "title": "Aryabhata's astronomy",
+    "year": 499,
+    "lat": 25.62,
+    "lng": 85.2,
+    "countryIso": "IN",
+    "category": "science",
+    "importance": 4,
+    "summary": "In 499 the mathematician Aryabhata completed the Aryabhatiya, a compact verse treatise of Gupta-era India covering arithmetic, algebra, trigonometry and astronomy. He gave an accurate value of pi and argued that the Earth rotates on its axis.",
+    "wikipediaTitle": "Aryabhata",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Aryabhata"
+    ]
+  },
+  {
+    "id": "hagia-sophia",
+    "title": "Justinian's Hagia Sophia",
+    "year": 537,
+    "lat": 41.008,
+    "lng": 28.98,
+    "countryIso": "TR",
+    "category": "culture",
+    "importance": 4,
+    "summary": "Emperor Justinian rebuilt the great church of Constantinople in under six years and dedicated it in 537. Its vast dome, seemingly floating on a ring of windows, was the largest in the world for nearly a thousand years; it later served as a mosque, a museum and again a mosque.",
+    "wikipediaTitle": "Hagia Sophia",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Hagia_Sophia"
+    ]
+  },
+  {
+    "id": "plague-of-justinian",
+    "title": "The Plague of Justinian",
+    "year": 541,
+    "endYear": 549,
+    "lat": 31.04,
+    "lng": 32.55,
+    "countryIso": "EG",
+    "category": "disaster",
+    "importance": 4,
+    "summary": "Bubonic plague appeared at Pelusium in Egypt in 541 and spread along trade routes to Constantinople and across the Mediterranean, killing a large share of the population. It was the first recorded plague pandemic and returned in waves for two centuries.",
+    "wikipediaTitle": "Plague of Justinian",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Plague_of_Justinian"
+    ]
+  },
+  {
     "id": "maya-classic-tikal",
     "title": "The Classic Maya at Tikal",
     "year": 600,
@@ -355,6 +1088,22 @@
     "wikipediaTitle": "Tikal",
     "sources": [
       "https://en.wikipedia.org/wiki/Tikal"
+    ]
+  },
+  {
+    "id": "tang-dynasty",
+    "title": "The Tang dynasty",
+    "year": 618,
+    "endYear": 907,
+    "lat": 34.27,
+    "lng": 108.94,
+    "countryIso": "CN",
+    "category": "politics",
+    "importance": 4,
+    "summary": "Founded in 618, the Tang dynasty ruled from Chang'an, then the largest city in the world, at the eastern end of the Silk Road. Tang China saw a golden age of poetry, printing and a cosmopolitan culture that absorbed Buddhism and influenced Korea and Japan.",
+    "wikipediaTitle": "Tang dynasty",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Tang_dynasty"
     ]
   },
   {
@@ -402,6 +1151,64 @@
     ]
   },
   {
+    "id": "battle-of-tours",
+    "title": "Battle of Tours",
+    "year": 732,
+    "lat": 46.75,
+    "lng": 0.4,
+    "countryIso": "FR",
+    "category": "war",
+    "importance": 4,
+    "summary": "In 732 the Frankish leader Charles Martel defeated an Umayyad army from al-Andalus between Tours and Poitiers. The victory checked raids north of the Pyrenees and strengthened the Carolingian family, whose descendant Charlemagne would become emperor.",
+    "wikipediaTitle": "Battle of Tours",
+    "belligerents": [
+      {
+        "name": "Franks",
+        "lat": 49.12,
+        "lng": 6.18,
+        "side": "a"
+      },
+      {
+        "name": "Umayyad al-Andalus",
+        "lat": 37.88,
+        "lng": -4.78,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Tours"
+    ]
+  },
+  {
+    "id": "battle-of-talas",
+    "title": "Battle of Talas",
+    "year": 751,
+    "lat": 42.52,
+    "lng": 72.23,
+    "countryIso": "KZ",
+    "category": "war",
+    "importance": 3,
+    "summary": "In 751 Abbasid forces and their allies defeated a Tang Chinese army near the Talas River in Central Asia. The battle marked the western limit of Tang power, and later tradition credited Chinese prisoners with bringing papermaking to Samarkand.",
+    "wikipediaTitle": "Battle of Talas",
+    "belligerents": [
+      {
+        "name": "Abbasid Caliphate",
+        "lat": 32.03,
+        "lng": 44.4,
+        "side": "a"
+      },
+      {
+        "name": "Tang dynasty",
+        "lat": 34.27,
+        "lng": 108.94,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Talas"
+    ]
+  },
+  {
     "id": "abbasid-baghdad-founded",
     "title": "The Abbasids found Baghdad",
     "year": 762,
@@ -414,6 +1221,36 @@
     "wikipediaTitle": "Baghdad",
     "sources": [
       "https://en.wikipedia.org/wiki/Baghdad"
+    ]
+  },
+  {
+    "id": "lindisfarne-raid",
+    "title": "Vikings raid Lindisfarne",
+    "year": 793,
+    "lat": 55.67,
+    "lng": -1.8,
+    "countryIso": "GB",
+    "category": "war",
+    "importance": 3,
+    "summary": "In June 793 Norse raiders plundered the monastery on the island of Lindisfarne off Northumbria, an attack that shocked Christian Europe. It is conventionally taken as the start of the Viking Age, three centuries of raiding, trading and settlement from Russia to Newfoundland.",
+    "wikipediaTitle": "Lindisfarne",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Lindisfarne"
+    ]
+  },
+  {
+    "id": "charlemagne-crowned",
+    "title": "Charlemagne crowned emperor",
+    "year": 800,
+    "lat": 41.902,
+    "lng": 12.457,
+    "countryIso": "IT",
+    "category": "politics",
+    "importance": 5,
+    "summary": "On Christmas Day 800, Pope Leo III crowned the Frankish king Charlemagne emperor of the Romans in St Peter's Basilica. The coronation revived the idea of a Western empire and tied it to the papacy, an alliance that shaped medieval Europe.",
+    "wikipediaTitle": "Charlemagne",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Charlemagne"
     ]
   },
   {
@@ -432,6 +1269,52 @@
     ]
   },
   {
+    "id": "house-of-wisdom",
+    "title": "Baghdad's House of Wisdom",
+    "year": 830,
+    "lat": 33.31,
+    "lng": 44.36,
+    "countryIso": "IQ",
+    "category": "science",
+    "importance": 4,
+    "summary": "Under the Abbasid caliph al-Ma'mun, scholars in Baghdad translated Greek, Persian and Indian works into Arabic and built on them. Al-Khwarizmi's work there gave the world the words algebra and algorithm, and carried Hindu-Arabic numerals westward.",
+    "wikipediaTitle": "House of Wisdom",
+    "sources": [
+      "https://en.wikipedia.org/wiki/House_of_Wisdom"
+    ]
+  },
+  {
+    "id": "song-dynasty",
+    "title": "The Song dynasty",
+    "year": 960,
+    "endYear": 1279,
+    "lat": 34.8,
+    "lng": 114.31,
+    "countryIso": "CN",
+    "category": "politics",
+    "importance": 3,
+    "summary": "Founded in 960 and ruling from Kaifeng, then Hangzhou, the Song dynasty presided over a commercial revolution: paper money, movable type, the magnetic compass and gunpowder weapons. Its economy was the most advanced in the world until the Mongol conquest.",
+    "wikipediaTitle": "Song dynasty",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Song_dynasty"
+    ]
+  },
+  {
+    "id": "baptism-of-kievan-rus",
+    "title": "The baptism of Kievan Rus'",
+    "year": 988,
+    "lat": 50.45,
+    "lng": 30.52,
+    "countryIso": "UA",
+    "category": "religion",
+    "importance": 3,
+    "summary": "Around 988 Grand Prince Vladimir of Kiev accepted Byzantine Christianity and had his people baptised in the Dnieper. The choice bound the eastern Slavs to Constantinople's church, script and art, shaping the cultures of Ukraine, Belarus and Russia.",
+    "wikipediaTitle": "Christianization of Kievan Rus'",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Christianization_of_Kievan_Rus'"
+    ]
+  },
+  {
     "id": "leif-erikson-vinland",
     "title": "Norse settlement at L'Anse aux Meadows",
     "year": 1000,
@@ -444,6 +1327,95 @@
     "wikipediaTitle": "L'Anse aux Meadows",
     "sources": [
       "https://en.wikipedia.org/wiki/L%27Anse_aux_Meadows"
+    ]
+  },
+  {
+    "id": "tale-of-genji",
+    "title": "The Tale of Genji",
+    "year": 1010,
+    "lat": 35.01,
+    "lng": 135.77,
+    "countryIso": "JP",
+    "category": "culture",
+    "importance": 3,
+    "summary": "Murasaki Shikibu, a lady-in-waiting at the Heian court in Kyoto, wrote The Tale of Genji in the early eleventh century. Following the loves and losses of a prince, it is often called the world's first novel.",
+    "wikipediaTitle": "The Tale of Genji",
+    "sources": [
+      "https://en.wikipedia.org/wiki/The_Tale_of_Genji"
+    ]
+  },
+  {
+    "id": "cahokia",
+    "title": "Cahokia on the Mississippi",
+    "year": 1050,
+    "lat": 38.66,
+    "lng": -90.06,
+    "countryIso": "US",
+    "category": "culture",
+    "importance": 3,
+    "summary": "Around 1050 Cahokia, near present-day St. Louis, grew into the largest city north of Mexico, with perhaps 10,000 to 20,000 people. Its Monks Mound is the largest earthwork in the Americas; the city was largely abandoned by 1350.",
+    "wikipediaTitle": "Cahokia",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Cahokia"
+    ]
+  },
+  {
+    "id": "east-west-schism",
+    "title": "The East–West Schism",
+    "year": 1054,
+    "lat": 41.0,
+    "lng": 28.95,
+    "countryIso": "TR",
+    "category": "religion",
+    "importance": 4,
+    "summary": "In 1054 papal legates laid a bull of excommunication against the Patriarch of Constantinople on the altar of Hagia Sophia, and the patriarch replied in kind. The break between the Latin and Greek churches hardened over the following centuries and has never been fully healed.",
+    "wikipediaTitle": "East–West Schism",
+    "sources": [
+      "https://en.wikipedia.org/wiki/East–West_Schism"
+    ]
+  },
+  {
+    "id": "battle-of-hastings",
+    "title": "Battle of Hastings",
+    "year": 1066,
+    "lat": 50.91,
+    "lng": 0.49,
+    "countryIso": "GB",
+    "category": "war",
+    "importance": 4,
+    "summary": "On 14 October 1066 Duke William of Normandy defeated and killed King Harold II near Hastings. The Norman Conquest replaced the English ruling class, reshaped the English language and tied England to continental Europe for centuries.",
+    "wikipediaTitle": "Battle of Hastings",
+    "belligerents": [
+      {
+        "name": "Duchy of Normandy",
+        "lat": 49.44,
+        "lng": 1.1,
+        "side": "a"
+      },
+      {
+        "name": "Kingdom of England",
+        "lat": 51.51,
+        "lng": -0.13,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Hastings"
+    ]
+  },
+  {
+    "id": "university-of-bologna",
+    "title": "The University of Bologna",
+    "year": 1088,
+    "lat": 44.49,
+    "lng": 11.34,
+    "countryIso": "IT",
+    "category": "culture",
+    "importance": 3,
+    "summary": "Students in Bologna banded together to hire teachers of Roman law, and by tradition the university dates from 1088. It is the oldest university in continuous operation and the model for the self-governing universities that spread across Europe.",
+    "wikipediaTitle": "University of Bologna",
+    "sources": [
+      "https://en.wikipedia.org/wiki/University_of_Bologna"
     ]
   },
   {
@@ -473,6 +1445,22 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/First_Crusade"
+    ]
+  },
+  {
+    "id": "angkor-wat",
+    "title": "Angkor Wat",
+    "year": 1113,
+    "endYear": 1150,
+    "lat": 13.41,
+    "lng": 103.87,
+    "countryIso": "KH",
+    "category": "religion",
+    "importance": 3,
+    "summary": "King Suryavarman II began Angkor Wat in the early twelfth century as a temple to Vishnu at the heart of the Khmer capital. The largest religious monument in the world, it later became a Buddhist shrine and appears on Cambodia's flag.",
+    "wikipediaTitle": "Angkor Wat",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Angkor_Wat"
     ]
   },
   {
@@ -547,7 +1535,59 @@
     "wikipediaTitle": "Magna Carta",
     "sources": [
       "https://en.wikipedia.org/wiki/Magna_Carta"
-    ]
+    ],
+    "story": {
+      "tagline": "In a meadow by the Thames, a king is told he is not above the law.",
+      "quote": {
+        "text": "No free man shall be seized or imprisoned … except by the lawful judgment of his equals or by the law of the land.",
+        "by": "Magna Carta, clause 39"
+      },
+      "facts": [
+        {
+          "label": "Sealed",
+          "value": "15 June 1215"
+        },
+        {
+          "label": "Clauses",
+          "value": "63"
+        },
+        {
+          "label": "Annulled",
+          "value": "By the Pope within 10 weeks"
+        },
+        {
+          "label": "Originals surviving",
+          "value": "4"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "1214",
+          "heading": "A king in trouble",
+          "text": "King John has lost Normandy and taxed his barons hard to win it back, then lost again at Bouvines. The barons renounce their allegiance and take London.",
+          "lat": 49.44,
+          "lng": 1.1,
+          "altitude": 1.8
+        },
+        {
+          "when": "June 1215",
+          "heading": "Runnymede",
+          "text": "On a meadow between the royal castle at Windsor and the rebel camp, John seals a charter of liberties drafted with Archbishop Stephen Langton.",
+          "lat": 51.44,
+          "lng": -0.56,
+          "altitude": 0.6
+        },
+        {
+          "when": "1216–1297",
+          "heading": "Reissued and remembered",
+          "text": "War resumes almost at once, but after John's death the charter is reissued again and again. Its 1297 version is still partly English law.",
+          "lat": 51.5,
+          "lng": -0.12,
+          "altitude": 1.0
+        }
+      ],
+      "legacy": "Later lawyers and revolutionaries, from the English Civil War to the US Bill of Rights, read in it the principle of rule by law."
+    }
   },
   {
     "id": "siege-of-baghdad-1258",
@@ -623,6 +1663,37 @@
     ]
   },
   {
+    "id": "marco-polo",
+    "title": "Marco Polo travels to China",
+    "year": 1271,
+    "endYear": 1295,
+    "lat": 45.44,
+    "lng": 12.33,
+    "countryIso": "IT",
+    "category": "exploration",
+    "importance": 3,
+    "summary": "In 1271 the Venetian merchant Marco Polo set out with his father and uncle for the court of Kublai Khan, returning only in 1295. His account of the Mongol empire and China became one of the most widely read books of medieval Europe.",
+    "wikipediaTitle": "Marco Polo",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Marco_Polo"
+    ]
+  },
+  {
+    "id": "osman-founds-ottomans",
+    "title": "Osman founds the Ottoman state",
+    "year": 1299,
+    "lat": 40.02,
+    "lng": 30.18,
+    "countryIso": "TR",
+    "category": "politics",
+    "importance": 4,
+    "summary": "Around 1299 Osman, leader of a small Turkish principality in northwestern Anatolia, began raiding and absorbing Byzantine territory. The dynasty named after him grew into the Ottoman Empire, which lasted until 1922.",
+    "wikipediaTitle": "Osman I",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Osman_I"
+    ]
+  },
+  {
     "id": "swahili-coast-kilwa",
     "title": "Kilwa and the Swahili coast",
     "year": 1300,
@@ -653,6 +1724,51 @@
     ]
   },
   {
+    "id": "tenochtitlan-founded",
+    "title": "The Mexica found Tenochtitlan",
+    "year": 1325,
+    "lat": 19.43,
+    "lng": -99.13,
+    "countryIso": "MX",
+    "category": "politics",
+    "importance": 4,
+    "summary": "By tradition in 1325 the Mexica settled on an island in Lake Texcoco where, as prophesied, they saw an eagle on a cactus. Tenochtitlan grew into the capital of the Aztec Empire, a city of causeways and canals of perhaps 200,000 people.",
+    "wikipediaTitle": "Tenochtitlan",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Tenochtitlan"
+    ]
+  },
+  {
+    "id": "hundred-years-war",
+    "title": "The Hundred Years' War",
+    "year": 1337,
+    "endYear": 1453,
+    "lat": 48.86,
+    "lng": 2.35,
+    "countryIso": "FR",
+    "category": "war",
+    "importance": 4,
+    "summary": "From 1337 to 1453 the kings of England and France fought over the French crown, through Crécy, Agincourt and Joan of Arc's relief of Orléans. England lost almost all its French lands, and both kingdoms emerged with stronger royal states and national identities.",
+    "wikipediaTitle": "Hundred Years' War",
+    "belligerents": [
+      {
+        "name": "Kingdom of England",
+        "lat": 51.51,
+        "lng": -0.13,
+        "side": "a"
+      },
+      {
+        "name": "Kingdom of France",
+        "lat": 48.86,
+        "lng": 2.35,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Hundred_Years'_War"
+    ]
+  },
+  {
     "id": "black-death",
     "title": "The Black Death",
     "year": 1347,
@@ -666,7 +1782,67 @@
     "wikipediaTitle": "Black Death",
     "sources": [
       "https://en.wikipedia.org/wiki/Black_Death"
-    ]
+    ],
+    "story": {
+      "tagline": "In four years, a third of Europe dies.",
+      "quote": {
+        "text": "And I, Agnolo di Tura, called the Fat, buried my five children with my own hands.",
+        "by": "Agnolo di Tura, chronicler of Siena, 1348"
+      },
+      "facts": [
+        {
+          "label": "Arrived in Europe",
+          "value": "1347"
+        },
+        {
+          "label": "Deaths in Europe",
+          "value": "Perhaps 25–50 million"
+        },
+        {
+          "label": "Pathogen",
+          "value": "Yersinia pestis"
+        },
+        {
+          "label": "Carried by",
+          "value": "Fleas, rats, people"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "1346",
+          "heading": "Siege of Caffa",
+          "text": "Plague spreads along the Mongol trade routes and reaches the Golden Horde besieging the Genoese port of Caffa in Crimea.",
+          "lat": 45.03,
+          "lng": 35.38,
+          "altitude": 1.3
+        },
+        {
+          "when": "October 1347",
+          "heading": "Galleys at Messina",
+          "text": "Genoese ships carry it to Sicily. Within months it is in Genoa, Venice, Marseille and Alexandria.",
+          "lat": 38.19,
+          "lng": 15.55,
+          "altitude": 1.0
+        },
+        {
+          "when": "1348",
+          "heading": "Florence and Paris",
+          "text": "Boccaccio sets the Decameron in plague-stricken Florence. The disease reaches Paris and England; whole villages are abandoned.",
+          "lat": 43.77,
+          "lng": 11.25,
+          "altitude": 1.4
+        },
+        {
+          "when": "1349–1351",
+          "heading": "The far north",
+          "text": "It crosses to Scandinavia and finally Russia. Persecutions of Jews accused of poisoning wells sweep through German cities.",
+          "lat": 59.91,
+          "lng": 10.75,
+          "altitude": 2.0
+        }
+      ],
+      "legacy": "Labour became scarce and wages rose; serfdom weakened in the west, and plague returned in waves until the 18th century."
+    }
   },
   {
     "id": "fall-of-the-yuan",
@@ -730,6 +1906,36 @@
     ]
   },
   {
+    "id": "forbidden-city",
+    "title": "The Forbidden City",
+    "year": 1420,
+    "lat": 39.92,
+    "lng": 116.39,
+    "countryIso": "CN",
+    "category": "culture",
+    "importance": 3,
+    "summary": "The Yongle Emperor moved the Ming capital to Beijing and completed the Forbidden City in 1420, a walled palace of nearly a thousand buildings. It was the seat of 24 emperors until 1912 and is now the Palace Museum.",
+    "wikipediaTitle": "Forbidden City",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Forbidden_City"
+    ]
+  },
+  {
+    "id": "pachacuti-inca",
+    "title": "Pachacuti builds the Inca Empire",
+    "year": 1438,
+    "lat": -13.53,
+    "lng": -71.97,
+    "countryIso": "PE",
+    "category": "politics",
+    "importance": 4,
+    "summary": "From 1438 the ruler Pachacuti turned the kingdom of Cusco into Tawantinsuyu, the Inca Empire, rebuilding the capital and probably commissioning Machu Picchu. Within a century it stretched 4,000 km along the Andes, joined by roads and run without writing, using knotted khipu.",
+    "wikipediaTitle": "Pachacuti",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Pachacuti"
+    ]
+  },
+  {
     "id": "sejong-hangul",
     "title": "Sejong the Great promulgates Hangul",
     "year": 1446,
@@ -757,7 +1963,55 @@
     "wikipediaTitle": "Printing press",
     "sources": [
       "https://en.wikipedia.org/wiki/Printing_press"
-    ]
+    ],
+    "story": {
+      "tagline": "Movable metal type, and knowledge starts to multiply.",
+      "facts": [
+        {
+          "label": "Place",
+          "value": "Mainz"
+        },
+        {
+          "label": "Gutenberg Bible",
+          "value": "c. 1455, about 180 copies"
+        },
+        {
+          "label": "Presses in Europe by 1500",
+          "value": "Over 250 towns"
+        },
+        {
+          "label": "Books printed by 1500",
+          "value": "Millions"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "c. 1440",
+          "heading": "A goldsmith's idea",
+          "text": "Johannes Gutenberg, a goldsmith from Mainz, works out how to cast identical metal letters in a hand mould and set them in reusable lines.",
+          "lat": 49.99,
+          "lng": 8.25,
+          "altitude": 0.8
+        },
+        {
+          "when": "c. 1455",
+          "heading": "The 42-line Bible",
+          "text": "His workshop prints the Bible in two volumes, so close to fine manuscript that buyers could hardly tell the difference.",
+          "lat": 49.99,
+          "lng": 8.25,
+          "altitude": 0.6
+        },
+        {
+          "when": "1470–1500",
+          "heading": "Spread across Europe",
+          "text": "Printers carry the technique to Venice, Paris, Kraków and London. Venice becomes the publishing capital of Europe.",
+          "lat": 45.44,
+          "lng": 12.33,
+          "altitude": 2.0
+        }
+      ],
+      "legacy": "Cheap books fed the Renaissance, the Reformation and the Scientific Revolution, and made literacy worth having."
+    }
   },
   {
     "id": "fall-of-constantinople",
@@ -786,6 +2040,77 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Fall_of_Constantinople"
+    ],
+    "story": {
+      "tagline": "Fifty-three days, the greatest walls of the medieval world, and a 21-year-old sultan.",
+      "facts": [
+        {
+          "label": "Siege",
+          "value": "6 April – 29 May 1453"
+        },
+        {
+          "label": "Defenders",
+          "value": "About 7,000"
+        },
+        {
+          "label": "Ottoman army",
+          "value": "Perhaps 50,000–80,000"
+        },
+        {
+          "label": "Last emperor",
+          "value": "Constantine XI"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "1452",
+          "heading": "Rumeli Hisarı",
+          "text": "Mehmed II builds a fortress on the Bosphorus to cut the city off from the Black Sea and orders giant bronze cannon from the Hungarian founder Orban.",
+          "lat": 41.08,
+          "lng": 29.06,
+          "altitude": 0.7
+        },
+        {
+          "when": "April 1453",
+          "heading": "The walls",
+          "text": "The cannon pound the Theodosian walls for weeks. Defenders rebuild the breaches each night with earth and timber.",
+          "lat": 41.02,
+          "lng": 28.92,
+          "altitude": 0.5
+        },
+        {
+          "when": "22 April 1453",
+          "heading": "Ships over the hill",
+          "text": "Blocked by a chain across the Golden Horn, Mehmed has some 70 ships hauled overland on greased logs into the harbour behind the defences.",
+          "lat": 41.03,
+          "lng": 28.97,
+          "altitude": 0.5
+        },
+        {
+          "when": "29 May 1453",
+          "heading": "The final assault",
+          "text": "Janissaries break through near the Gate of St Romanus. Constantine XI dies in the fighting, and Mehmed rides to Hagia Sophia.",
+          "lat": 41.01,
+          "lng": 28.98,
+          "altitude": 0.6
+        }
+      ],
+      "legacy": "The Ottomans made the city their capital; Greek scholars fleeing west helped feed the Italian Renaissance."
+    }
+  },
+  {
+    "id": "elmina-castle",
+    "title": "Elmina and the Atlantic slave trade",
+    "year": 1482,
+    "lat": 5.08,
+    "lng": -1.35,
+    "countryIso": "GH",
+    "category": "economy",
+    "importance": 4,
+    "summary": "In 1482 Portugal built São Jorge da Mina on the Gold Coast to trade for gold. Elmina later became a major holding point in the Atlantic slave trade, through which some 12 million Africans were shipped to the Americas between the 16th and 19th centuries.",
+    "wikipediaTitle": "Elmina Castle",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Elmina_Castle"
     ]
   },
   {
@@ -816,7 +2141,63 @@
     "wikipediaTitle": "Voyages of Christopher Columbus",
     "sources": [
       "https://en.wikipedia.org/wiki/Voyages_of_Christopher_Columbus"
-    ]
+    ],
+    "story": {
+      "tagline": "Three ships sail west to find Asia, and two worlds collide.",
+      "facts": [
+        {
+          "label": "Departed",
+          "value": "Palos, 3 August 1492"
+        },
+        {
+          "label": "Ships",
+          "value": "Santa María, Pinta, Niña"
+        },
+        {
+          "label": "Landfall",
+          "value": "12 October 1492"
+        },
+        {
+          "label": "Crew",
+          "value": "About 90"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "3 August 1492",
+          "heading": "Palos de la Frontera",
+          "text": "Backed by Isabella and Ferdinand of Castile and Aragon, Columbus sails from Palos believing Asia lies only a few thousand kilometres to the west.",
+          "lat": 37.23,
+          "lng": -6.89,
+          "altitude": 1.2
+        },
+        {
+          "when": "September 1492",
+          "heading": "The open Atlantic",
+          "text": "After a stop in the Canaries the fleet sails over a month without sight of land. The crew grows close to mutiny.",
+          "lat": 28.1,
+          "lng": -40.0,
+          "altitude": 2.6
+        },
+        {
+          "when": "12 October 1492",
+          "heading": "Guanahani",
+          "text": "A lookout on the Pinta sights land in the Bahamas. Columbus names it San Salvador and claims it for Castile; its Taíno inhabitants call it Guanahani.",
+          "lat": 24.04,
+          "lng": -74.5,
+          "altitude": 0.8
+        },
+        {
+          "when": "December 1492",
+          "heading": "Hispaniola",
+          "text": "The Santa María runs aground off Hispaniola; Columbus leaves 39 men in a fort and sails home with news, gold and captives.",
+          "lat": 19.0,
+          "lng": -72.0,
+          "altitude": 1.0
+        }
+      ],
+      "legacy": "The voyage began the Columbian exchange of crops, animals and diseases, and the conquest that killed most of the Americas' native peoples."
+    }
   },
   {
     "id": "vasco-da-gama-india",
@@ -846,6 +2227,22 @@
     "wikipediaTitle": "Pedro Álvares Cabral",
     "sources": [
       "https://en.wikipedia.org/wiki/Pedro_%C3%81lvares_Cabral"
+    ]
+  },
+  {
+    "id": "sistine-chapel-ceiling",
+    "title": "Michelangelo's Sistine Chapel ceiling",
+    "year": 1508,
+    "endYear": 1512,
+    "lat": 41.903,
+    "lng": 12.454,
+    "countryIso": "IT",
+    "category": "culture",
+    "importance": 3,
+    "summary": "Between 1508 and 1512 Michelangelo painted the ceiling of the Sistine Chapel for Pope Julius II, covering it with scenes from Genesis including the Creation of Adam. It is a summit of High Renaissance art.",
+    "wikipediaTitle": "Sistine Chapel ceiling",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Sistine_Chapel_ceiling"
     ]
   },
   {
@@ -909,6 +2306,35 @@
     ]
   },
   {
+    "id": "first-battle-of-panipat",
+    "title": "First Battle of Panipat",
+    "year": 1526,
+    "lat": 29.39,
+    "lng": 76.97,
+    "countryIso": "IN",
+    "category": "war",
+    "importance": 4,
+    "summary": "In 1526 Babur, a descendant of Timur and Genghis Khan, used field artillery and cavalry to defeat the much larger army of the Delhi Sultan Ibrahim Lodi at Panipat. The victory founded the Mughal Empire, which ruled most of South Asia for two centuries.",
+    "wikipediaTitle": "First Battle of Panipat",
+    "belligerents": [
+      {
+        "name": "Babur's army",
+        "lat": 34.53,
+        "lng": 69.17,
+        "side": "a"
+      },
+      {
+        "name": "Delhi Sultanate",
+        "lat": 28.61,
+        "lng": 77.21,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/First_Battle_of_Panipat"
+    ]
+  },
+  {
     "id": "pizarro-cajamarca",
     "title": "Pizarro seizes the Inca emperor at Cajamarca",
     "year": 1532,
@@ -924,6 +2350,21 @@
     ]
   },
   {
+    "id": "copernicus-de-revolutionibus",
+    "title": "Copernicus puts the Sun at the centre",
+    "year": 1543,
+    "lat": 54.36,
+    "lng": 19.68,
+    "countryIso": "PL",
+    "category": "science",
+    "importance": 5,
+    "summary": "Nicolaus Copernicus, a canon of Frombork, published De revolutionibus in 1543, the year he died, arguing that the Earth and planets orbit the Sun. The book began the Scientific Revolution's long overthrow of the Earth-centred cosmos.",
+    "wikipediaTitle": "De revolutionibus orbium coelestium",
+    "sources": [
+      "https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"
+    ]
+  },
+  {
     "id": "potosi-silver",
     "title": "The silver mountain of Potosí",
     "year": 1545,
@@ -936,6 +2377,70 @@
     "wikipediaTitle": "Potosí",
     "sources": [
       "https://en.wikipedia.org/wiki/Potos%C3%AD"
+    ]
+  },
+  {
+    "id": "battle-of-lepanto",
+    "title": "Battle of Lepanto",
+    "year": 1571,
+    "lat": 38.25,
+    "lng": 21.1,
+    "countryIso": "GR",
+    "category": "war",
+    "importance": 3,
+    "summary": "On 7 October 1571 the galleys of the Holy League, led by Don John of Austria, destroyed the Ottoman fleet in the Gulf of Patras. It was the last great battle of oared galleys and halted Ottoman naval expansion in the western Mediterranean for a time.",
+    "wikipediaTitle": "Battle of Lepanto",
+    "belligerents": [
+      {
+        "name": "Holy League (Venice)",
+        "lat": 45.44,
+        "lng": 12.33,
+        "side": "a"
+      },
+      {
+        "name": "Holy League (Spain)",
+        "lat": 40.42,
+        "lng": -3.7,
+        "side": "a"
+      },
+      {
+        "name": "Ottoman Empire",
+        "lat": 41.01,
+        "lng": 28.98,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Lepanto"
+    ]
+  },
+  {
+    "id": "spanish-armada",
+    "title": "Defeat of the Spanish Armada",
+    "year": 1588,
+    "lat": 51.0,
+    "lng": 2.13,
+    "countryIso": "GB",
+    "category": "war",
+    "importance": 3,
+    "summary": "In 1588 Philip II sent some 130 ships to escort an invasion army from Flanders to England. English fireships and the fight off Gravelines broke up the fleet, and storms wrecked many ships on the way home around Scotland and Ireland.",
+    "wikipediaTitle": "Spanish Armada",
+    "belligerents": [
+      {
+        "name": "Kingdom of England",
+        "lat": 51.51,
+        "lng": -0.13,
+        "side": "a"
+      },
+      {
+        "name": "Spanish Empire",
+        "lat": 40.42,
+        "lng": -3.7,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Spanish_Armada"
     ]
   },
   {
@@ -969,6 +2474,36 @@
     ]
   },
   {
+    "id": "jamestown",
+    "title": "Jamestown founded",
+    "year": 1607,
+    "lat": 37.21,
+    "lng": -76.78,
+    "countryIso": "US",
+    "category": "exploration",
+    "importance": 3,
+    "summary": "In 1607 the Virginia Company landed settlers at Jamestown on Powhatan land in Chesapeake Bay. Nearly wiped out by famine and conflict, it survived on tobacco to become the first permanent English settlement in North America.",
+    "wikipediaTitle": "Jamestown, Virginia",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Jamestown,_Virginia"
+    ]
+  },
+  {
+    "id": "galileo-telescope",
+    "title": "Galileo turns a telescope to the sky",
+    "year": 1610,
+    "lat": 45.41,
+    "lng": 11.88,
+    "countryIso": "IT",
+    "category": "science",
+    "importance": 4,
+    "summary": "In 1610 Galileo Galilei, a professor at Padua, published Sidereus Nuncius, reporting mountains on the Moon, countless new stars and four moons orbiting Jupiter. His observations gave strong support to Copernicus and led to his trial by the Inquisition in 1633.",
+    "wikipediaTitle": "Sidereus Nuncius",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Sidereus_Nuncius"
+    ]
+  },
+  {
     "id": "thirty-years-war",
     "title": "The Thirty Years' War",
     "year": 1618,
@@ -996,6 +2531,52 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Thirty_Years%27_War"
+    ]
+  },
+  {
+    "id": "taj-mahal",
+    "title": "The Taj Mahal",
+    "year": 1632,
+    "endYear": 1653,
+    "lat": 27.175,
+    "lng": 78.042,
+    "countryIso": "IN",
+    "category": "culture",
+    "importance": 3,
+    "summary": "The Mughal emperor Shah Jahan began the Taj Mahal at Agra in 1632 as a tomb for his wife Mumtaz Mahal, who had died in childbirth. Built in white marble inlaid with stone by some 20,000 workers, it is the crowning work of Mughal architecture.",
+    "wikipediaTitle": "Taj Mahal",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Taj_Mahal"
+    ]
+  },
+  {
+    "id": "ming-qing-transition",
+    "title": "The Qing take Beijing",
+    "year": 1644,
+    "lat": 39.9,
+    "lng": 116.4,
+    "countryIso": "CN",
+    "category": "politics",
+    "importance": 4,
+    "summary": "In 1644 rebels took Beijing and the last Ming emperor hanged himself; weeks later Manchu armies entered the city and proclaimed the Qing dynasty. The Qing went on to double the size of the empire and ruled China until 1912.",
+    "wikipediaTitle": "Transition from Ming to Qing",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Transition_from_Ming_to_Qing"
+    ]
+  },
+  {
+    "id": "peace-of-westphalia",
+    "title": "Peace of Westphalia",
+    "year": 1648,
+    "lat": 51.96,
+    "lng": 7.63,
+    "countryIso": "DE",
+    "category": "politics",
+    "importance": 4,
+    "summary": "Treaties signed at Münster and Osnabrück in 1648 ended the Thirty Years' War and the Eighty Years' War. They confirmed the princes' right to choose their territory's religion and are often cited as the origin of the modern system of sovereign states.",
+    "wikipediaTitle": "Peace of Westphalia",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Peace_of_Westphalia"
     ]
   },
   {
@@ -1043,6 +2624,21 @@
     ]
   },
   {
+    "id": "newton-principia",
+    "title": "Newton's Principia",
+    "year": 1687,
+    "lat": 52.21,
+    "lng": 0.12,
+    "countryIso": "GB",
+    "category": "science",
+    "importance": 5,
+    "summary": "Isaac Newton's Principia, published in 1687, set out the laws of motion and universal gravitation and showed that one set of laws governs falling apples and orbiting planets. It became the foundation of physics for more than two centuries.",
+    "wikipediaTitle": "Philosophiæ Naturalis Principia Mathematica",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Philosophiæ_Naturalis_Principia_Mathematica"
+    ]
+  },
+  {
     "id": "glorious-revolution",
     "title": "The Glorious Revolution",
     "year": 1688,
@@ -1055,6 +2651,79 @@
     "wikipediaTitle": "Glorious Revolution",
     "sources": [
       "https://en.wikipedia.org/wiki/Glorious_Revolution"
+    ]
+  },
+  {
+    "id": "encyclopedie",
+    "title": "Diderot's Encyclopédie",
+    "year": 1751,
+    "endYear": 1772,
+    "lat": 48.86,
+    "lng": 2.34,
+    "countryIso": "FR",
+    "category": "culture",
+    "importance": 3,
+    "summary": "Denis Diderot and Jean le Rond d'Alembert began publishing the Encyclopédie in Paris in 1751, gathering the knowledge of the age, from trades to philosophy, in 28 volumes. Repeatedly banned, it became the flagship of the Enlightenment.",
+    "wikipediaTitle": "Encyclopédie",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Encyclopédie"
+    ]
+  },
+  {
+    "id": "lisbon-earthquake",
+    "title": "The Lisbon earthquake",
+    "year": 1755,
+    "lat": 38.72,
+    "lng": -9.14,
+    "countryIso": "PT",
+    "category": "disaster",
+    "importance": 4,
+    "summary": "On All Saints' Day 1755 an earthquake, tsunami and fires destroyed most of Lisbon and killed tens of thousands. The disaster shook Enlightenment confidence in a benevolent order, inspired Voltaire's Candide and led to the first modern anti-seismic city plan.",
+    "wikipediaTitle": "1755 Lisbon earthquake",
+    "sources": [
+      "https://en.wikipedia.org/wiki/1755_Lisbon_earthquake"
+    ]
+  },
+  {
+    "id": "seven-years-war",
+    "title": "The Seven Years' War",
+    "year": 1756,
+    "endYear": 1763,
+    "lat": 52.52,
+    "lng": 13.4,
+    "countryIso": "DE",
+    "category": "war",
+    "importance": 3,
+    "summary": "From 1756 to 1763 Britain and Prussia fought France, Austria, Russia and their allies in Europe, North America, India and on the seas. Britain emerged as the leading colonial power, and the war's debts helped trigger both the American and French revolutions.",
+    "wikipediaTitle": "Seven Years' War",
+    "belligerents": [
+      {
+        "name": "Great Britain",
+        "lat": 51.51,
+        "lng": -0.13,
+        "side": "a"
+      },
+      {
+        "name": "Prussia",
+        "lat": 52.52,
+        "lng": 13.4,
+        "side": "a"
+      },
+      {
+        "name": "France",
+        "lat": 48.8,
+        "lng": 2.12,
+        "side": "b"
+      },
+      {
+        "name": "Habsburg Austria",
+        "lat": 48.21,
+        "lng": 16.37,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Seven_Years'_War"
     ]
   },
   {
@@ -1085,7 +2754,59 @@
     "wikipediaTitle": "United States Declaration of Independence",
     "sources": [
       "https://en.wikipedia.org/wiki/United_States_Declaration_of_Independence"
-    ]
+    ],
+    "story": {
+      "tagline": "Thirteen colonies break with an empire, in the name of equality.",
+      "quote": {
+        "text": "We hold these truths to be self-evident, that all men are created equal…",
+        "by": "Declaration of Independence, 4 July 1776"
+      },
+      "facts": [
+        {
+          "label": "Adopted",
+          "value": "4 July 1776"
+        },
+        {
+          "label": "Principal author",
+          "value": "Thomas Jefferson"
+        },
+        {
+          "label": "Signers",
+          "value": "56"
+        },
+        {
+          "label": "War ended",
+          "value": "Treaty of Paris, 1783"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "April 1775",
+          "heading": "Lexington and Concord",
+          "text": "British troops march to seize colonial arms outside Boston. Militia meet them, and the war begins before anyone has declared independence.",
+          "lat": 42.45,
+          "lng": -71.23,
+          "altitude": 0.8
+        },
+        {
+          "when": "July 1776",
+          "heading": "Philadelphia",
+          "text": "The Second Continental Congress votes for independence on 2 July and adopts Jefferson's declaration two days later.",
+          "lat": 39.95,
+          "lng": -75.15,
+          "altitude": 0.6
+        },
+        {
+          "when": "October 1781",
+          "heading": "Yorktown",
+          "text": "With French troops and a French fleet, Washington traps Cornwallis's army at Yorktown, effectively ending the war.",
+          "lat": 37.24,
+          "lng": -76.51,
+          "altitude": 0.9
+        }
+      ],
+      "legacy": "Its claim of universal rights was quoted by revolutionaries from Haiti to Vietnam, and by Americans demanding that it include them."
+    }
   },
   {
     "id": "watt-steam-engine",
@@ -1115,7 +2836,59 @@
     "wikipediaTitle": "French Revolution",
     "sources": [
       "https://en.wikipedia.org/wiki/French_Revolution"
-    ]
+    ],
+    "story": {
+      "tagline": "A fortress falls, and a kingdom of eleven centuries begins to come apart.",
+      "quote": {
+        "text": "Is it a revolt? — No, sire, it is a revolution.",
+        "by": "Exchange attributed to Louis XVI and the Duke of La Rochefoucauld-Liancourt"
+      },
+      "facts": [
+        {
+          "label": "Date",
+          "value": "14 July 1789"
+        },
+        {
+          "label": "Prisoners inside",
+          "value": "Seven"
+        },
+        {
+          "label": "Governor",
+          "value": "Bernard-René de Launay"
+        },
+        {
+          "label": "National holiday",
+          "value": "Since 1880"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "June 1789",
+          "heading": "The Tennis Court Oath",
+          "text": "At Versailles, deputies of the Third Estate declare themselves a National Assembly and swear not to separate until France has a constitution.",
+          "lat": 48.8,
+          "lng": 2.12,
+          "altitude": 0.6
+        },
+        {
+          "when": "14 July 1789",
+          "heading": "The Bastille",
+          "text": "Fearing royal troops, a Paris crowd seizes muskets at the Invalides and then marches on the Bastille for gunpowder. After hours of fighting the garrison surrenders.",
+          "lat": 48.853,
+          "lng": 2.369,
+          "altitude": 0.5
+        },
+        {
+          "when": "August 1789",
+          "heading": "The Declaration of the Rights of Man",
+          "text": "The Assembly abolishes feudal privileges and proclaims that men are born and remain free and equal in rights.",
+          "lat": 48.86,
+          "lng": 2.35,
+          "altitude": 1.0
+        }
+      ],
+      "legacy": "The Revolution ended absolute monarchy in France and spread the ideas of nation, citizenship and rights across Europe."
+    }
   },
   {
     "id": "haitian-revolution",
@@ -1145,6 +2918,56 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Haitian_Revolution"
+    ]
+  },
+  {
+    "id": "jenner-smallpox-vaccine",
+    "title": "Jenner's smallpox vaccine",
+    "year": 1796,
+    "lat": 51.69,
+    "lng": -2.46,
+    "countryIso": "GB",
+    "category": "science",
+    "importance": 4,
+    "summary": "In 1796 the country doctor Edward Jenner inoculated a boy with cowpox and showed that he was then protected against smallpox. Vaccination spread worldwide within a decade, and in 1980 smallpox became the first human disease to be eradicated.",
+    "wikipediaTitle": "Edward Jenner",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Edward_Jenner"
+    ]
+  },
+  {
+    "id": "battle-of-austerlitz",
+    "title": "Battle of Austerlitz",
+    "year": 1805,
+    "lat": 49.13,
+    "lng": 16.76,
+    "countryIso": "CZ",
+    "category": "war",
+    "importance": 3,
+    "summary": "On 2 December 1805 Napoleon defeated the armies of Russia and Austria at Austerlitz in Moravia, the most celebrated of his victories. The battle broke the Third Coalition and led to the dissolution of the Holy Roman Empire the following year.",
+    "wikipediaTitle": "Battle of Austerlitz",
+    "belligerents": [
+      {
+        "name": "French Empire",
+        "lat": 48.86,
+        "lng": 2.35,
+        "side": "a"
+      },
+      {
+        "name": "Austrian Empire",
+        "lat": 48.21,
+        "lng": 16.37,
+        "side": "b"
+      },
+      {
+        "name": "Russian Empire",
+        "lat": 59.94,
+        "lng": 30.31,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Austerlitz"
     ]
   },
   {
@@ -1180,6 +3003,73 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Battle_of_Waterloo"
+    ],
+    "story": {
+      "tagline": "Napoleon's last throw: one day in Belgium decides the fate of Europe.",
+      "quote": {
+        "text": "It has been a damned nice thing — the nearest run thing you ever saw in your life.",
+        "by": "The Duke of Wellington, to Thomas Creevey, 19 June 1815"
+      },
+      "facts": [
+        {
+          "label": "Date",
+          "value": "18 June 1815"
+        },
+        {
+          "label": "Armies",
+          "value": "About 190,000 men"
+        },
+        {
+          "label": "Casualties",
+          "value": "Over 50,000"
+        },
+        {
+          "label": "Napoleon exiled to",
+          "value": "Saint Helena"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "March 1815",
+          "heading": "The Hundred Days",
+          "text": "Napoleon escapes from Elba, lands in the south of France and marches on Paris; the troops sent to stop him join him instead.",
+          "lat": 43.55,
+          "lng": 7.02,
+          "altitude": 1.4
+        },
+        {
+          "when": "16 June 1815",
+          "heading": "Ligny",
+          "text": "He strikes at the Prussians before they can join Wellington, beating Blücher at Ligny but failing to destroy his army.",
+          "lat": 50.52,
+          "lng": 4.58,
+          "altitude": 0.6
+        },
+        {
+          "when": "18 June 1815",
+          "heading": "Mont-Saint-Jean",
+          "text": "Wellington's army holds the ridge through a day of attacks on Hougoumont, La Haye Sainte and the centre, until the Prussians arrive on Napoleon's flank and the Imperial Guard breaks.",
+          "lat": 50.68,
+          "lng": 4.41,
+          "altitude": 0.5
+        }
+      ],
+      "legacy": "The Congress of Vienna's settlement held the great powers of Europe largely at peace for a century."
+    }
+  },
+  {
+    "id": "tambora-eruption",
+    "title": "Tambora erupts",
+    "year": 1815,
+    "lat": -8.25,
+    "lng": 118.0,
+    "countryIso": "ID",
+    "category": "disaster",
+    "importance": 4,
+    "summary": "In April 1815 Mount Tambora on Sumbawa produced the largest volcanic eruption in recorded history. Its ash veil cooled the planet, and 1816 became the Year Without a Summer, with crop failures and famine across Europe, North America and China.",
+    "wikipediaTitle": "1815 eruption of Mount Tambora",
+    "sources": [
+      "https://en.wikipedia.org/wiki/1815_eruption_of_Mount_Tambora"
     ]
   },
   {
@@ -1227,6 +3117,51 @@
     ]
   },
   {
+    "id": "liverpool-manchester-railway",
+    "title": "The first inter-city railway",
+    "year": 1830,
+    "lat": 53.4,
+    "lng": -2.98,
+    "countryIso": "GB",
+    "category": "economy",
+    "importance": 4,
+    "summary": "Opened in 1830, the Liverpool and Manchester Railway was the first to run scheduled passenger and freight trains between two cities entirely by steam locomotive. Within twenty years railways were transforming trade, time-keeping and warfare across the world.",
+    "wikipediaTitle": "Liverpool and Manchester Railway",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Liverpool_and_Manchester_Railway"
+    ]
+  },
+  {
+    "id": "first-opium-war",
+    "title": "The First Opium War",
+    "year": 1839,
+    "endYear": 1842,
+    "lat": 23.13,
+    "lng": 113.26,
+    "countryIso": "CN",
+    "category": "war",
+    "importance": 4,
+    "summary": "When Qing officials destroyed British opium stocks at Canton in 1839, Britain sent a fleet and forced China to sign the Treaty of Nanking in 1842. China ceded Hong Kong and opened ports to foreign trade, the start of what it calls the Century of Humiliation.",
+    "wikipediaTitle": "First Opium War",
+    "belligerents": [
+      {
+        "name": "British Empire",
+        "lat": 51.51,
+        "lng": -0.13,
+        "side": "a"
+      },
+      {
+        "name": "Qing dynasty",
+        "lat": 39.9,
+        "lng": 116.4,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/First_Opium_War"
+    ]
+  },
+  {
     "id": "irish-great-famine",
     "title": "The Great Famine in Ireland",
     "year": 1845,
@@ -1243,6 +3178,22 @@
     ]
   },
   {
+    "id": "revolutions-of-1848",
+    "title": "The revolutions of 1848",
+    "year": 1848,
+    "endYear": 1849,
+    "lat": 48.86,
+    "lng": 2.36,
+    "countryIso": "FR",
+    "category": "politics",
+    "importance": 4,
+    "summary": "Starting in Paris in February 1848, revolutions spread to Vienna, Berlin, Milan, Budapest and dozens of other cities, demanding constitutions, national unity and social reform. Most were crushed within a year, but serfdom ended in Austria and new ideas of nationhood took hold.",
+    "wikipediaTitle": "Revolutions of 1848",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Revolutions_of_1848"
+    ]
+  },
+  {
     "id": "darwin-origin-of-species",
     "title": "Darwin publishes On the Origin of Species",
     "year": 1859,
@@ -1255,6 +3206,118 @@
     "wikipediaTitle": "On the Origin of Species",
     "sources": [
       "https://en.wikipedia.org/wiki/On_the_Origin_of_Species"
+    ],
+    "story": {
+      "tagline": "A voyage, twenty years of evidence, and one idea that explains life's diversity.",
+      "quote": {
+        "text": "There is grandeur in this view of life…",
+        "by": "Charles Darwin, On the Origin of Species, 1859"
+      },
+      "facts": [
+        {
+          "label": "Beagle voyage",
+          "value": "1831–1836"
+        },
+        {
+          "label": "Published",
+          "value": "24 November 1859"
+        },
+        {
+          "label": "First printing",
+          "value": "1,250 copies"
+        },
+        {
+          "label": "Co-discoverer",
+          "value": "Alfred Russel Wallace"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "1835",
+          "heading": "The Galápagos",
+          "text": "On the five-year voyage of HMS Beagle, the young naturalist collects finches, mockingbirds and tortoises that differ from island to island.",
+          "lat": -0.8,
+          "lng": -90.3,
+          "altitude": 1.0
+        },
+        {
+          "when": "1858",
+          "heading": "Wallace's letter",
+          "text": "After two decades of quiet work at Down House, Darwin receives an essay from Wallace in Malaya with the same theory; their papers are read together in London.",
+          "lat": -2.0,
+          "lng": 117.0,
+          "altitude": 2.0
+        },
+        {
+          "when": "1859",
+          "heading": "Down House",
+          "text": "Darwin rushes out On the Origin of Species. The first printing sells out to booksellers on publication day.",
+          "lat": 51.33,
+          "lng": 0.05,
+          "altitude": 0.6
+        }
+      ],
+      "legacy": "Evolution by natural selection became the unifying theory of biology."
+    }
+  },
+  {
+    "id": "american-civil-war",
+    "title": "The American Civil War",
+    "year": 1861,
+    "endYear": 1865,
+    "lat": 39.83,
+    "lng": -77.23,
+    "countryIso": "US",
+    "category": "war",
+    "importance": 4,
+    "summary": "Eleven Southern slave states seceded and formed the Confederacy; from 1861 to 1865 the Union fought to restore the country, and from 1863 to end slavery. About 620,000 soldiers died, and the Thirteenth Amendment abolished slavery in 1865.",
+    "wikipediaTitle": "American Civil War",
+    "belligerents": [
+      {
+        "name": "Union",
+        "lat": 38.9,
+        "lng": -77.04,
+        "side": "a"
+      },
+      {
+        "name": "Confederacy",
+        "lat": 37.54,
+        "lng": -77.44,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/American_Civil_War"
+    ]
+  },
+  {
+    "id": "emancipation-of-serfs",
+    "title": "Russia frees its serfs",
+    "year": 1861,
+    "lat": 59.94,
+    "lng": 30.31,
+    "countryIso": "RU",
+    "category": "politics",
+    "importance": 3,
+    "summary": "In 1861 Tsar Alexander II abolished serfdom across the Russian Empire, freeing some 23 million people bound to private landowners. Peasants had to pay for their land over decades, and the half-measure fed the unrest that followed.",
+    "wikipediaTitle": "Emancipation reform of 1861",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Emancipation_reform_of_1861"
+    ]
+  },
+  {
+    "id": "italian-unification",
+    "title": "The Kingdom of Italy is proclaimed",
+    "year": 1861,
+    "lat": 45.07,
+    "lng": 7.69,
+    "countryIso": "IT",
+    "category": "politics",
+    "importance": 3,
+    "summary": "After wars against Austria and Garibaldi's expedition through Sicily and Naples, a parliament in Turin proclaimed Victor Emmanuel II king of Italy in 1861. Venice joined in 1866 and Rome in 1870, completing the Risorgimento.",
+    "wikipediaTitle": "Italian unification",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Italian_unification"
     ]
   },
   {
@@ -1273,6 +3336,21 @@
     ]
   },
   {
+    "id": "suez-canal-opens",
+    "title": "The Suez Canal opens",
+    "year": 1869,
+    "lat": 31.26,
+    "lng": 32.3,
+    "countryIso": "EG",
+    "category": "economy",
+    "importance": 4,
+    "summary": "Opened in November 1869 after a decade of work by Egyptian labourers, the Suez Canal joined the Mediterranean and the Red Sea. It cut the sea voyage from Europe to India by thousands of kilometres and became one of the world's most strategic waterways.",
+    "wikipediaTitle": "Suez Canal",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Suez_Canal"
+    ]
+  },
+  {
     "id": "german-unification",
     "title": "The German Empire proclaimed",
     "year": 1871,
@@ -1285,6 +3363,52 @@
     "wikipediaTitle": "Unification of Germany",
     "sources": [
       "https://en.wikipedia.org/wiki/Unification_of_Germany"
+    ]
+  },
+  {
+    "id": "telephone-patent",
+    "title": "The telephone",
+    "year": 1876,
+    "lat": 42.36,
+    "lng": -71.06,
+    "countryIso": "US",
+    "category": "science",
+    "importance": 3,
+    "summary": "In March 1876 Alexander Graham Bell received a US patent for the telephone and spoke the first intelligible words over a wire to his assistant in Boston. Within a few decades telephone networks connected homes and businesses around the world.",
+    "wikipediaTitle": "Invention of the telephone",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Invention_of_the_telephone"
+    ]
+  },
+  {
+    "id": "krakatoa-eruption",
+    "title": "Krakatoa explodes",
+    "year": 1883,
+    "lat": -6.1,
+    "lng": 105.42,
+    "countryIso": "ID",
+    "category": "disaster",
+    "importance": 3,
+    "summary": "In August 1883 the volcanic island of Krakatoa in the Sunda Strait blew itself apart, with explosions heard thousands of kilometres away. Tsunamis killed more than 36,000 people, and the telegraph made it the first global news disaster.",
+    "wikipediaTitle": "1883 eruption of Krakatoa",
+    "sources": [
+      "https://en.wikipedia.org/wiki/1883_eruption_of_Krakatoa"
+    ]
+  },
+  {
+    "id": "berlin-conference",
+    "title": "The Berlin Conference",
+    "year": 1884,
+    "endYear": 1885,
+    "lat": 52.51,
+    "lng": 13.38,
+    "countryIso": "DE",
+    "category": "politics",
+    "importance": 4,
+    "summary": "In 1884–85 European powers met in Berlin, without any African representatives, to set rules for claiming African territory. The conference accelerated the Scramble for Africa, and by 1914 nearly the whole continent was under European rule.",
+    "wikipediaTitle": "Berlin Conference",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Berlin_Conference"
     ]
   },
   {
@@ -1344,6 +3468,112 @@
     "wikipediaTitle": "Federation of Australia",
     "sources": [
       "https://en.wikipedia.org/wiki/Federation_of_Australia"
+    ]
+  },
+  {
+    "id": "wright-flyer",
+    "title": "The Wright brothers fly",
+    "year": 1903,
+    "lat": 36.02,
+    "lng": -75.67,
+    "countryIso": "US",
+    "category": "science",
+    "importance": 4,
+    "summary": "On 17 December 1903 at Kitty Hawk, North Carolina, Orville and Wilbur Wright made the first controlled, sustained flights of a powered heavier-than-air aircraft; the longest lasted 59 seconds. Within forty years aircraft had reshaped travel and war.",
+    "wikipediaTitle": "Wright Flyer",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Wright_Flyer"
+    ]
+  },
+  {
+    "id": "russo-japanese-war",
+    "title": "The Russo-Japanese War",
+    "year": 1904,
+    "endYear": 1905,
+    "lat": 38.81,
+    "lng": 121.26,
+    "countryIso": "CN",
+    "category": "war",
+    "importance": 3,
+    "summary": "Japan attacked the Russian fleet at Port Arthur in 1904 and went on to win on land in Manchuria and at sea at Tsushima. It was the first modern victory of an Asian power over a European one, and it helped spark the 1905 revolution in Russia.",
+    "wikipediaTitle": "Russo-Japanese War",
+    "belligerents": [
+      {
+        "name": "Empire of Japan",
+        "lat": 35.68,
+        "lng": 139.69,
+        "side": "a"
+      },
+      {
+        "name": "Russian Empire",
+        "lat": 59.94,
+        "lng": 30.31,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Russo-Japanese_War"
+    ]
+  },
+  {
+    "id": "einstein-annus-mirabilis",
+    "title": "Einstein's miracle year",
+    "year": 1905,
+    "lat": 46.95,
+    "lng": 7.45,
+    "countryIso": "CH",
+    "category": "science",
+    "importance": 4,
+    "summary": "In 1905, while working as a clerk at the patent office in Bern, Albert Einstein published four papers on the photoelectric effect, Brownian motion, special relativity and the equivalence of mass and energy. Together they laid the foundations of modern physics.",
+    "wikipediaTitle": "Annus mirabilis papers",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Annus_mirabilis_papers"
+    ]
+  },
+  {
+    "id": "mexican-revolution",
+    "title": "The Mexican Revolution",
+    "year": 1910,
+    "endYear": 1920,
+    "lat": 19.43,
+    "lng": -99.13,
+    "countryIso": "MX",
+    "category": "politics",
+    "importance": 3,
+    "summary": "An uprising against the long dictatorship of Porfirio Díaz in 1910 grew into a decade of civil war involving Madero, Zapata, Villa and Carranza. It produced the 1917 Constitution, with land reform and labour rights, and cost perhaps a million lives.",
+    "wikipediaTitle": "Mexican Revolution",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Mexican_Revolution"
+    ]
+  },
+  {
+    "id": "xinhai-revolution",
+    "title": "The 1911 Revolution",
+    "year": 1911,
+    "endYear": 1912,
+    "lat": 30.55,
+    "lng": 114.3,
+    "countryIso": "CN",
+    "category": "politics",
+    "importance": 4,
+    "summary": "An army mutiny at Wuchang in October 1911 spread across southern China, and in February 1912 the last Qing emperor, the child Puyi, abdicated. More than two thousand years of imperial rule ended, and the Republic of China was founded with Sun Yat-sen as provisional president.",
+    "wikipediaTitle": "1911 Revolution",
+    "sources": [
+      "https://en.wikipedia.org/wiki/1911_Revolution"
+    ]
+  },
+  {
+    "id": "sinking-of-titanic",
+    "title": "The Titanic sinks",
+    "year": 1912,
+    "lat": 41.73,
+    "lng": -49.95,
+    "category": "disaster",
+    "importance": 3,
+    "summary": "On its maiden voyage, the liner Titanic struck an iceberg in the North Atlantic on the night of 14–15 April 1912 and sank in under three hours. More than 1,500 people died, and the disaster led to the first international safety rules for ships at sea.",
+    "wikipediaTitle": "Titanic",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Titanic"
     ]
   },
   {
@@ -1522,6 +3752,67 @@
     ]
   },
   {
+    "id": "spanish-flu",
+    "title": "The 1918 influenza pandemic",
+    "year": 1918,
+    "endYear": 1920,
+    "lat": 39.06,
+    "lng": -96.78,
+    "countryIso": "US",
+    "category": "disaster",
+    "importance": 5,
+    "summary": "An unusually deadly influenza spread around the world in waves from 1918, carried by troop movements at the end of the First World War. It infected about a third of humanity and killed somewhere between 25 and 50 million people, more than the war itself.",
+    "wikipediaTitle": "Spanish flu",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Spanish_flu"
+    ]
+  },
+  {
+    "id": "treaty-of-versailles",
+    "title": "The Treaty of Versailles",
+    "year": 1919,
+    "lat": 48.8,
+    "lng": 2.12,
+    "countryIso": "FR",
+    "category": "politics",
+    "importance": 4,
+    "summary": "Signed in the Hall of Mirrors on 28 June 1919, the Treaty of Versailles made Germany accept responsibility for the war, give up territory and colonies and pay reparations. It created the League of Nations, and its terms were bitterly resented in Germany.",
+    "wikipediaTitle": "Treaty of Versailles",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Treaty_of_Versailles"
+    ]
+  },
+  {
+    "id": "treaty-of-lausanne",
+    "title": "Treaty of Lausanne and the Turkish Republic",
+    "year": 1923,
+    "lat": 46.52,
+    "lng": 6.63,
+    "countryIso": "CH",
+    "category": "politics",
+    "importance": 3,
+    "summary": "Signed in July 1923, the Treaty of Lausanne recognised the borders of the new Turkish state that had fought off the post-war partition of Anatolia. Months later Mustafa Kemal proclaimed the Republic of Turkey, and the Ottoman sultanate was already gone.",
+    "wikipediaTitle": "Treaty of Lausanne",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Treaty_of_Lausanne"
+    ]
+  },
+  {
+    "id": "discovery-of-penicillin",
+    "title": "Fleming notices penicillin",
+    "year": 1928,
+    "lat": 51.517,
+    "lng": -0.174,
+    "countryIso": "GB",
+    "category": "science",
+    "importance": 4,
+    "summary": "In 1928 Alexander Fleming saw that mould had killed the bacteria around it in a culture dish at St Mary's Hospital, London. Developed into a drug by Florey and Chain's team in Oxford during the Second World War, penicillin opened the age of antibiotics.",
+    "wikipediaTitle": "History of penicillin",
+    "sources": [
+      "https://en.wikipedia.org/wiki/History_of_penicillin"
+    ]
+  },
+  {
     "id": "wall-street-crash",
     "title": "The Wall Street Crash and the Great Depression",
     "year": 1929,
@@ -1549,6 +3840,22 @@
     "wikipediaTitle": "Salt March",
     "sources": [
       "https://en.wikipedia.org/wiki/Salt_March"
+    ]
+  },
+  {
+    "id": "holodomor",
+    "title": "The Holodomor",
+    "year": 1932,
+    "endYear": 1933,
+    "lat": 49.0,
+    "lng": 32.0,
+    "countryIso": "UA",
+    "category": "disaster",
+    "importance": 4,
+    "summary": "In 1932–33 Soviet grain requisitions, blacklisting of villages and a ban on peasants leaving caused a man-made famine in Soviet Ukraine that killed millions. Many countries recognise it as a genocide against the Ukrainian people.",
+    "wikipediaTitle": "Holodomor",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Holodomor"
     ]
   },
   {
@@ -1661,7 +3968,59 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Battle_of_Britain"
-    ]
+    ],
+    "story": {
+      "tagline": "The first major campaign fought entirely in the air.",
+      "quote": {
+        "text": "Never in the field of human conflict was so much owed by so many to so few.",
+        "by": "Winston Churchill, House of Commons, 20 August 1940"
+      },
+      "facts": [
+        {
+          "label": "Period",
+          "value": "July – October 1940"
+        },
+        {
+          "label": "RAF aircraft lost",
+          "value": "About 1,500"
+        },
+        {
+          "label": "Luftwaffe aircraft lost",
+          "value": "About 1,900"
+        },
+        {
+          "label": "Key advantage",
+          "value": "Radar and the Dowding system"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "June 1940",
+          "heading": "France falls",
+          "text": "With France out of the war, Hitler plans Operation Sea Lion, an invasion that first needs control of the air over the Channel.",
+          "lat": 50.95,
+          "lng": 1.85,
+          "altitude": 1.0
+        },
+        {
+          "when": "August 1940",
+          "heading": "Airfields under attack",
+          "text": "The Luftwaffe hits radar stations and RAF airfields in the south-east. Fighter Command, directed by radar and the Observer Corps, is stretched to its limit.",
+          "lat": 51.1,
+          "lng": 0.5,
+          "altitude": 0.7
+        },
+        {
+          "when": "7 September 1940",
+          "heading": "The Blitz begins",
+          "text": "Germany switches to bombing London, giving the airfields respite. On 15 September RAF fighters break up two great daylight raids.",
+          "lat": 51.51,
+          "lng": -0.13,
+          "altitude": 0.6
+        }
+      ],
+      "legacy": "Sea Lion was postponed indefinitely; Britain stayed in the war as the base from which the liberation of western Europe would come."
+    }
   },
   {
     "id": "attack-on-pearl-harbor",
@@ -1690,7 +4049,59 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Attack_on_Pearl_Harbor"
-    ]
+    ],
+    "story": {
+      "tagline": "A Sunday morning surprise that brings the United States into the war.",
+      "quote": {
+        "text": "Yesterday, December 7, 1941 — a date which will live in infamy…",
+        "by": "Franklin D. Roosevelt, address to Congress, 8 December 1941"
+      },
+      "facts": [
+        {
+          "label": "Date",
+          "value": "7 December 1941"
+        },
+        {
+          "label": "Japanese carriers",
+          "value": "6"
+        },
+        {
+          "label": "Americans killed",
+          "value": "About 2,400"
+        },
+        {
+          "label": "Battleships sunk or damaged",
+          "value": "8"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "26 November 1941",
+          "heading": "The Kido Butai sails",
+          "text": "Six Japanese carriers leave the Kuril Islands in radio silence, taking a northern route across the empty Pacific.",
+          "lat": 44.5,
+          "lng": 147.0,
+          "altitude": 1.6
+        },
+        {
+          "when": "7 December 1941",
+          "heading": "Two waves",
+          "text": "Some 350 aircraft strike the fleet at anchor and the airfields of Oahu. The battleship Arizona explodes, killing 1,177 of her crew.",
+          "lat": 21.36,
+          "lng": -157.95,
+          "altitude": 0.5
+        },
+        {
+          "when": "8 December 1941",
+          "heading": "War",
+          "text": "Congress declares war on Japan with one dissenting vote. Days later Germany and Italy declare war on the United States.",
+          "lat": 38.89,
+          "lng": -77.01,
+          "altitude": 1.2
+        }
+      ],
+      "legacy": "The US carriers were at sea and survived; six months later they turned the tide at Midway."
+    }
   },
   {
     "id": "operation-barbarossa",
@@ -1722,6 +4133,34 @@
     ]
   },
   {
+    "id": "battle-of-midway",
+    "title": "Battle of Midway",
+    "year": 1942,
+    "lat": 28.2,
+    "lng": -177.37,
+    "category": "war",
+    "importance": 4,
+    "summary": "In June 1942, having broken Japanese naval codes, US carrier aircraft sank four Japanese fleet carriers near Midway Atoll for the loss of one of their own. Six months after Pearl Harbor, the battle turned the tide of the Pacific War.",
+    "wikipediaTitle": "Battle of Midway",
+    "belligerents": [
+      {
+        "name": "United States",
+        "lat": 21.35,
+        "lng": -157.97,
+        "side": "a"
+      },
+      {
+        "name": "Empire of Japan",
+        "lat": 35.68,
+        "lng": 139.69,
+        "side": "b"
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Battle_of_Midway"
+    ]
+  },
+  {
     "id": "battle-of-stalingrad",
     "title": "The Battle of Stalingrad",
     "year": 1942,
@@ -1749,7 +4188,67 @@
     ],
     "sources": [
       "https://en.wikipedia.org/wiki/Battle_of_Stalingrad"
-    ]
+    ],
+    "story": {
+      "tagline": "Five months in the ruins of a city on the Volga.",
+      "quote": {
+        "text": "Not one step back!",
+        "by": "Stalin's Order No. 227, 28 July 1942"
+      },
+      "facts": [
+        {
+          "label": "Duration",
+          "value": "August 1942 – February 1943"
+        },
+        {
+          "label": "Casualties",
+          "value": "Around 2 million"
+        },
+        {
+          "label": "Germans captured",
+          "value": "About 91,000"
+        },
+        {
+          "label": "Encirclement",
+          "value": "Operation Uranus"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "August 1942",
+          "heading": "The Volga",
+          "text": "The German Sixth Army reaches the Volga and the Luftwaffe reduces the city to rubble. Soviet troops hold a narrow strip of riverbank.",
+          "lat": 48.71,
+          "lng": 44.51,
+          "altitude": 1.0
+        },
+        {
+          "when": "Autumn 1942",
+          "heading": "Rattenkrieg",
+          "text": "The fighting is house to house, floor to floor: the tractor factory, the grain elevator, Pavlov's House, the Mamayev Kurgan.",
+          "lat": 48.74,
+          "lng": 44.54,
+          "altitude": 0.4
+        },
+        {
+          "when": "19 November 1942",
+          "heading": "Operation Uranus",
+          "text": "Soviet armies smash the weaker Romanian flanks north and south of the city and meet at Kalach, trapping some 300,000 Axis soldiers.",
+          "lat": 48.69,
+          "lng": 43.53,
+          "altitude": 1.2
+        },
+        {
+          "when": "2 February 1943",
+          "heading": "Surrender",
+          "text": "Field Marshal Paulus surrenders. Of the 91,000 Germans taken prisoner, only about 5,000 ever return home.",
+          "lat": 48.71,
+          "lng": 44.51,
+          "altitude": 0.6
+        }
+      ],
+      "legacy": "The first destruction of a whole German army; from here the Red Army moved west."
+    }
   },
   {
     "id": "guadalcanal-campaign",
@@ -1823,7 +4322,67 @@
     "sources": [
       "https://en.wikipedia.org/wiki/Normandy_landings"
     ],
-    "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/12/D-Day_1944_Office_of_War_Information.webm/D-Day_1944_Office_of_War_Information.webm.480p.vp9.webm"
+    "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/12/D-Day_1944_Office_of_War_Information.webm/D-Day_1944_Office_of_War_Information.webm.480p.vp9.webm",
+    "story": {
+      "tagline": "The largest seaborne invasion in history.",
+      "quote": {
+        "text": "You are about to embark upon the Great Crusade, toward which we have striven these many months.",
+        "by": "Dwight D. Eisenhower, order of the day, 6 June 1944"
+      },
+      "facts": [
+        {
+          "label": "Date",
+          "value": "6 June 1944"
+        },
+        {
+          "label": "Troops landed on D-Day",
+          "value": "About 156,000"
+        },
+        {
+          "label": "Ships and landing craft",
+          "value": "About 7,000"
+        },
+        {
+          "label": "Beaches",
+          "value": "Utah, Omaha, Gold, Juno, Sword"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "Night of 5–6 June",
+          "heading": "Airborne drops",
+          "text": "Paratroopers land behind the beaches to seize bridges and crossroads; British glider troops take Pegasus Bridge in minutes.",
+          "lat": 49.24,
+          "lng": -0.27,
+          "altitude": 0.5
+        },
+        {
+          "when": "06:30, 6 June",
+          "heading": "Omaha and Utah",
+          "text": "American troops land at Utah with light losses, but at Omaha they are pinned beneath the bluffs and suffer the day's heaviest casualties.",
+          "lat": 49.37,
+          "lng": -0.88,
+          "altitude": 0.4
+        },
+        {
+          "when": "07:25, 6 June",
+          "heading": "Gold, Juno, Sword",
+          "text": "British and Canadian divisions land to the east and push inland toward Caen.",
+          "lat": 49.33,
+          "lng": -0.4,
+          "altitude": 0.4
+        },
+        {
+          "when": "25 August 1944",
+          "heading": "Paris",
+          "text": "After weeks of hedgerow fighting the Allies break out; Paris is liberated in late August.",
+          "lat": 48.86,
+          "lng": 2.35,
+          "altitude": 1.0
+        }
+      ],
+      "legacy": "The second front Stalin had demanded opened, and Germany was squeezed from east and west until its surrender in May 1945."
+    }
   },
   {
     "id": "atomic-bombing-of-hiroshima",
@@ -1838,7 +4397,67 @@
     "wikipediaTitle": "Atomic bombings of Hiroshima and Nagasaki",
     "sources": [
       "https://en.wikipedia.org/wiki/Atomic_bombings_of_Hiroshima_and_Nagasaki"
-    ]
+    ],
+    "story": {
+      "tagline": "One bomber, one bomb, one city.",
+      "quote": {
+        "text": "My God, what have we done?",
+        "by": "Robert A. Lewis, co-pilot of the Enola Gay, in his log"
+      },
+      "facts": [
+        {
+          "label": "Date",
+          "value": "6 August 1945, 08:15"
+        },
+        {
+          "label": "Bomb",
+          "value": "Little Boy, uranium-235"
+        },
+        {
+          "label": "Deaths by end of 1945",
+          "value": "About 90,000–140,000"
+        },
+        {
+          "label": "Second bomb",
+          "value": "Nagasaki, 9 August"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "16 July 1945",
+          "heading": "Trinity",
+          "text": "In the New Mexico desert the Manhattan Project detonates the first nuclear device.",
+          "lat": 33.68,
+          "lng": -106.48,
+          "altitude": 1.0
+        },
+        {
+          "when": "6 August 1945",
+          "heading": "Tinian to Hiroshima",
+          "text": "The B-29 Enola Gay takes off from Tinian in the Marianas and releases the bomb over the centre of Hiroshima.",
+          "lat": 15.0,
+          "lng": 145.6,
+          "altitude": 1.8
+        },
+        {
+          "when": "08:15",
+          "heading": "Ground zero",
+          "text": "The bomb explodes some 600 m above the city. A fireball and blast flatten nearly 70 per cent of its buildings.",
+          "lat": 34.395,
+          "lng": 132.454,
+          "altitude": 0.4
+        },
+        {
+          "when": "15 August 1945",
+          "heading": "Surrender",
+          "text": "After Nagasaki and the Soviet invasion of Manchuria, Emperor Hirohito announces Japan's surrender by radio.",
+          "lat": 35.68,
+          "lng": 139.76,
+          "altitude": 1.0
+        }
+      ],
+      "legacy": "The only wartime use of nuclear weapons; their shadow shaped the Cold War and every war since."
+    }
   },
   {
     "id": "liberation-of-auschwitz",
@@ -1853,6 +4472,21 @@
     "wikipediaTitle": "Auschwitz concentration camp",
     "sources": [
       "https://en.wikipedia.org/wiki/Auschwitz_concentration_camp"
+    ]
+  },
+  {
+    "id": "united-nations-charter",
+    "title": "The United Nations is founded",
+    "year": 1945,
+    "lat": 37.78,
+    "lng": -122.42,
+    "countryIso": "US",
+    "category": "politics",
+    "importance": 5,
+    "summary": "Delegates of 50 nations signed the Charter of the United Nations in San Francisco on 26 June 1945, and it came into force that October. The UN replaced the failed League of Nations, with a Security Council led by the war's victors.",
+    "wikipediaTitle": "Charter of the United Nations",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Charter_of_the_United_Nations"
     ]
   },
   {
@@ -1959,6 +4593,21 @@
     ]
   },
   {
+    "id": "dna-double-helix",
+    "title": "The DNA double helix",
+    "year": 1953,
+    "lat": 52.2,
+    "lng": 0.12,
+    "countryIso": "GB",
+    "category": "science",
+    "importance": 4,
+    "summary": "In April 1953 James Watson and Francis Crick in Cambridge published the double-helix structure of DNA, drawing on X-ray work by Rosalind Franklin and Maurice Wilkins in London. The structure showed how genetic information is stored and copied, launching molecular biology.",
+    "wikipediaTitle": "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Molecular_Structure_of_Nucleic_Acids:_A_Structure_for_Deoxyribose_Nucleic_Acid"
+    ]
+  },
+  {
     "id": "suez-crisis",
     "title": "The Suez Crisis",
     "year": 1956,
@@ -2015,6 +4664,37 @@
     ]
   },
   {
+    "id": "sputnik",
+    "title": "Sputnik 1",
+    "year": 1957,
+    "lat": 45.92,
+    "lng": 63.34,
+    "countryIso": "KZ",
+    "category": "science",
+    "importance": 5,
+    "summary": "On 4 October 1957 the Soviet Union launched Sputnik 1 from Baikonur, the first artificial satellite to orbit the Earth. Its radio beeps, picked up around the world, began the Space Race and spurred the creation of NASA.",
+    "wikipediaTitle": "Sputnik 1",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Sputnik_1"
+    ]
+  },
+  {
+    "id": "great-chinese-famine",
+    "title": "The Great Chinese Famine",
+    "year": 1959,
+    "endYear": 1961,
+    "lat": 31.86,
+    "lng": 117.28,
+    "countryIso": "CN",
+    "category": "disaster",
+    "importance": 4,
+    "summary": "The Great Leap Forward's collectivisation, inflated harvest reports and continued grain exports produced a famine in China from 1959 to 1961. Estimates of the dead range from about 15 to 45 million, making it the deadliest famine in history.",
+    "wikipediaTitle": "Great Chinese Famine",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Great_Chinese_Famine"
+    ]
+  },
+  {
     "id": "congo-independence-crisis",
     "title": "Congo's independence and the death of Lumumba",
     "year": 1960,
@@ -2027,6 +4707,21 @@
     "wikipediaTitle": "Congo Crisis",
     "sources": [
       "https://en.wikipedia.org/wiki/Congo_Crisis"
+    ]
+  },
+  {
+    "id": "gagarin-vostok-1",
+    "title": "Gagarin orbits the Earth",
+    "year": 1961,
+    "lat": 51.27,
+    "lng": 45.99,
+    "countryIso": "RU",
+    "category": "science",
+    "importance": 4,
+    "summary": "On 12 April 1961 the Soviet pilot Yuri Gagarin became the first human in space, completing one orbit of the Earth in Vostok 1 in 108 minutes. He parachuted down near Engels on the Volga, an instant worldwide celebrity.",
+    "wikipediaTitle": "Yuri Gagarin",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Yuri_Gagarin"
     ]
   },
   {
@@ -2071,7 +4766,63 @@
     "wikipediaTitle": "Cuban Missile Crisis",
     "sources": [
       "https://en.wikipedia.org/wiki/Cuban_Missile_Crisis"
-    ]
+    ],
+    "story": {
+      "tagline": "Thirteen days at the edge of nuclear war.",
+      "facts": [
+        {
+          "label": "Duration",
+          "value": "16–28 October 1962"
+        },
+        {
+          "label": "Soviet missiles in Cuba",
+          "value": "Medium- and intermediate-range"
+        },
+        {
+          "label": "US response",
+          "value": "Naval quarantine"
+        },
+        {
+          "label": "Deal",
+          "value": "Missiles out; US pledge not to invade Cuba"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "14 October 1962",
+          "heading": "The U-2 photographs",
+          "text": "A US spy plane photographs Soviet ballistic missile sites under construction in western Cuba, within range of most of the United States.",
+          "lat": 22.4,
+          "lng": -83.7,
+          "altitude": 0.7
+        },
+        {
+          "when": "22 October 1962",
+          "heading": "The quarantine",
+          "text": "Kennedy announces a naval blockade of Cuba and demands the missiles' removal. Soviet ships head toward the line.",
+          "lat": 23.5,
+          "lng": -76.0,
+          "altitude": 1.4
+        },
+        {
+          "when": "27 October 1962",
+          "heading": "Black Saturday",
+          "text": "A U-2 is shot down over Cuba; a Soviet submarine nearly fires a nuclear torpedo. Back-channel talks continue.",
+          "lat": 38.9,
+          "lng": -77.04,
+          "altitude": 1.6
+        },
+        {
+          "when": "28 October 1962",
+          "heading": "Khrushchev backs down",
+          "text": "Moscow agrees to remove the missiles; Washington privately agrees to withdraw its missiles from Turkey.",
+          "lat": 55.75,
+          "lng": 37.62,
+          "altitude": 1.8
+        }
+      ],
+      "legacy": "A hotline between Washington and Moscow followed, and in 1963 the first treaty limiting nuclear tests."
+    }
   },
   {
     "id": "samoa-independence",
@@ -2086,6 +4837,21 @@
     "wikipediaTitle": "Samoa",
     "sources": [
       "https://en.wikipedia.org/wiki/Samoa"
+    ]
+  },
+  {
+    "id": "march-on-washington",
+    "title": "The March on Washington",
+    "year": 1963,
+    "lat": 38.889,
+    "lng": -77.05,
+    "countryIso": "US",
+    "category": "politics",
+    "importance": 4,
+    "summary": "On 28 August 1963 some 250,000 people marched in Washington for civil and economic rights for African Americans, and Martin Luther King Jr. gave his I Have a Dream speech at the Lincoln Memorial. The Civil Rights Act and the Voting Rights Act followed in 1964 and 1965.",
+    "wikipediaTitle": "March on Washington for Jobs and Freedom",
+    "sources": [
+      "https://en.wikipedia.org/wiki/March_on_Washington_for_Jobs_and_Freedom"
     ]
   },
   {
@@ -2119,7 +4885,59 @@
     "sources": [
       "https://en.wikipedia.org/wiki/Apollo_11"
     ],
-    "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/5/56/Partially_Restored_Apollo_11_Video.ogv/Partially_Restored_Apollo_11_Video.ogv.480p.vp9.webm"
+    "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/5/56/Partially_Restored_Apollo_11_Video.ogv/Partially_Restored_Apollo_11_Video.ogv.480p.vp9.webm",
+    "story": {
+      "tagline": "Four days to the Moon, and two and a half hours on its surface.",
+      "quote": {
+        "text": "That's one small step for [a] man, one giant leap for mankind.",
+        "by": "Neil Armstrong, 20 July 1969"
+      },
+      "facts": [
+        {
+          "label": "Launch",
+          "value": "16 July 1969"
+        },
+        {
+          "label": "Landing",
+          "value": "20 July 1969, Sea of Tranquility"
+        },
+        {
+          "label": "Crew",
+          "value": "Armstrong, Aldrin, Collins"
+        },
+        {
+          "label": "Lunar samples",
+          "value": "21.5 kg"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "16 July 1969",
+          "heading": "Launch",
+          "text": "A Saturn V lifts off from Kennedy Space Center's Pad 39A carrying Neil Armstrong, Buzz Aldrin and Michael Collins.",
+          "lat": 28.57,
+          "lng": -80.65,
+          "altitude": 0.6
+        },
+        {
+          "when": "20 July 1969",
+          "heading": "The Eagle has landed",
+          "text": "With fuel running low, Armstrong steers the lunar module past a boulder field and lands. Hours later he steps onto the surface, watched by some 600 million people.",
+          "lat": 0.0,
+          "lng": -30.0,
+          "altitude": 3.5
+        },
+        {
+          "when": "24 July 1969",
+          "heading": "Splashdown",
+          "text": "The command module Columbia splashes down in the Pacific and the crew is taken aboard USS Hornet.",
+          "lat": 13.3,
+          "lng": -169.15,
+          "altitude": 1.2
+        }
+      ],
+      "legacy": "Kennedy's goal was met; twelve people walked on the Moon before the programme ended in 1972."
+    }
   },
   {
     "id": "fiji-independence",
@@ -2181,6 +4999,22 @@
     ]
   },
   {
+    "id": "oil-crisis-1973",
+    "title": "The 1973 oil crisis",
+    "year": 1973,
+    "endYear": 1974,
+    "lat": 24.71,
+    "lng": 46.68,
+    "countryIso": "SA",
+    "category": "economy",
+    "importance": 4,
+    "summary": "During the Yom Kippur War, Arab oil producers led by Saudi Arabia imposed an embargo on the United States and other supporters of Israel, and OPEC raised prices. Oil prices quadrupled, ending the post-war boom and bringing stagflation to the West.",
+    "wikipediaTitle": "1973 oil crisis",
+    "sources": [
+      "https://en.wikipedia.org/wiki/1973_oil_crisis"
+    ]
+  },
+  {
     "id": "fall-of-saigon",
     "title": "The fall of Saigon ends the Vietnam War",
     "year": 1975,
@@ -2228,6 +5062,21 @@
     "wikipediaTitle": "Papua New Guinea",
     "sources": [
       "https://en.wikipedia.org/wiki/Papua_New_Guinea"
+    ]
+  },
+  {
+    "id": "chinese-economic-reform",
+    "title": "China opens its economy",
+    "year": 1978,
+    "lat": 22.54,
+    "lng": 114.06,
+    "countryIso": "CN",
+    "category": "economy",
+    "importance": 4,
+    "summary": "From December 1978 Deng Xiaoping's reform and opening-up let farmers sell surplus crops and created special economic zones such as Shenzhen open to foreign investment. Over four decades hundreds of millions left poverty and China became the world's second-largest economy.",
+    "wikipediaTitle": "Chinese economic reform",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Chinese_economic_reform"
     ]
   },
   {
@@ -2306,6 +5155,77 @@
     "wikipediaTitle": "Fall of the Berlin Wall",
     "sources": [
       "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+    ],
+    "story": {
+      "tagline": "A press conference slip, and a wall that stood for 28 years opens overnight.",
+      "facts": [
+        {
+          "label": "Built",
+          "value": "13 August 1961"
+        },
+        {
+          "label": "Opened",
+          "value": "9 November 1989"
+        },
+        {
+          "label": "Length",
+          "value": "About 155 km around West Berlin"
+        },
+        {
+          "label": "German reunification",
+          "value": "3 October 1990"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "Summer 1989",
+          "heading": "Cracks in the bloc",
+          "text": "Hungary opens its border with Austria, and thousands of East Germans flee west through it. Weekly protests grow in Leipzig.",
+          "lat": 47.68,
+          "lng": 16.87,
+          "altitude": 1.0
+        },
+        {
+          "when": "9 November, evening",
+          "heading": "Schabowski's note",
+          "text": "Asked when new travel rules take effect, Politburo spokesman Günter Schabowski reads from a note and answers that, as far as he knows, it is immediately.",
+          "lat": 52.52,
+          "lng": 13.4,
+          "altitude": 0.5
+        },
+        {
+          "when": "9 November, night",
+          "heading": "Bornholmer Straße",
+          "text": "Crowds mass at the checkpoints. At Bornholmer Straße the overwhelmed border guards open the gates shortly before midnight.",
+          "lat": 52.555,
+          "lng": 13.398,
+          "altitude": 0.35
+        },
+        {
+          "when": "3 October 1990",
+          "heading": "One Germany",
+          "text": "Less than a year later, East Germany joins the Federal Republic.",
+          "lat": 52.52,
+          "lng": 13.38,
+          "altitude": 1.2
+        }
+      ],
+      "legacy": "The symbol of the Cold War's division fell; within two years the Soviet Union itself had gone."
+    }
+  },
+  {
+    "id": "tiananmen-1989",
+    "title": "Tiananmen Square protests",
+    "year": 1989,
+    "lat": 39.905,
+    "lng": 116.391,
+    "countryIso": "CN",
+    "category": "politics",
+    "importance": 4,
+    "summary": "In spring 1989 students and workers occupied Tiananmen Square in Beijing for weeks, calling for political reform and free speech. On the night of 3–4 June the army cleared the square and surrounding streets by force, killing hundreds, possibly thousands.",
+    "wikipediaTitle": "1989 Tiananmen Square protests and massacre",
+    "sources": [
+      "https://en.wikipedia.org/wiki/1989_Tiananmen_Square_protests_and_massacre"
     ]
   },
   {
@@ -2351,6 +5271,21 @@
     "wikipediaTitle": "World Wide Web",
     "sources": [
       "https://en.wikipedia.org/wiki/World_Wide_Web"
+    ]
+  },
+  {
+    "id": "maastricht-treaty",
+    "title": "The Maastricht Treaty",
+    "year": 1992,
+    "lat": 50.85,
+    "lng": 5.69,
+    "countryIso": "NL",
+    "category": "politics",
+    "importance": 3,
+    "summary": "Signed in February 1992, the Maastricht Treaty turned the European Communities into the European Union, created EU citizenship and set the path to a single currency. The euro followed in 1999, and in notes and coins in 2002.",
+    "wikipediaTitle": "Maastricht Treaty",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Maastricht_Treaty"
     ]
   },
   {
@@ -2465,6 +5400,22 @@
     ]
   },
   {
+    "id": "financial-crisis-2008",
+    "title": "The 2008 financial crisis",
+    "year": 2008,
+    "endYear": 2009,
+    "lat": 40.71,
+    "lng": -74.01,
+    "countryIso": "US",
+    "category": "economy",
+    "importance": 4,
+    "summary": "The collapse of the US housing bubble left banks holding worthless mortgage securities, and the bankruptcy of Lehman Brothers in September 2008 froze the global financial system. Governments spent trillions on bailouts and the world fell into the deepest recession since the 1930s.",
+    "wikipediaTitle": "2008 financial crisis",
+    "sources": [
+      "https://en.wikipedia.org/wiki/2008_financial_crisis"
+    ]
+  },
+  {
     "id": "arab-spring",
     "title": "The Arab Spring",
     "year": 2011,
@@ -2477,6 +5428,36 @@
     "wikipediaTitle": "Arab Spring",
     "sources": [
       "https://en.wikipedia.org/wiki/Arab_Spring"
+    ]
+  },
+  {
+    "id": "fukushima-accident",
+    "title": "The Fukushima disaster",
+    "year": 2011,
+    "lat": 37.42,
+    "lng": 141.03,
+    "countryIso": "JP",
+    "category": "disaster",
+    "importance": 4,
+    "summary": "On 11 March 2011 a magnitude 9.0 earthquake off Japan sent a tsunami ashore that killed nearly 20,000 people and flooded the Fukushima Daiichi nuclear plant, causing three reactor meltdowns. More than 150,000 people were evacuated, and several countries rethought nuclear power.",
+    "wikipediaTitle": "Fukushima nuclear accident",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Fukushima_nuclear_accident"
+    ]
+  },
+  {
+    "id": "paris-agreement",
+    "title": "The Paris Agreement",
+    "year": 2015,
+    "lat": 48.95,
+    "lng": 2.43,
+    "countryIso": "FR",
+    "category": "politics",
+    "importance": 3,
+    "summary": "At the COP21 conference near Paris in December 2015, nearly every country agreed to hold global warming well below 2 °C above pre-industrial levels and to aim for 1.5 °C. Each country sets and reports its own emission targets.",
+    "wikipediaTitle": "Paris Agreement",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Paris_Agreement"
     ]
   },
   {

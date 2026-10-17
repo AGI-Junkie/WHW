@@ -62,7 +62,11 @@ export function fetchSnapshot(year: number): Promise<BorderFeature[]> {
         if (!r.ok) throw new Error(`snapshot ${year}: ${r.status}`);
         return r.json();
       })
-      .then((j) => BorderSnapshotSchema.parse(j).features.map(rewindFeature));
+      .then((j) => BorderSnapshotSchema.parse(j).features.map(rewindFeature))
+      .catch((e: unknown) => {
+        snapshotCache.delete(year); // a failed (pre)fetch must not poison later attempts
+        throw e;
+      });
     snapshotCache.set(year, p);
   }
   return p;

@@ -5,7 +5,7 @@ import Globe, { type GlobeMethods } from "react-globe.gl";
 import type { BorderFeature } from "@/lib/data/schemas";
 import { polityDisplayName } from "@/lib/domain/palette";
 import { useContainerSize } from "./use-container-size";
-import type { GlobeArc, GlobeCanvasProps, GlobePin, GlobeRing } from "./globe-types";
+import type { GlobeArc, GlobeCanvasProps, GlobePath, GlobePin, GlobeRing } from "./globe-types";
 
 const HOME = { lat: 30, lng: 15, altitude: 2.2 };
 
@@ -47,17 +47,27 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
     g.pointOfView({ lat: t.lat, lng: t.lng, altitude: t.altitude }, t.durationMs ?? 1200);
   }, [props.cameraTarget]);
 
+  // The latest camera target, so a deep link that set one before the globe was ready still wins.
+  const targetRef = useRef(props.cameraTarget);
+  useEffect(() => {
+    targetRef.current = props.cameraTarget;
+  }, [props.cameraTarget]);
+
   const onReady = useCallback(() => {
     const g = globeRef.current;
     if (!g) return;
-    g.pointOfView(HOME, 0);
+    const start = () => {
+      const t = targetRef.current;
+      return t ? { lat: t.lat, lng: t.lng, altitude: t.altitude } : HOME;
+    };
+    g.pointOfView(start(), 0);
     const controls = g.controls();
     controls.autoRotate = props.autoRotate;
     controls.autoRotateSpeed = 0.35;
     controls.minDistance = 120;
     controls.maxDistance = 600;
     // Textures load a moment after the globe is ready; a second POV set avoids the default zoom.
-    window.setTimeout(() => g.pointOfView(HOME, 800), 100);
+    window.setTimeout(() => g.pointOfView(start(), 800), 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -76,18 +86,26 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
           atmosphereAltitude={0.16}
           animateIn={false}
           onGlobeReady={onReady}
-          onGlobeClick={() => onBackgroundClick?.()}
+          onGlobeClick={(at) => onBackgroundClick?.({ lat: at.lat, lng: at.lng })}
           polygonsData={props.polygons}
           polygonCapColor={(d) => polygonColor(d as BorderFeature)}
           polygonSideColor={() => "rgba(40, 30, 15, 0.25)"}
           polygonStrokeColor={() => "#3b2f1e"}
           polygonAltitude={0.006}
           polygonCapCurvatureResolution={4}
-          polygonsTransitionDuration={0}
+          polygonsTransitionDuration={350}
           polygonLabel={(d) =>
             `<div class="globe-tip">${esc(polityDisplayName(d as BorderFeature))}</div>`
           }
-          onPolygonClick={(d) => onPolygonClick?.(d as BorderFeature)}
+          onPolygonClick={(d, _e, at) => onPolygonClick?.(d as BorderFeature, { lat: at.lat, lng: at.lng })}
+          pathsData={props.paths ?? []}
+          pathPoints="points"
+          pathPointLat={(p: number[]) => p[1]!}
+          pathPointLng={(p: number[]) => p[0]!}
+          pathPointAlt={0.008}
+          pathColor={(d: object) => (d as GlobePath).color}
+          pathStroke={1.4}
+          pathTransitionDuration={0}
           pointsData={props.pins}
           pointLat="lat"
           pointLng="lng"
