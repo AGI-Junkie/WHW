@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useHistory } from "@/lib/store/history-store";
 import { CATEGORY_COLORS } from "@/lib/domain/palette";
+import { eraForYear } from "@/lib/domain/eras";
 import { sliderToYear, yearToSlider } from "@/lib/domain/time-scale";
 import { useI18n } from "@/lib/i18n";
 import { MY_TOUR_ID } from "@/lib/domain/my-tour";
@@ -19,6 +20,7 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
   const { t, fy } = useI18n();
   const track = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<{ x: number; year: number } | null>(null);
+  const currentEra = eraForYear(state.year, eras);
   const selectedId = state.selection?.kind === "event" ? state.selection.id : null;
   const markers = useMemo(
     () => events.filter((e) => e.importance >= MARKER_MIN_IMPORTANCE && !state.hiddenCategories.includes(e.category)),
@@ -64,7 +66,7 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
         <div className="eras">
           {eras.map((e) => {
             const l = yearToSlider(e.from) * 100, r = yearToSlider(e.to) * 100;
-            const current = state.year >= e.from && state.year < e.to;
+            const current = e.id === currentEra?.id;
             return (
               <span key={e.id} className={current ? "current" : ""} style={{ left: `${l}%`, width: `${r - l}%`, background: `var(--${e.tone})` }} title={t(e.name)}>
                 {r - l > 11 && <label style={{ left: "50%" }}>{t(e.name)}</label>}

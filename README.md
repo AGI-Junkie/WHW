@@ -39,7 +39,7 @@ During a war, arcs run between the belligerents while the year is inside its spa
 - **Your own tour.** Add events to *My tour* from any event panel, play it like a guided tour, and share it as a link (`#t=event-a,event-b`).
 - **Discovery badges.** The app remembers, in your browser only, which events, countries and tours you have explored.
 
-No accounts, no database, no API keys. One optional environment variable.
+No accounts, no database, no API keys. Two optional environment variables.
 
 ## Quick start
 
@@ -142,7 +142,7 @@ Events live in [`src/data/events.json`](src/data/events.json) and are validated 
 - `commonsVideo` takes a Wikimedia Commons file title; `pnpm data:videos` resolves it to a playable URL.
 - Tours in [`tours.json`](src/data/tours.json) are ordered lists of event ids with a line of narration each.
 
-Run `pnpm exec tsx scripts/validate-data.ts` after editing; it checks every field and every tour reference.
+Run `pnpm test` after editing; it parses every field and checks every tour reference.
 
 ## Architecture
 

@@ -247,6 +247,12 @@ function Shell() {
         </>
       )}
       <BadgeToast />
+      {state.error && (
+        <div className="load-error" role="alert">
+          {t("Some map data failed to load.")}
+          <button className="btn" onClick={() => dispatch({ type: "retry" })}>{t("Retry")}</button>
+        </div>
+      )}
       {overlay === "search" && <SearchPalette onClose={() => setOverlay(null)} />}
       {overlay === "gallery" && <StoryGallery onClose={() => setOverlay(null)} />}
       {overlay === "help" && <HelpOverlay onClose={() => setOverlay(null)} />}

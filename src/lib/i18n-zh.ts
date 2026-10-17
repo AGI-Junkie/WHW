@@ -21,6 +21,8 @@ export const ZH: Record<string, string> = {
   "borders of {year}": "{year}的边界",
   "since {year}": "始于{year}",
   Close: "关闭",
+  "Some map data failed to load.": "部分地图数据加载失败。",
+  Retry: "重试",
 
   // Quiz
   "Your guess": "你的猜测",

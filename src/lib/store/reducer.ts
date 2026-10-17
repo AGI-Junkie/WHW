@@ -60,9 +60,10 @@ export interface HistoryState {
   snapshotYears: number[];
   snapshotYear: number | null;
   polygons: BorderFeature[];
-  loadingSnapshot: boolean;
   hiddenCategories: Category[];
   error: string | null;
+  /** Bumped by the retry button so the data fetch effects run again. */
+  retry: number;
   /** Event ids of the visitor's own tour (persisted per browser, shareable by link). */
   myTour: string[];
   /** A second border snapshot drawn as outlines over the current one, or null. */
@@ -90,9 +91,9 @@ export type Action =
   | { type: "flyTo"; target: GlobeCameraTarget }
   | { type: "countriesLoaded"; countries: Country[] }
   | { type: "snapshotIndexLoaded"; years: number[] }
-  | { type: "snapshotRequested" }
   | { type: "snapshotLoaded"; year: number; features: BorderFeature[] }
   | { type: "error"; message: string }
+  | { type: "retry" }
   | { type: "toggleCategory"; category: Category }
   | { type: "discoveryLoaded"; discovery: DiscoveryState }
   | { type: "prunePulses"; now: number }
@@ -122,9 +123,9 @@ export const initialState: HistoryState = {
   snapshotYears: [],
   snapshotYear: null,
   polygons: [],
-  loadingSnapshot: false,
   hiddenCategories: [],
   error: null,
+  retry: 0,
   myTour: [],
   compareYear: null,
   quiz: null,
@@ -297,12 +298,12 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       return { ...s, countries: a.countries };
     case "snapshotIndexLoaded":
       return { ...s, snapshotYears: a.years };
-    case "snapshotRequested":
-      return { ...s, loadingSnapshot: true };
     case "snapshotLoaded":
-      return { ...s, loadingSnapshot: false, snapshotYear: a.year, polygons: a.features };
+      return { ...s, snapshotYear: a.year, polygons: a.features };
     case "error":
-      return { ...s, loadingSnapshot: false, error: a.message };
+      return { ...s, error: a.message };
+    case "retry":
+      return { ...s, error: null, retry: s.retry + 1 };
     case "toggleCategory":
       return {
         ...s,

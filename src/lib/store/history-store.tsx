@@ -75,7 +75,7 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     fetchSnapshotIndex()
       .then((years) => dispatch({ type: "snapshotIndexLoaded", years }))
       .catch((e: unknown) => dispatch({ type: "error", message: String(e) }));
-  }, []);
+  }, [state.retry]);
 
   // Border snapshot for the current year (latest snapshot ≤ year), fetched lazily and cached.
   useEffect(() => {
@@ -83,7 +83,6 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     const target = pickSnapshotYear(state.year, state.snapshotYears);
     if (target === state.snapshotYear || wantedSnapshot.current === target) return;
     wantedSnapshot.current = target;
-    dispatch({ type: "snapshotRequested" });
     fetchSnapshot(target)
       .then((features) => {
         if (wantedSnapshot.current === target) {
@@ -96,8 +95,11 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
         if ("requestIdleCallback" in window) window.requestIdleCallback(warm, { timeout: 2000 }); // a busy WebGL frame loop may never go idle
         else setTimeout(warm, 500); // Safari has no requestIdleCallback
       })
-      .catch((e: unknown) => dispatch({ type: "error", message: String(e) }));
-  }, [state.year, state.snapshotYears, state.snapshotYear]);
+      .catch((e: unknown) => {
+        wantedSnapshot.current = null; // otherwise the guard above blocks every retry
+        dispatch({ type: "error", message: String(e) });
+      });
+  }, [state.year, state.snapshotYears, state.snapshotYear, state.retry]);
 
   // Play loop.
   useEffect(() => {

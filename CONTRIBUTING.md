@@ -6,7 +6,7 @@ Thanks for helping. The most valuable contribution is **well-sourced history**: 
 
 1. Edit `src/data/events.json` (see the field guide in the README, and the contracts in `src/lib/data/schemas.ts`).
 2. Give every event at least one source URL and the exact English Wikipedia article title.
-3. Run `pnpm exec tsx scripts/validate-data.ts` until it prints `OK`.
+3. Run `pnpm test` until it passes.
 4. Open a pull request. Describe what you added and where it came from.
 
 ## Code changes
