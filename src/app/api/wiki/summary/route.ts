@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import type { WikiSummaryResponse } from "@/lib/data/schemas";
-import { createRateLimiter } from "@/lib/security/rate-limit";
+import { clientKey, createRateLimiter } from "@/lib/security/rate-limit";
 
 /**
  * The app's only server code: a same-origin proxy for the Wikipedia REST summary endpoint.
@@ -84,8 +84,9 @@ async function summary(title: string, lang: "en" | "zh"): Promise<Response> {
 
 export async function GET(req: Request): Promise<NextResponse> {
   if (process.env["CONTENT_PROVIDER"] === "static") return reply({ ok: false, reason: "static-mode" });
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
-  if (!allow(ip)) return reply({ ok: false, reason: "rate-limited" }, 429);
+  // Without a proxy there is no trustworthy client identity, and one shared bucket would lock everyone out.
+  const key = clientKey(req.headers);
+  if (key !== "direct" && !allow(key)) return reply({ ok: false, reason: "rate-limited" }, 429);
   const params = new URL(req.url).searchParams;
   const parsed = TitleSchema.safeParse(params.get("title"));
   if (!parsed.success) return reply({ ok: false, reason: "bad-title" }, 400);

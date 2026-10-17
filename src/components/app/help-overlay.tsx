@@ -1,6 +1,7 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n";
+import { useOverlayKeys } from "./use-overlay-keys";
 
 const KEYS: [string, string][] = [
   ["Space", "Play / pause history (in a story: autoplay)"],
@@ -14,6 +15,7 @@ const KEYS: [string, string][] = [
 
 export default function HelpOverlay({ onClose }: { onClose: () => void }) {
   const { t } = useI18n();
+  useOverlayKeys(onClose);
   return (
     <div className="overlay" onMouseDown={onClose}>
       <div className="help" role="dialog" aria-label={t("Keyboard shortcuts")} onMouseDown={(e) => e.stopPropagation()}>

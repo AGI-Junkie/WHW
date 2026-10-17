@@ -13,7 +13,7 @@ import {
 import { polityDisplayName } from "@/lib/domain/palette";
 import { storyFor } from "@/lib/domain/story";
 import { adjacentEvent } from "@/lib/domain/navigation";
-import { buildMyTour, MY_TOUR_ID, toggleMyTour } from "@/lib/domain/my-tour";
+import { buildMyTour, MY_TOUR_ID, MY_TOUR_MAX, toggleMyTour } from "@/lib/domain/my-tour";
 import { distanceKm, pickQuizEvent, QUIZ_ROUNDS, quizPoints } from "@/lib/domain/quiz";
 import type { GlobeCameraTarget } from "@/components/globe/globe-types";
 
@@ -134,6 +134,11 @@ function findTour(s: HistoryState, id: string): Tour | undefined {
   return id === MY_TOUR_ID ? (buildMyTour(s.myTour, getEvents()) ?? undefined) : getTours().find((t) => t.id === id);
 }
 
+/** Editing My tour while it plays would leave the player on a stop index that no longer matches: end it. */
+function endEditedTour(s: HistoryState, myTour: string[]): HistoryState {
+  return { ...s, myTour, ...(s.tour?.id === MY_TOUR_ID ? { tour: null } : {}) };
+}
+
 /** A quiz round: jump to the event's year (its borders are the hint) and pull the camera back. */
 function quizRound(s: HistoryState, ev: HistoryEvent, round: number, asked: string[], total: number): HistoryState {
   return {
@@ -196,7 +201,8 @@ function selectEvent(s: HistoryState, ev: HistoryEvent): HistoryState {
 export function reducer(s: HistoryState, a: Action): HistoryState {
   switch (a.type) {
     case "setYear":
-      return { ...s, year: a.year };
+      // Moving the timeline mid-quiz would swap the borders that are the round's clue: leave the quiz.
+      return { ...s, year: a.year, quiz: null };
     case "tick": {
       const next = nextYear(s.year, 1);
       if (next === s.year || s.year >= MAX_YEAR) return { ...s, playing: false };
@@ -233,6 +239,7 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
         const ev = getEvents().find((e) => e.id === sel.id);
         return {
           ...s,
+          quiz: null,
           selection: sel,
           discovery: discoverEvent(s.discovery, sel.id),
           ...(a.fly && ev
@@ -242,6 +249,7 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       }
       return {
         ...s,
+        quiz: null,
         selection: a.selection,
         discovery: discoverCountry(s.discovery, polityDisplayName(a.selection.feature)),
       };
@@ -276,12 +284,12 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
     case "stepEvent": {
       const selectedId = s.selection?.kind === "event" ? s.selection.id : null;
       const ev = adjacentEvent(getEvents(), s.year, selectedId, a.delta, s.hiddenCategories);
-      return ev ? selectEvent({ ...s, tour: null }, ev) : s;
+      return ev ? selectEvent({ ...s, tour: null, quiz: null }, ev) : s;
     }
     case "randomEvent": {
       const pool = getEvents().filter((e) => e.importance >= 3 && !s.hiddenCategories.includes(e.category));
       const ev = pool[Math.abs(Math.floor(a.seed)) % Math.max(1, pool.length)];
-      return ev ? selectEvent({ ...s, tour: null, story: null }, ev) : s;
+      return ev ? selectEvent({ ...s, tour: null, story: null, quiz: null }, ev) : s;
     }
     case "flyTo":
       return { ...s, cameraTarget: a.target };
@@ -309,9 +317,12 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
         ? { ...s, pulses: s.pulses.filter((p) => p.until > a.now) }
         : s;
     case "toggleMyTour":
-      return { ...s, myTour: toggleMyTour(s.myTour, a.id) };
-    case "myTourLoaded":
-      return { ...s, myTour: a.ids };
+      return endEditedTour(s, toggleMyTour(s.myTour, a.id));
+    case "myTourLoaded": {
+      // Storage and #t= links are untrusted: keep known, unique event ids only, capped.
+      const known = new Set(getEvents().map((e) => e.id));
+      return endEditedTour(s, [...new Set(a.ids)].filter((id) => known.has(id)).slice(0, MY_TOUR_MAX));
+    }
     case "setCompare":
       return { ...s, compareYear: a.year };
     case "quizStart": {

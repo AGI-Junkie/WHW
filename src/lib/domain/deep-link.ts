@@ -33,6 +33,7 @@ export function buildDeepLink(link: DeepLink): string {
   if (link.eventId) params.set("e", link.eventId);
   if (link.eventId && link.story) params.set("s", "1");
   if (link.tour?.length) params.set("t", link.tour.join(","));
-  const s = params.toString();
+  // Ids are [a-z0-9-] only, so the tour's commas can stay readable instead of %2C.
+  const s = params.toString().replaceAll("%2C", ",");
   return s ? `#${s}` : "";
 }

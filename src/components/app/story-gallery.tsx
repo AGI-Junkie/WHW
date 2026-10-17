@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useHistory } from "@/lib/store/history-store";
 import { CATEGORY_COLORS } from "@/lib/domain/palette";
 import { useI18n } from "@/lib/i18n";
+import { useOverlayKeys } from "./use-overlay-keys";
 import { buildDeepLink } from "@/lib/domain/deep-link";
 import { buildMyTour, MY_TOUR_ID } from "@/lib/domain/my-tour";
 
@@ -11,6 +12,7 @@ import { buildMyTour, MY_TOUR_ID } from "@/lib/domain/my-tour";
 export default function StoryGallery({ onClose }: { onClose: () => void }) {
   const { state, events, tours, dispatch } = useHistory();
   const { t, fy } = useI18n();
+  useOverlayKeys(onClose);
   const stories = useMemo(() => events.filter((e) => e.story).sort((a, b) => a.year - b.year), [events]);
   const mine = useMemo(() => buildMyTour(state.myTour, events), [state.myTour, events]);
   const [copied, setCopied] = useState(false);

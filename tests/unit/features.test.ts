@@ -5,7 +5,8 @@ import { distanceKm, QUIZ_ROUNDS, quizPoints } from "@/lib/domain/quiz";
 import { buildMyTour, MY_TOUR_ID, MY_TOUR_MAX, toggleMyTour } from "@/lib/domain/my-tour";
 import { buildDeepLink, parseDeepLink } from "@/lib/domain/deep-link";
 import { parseYearQuery } from "@/lib/domain/search";
-import { createRateLimiter } from "@/lib/security/rate-limit";
+import { clientKey, createRateLimiter } from "@/lib/security/rate-limit";
+import { midpoint } from "@/lib/domain/story";
 import { featureOutlines } from "@/lib/domain/compare";
 
 describe("quiz", () => {
@@ -33,6 +34,13 @@ describe("quiz", () => {
     s = reducer(s, { type: "quizNext", seed: 1 });
     expect(s.quiz?.done).toBe(true);
     expect(reducer(s, { type: "quizEnd" }).quiz).toBeNull();
+  });
+
+  it("ends when the timeline or selection changes, so the round's borders stay the clue", () => {
+    const s = reducer(initialState, { type: "quizStart", seed: 3 });
+    expect(reducer(s, { type: "setYear", year: 1500 }).quiz).toBeNull();
+    expect(reducer(s, { type: "stepEvent", delta: 1 }).quiz).toBeNull();
+    expect(reducer(s, { type: "select", selection: { kind: "event", id: getEvents()[0]!.id } }).quiz).toBeNull();
   });
 
   it("cannot skip a round without guessing", () => {
@@ -64,6 +72,22 @@ describe("my tour", () => {
     expect(s.discovery.toursCompleted).toContain(MY_TOUR_ID);
   });
 
+  it("keeps only known, unique ids from storage or links", () => {
+    const real = getEvents().map((e) => e.id);
+    const s = reducer(initialState, { type: "myTourLoaded", ids: ["no-such-event", real[0]!, real[0]!, ...real.slice(1, 30)] });
+    expect(s.myTour[0]).toBe(real[0]);
+    expect(s.myTour).not.toContain("no-such-event");
+    expect(s.myTour).toHaveLength(MY_TOUR_MAX);
+    expect(reducer(initialState, { type: "myTourLoaded", ids: Array(14).fill("bogus-id") }).myTour).toEqual([]);
+  });
+
+  it("ends a playing tour when its stops are edited", () => {
+    let s = reducer(initialState, { type: "myTourLoaded", ids: [a!.id, b!.id] });
+    s = reducer(s, { type: "startTour", id: MY_TOUR_ID });
+    expect(reducer(s, { type: "toggleMyTour", id: b!.id }).tour).toBeNull();
+    expect(reducer(s, { type: "myTourLoaded", ids: [] }).tour).toBeNull();
+  });
+
   it("round-trips through the URL hash and rejects junk ids", () => {
     const hash = buildDeepLink({ tour: ["fall-of-constantinople", "moon-landing"] });
     expect(parseDeepLink(hash).tour).toEqual(["fall-of-constantinople", "moon-landing"]);
@@ -88,6 +112,22 @@ describe("rate limiter", () => {
     expect([allow("ip", 0), allow("ip", 1), allow("ip", 2)]).toEqual([true, true, false]);
     expect(allow("other", 2)).toBe(true);
     expect(allow("ip", 1001)).toBe(true);
+  });
+});
+
+describe("rate-limit key", () => {
+  it("never trusts the caller-supplied first x-forwarded-for hop", () => {
+    expect(clientKey(new Headers({ "x-real-ip": "1.1.1.1", "x-forwarded-for": "6.6.6.6, 2.2.2.2" }))).toBe("1.1.1.1");
+    expect(clientKey(new Headers({ "x-forwarded-for": "6.6.6.6, 2.2.2.2" }))).toBe("2.2.2.2");
+    expect(clientKey(new Headers())).toBe("direct");
+  });
+});
+
+describe("story midpoint", () => {
+  it("averages longitudes on the circle, so a Pacific war stays in the Pacific", () => {
+    const midway = getEvents().find((e) => e.id === "battle-of-midway")!;
+    const m = midpoint(midway);
+    expect(Math.abs(m.lng)).toBeGreaterThan(150);
   });
 });
 

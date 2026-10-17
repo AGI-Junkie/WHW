@@ -64,4 +64,18 @@ test("a shared tour link starts the visitor's tour", async ({ page }) => {
   await page.goto("/#t=fall-of-constantinople,apollo-11");
   await expect(page.locator(".tour")).toContainText("My tour");
   await expect(page.locator(".tour")).toContainText("stop 1 of 2");
+  // The address keeps the tour after the hash sync runs, so reloading reopens it.
+  await page.waitForTimeout(800);
+  expect(page.url()).toContain("#t=fall-of-constantinople,apollo-11");
+});
+
+test("Esc closes the gallery without leaving the story underneath", async ({ page }) => {
+  await page.goto("/#y=1453&e=fall-of-constantinople");
+  await expect(page.locator(".panel")).toBeVisible();
+  await page.getByRole("button", { name: /Stories/ }).first().click();
+  await expect(page.getByRole("dialog", { name: "Immersive stories" })).toBeVisible();
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog", { name: "Immersive stories" })).toBeHidden();
+  await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
 });

@@ -13,12 +13,17 @@ function sideNames(e: HistoryEvent, side: "a" | "b"): string[] {
   return (e.belligerents ?? []).filter((b) => b.side === side).map((b) => b.name);
 }
 
-function midpoint(e: HistoryEvent): { lat: number; lng: number } {
+/** Centre of the belligerents' capitals; longitude as a circular mean so Tokyo + Honolulu lands in the Pacific. */
+export function midpoint(e: HistoryEvent): { lat: number; lng: number } {
   const bs = e.belligerents ?? [];
   if (bs.length === 0) return { lat: e.lat, lng: e.lng };
+  const rad = Math.PI / 180;
+  const x = bs.reduce((s, b) => s + Math.cos(b.lng * rad), 0);
+  const y = bs.reduce((s, b) => s + Math.sin(b.lng * rad), 0);
   return {
     lat: bs.reduce((s, b) => s + b.lat, 0) / bs.length,
-    lng: bs.reduce((s, b) => s + b.lng, 0) / bs.length,
+    // Opposite capitals (x = y = 0) have no circular mean: fall back to the event's own place.
+    lng: Math.hypot(x, y) < 1e-9 ? e.lng : Math.atan2(y, x) / rad,
   };
 }
 

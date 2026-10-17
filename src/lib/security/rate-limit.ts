@@ -16,3 +16,17 @@ export function createRateLimiter(limit: number, windowMs: number) {
     return h.count <= limit;
   };
 }
+
+/**
+ * The rate-limit key. The first x-forwarded-for entry is whatever the caller sent, so it is never
+ * used: x-real-ip is set by the platform or reverse proxy (Vercel, or Nginx/Caddy configured to set
+ * it), and otherwise the last x-forwarded-for entry is the one the nearest proxy appended. With no
+ * proxy at all it returns "direct" (the caller is then not rate-limited). shortcut: assumes at most one proxy hop; behind a
+ * chain of proxies, set x-real-ip at the edge.
+ */
+export function clientKey(headers: Headers): string {
+  const real = headers.get("x-real-ip")?.trim();
+  if (real) return real;
+  const hops = headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(Boolean) ?? [];
+  return hops.at(-1) ?? "direct";
+}

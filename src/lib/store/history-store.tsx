@@ -172,15 +172,19 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   const linkYear = state.year;
   const linkEvent = state.selection?.kind === "event" ? state.selection.id : undefined;
   const linkStory = state.story !== null;
+  // While My tour plays, the address keeps the tour itself, so reloading or copying it reopens the tour.
+  const linkTour = state.tour?.id === MY_TOUR_ID ? state.myTour.join(",") : "";
   useEffect(() => {
     const id = window.setTimeout(() => {
-      const hash = buildDeepLink({ year: linkYear, story: linkStory, ...(linkEvent ? { eventId: linkEvent } : {}) });
+      const hash = linkTour
+        ? buildDeepLink({ tour: linkTour.split(",") })
+        : buildDeepLink({ year: linkYear, story: linkStory, ...(linkEvent ? { eventId: linkEvent } : {}) });
       if (hash !== window.location.hash) {
         window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}${hash}`);
       }
     }, 400);
     return () => window.clearTimeout(id);
-  }, [linkYear, linkEvent, linkStory]);
+  }, [linkYear, linkEvent, linkStory, linkTour]);
 
   // Keyboard: space = play/pause (story: autoplay), escape = close the innermost layer,
   // ← → = story chapters, tour stops, or the previous/next event in time.
