@@ -343,6 +343,12 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
         if (wantedSnapshot.current === target) {
           dispatch({ type: "snapshotLoaded", year: target, features });
         }
+        // Warm the neighbouring snapshots so scrubbing or playing across a boundary does not stall.
+        const sorted = [...state.snapshotYears].sort((a, b) => a - b);
+        const i = sorted.indexOf(target);
+        const warm = () => [sorted[i - 1], sorted[i + 1]].forEach((y) => y !== undefined && void fetchSnapshot(y).catch(() => {}));
+        if ("requestIdleCallback" in window) window.requestIdleCallback(warm);
+        else setTimeout(warm, 500); // Safari has no requestIdleCallback
       })
       .catch((e: unknown) => dispatch({ type: "error", message: String(e) }));
   }, [state.year, state.snapshotYears, state.snapshotYear]);
