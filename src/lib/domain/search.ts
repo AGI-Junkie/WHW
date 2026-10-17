@@ -11,9 +11,10 @@ export function normalize(s: string): string {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
 }
 
-/** "1453", "500 BC", "AD 79", "-44" → a calendar year (never 0), or null. */
+/** "1453", "500 BC", "AD 79", "-44", "公元前500年", "1453年" → a calendar year (never 0), or null. */
 export function parseYearQuery(q: string): number | null {
-  const m = normalize(q).match(/^(ad\s*)?(-?\d{1,4})\s*(bc|bce|ad|ce)?$/);
+  const zh = normalize(q).replace(/年$/, "").replace(/^(?:公元前|前)\s*(\d+)$/, "$1 bc").replace(/^公元\s*(\d+)$/, "$1");
+  const m = zh.match(/^(ad\s*)?(-?\d{1,4})\s*(bc|bce|ad|ce)?$/);
   if (!m) return null;
   let year = Number(m[2]);
   if (m[3] === "bc" || m[3] === "bce") year = -Math.abs(year);

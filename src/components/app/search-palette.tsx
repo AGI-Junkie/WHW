@@ -4,11 +4,12 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useHistory } from "@/lib/store/history-store";
 import { CATEGORY_COLORS } from "@/lib/domain/palette";
 import { search, type SearchResult } from "@/lib/domain/search";
-import { formatYear } from "@/lib/domain/time-scale";
+import { useI18n } from "@/lib/i18n";
 
 /** ⌘K / Ctrl+K / "/" palette: events, countries, or a year to jump to. */
 export default function SearchPalette({ onClose }: { onClose: () => void }) {
   const { state, events, dispatch } = useHistory();
+  const { t, fy } = useI18n();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const input = useRef<HTMLInputElement>(null);
@@ -39,12 +40,12 @@ export default function SearchPalette({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="overlay" onMouseDown={onClose}>
-      <div className="palette" role="dialog" aria-label="Search history" onMouseDown={(e) => e.stopPropagation()}>
+      <div className="palette" role="dialog" aria-label={t("Search history")} onMouseDown={(e) => e.stopPropagation()}>
         <input
           ref={input}
           value={query}
-          placeholder="Search events, countries, or a year like 1453 or 500 BC…"
-          aria-label="Search"
+          placeholder={t("Search events, countries, or a year like 1453 or 500 BC…")}
+          aria-label={t("Search")}
           onChange={(e) => {
             setQuery(e.target.value);
             setActive(0);
@@ -64,21 +65,21 @@ export default function SearchPalette({ onClose }: { onClose: () => void }) {
           {results.map((r, i) => (
             <li key={r.kind === "event" ? r.event.id : r.kind === "country" ? r.country.iso2 : "year"}>
               <button className={i === active ? "on" : ""} onMouseEnter={() => setActive(i)} onClick={() => choose(r)}>
-                {r.kind === "year" && <><span className="tag">Year</span> Jump to {formatYear(r.year)}</>}
-                {r.kind === "country" && <><span className="tag">Country</span> {r.country.name}{r.country.capital ? <em> · {r.country.capital}</em> : null}</>}
+                {r.kind === "year" && <><span className="tag">{t("Year")}</span> {t("Jump to {year}", { year: fy(r.year) })}</>}
+                {r.kind === "country" && <><span className="tag">{t("Country")}</span> {r.country.name}{r.country.capital ? <em> · {r.country.capital}</em> : null}</>}
                 {r.kind === "event" && (
                   <>
                     <i style={{ background: CATEGORY_COLORS[r.event.category] }} />
-                    <span className="tag">{formatYear(r.event.year)}</span> {r.event.title}
-                    {r.event.story && <em className="gold"> · immersive story</em>}
+                    <span className="tag">{fy(r.event.year)}</span> {r.event.title}
+                    {r.event.story && <em className="gold"> · {t("immersive story")}</em>}
                   </>
                 )}
               </button>
             </li>
           ))}
-          {query && results.length === 0 && <li className="empty">Nothing found for “{query}”.</li>}
+          {query && results.length === 0 && <li className="empty">{t("Nothing found for “{query}”.", { query })}</li>}
         </ul>
-        <div className="palette-foot">↑↓ choose · Enter open · Shift+Enter open as story · Esc close</div>
+        <div className="palette-foot">{t("↑↓ choose · Enter open · Shift+Enter open as story · Esc close")}</div>
       </div>
     </div>
   );

@@ -35,6 +35,18 @@ export interface GlobeRing {
   maxRadius: number;
 }
 
+/** A line on the surface, e.g. a border outline; `points` are GeoJSON [lng, lat] pairs. */
+export interface GlobePath {
+  id: string;
+  points: number[][];
+  color: string;
+}
+
+export interface GlobeLatLng {
+  lat: number;
+  lng: number;
+}
+
 export interface GlobeCameraTarget {
   lat: number;
   lng: number;
@@ -51,10 +63,13 @@ export interface GlobeCanvasProps {
   pins: GlobePin[];
   arcs: GlobeArc[];
   rings: GlobeRing[];
+  /** Optional surface lines drawn over the polygons (the compare-mode outlines). */
+  paths?: GlobePath[];
   /** When this object identity changes, the camera flies to it. `null` leaves the camera alone. */
   cameraTarget: GlobeCameraTarget | null;
   autoRotate: boolean;
   onPinClick?: (pin: GlobePin) => void;
-  onPolygonClick?: (feature: BorderFeature) => void;
-  onBackgroundClick?: () => void;
+  /** Click handlers also get the clicked point on the globe. */
+  onPolygonClick?: (feature: BorderFeature, at: GlobeLatLng) => void;
+  onBackgroundClick?: (at: GlobeLatLng) => void;
 }

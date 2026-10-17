@@ -10,282 +10,19 @@ import {
   type Dispatch,
   type ReactNode,
 } from "react";
-import type { BorderFeature, Category, Country, Era, HistoryEvent, Tour } from "@/lib/data/schemas";
-import {
-  fetchCountries,
-  fetchSnapshot,
-  fetchSnapshotIndex,
-  getEras,
-  getEvents,
-  getTours,
-} from "@/lib/data/loaders";
-import { MAX_YEAR } from "@/lib/data/schemas";
-import { nextYear } from "@/lib/domain/time-scale";
+import type { Era, HistoryEvent, Tour } from "@/lib/data/schemas";
+import { fetchCountries, fetchSnapshot, fetchSnapshotIndex, getEras, getEvents, getTours } from "@/lib/data/loaders";
 import { pickSnapshotYear } from "@/lib/domain/snapshot";
-import { eventsHappening, headlineEvent } from "@/lib/domain/visible-events";
-import {
-  completeTour,
-  discoverCountry,
-  discoverEvent,
-  EMPTY_DISCOVERY,
-  type DiscoveryState,
-} from "@/lib/domain/discovery";
-import { polityDisplayName } from "@/lib/domain/palette";
+import type { DiscoveryState } from "@/lib/domain/discovery";
 import { chapterDurationMs, storyFor } from "@/lib/domain/story";
-import { adjacentEvent } from "@/lib/domain/navigation";
 import { buildDeepLink, parseDeepLink } from "@/lib/domain/deep-link";
-import type { GlobeCameraTarget } from "@/components/globe/globe-types";
+import { MY_TOUR_ID } from "@/lib/domain/my-tour";
+import { initialState, reducer, TICKS_PER_SECOND, type Action, type HistoryState } from "./reducer";
 
-export type Speed = 1 | 2 | 4;
-export type Selection =
-  | { kind: "event"; id: string }
-  | { kind: "country"; feature: BorderFeature }
-  | null;
+export * from "./reducer";
 
-export interface Pulse {
-  id: string;
-  lat: number;
-  lng: number;
-  importance: number;
-  until: number;
-}
-
-export interface HistoryState {
-  year: number;
-  playing: boolean;
-  speed: Speed;
-  follow: boolean;
-  selection: Selection;
-  tour: { id: string; stop: number } | null;
-  /** The immersive story view: which event, which chapter, and whether it advances by itself. */
-  story: { id: string; chapter: number; autoplay: boolean } | null;
-  cameraTarget: GlobeCameraTarget | null;
-  pulses: Pulse[];
-  discovery: DiscoveryState;
-  countries: Country[];
-  snapshotYears: number[];
-  snapshotYear: number | null;
-  polygons: BorderFeature[];
-  loadingSnapshot: boolean;
-  hiddenCategories: Category[];
-  error: string | null;
-}
-
-export type Action =
-  | { type: "setYear"; year: number }
-  | { type: "tick" }
-  | { type: "setPlaying"; playing: boolean }
-  | { type: "setSpeed"; speed: Speed }
-  | { type: "toggleFollow" }
-  | { type: "select"; selection: Selection; fly?: boolean }
-  | { type: "startTour"; id: string }
-  | { type: "tourStep"; delta: 1 | -1 }
-  | { type: "endTour" }
-  | { type: "openStory"; id: string; chapter?: number }
-  | { type: "storyStep"; delta: 1 | -1 }
-  | { type: "storyGo"; chapter: number }
-  | { type: "storyAutoplay"; autoplay: boolean }
-  | { type: "closeStory" }
-  | { type: "stepEvent"; delta: 1 | -1 }
-  | { type: "randomEvent"; seed: number }
-  | { type: "flyTo"; target: GlobeCameraTarget }
-  | { type: "countriesLoaded"; countries: Country[] }
-  | { type: "snapshotIndexLoaded"; years: number[] }
-  | { type: "snapshotRequested" }
-  | { type: "snapshotLoaded"; year: number; features: BorderFeature[] }
-  | { type: "error"; message: string }
-  | { type: "toggleCategory"; category: Category }
-  | { type: "discoveryLoaded"; discovery: DiscoveryState }
-  | { type: "prunePulses"; now: number };
-
-const START_YEAR = 1950;
-const TICKS_PER_SECOND = 3;
 const DISCOVERY_KEY = "whw-discovery-v1";
-
-export const initialState: HistoryState = {
-  year: START_YEAR,
-  playing: false,
-  speed: 1,
-  follow: false,
-  selection: null,
-  tour: null,
-  story: null,
-  cameraTarget: null,
-  pulses: [],
-  discovery: EMPTY_DISCOVERY,
-  countries: [],
-  snapshotYears: [],
-  snapshotYear: null,
-  polygons: [],
-  loadingSnapshot: false,
-  hiddenCategories: [],
-  error: null,
-};
-
-function applyStop(s: HistoryState, tour: Tour, idx: number): HistoryState {
-  const stop = tour.stops[idx];
-  const ev = stop ? getEvents().find((e) => e.id === stop.eventId) : undefined;
-  if (!stop || !ev) return s;
-  return {
-    ...s,
-    tour: { id: tour.id, stop: idx },
-    year: ev.year,
-    playing: false,
-    selection: { kind: "event", id: ev.id },
-    cameraTarget: { lat: ev.lat, lng: ev.lng, altitude: stop.altitude, durationMs: 1800 },
-    discovery: discoverEvent(s.discovery, ev.id),
-  };
-}
-
-function applyChapter(s: HistoryState, id: string, chapter: number, autoplay: boolean): HistoryState {
-  const events = getEvents();
-  const ev = events.find((e) => e.id === id);
-  if (!ev) return s;
-  const story = storyFor(ev, events);
-  const idx = Math.max(0, Math.min(story.chapters.length - 1, chapter));
-  const c = story.chapters[idx]!;
-  return {
-    ...s,
-    story: { id, chapter: idx, autoplay: autoplay && idx < story.chapters.length - 1 },
-    year: ev.year,
-    playing: false,
-    tour: null,
-    selection: { kind: "event", id },
-    cameraTarget: { lat: c.lat, lng: c.lng, altitude: c.altitude, durationMs: 2200 },
-    discovery: discoverEvent(s.discovery, id),
-  };
-}
-
-function selectEvent(s: HistoryState, ev: HistoryEvent): HistoryState {
-  return {
-    ...s,
-    year: ev.year,
-    playing: false,
-    selection: { kind: "event", id: ev.id },
-    discovery: discoverEvent(s.discovery, ev.id),
-    cameraTarget: { lat: ev.lat, lng: ev.lng, altitude: 1.3, durationMs: 1200 },
-  };
-}
-
-export function reducer(s: HistoryState, a: Action): HistoryState {
-  switch (a.type) {
-    case "setYear":
-      return { ...s, year: a.year };
-    case "tick": {
-      const next = nextYear(s.year, 1);
-      if (next === s.year || s.year >= MAX_YEAR) return { ...s, playing: false };
-      const events = getEvents();
-      const now = Date.now();
-      const born = eventsHappening(events, s.year, next).map<Pulse>((e) => ({
-        id: `${e.id}@${next}`,
-        lat: e.lat,
-        lng: e.lng,
-        importance: e.importance,
-        until: now + 2400,
-      }));
-      const pulses = [...s.pulses.filter((p) => p.until > now), ...born];
-      const head = s.follow ? headlineEvent(events, s.year, next) : undefined;
-      return {
-        ...s,
-        year: next,
-        pulses,
-        ...(head && head.importance >= 4
-          ? { cameraTarget: { lat: head.lat, lng: head.lng, altitude: 1.6, durationMs: 900 } }
-          : {}),
-      };
-    }
-    case "setPlaying":
-      return { ...s, playing: a.playing, ...(a.playing ? { tour: null, story: null } : {}) };
-    case "setSpeed":
-      return { ...s, speed: a.speed };
-    case "toggleFollow":
-      return { ...s, follow: !s.follow };
-    case "select": {
-      if (a.selection === null) return { ...s, selection: null };
-      if (a.selection.kind === "event") {
-        const sel = a.selection;
-        const ev = getEvents().find((e) => e.id === sel.id);
-        return {
-          ...s,
-          selection: sel,
-          discovery: discoverEvent(s.discovery, sel.id),
-          ...(a.fly && ev
-            ? { cameraTarget: { lat: ev.lat, lng: ev.lng, altitude: 1.2, durationMs: 1200 } }
-            : {}),
-        };
-      }
-      return {
-        ...s,
-        selection: a.selection,
-        discovery: discoverCountry(s.discovery, polityDisplayName(a.selection.feature)),
-      };
-    }
-    case "startTour": {
-      const tour = getTours().find((t) => t.id === a.id);
-      return tour ? applyStop({ ...s, story: null }, tour, 0) : s;
-    }
-    case "tourStep": {
-      if (!s.tour) return s;
-      const tour = getTours().find((t) => t.id === s.tour?.id);
-      if (!tour) return { ...s, tour: null };
-      const idx = s.tour.stop + a.delta;
-      if (idx < 0) return s;
-      if (idx >= tour.stops.length) {
-        return { ...s, tour: null, discovery: completeTour(s.discovery, tour.id) };
-      }
-      return applyStop(s, tour, idx);
-    }
-    case "endTour":
-      return { ...s, tour: null };
-    case "openStory":
-      return applyChapter(s, a.id, a.chapter ?? 0, a.chapter === undefined);
-    case "storyStep":
-      return s.story ? applyChapter(s, s.story.id, s.story.chapter + a.delta, s.story.autoplay) : s;
-    case "storyGo":
-      return s.story ? applyChapter(s, s.story.id, a.chapter, false) : s;
-    case "storyAutoplay":
-      return s.story ? { ...s, story: { ...s.story, autoplay: a.autoplay } } : s;
-    case "closeStory":
-      return { ...s, story: null };
-    case "stepEvent": {
-      const selectedId = s.selection?.kind === "event" ? s.selection.id : null;
-      const ev = adjacentEvent(getEvents(), s.year, selectedId, a.delta, s.hiddenCategories);
-      return ev ? selectEvent({ ...s, tour: null }, ev) : s;
-    }
-    case "randomEvent": {
-      const pool = getEvents().filter((e) => e.importance >= 3 && !s.hiddenCategories.includes(e.category));
-      const ev = pool[Math.abs(Math.floor(a.seed)) % Math.max(1, pool.length)];
-      return ev ? selectEvent({ ...s, tour: null, story: null }, ev) : s;
-    }
-    case "flyTo":
-      return { ...s, cameraTarget: a.target };
-    case "countriesLoaded":
-      return { ...s, countries: a.countries };
-    case "snapshotIndexLoaded":
-      return { ...s, snapshotYears: a.years };
-    case "snapshotRequested":
-      return { ...s, loadingSnapshot: true };
-    case "snapshotLoaded":
-      return { ...s, loadingSnapshot: false, snapshotYear: a.year, polygons: a.features };
-    case "error":
-      return { ...s, loadingSnapshot: false, error: a.message };
-    case "toggleCategory":
-      return {
-        ...s,
-        hiddenCategories: s.hiddenCategories.includes(a.category)
-          ? s.hiddenCategories.filter((c) => c !== a.category)
-          : [...s.hiddenCategories, a.category],
-      };
-    case "discoveryLoaded":
-      return { ...s, discovery: a.discovery };
-    case "prunePulses":
-      return s.pulses.some((p) => p.until <= a.now)
-        ? { ...s, pulses: s.pulses.filter((p) => p.until > a.now) }
-        : s;
-    default:
-      return s;
-  }
-}
+const MY_TOUR_KEY = "whw-my-tour-v1";
 
 interface HistoryContextValue {
   state: HistoryState;
@@ -309,6 +46,15 @@ function loadDiscovery(): DiscoveryState | null {
     return { events: arr(p.events), countries: arr(p.countries), toursCompleted: arr(p.toursCompleted) };
   } catch {
     return null;
+  }
+}
+
+function loadMyTour(): string[] {
+  try {
+    const parsed: unknown = JSON.parse(window.localStorage.getItem(MY_TOUR_KEY) ?? "[]");
+    return Array.isArray(parsed) ? parsed.filter((x): x is string => typeof x === "string") : [];
+  } catch {
+    return [];
   }
 }
 
@@ -374,7 +120,22 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const saved = loadDiscovery();
     if (saved) dispatch({ type: "discoveryLoaded", discovery: saved });
+    const mine = loadMyTour();
+    if (mine.length) dispatch({ type: "myTourLoaded", ids: mine });
   }, []);
+  const myTourLoaded = useRef(false);
+  useEffect(() => {
+    // Skip the first run so the empty initial list does not overwrite what is saved.
+    if (!myTourLoaded.current) {
+      myTourLoaded.current = true;
+      return;
+    }
+    try {
+      window.localStorage.setItem(MY_TOUR_KEY, JSON.stringify(state.myTour));
+    } catch {
+      /* storage may be unavailable */
+    }
+  }, [state.myTour]);
   useEffect(() => {
     try {
       window.localStorage.setItem(DISCOVERY_KEY, JSON.stringify(state.discovery));
@@ -399,7 +160,10 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const link = parseDeepLink(window.location.hash);
     const ev = link.eventId ? events.find((e) => e.id === link.eventId) : undefined;
-    if (ev && link.story) dispatch({ type: "openStory", id: ev.id, chapter: 0 });
+    if (link.tour) {
+      dispatch({ type: "myTourLoaded", ids: link.tour });
+      dispatch({ type: "startTour", id: MY_TOUR_ID });
+    } else if (ev && link.story) dispatch({ type: "openStory", id: ev.id, chapter: 0 });
     else if (ev) {
       dispatch({ type: "setYear", year: link.year ?? ev.year });
       dispatch({ type: "select", selection: { kind: "event", id: ev.id }, fly: true });
@@ -428,6 +192,11 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
       // A focused button keeps its native Space/Enter activation.
       if (target?.tagName === "BUTTON" && (e.code === "Space" || e.key === "Enter")) return;
       const story = state.story;
+      if (state.quiz) {
+        // The quiz is played with the mouse; only Esc applies, so no key can reveal the answer.
+        if (e.key === "Escape") dispatch({ type: "quizEnd" });
+        return;
+      }
       if (e.code === "Space") {
         e.preventDefault();
         if (story) dispatch({ type: "storyAutoplay", autoplay: !story.autoplay });
@@ -449,7 +218,7 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [state.playing, state.tour, state.story, state.selection]);
+  }, [state.playing, state.tour, state.story, state.selection, state.quiz]);
 
   const value = useMemo(
     () => ({ state, dispatch, events, tours, eras }),

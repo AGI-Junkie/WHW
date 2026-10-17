@@ -26,3 +26,42 @@ test("a story deep link opens the immersive view", async ({ page }) => {
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog", { name: /^Story: / })).toBeHidden();
 });
+
+test("the language switch translates the UI and is remembered", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "中文", exact: true }).click();
+  await expect(page.locator(".era")).toContainText("1945年的边界");
+  await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
+  await page.reload();
+  await expect(page.locator(".era")).toContainText("1945年的边界");
+  await page.getByRole("button", { name: "EN", exact: true }).click();
+  await expect(page.locator(".era")).toContainText("borders of 1945");
+});
+
+test("the quiz scores a click on the globe", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: /Quiz/ }).click();
+  await expect(page.getByText("Where did this happen?")).toBeVisible();
+  const globe = page.getByTestId("globe-stage").locator("canvas");
+  const box = (await globe.boundingBox())!;
+  // react-globe.gl resolves a click from the last hover raycast (done per frame), so hover first.
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.waitForTimeout(300);
+  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+  await expect(page.getByText(/km away · \+\d+ points/)).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".quiz")).toBeHidden();
+});
+
+test("compare mode overlays a second snapshot", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".era")).toContainText("borders of 1945");
+  await page.getByLabel("Compare borders").selectOption("1914");
+  await expect(page.locator(".compare-key")).toContainText("1914");
+});
+
+test("a shared tour link starts the visitor's tour", async ({ page }) => {
+  await page.goto("/#t=fall-of-constantinople,apollo-11");
+  await expect(page.locator(".tour")).toContainText("My tour");
+  await expect(page.locator(".tour")).toContainText("stop 1 of 2");
+});

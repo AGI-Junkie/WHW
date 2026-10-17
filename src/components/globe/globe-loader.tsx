@@ -7,7 +7,7 @@ const GlobeLoader = dynamic(() => import("./globe-canvas"), {
   ssr: false,
   loading: () => (
     <div className="globe-placeholder" role="status" aria-live="polite">
-      <span>Preparing the globe…</span>
+      <span>Preparing the globe… · 正在准备地球…</span>
     </div>
   ),
 });

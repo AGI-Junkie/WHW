@@ -33,6 +33,10 @@ During a war, arcs run between the belligerents while the year is inside its spa
 - **Story tours.** Ten guided journeys (the ancient world, Rome, the Silk Roads, the Mongols, the Age of Exploration, the scientific journey, the age of revolutions, WWI, WWII, the Cold War) fly the camera stop to stop with narration.
 - **Search and shareable links.** ⌘K (or `/`) searches events, countries and years ("1453", "500 BC"). The address bar always holds a link to the current year, event or story.
 - **Timeline you can read.** Major events are marked on the slider (gold diamonds have an immersive story); hover shows the year under the cursor, ⏮ ⏭ and ← → step from event to event, *Surprise me* (R) picks one at random, and each event panel suggests related events.
+- **English and 简体中文.** The interface switches language with one button (it follows the browser on the first visit), and the live Wikipedia block reads from zh.wikipedia through each article's interlanguage link. Curated event texts stay in English.
+- **Compare borders.** Overlay any other snapshot as red outlines on the current map: 1914 over 1920 shows what the First World War redrew. Ticks under the timeline mark the snapshot years.
+- **Map quiz.** Five rounds of "where did this happen?": click the globe, see how many kilometres off you were.
+- **Your own tour.** Add events to *My tour* from any event panel, play it like a guided tour, and share it as a link (`#t=event-a,event-b`).
 - **Discovery badges.** The app remembers, in your browser only, which events, countries and tours you have explored.
 
 No accounts, no database, no API keys. One optional environment variable.

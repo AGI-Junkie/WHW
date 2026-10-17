@@ -234,3 +234,50 @@ kbd { font-family: var(--font-mono); font-size: 12px; background: #1c1913; color
   .story-side { display: none; }
   .story-card { left: 12px; right: 12px; width: auto; }
 }
+
+/* ── Border snapshots, compare, quiz, my tour, country timeline ─────────── */
+.snapshots { position: absolute; left: 0; right: 0; top: 45px; height: 6px; pointer-events: none; }
+.snapshots button { position: absolute; top: 0; width: 2px; height: 6px; margin-left: -1px; padding: 0; border: 0; background: #5a5142; opacity: .55; cursor: pointer; pointer-events: auto; }
+.snapshots button.on { background: var(--color-oxblood); opacity: 1; width: 3px; }
+.compare-key i { display: inline-block; width: 14px; height: 3px; background: #ff2a1a; vertical-align: middle; }
+.quiz { position: absolute; top: 150px; right: 24px; width: 360px; z-index: 6; background: rgba(28,25,19,.94); color: #efe4cc; border: 1px solid #b8892b;
+  padding: 14px 18px; box-shadow: 0 10px 40px rgba(28,25,19,.35); animation: panel-in .35s ease-out; box-sizing: border-box; }
+.quiz .meta { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #d4a73a; }
+.quiz h3 { font-family: var(--font-display); font-size: 1.4rem; margin: 6px 0; }
+.quiz .quiz-q { font-size: 1.05rem; margin: 4px 0 8px; }
+.quiz .credit { font-size: 12px; color: #c9b98f; font-style: italic; line-height: 1.45; }
+.quiz .close { position: absolute; top: 6px; right: 10px; background: none; border: 0; font-size: 20px; cursor: pointer; color: #c9b98f; }
+.quiz .btn { background: transparent; color: #efe4cc; }
+.quiz .btn.active { background: var(--color-oxblood); }
+.stage:has(.quiz) .globe-stage { cursor: crosshair; }
+.my-tour-toggle { display: block; width: 100%; margin: 4px 0 8px; }
+.btn.secondary.active { background: var(--color-oxblood); color: #efe4cc; }
+.my-tour .controls { flex-wrap: wrap; }
+.mini-timeline { position: relative; height: 14px; margin: 8px 0 10px; background: linear-gradient(#d8c69b, #d8c69b) center / 100% 2px no-repeat; }
+.mini-timeline button { position: absolute; top: 2px; width: 10px; height: 10px; margin-left: -5px; padding: 0; border: 1px solid #1c1913; border-radius: 50%; cursor: pointer; }
+.mini-timeline button:hover { transform: scale(1.4); }
+.mini-timeline .now { position: absolute; top: -2px; bottom: -2px; width: 2px; margin-left: -1px; background: var(--color-oxblood); }
+
+/* The toolbar grew (quiz, compare, language): below 1280px the masthead subtitle would sit under it. */
+@media (max-width: 1280px) { .masthead p { display: none; } }
+
+/* ── Phones: bottom-sheet panels, scrollable controls, touch-sized slider ── */
+@media (max-width: 900px) {
+  .year-badge { left: 8px; right: 8px; top: 8px; padding: 6px 8px; background: rgba(244,234,212,.88); border: 1px solid #b8892b; }
+  .toolbar { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 2px; scrollbar-width: none; }
+  .toolbar > * { flex: none; }
+  .timeline .controls { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .timeline .controls > * { flex: none; }
+  .track input[type=range] { height: 28px; }
+  .panel, .quiz { left: 8px; right: 8px; width: auto; top: auto; bottom: 168px; max-height: 45vh; border-radius: 10px 10px 0 0; animation: rise-in .3s ease-out; }
+  .masthead { display: none; }
+}
+@media (max-width: 560px) {
+  .year-badge { text-align: left; }
+  .year-badge .year { font-size: 1.7rem; }
+  .eras label { display: none; }
+  .tour { bottom: 168px; padding: 10px 12px; }
+  .tour .controls { flex-wrap: wrap; }
+  .gallery { padding: 14px; }
+  .help dl div { grid-template-columns: 1fr; gap: 2px; }
+}

@@ -5,7 +5,7 @@ import Globe, { type GlobeMethods } from "react-globe.gl";
 import type { BorderFeature } from "@/lib/data/schemas";
 import { polityDisplayName } from "@/lib/domain/palette";
 import { useContainerSize } from "./use-container-size";
-import type { GlobeArc, GlobeCanvasProps, GlobePin, GlobeRing } from "./globe-types";
+import type { GlobeArc, GlobeCanvasProps, GlobePath, GlobePin, GlobeRing } from "./globe-types";
 
 const HOME = { lat: 30, lng: 15, altitude: 2.2 };
 
@@ -86,18 +86,26 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
           atmosphereAltitude={0.16}
           animateIn={false}
           onGlobeReady={onReady}
-          onGlobeClick={() => onBackgroundClick?.()}
+          onGlobeClick={(at) => onBackgroundClick?.({ lat: at.lat, lng: at.lng })}
           polygonsData={props.polygons}
           polygonCapColor={(d) => polygonColor(d as BorderFeature)}
           polygonSideColor={() => "rgba(40, 30, 15, 0.25)"}
           polygonStrokeColor={() => "#3b2f1e"}
           polygonAltitude={0.006}
           polygonCapCurvatureResolution={4}
-          polygonsTransitionDuration={0}
+          polygonsTransitionDuration={350}
           polygonLabel={(d) =>
             `<div class="globe-tip">${esc(polityDisplayName(d as BorderFeature))}</div>`
           }
-          onPolygonClick={(d) => onPolygonClick?.(d as BorderFeature)}
+          onPolygonClick={(d, _e, at) => onPolygonClick?.(d as BorderFeature, { lat: at.lat, lng: at.lng })}
+          pathsData={props.paths ?? []}
+          pathPoints="points"
+          pathPointLat={(p: number[]) => p[1]!}
+          pathPointLng={(p: number[]) => p[0]!}
+          pathPointAlt={0.008}
+          pathColor={(d: object) => (d as GlobePath).color}
+          pathStroke={1.4}
+          pathTransitionDuration={0}
           pointsData={props.pins}
           pointLat="lat"
           pointLng="lng"
