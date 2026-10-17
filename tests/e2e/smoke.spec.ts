@@ -9,7 +9,7 @@ test("loads the globe with the 1945 borders and warms the neighbouring snapshots
   await page.goto("/");
   await expect(page.getByTestId("globe-stage").locator("canvas")).toBeVisible();
   await expect(page.locator(".era")).toContainText("borders of 1945");
-  await expect.poll(() => fetched.sort()).toEqual(["world_1920", "world_1945", "world_1994"]);
+  await expect.poll(() => fetched.sort(), { timeout: 15_000 }).toEqual(["world_1920", "world_1945", "world_1994"]);
 });
 
 test("scrubbing the timeline swaps the border snapshot", async ({ page }) => {

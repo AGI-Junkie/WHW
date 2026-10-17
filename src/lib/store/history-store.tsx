@@ -93,7 +93,7 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
         const sorted = [...state.snapshotYears].sort((a, b) => a - b);
         const i = sorted.indexOf(target);
         const warm = () => [sorted[i - 1], sorted[i + 1]].forEach((y) => y !== undefined && void fetchSnapshot(y).catch(() => {}));
-        if ("requestIdleCallback" in window) window.requestIdleCallback(warm);
+        if ("requestIdleCallback" in window) window.requestIdleCallback(warm, { timeout: 2000 }); // a busy WebGL frame loop may never go idle
         else setTimeout(warm, 500); // Safari has no requestIdleCallback
       })
       .catch((e: unknown) => dispatch({ type: "error", message: String(e) }));
