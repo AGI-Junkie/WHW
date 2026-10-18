@@ -39,7 +39,11 @@ export function fetchCountries(): Promise<Country[]> {
       if (!r.ok) throw new Error(`countries ${r.status}`);
       return r.json();
     })
-    .then((j) => CountriesSchema.parse(j)));
+    .then((j) => CountriesSchema.parse(j))
+    .catch((e: unknown) => {
+      countriesPromise = undefined; // a failed load must not poison the retry
+      throw e;
+    }));
 }
 
 let indexPromise: Promise<number[]> | undefined;
@@ -49,7 +53,11 @@ export function fetchSnapshotIndex(): Promise<number[]> {
       if (!r.ok) throw new Error(`snapshot index ${r.status}`);
       return r.json();
     })
-    .then((j) => SnapshotIndexSchema.parse(j).years));
+    .then((j) => SnapshotIndexSchema.parse(j).years)
+    .catch((e: unknown) => {
+      indexPromise = undefined;
+      throw e;
+    }));
 }
 
 const snapshotCache = new Map<number, Promise<BorderFeature[]>>();

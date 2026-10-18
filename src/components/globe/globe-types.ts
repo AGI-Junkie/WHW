@@ -1,4 +1,7 @@
 import type { BorderFeature } from "@/lib/data/schemas";
+import type { GlobeArc, GlobePath } from "@/lib/domain/globe-shapes";
+
+export type { GlobeArc, GlobePath };
 
 /** A marker on the globe. `kind` decides the shape/legend; `color` and `radius` are final values. */
 export interface GlobePin {
@@ -15,17 +18,6 @@ export interface GlobePin {
   importance: number;
 }
 
-export interface GlobeArc {
-  id: string;
-  startLat: number;
-  startLng: number;
-  endLat: number;
-  endLng: number;
-  /** Solid color, or a [from, to] gradient. */
-  color: string | [string, string];
-  label?: string;
-}
-
 export interface GlobeRing {
   id: string;
   lat: number;
@@ -33,13 +25,6 @@ export interface GlobeRing {
   color: string;
   /** Degrees. */
   maxRadius: number;
-}
-
-/** A line on the surface, e.g. a border outline; `points` are GeoJSON [lng, lat] pairs. */
-export interface GlobePath {
-  id: string;
-  points: number[][];
-  color: string;
 }
 
 export interface GlobeLatLng {

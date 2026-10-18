@@ -17,7 +17,7 @@ import type { DiscoveryState } from "@/lib/domain/discovery";
 import { chapterDurationMs, storyFor } from "@/lib/domain/story";
 import { buildDeepLink, parseDeepLink } from "@/lib/domain/deep-link";
 import { MY_TOUR_ID } from "@/lib/domain/my-tour";
-import { initialState, reducer, TICKS_PER_SECOND, type Action, type HistoryState } from "./reducer";
+import { initialState, reducer, TICKS_PER_SECOND, type Action, type DataSource, type HistoryState } from "./reducer";
 
 export * from "./reducer";
 
@@ -33,6 +33,11 @@ interface HistoryContextValue {
 }
 
 const HistoryContext = createContext<HistoryContextValue | null>(null);
+
+/** A failed lazy load records which source failed, so only that error is shown and cleared. */
+function failure(source: DataSource, e: unknown): Action {
+  return { type: "error", source, message: String(e) };
+}
 
 function loadDiscovery(): DiscoveryState | null {
   try {
@@ -71,11 +76,11 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     fetchCountries()
       .then((countries) => dispatch({ type: "countriesLoaded", countries }))
-      .catch((e: unknown) => dispatch({ type: "error", message: String(e) }));
+      .catch((e: unknown) => dispatch(failure("countries", e)));
     fetchSnapshotIndex()
       .then((years) => dispatch({ type: "snapshotIndexLoaded", years }))
-      .catch((e: unknown) => dispatch({ type: "error", message: String(e) }));
-  }, []);
+      .catch((e: unknown) => dispatch(failure("snapshotIndex", e)));
+  }, [state.retry]);
 
   // Border snapshot for the current year (latest snapshot ≤ year), fetched lazily and cached.
   useEffect(() => {
@@ -83,7 +88,6 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     const target = pickSnapshotYear(state.year, state.snapshotYears);
     if (target === state.snapshotYear || wantedSnapshot.current === target) return;
     wantedSnapshot.current = target;
-    dispatch({ type: "snapshotRequested" });
     fetchSnapshot(target)
       .then((features) => {
         if (wantedSnapshot.current === target) {
@@ -96,8 +100,12 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
         if ("requestIdleCallback" in window) window.requestIdleCallback(warm, { timeout: 2000 }); // a busy WebGL frame loop may never go idle
         else setTimeout(warm, 500); // Safari has no requestIdleCallback
       })
-      .catch((e: unknown) => dispatch({ type: "error", message: String(e) }));
-  }, [state.year, state.snapshotYears, state.snapshotYear]);
+      .catch((e: unknown) => {
+        if (wantedSnapshot.current !== target) return; // a newer request owns the state now
+        wantedSnapshot.current = null; // otherwise the guard above blocks every retry
+        dispatch(failure("snapshot", e));
+      });
+  }, [state.year, state.snapshotYears, state.snapshotYear, state.retry]);
 
   // Play loop.
   useEffect(() => {
