@@ -101,6 +101,7 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
         else setTimeout(warm, 500); // Safari has no requestIdleCallback
       })
       .catch((e: unknown) => {
+        if (wantedSnapshot.current !== target) return; // a newer request owns the state now
         wantedSnapshot.current = null; // otherwise the guard above blocks every retry
         dispatch(failure("snapshot", e));
       });

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { GET } from "@/app/api/wiki/summary/route";
 
 const call = (qs: string, ip = "10.0.0.1") =>
@@ -6,6 +6,7 @@ const call = (qs: string, ip = "10.0.0.1") =>
 const upstream = (thumb?: string) =>
   Response.json({ title: "Rome", extract: "x", ...(thumb ? { thumbnail: { source: thumb } } : {}) });
 
+beforeEach(() => vi.stubEnv("CONTENT_PROVIDER", "live"));
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.unstubAllEnvs();
