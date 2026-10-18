@@ -44,6 +44,9 @@ export interface QuizState {
   done: boolean;
 }
 
+/** The three lazy loads. A failure stays on screen until that same load succeeds again. */
+export type DataSource = "countries" | "snapshotIndex" | "snapshot";
+
 export interface HistoryState {
   year: number;
   playing: boolean;
@@ -61,7 +64,7 @@ export interface HistoryState {
   snapshotYear: number | null;
   polygons: BorderFeature[];
   hiddenCategories: Category[];
-  error: string | null;
+  error: { source: DataSource; message: string } | null;
   /** Bumped by the retry button so the data fetch effects run again. */
   retry: number;
   /** Event ids of the visitor's own tour (persisted per browser, shareable by link). */
@@ -92,7 +95,7 @@ export type Action =
   | { type: "countriesLoaded"; countries: Country[] }
   | { type: "snapshotIndexLoaded"; years: number[] }
   | { type: "snapshotLoaded"; year: number; features: BorderFeature[] }
-  | { type: "error"; message: string }
+  | { type: "error"; source: DataSource; message: string }
   | { type: "retry" }
   | { type: "toggleCategory"; category: Category }
   | { type: "discoveryLoaded"; discovery: DiscoveryState }
@@ -199,6 +202,11 @@ function selectEvent(s: HistoryState, ev: HistoryEvent): HistoryState {
   };
 }
 
+/** A lazy load that finally succeeds clears only the error that load reported. */
+function loaded(s: HistoryState, patch: Partial<HistoryState>, source: DataSource): HistoryState {
+  return { ...s, ...patch, error: s.error?.source === source ? null : s.error };
+}
+
 export function reducer(s: HistoryState, a: Action): HistoryState {
   switch (a.type) {
     case "setYear":
@@ -295,13 +303,13 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
     case "flyTo":
       return { ...s, cameraTarget: a.target };
     case "countriesLoaded":
-      return { ...s, countries: a.countries };
+      return loaded(s, { countries: a.countries }, "countries");
     case "snapshotIndexLoaded":
-      return { ...s, snapshotYears: a.years };
+      return loaded(s, { snapshotYears: a.years }, "snapshotIndex");
     case "snapshotLoaded":
-      return { ...s, snapshotYear: a.year, polygons: a.features };
+      return loaded(s, { snapshotYear: a.year, polygons: a.features }, "snapshot");
     case "error":
-      return { ...s, error: a.message };
+      return { ...s, error: { source: a.source, message: a.message } };
     case "retry":
       return { ...s, error: null, retry: s.retry + 1 };
     case "toggleCategory":
