@@ -64,6 +64,7 @@
     "mapshaper": "^0.6.110",
     "prettier": "^3.9.6",
     "tailwindcss": "^4",
+    "three-globe": "2.45.2",
     "tsx": "^4.23.12",
     "typescript": "^5",
     "vite-tsconfig-paths": "^5.1.4",

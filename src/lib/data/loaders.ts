@@ -43,7 +43,11 @@ export function fetchCountries(): Promise<Country[]> {
       if (!r.ok) throw new Error(`countries ${r.status}`);
       return r.json();
     })
-    .then((j) => CountriesSchema.parse(j)));
+    .then((j) => CountriesSchema.parse(j))
+    .catch((e: unknown) => {
+      countriesPromise = undefined; // a failed load must not poison the retry
+      throw e;
+    }));
 }
 
 let indexPromise: Promise<number[]> | undefined;
@@ -53,7 +57,11 @@ export function fetchSnapshotIndex(): Promise<number[]> {
       if (!r.ok) throw new Error(`snapshot index ${r.status}`);
       return r.json();
     })
-    .then((j) => SnapshotIndexSchema.parse(j).years));
+    .then((j) => SnapshotIndexSchema.parse(j).years)
+    .catch((e: unknown) => {
+      indexPromise = undefined;
+      throw e;
+    }));
 }
 
 const snapshotCache = new Map<number, Promise<BorderFeature[]>>();
@@ -66,7 +74,11 @@ export function fetchSnapshot(year: number): Promise<BorderFeature[]> {
         if (!r.ok) throw new Error(`snapshot ${year}: ${r.status}`);
         return r.json();
       })
-      .then((j) => BorderSnapshotSchema.parse(j).features.map(rewindFeature));
+      .then((j) => BorderSnapshotSchema.parse(j).features.map(rewindFeature))
+      .catch((e: unknown) => {
+        snapshotCache.delete(year); // a failed (pre)fetch must not poison later attempts
+        throw e;
+      });
     snapshotCache.set(year, p);
   }
   return p;

@@ -1,4 +1,7 @@
 import type { BorderFeature } from "@/lib/data/schemas";
+import type { GlobeArc, GlobePath } from "@/lib/domain/globe-shapes";
+
+export type { GlobeArc, GlobePath };
 
 /** A marker on the globe. `kind` decides the shape/legend; `color` and `radius` are final values. */
 export interface GlobePin {
@@ -15,17 +18,6 @@ export interface GlobePin {
   importance: number;
 }
 
-export interface GlobeArc {
-  id: string;
-  startLat: number;
-  startLng: number;
-  endLat: number;
-  endLng: number;
-  /** Solid color, or a [from, to] gradient. */
-  color: string | [string, string];
-  label?: string;
-}
-
 export interface GlobeRing {
   id: string;
   lat: number;
@@ -33,6 +25,11 @@ export interface GlobeRing {
   color: string;
   /** Degrees. */
   maxRadius: number;
+}
+
+export interface GlobeLatLng {
+  lat: number;
+  lng: number;
 }
 
 export interface GlobeCameraTarget {
@@ -51,12 +48,15 @@ export interface GlobeCanvasProps {
   pins: GlobePin[];
   arcs: GlobeArc[];
   rings: GlobeRing[];
+  /** Optional surface lines drawn over the polygons (the compare-mode outlines). */
+  paths?: GlobePath[];
   /** When this object identity changes, the camera flies to it. `null` leaves the camera alone. */
   cameraTarget: GlobeCameraTarget | null;
   autoRotate: boolean;
   /** Honour prefers-reduced-motion: instant camera moves, static arcs. */
   reducedMotion?: boolean;
   onPinClick?: (pin: GlobePin) => void;
-  onPolygonClick?: (feature: BorderFeature) => void;
-  onBackgroundClick?: () => void;
+  /** Click handlers also get the clicked point on the globe. */
+  onPolygonClick?: (feature: BorderFeature, at: GlobeLatLng) => void;
+  onBackgroundClick?: (at: GlobeLatLng) => void;
 }

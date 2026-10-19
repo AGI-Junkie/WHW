@@ -29,10 +29,17 @@ During a war, arcs run between the belligerents while the year is inside its spa
 - **Every country, pinned.** All current sovereign states come from one Wikidata query: founding year, capital, flag and population. A country's pin only appears once it exists.
 - **Curated events with live context.** Hand-written, sourced summaries for the world-shaping moments, plus the live Wikipedia extract and lead image for each one, fetched through a small same-origin proxy. Public-domain newsreels from Wikimedia Commons play inline where they exist.
 - **Play mode.** Press play (or the space bar) and history runs forward: pins pulse as events happen, wars draw animated arcs between the belligerents' capitals, borders swap snapshot by snapshot. The camera stays where you left it unless you switch on *Follow*.
-- **Story tours.** Guided journeys (WWII, WWI, Rome, the Mongols, the Age of Exploration, the Cold War) fly the camera stop to stop with narration.
+- **Immersive stories.** Twenty world-shaping moments (Hammurabi, Gaugamela, the Rubicon, Magna Carta, the Black Death, Constantinople 1453, Columbus, 1776, the Bastille, Waterloo, Darwin, the Battle of Britain, Pearl Harbor, Stalingrad, D-Day, Hiroshima, the Cuban Missile Crisis, Apollo 11, the Berlin Wall…) open in a letterboxed, cinematic view: the globe flies chapter by chapter while the text, a slowly panning photograph, key facts and a sourced quotation tell the story, with autoplay and "continue the journey" suggestions at the end. Every other event opens in story mode too, built from its summary, its two sides and what else was happening in the world.
+- **Story tours.** Ten guided journeys (the ancient world, Rome, the Silk Roads, the Mongols, the Age of Exploration, the scientific journey, the age of revolutions, WWI, WWII, the Cold War) fly the camera stop to stop with narration.
+- **Search and shareable links.** ⌘K (or `/`) searches events, countries and years ("1453", "500 BC"). The address bar always holds a link to the current year, event or story.
+- **Timeline you can read.** Major events are marked on the slider (gold diamonds have an immersive story); hover shows the year under the cursor, ⏮ ⏭ and ← → step from event to event, *Surprise me* (R) picks one at random, and each event panel suggests related events.
+- **English and 简体中文.** The interface switches language with one button (it follows the browser on the first visit), and the live Wikipedia block reads from zh.wikipedia through each article's interlanguage link. Curated event texts stay in English.
+- **Compare borders.** Overlay any other snapshot as red outlines on the current map: 1914 over 1920 shows what the First World War redrew. Ticks under the timeline mark the snapshot years.
+- **Map quiz.** Five rounds of "where did this happen?": click the globe, see how many kilometres off you were.
+- **Your own tour.** Add events to *My tour* from any event panel, play it like a guided tour, and share it as a link (`#t=event-a,event-b`).
 - **Discovery badges.** The app remembers, in your browser only, which events, countries and tours you have explored.
 
-No accounts, no database, no API keys. One optional environment variable.
+No accounts, no database, no API keys. Two optional environment variables.
 
 ## Quick start
 
@@ -131,20 +138,21 @@ Events live in [`src/data/events.json`](src/data/events.json) and are validated 
 - Years are integers, negative for BC, and there is no year 0.
 - `importance` (1–5) drives pin size, how long an event stays visible after it happens, and which event the *Follow* toggle flies to.
 - `belligerents` with two sides make a war draw arcs while the year is inside its span.
+- `story` (optional) holds the immersive view: a `tagline`, 2–6 `facts`, 2–8 `chapters` (each with `when`, `heading`, `text` and the camera's `lat`/`lng`/`altitude`), an optional real, attributed `quote` and a `legacy` line. See `fall-of-constantinople` for an example.
 - `commonsVideo` takes a Wikimedia Commons file title; `pnpm data:videos` resolves it to a playable URL.
 - Tours in [`tours.json`](src/data/tours.json) are ordered lists of event ids with a line of narration each.
 
-Run `pnpm exec tsx scripts/validate-data.ts` after editing; it checks every field and every tour reference.
+Run `pnpm test` after editing; it parses every field and checks every tour reference.
 
 ## Architecture
 
 ```
 src/app/                  layout, page, global styles, the single API route
 src/components/globe/     GlobeCanvas (react-globe.gl), loader, props contract, size hook
-src/components/app/       timeline, panels, tour player, legend, badges
-src/lib/domain/           pure functions: time scale, eras, snapshot choice, palette, visibility, battles, discovery, rewind
+src/components/app/       timeline, panels, immersive story view, search palette, story gallery, tour player, legend, badges
+src/lib/domain/           pure functions: time scale, eras, snapshot choice, palette, visibility, battles, discovery, rewind, stories, related events, search, deep links
 src/lib/data/             Zod schemas, loaders, generated-data paths
-src/lib/store/            one reducer + context: year, playing, speed, follow, selection, tour
+src/lib/store/            one reducer + context: year, playing, speed, follow, selection, tour, story
 src/lib/security/         Content-Security-Policy and security headers
 src/data/                 curated events, tours, eras (JSON)
 public/data/              generated: countries.json (committed), border snapshots (fetched at build time)
@@ -177,7 +185,6 @@ The application code is MIT-licensed. Historical boundaries are approximate and 
 ## Roadmap
 
 - Deeper coverage: 5–15 curated events for every country.
-- ⌘K search and shareable deep links (year, camera and selection in the URL).
 - Layers: trade routes, migrations, day/night terminator.
 - Compare two years side by side.
 - Mobile layout.

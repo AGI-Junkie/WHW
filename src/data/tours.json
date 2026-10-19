@@ -232,5 +232,226 @@
         "altitude": 1.5
       }
     ]
+  },
+  {
+    "id": "the-ancient-world",
+    "title": "The ancient world",
+    "subtitle": "From the first kings of the Nile and Euphrates to Alexander's conquest of Persia",
+    "from": -3000,
+    "to": -331,
+    "stops": [
+      {
+        "eventId": "unification-of-egypt",
+        "narration": "Around 3000 BC the Nile valley becomes one kingdom, and history, in the sense of written records, begins.",
+        "altitude": 1.4
+      },
+      {
+        "eventId": "uruk-cuneiform",
+        "narration": "In Uruk, accountants pressing reeds into clay invent writing.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "sargon-of-akkad",
+        "narration": "Sargon of Akkad conquers the Sumerian cities and builds the first empire.",
+        "altitude": 1.2
+      },
+      {
+        "eventId": "code-of-hammurabi",
+        "narration": "Hammurabi of Babylon carves his laws in stone for everyone to see.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "battle-of-kadesh",
+        "narration": "Egypt and the Hittites clash at Kadesh, then sign the oldest surviving peace treaty.",
+        "altitude": 1.2
+      },
+      {
+        "eventId": "bronze-age-collapse",
+        "narration": "Around 1177 BC the interconnected Bronze Age world collapses within a generation.",
+        "altitude": 1.6
+      },
+      {
+        "eventId": "phoenician-alphabet",
+        "narration": "From its ruins comes the Phoenician alphabet, ancestor of most scripts in use today.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "cyrus-takes-babylon",
+        "narration": "Cyrus the Great takes Babylon and founds the largest empire yet seen.",
+        "altitude": 1.4
+      },
+      {
+        "eventId": "battle-of-salamis",
+        "narration": "The Greeks turn back the Persians at sea off Salamis.",
+        "altitude": 0.9
+      },
+      {
+        "eventId": "alexander-gaugamela",
+        "narration": "A century and a half later Alexander destroys the Persian Empire at Gaugamela.",
+        "altitude": 1.3
+      }
+    ]
+  },
+  {
+    "id": "the-scientific-journey",
+    "title": "The scientific journey",
+    "subtitle": "How people learned to measure the Earth, map the heavens and read the code of life",
+    "from": -285,
+    "to": 1969,
+    "stops": [
+      {
+        "eventId": "library-of-alexandria",
+        "narration": "In Ptolemaic Alexandria, the Library gathers the knowledge of the Mediterranean world.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "eratosthenes-earth",
+        "narration": "Using shadows and geometry, Eratosthenes measures the size of the Earth.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "aryabhata",
+        "narration": "In Gupta India, Aryabhata argues that the Earth spins on its axis.",
+        "altitude": 1.2
+      },
+      {
+        "eventId": "house-of-wisdom",
+        "narration": "Baghdad's scholars translate the Greeks and invent algebra.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "gutenberg-printing-press",
+        "narration": "Gutenberg's press makes knowledge cheap to copy.",
+        "altitude": 0.9
+      },
+      {
+        "eventId": "copernicus-de-revolutionibus",
+        "narration": "Copernicus moves the Earth out of the centre of the universe.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "galileo-telescope",
+        "narration": "Galileo's telescope shows moons circling Jupiter.",
+        "altitude": 0.9
+      },
+      {
+        "eventId": "newton-principia",
+        "narration": "Newton's laws tie the falling apple to the orbiting Moon.",
+        "altitude": 0.9
+      },
+      {
+        "eventId": "darwin-origin-of-species",
+        "narration": "Darwin explains the diversity of life by natural selection.",
+        "altitude": 0.9
+      },
+      {
+        "eventId": "einstein-annus-mirabilis",
+        "narration": "A patent clerk in Bern rewrites physics in a single year.",
+        "altitude": 0.9
+      },
+      {
+        "eventId": "dna-double-helix",
+        "narration": "In Cambridge, the double helix reveals how life copies itself.",
+        "altitude": 0.9
+      },
+      {
+        "eventId": "apollo-11",
+        "narration": "And in 1969 humans walk on the Moon.",
+        "altitude": 1.4
+      }
+    ]
+  },
+  {
+    "id": "age-of-revolutions",
+    "title": "The age of revolutions",
+    "subtitle": "A century of uprisings that replaced kings with citizens",
+    "from": 1688,
+    "to": 1848,
+    "stops": [
+      {
+        "eventId": "glorious-revolution",
+        "narration": "In 1688 Parliament replaces England's king and sets limits on royal power.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "american-declaration-independence",
+        "narration": "In 1776 thirteen colonies declare that all men are created equal.",
+        "altitude": 1.2
+      },
+      {
+        "eventId": "storming-of-the-bastille",
+        "narration": "In 1789 Paris rises and the French Revolution begins.",
+        "altitude": 0.8
+      },
+      {
+        "eventId": "haitian-revolution",
+        "narration": "In 1791 the enslaved people of Saint-Domingue rise and create the first free Black republic.",
+        "altitude": 1.0
+      },
+      {
+        "eventId": "battle-of-waterloo",
+        "narration": "Napoleon, the Revolution's heir, falls at Waterloo in 1815.",
+        "altitude": 0.8
+      },
+      {
+        "eventId": "bolivar-boyaca",
+        "narration": "Bolívar's armies free northern South America from Spain.",
+        "altitude": 1.4
+      },
+      {
+        "eventId": "revolutions-of-1848",
+        "narration": "In 1848 revolution sweeps Europe from Paris to Budapest.",
+        "altitude": 1.6
+      }
+    ]
+  },
+  {
+    "id": "silk-roads",
+    "title": "The Silk Roads",
+    "subtitle": "Two thousand years of trade, ideas and disease across Eurasia",
+    "from": -138,
+    "to": 1433,
+    "stops": [
+      {
+        "eventId": "zhang-qian-silk-road",
+        "narration": "Han envoy Zhang Qian travels west and opens official contact with Central Asia.",
+        "altitude": 1.6
+      },
+      {
+        "eventId": "tang-dynasty",
+        "narration": "Tang Chang'an becomes the cosmopolitan eastern terminus of the routes.",
+        "altitude": 1.2
+      },
+      {
+        "eventId": "battle-of-talas",
+        "narration": "At Talas, Abbasid and Tang armies meet, and papermaking travels west.",
+        "altitude": 1.4
+      },
+      {
+        "eventId": "house-of-wisdom",
+        "narration": "Baghdad translates the knowledge carried along the routes.",
+        "altitude": 1.2
+      },
+      {
+        "eventId": "genghis-khan-proclaimed",
+        "narration": "The Mongols unite the steppe and, for a time, make the whole route safe to travel.",
+        "altitude": 1.6
+      },
+      {
+        "eventId": "marco-polo",
+        "narration": "A Venetian merchant sets out for the court of Kublai Khan.",
+        "altitude": 1.4
+      },
+      {
+        "eventId": "black-death",
+        "narration": "The same routes carry the Black Death west to Europe.",
+        "altitude": 1.6
+      },
+      {
+        "eventId": "zheng-he-voyages",
+        "narration": "Ming treasure fleets take the maritime Silk Road as far as East Africa.",
+        "altitude": 1.8
+      }
+    ]
   }
 ]

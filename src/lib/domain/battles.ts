@@ -1,21 +1,12 @@
 import type { HistoryEvent } from "@/lib/data/schemas";
+import type { GlobeArc } from "@/lib/domain/globe-shapes";
 import { ARC_COLORS } from "@/lib/domain/palette";
-
-export interface BattleArc {
-  id: string;
-  startLat: number;
-  startLng: number;
-  endLat: number;
-  endLng: number;
-  color: [string, string];
-  label: string;
-}
 
 const MAX_ARCS_PER_EVENT = 8;
 
 /** Arcs between the two sides of every conflict that is under way in `year`. */
-export function battleArcs(events: readonly HistoryEvent[], year: number): BattleArc[] {
-  const arcs: BattleArc[] = [];
+export function battleArcs(events: readonly HistoryEvent[], year: number): GlobeArc[] {
+  const arcs: GlobeArc[] = [];
   for (const e of events) {
     if (!e.belligerents) continue;
     const end = e.endYear ?? e.year;

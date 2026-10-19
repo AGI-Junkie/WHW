@@ -41,6 +41,33 @@ export const BelligerentSchema = z.object({
 });
 export type Belligerent = z.infer<typeof BelligerentSchema>;
 
+/** One beat of an immersive story: the camera flies to (lat, lng, altitude) while the text plays. */
+export const StoryChapterSchema = z.object({
+  /** Short date or time label, e.g. "29 May 1453" or "08:15". */
+  when: z.string().min(1).max(40),
+  heading: z.string().min(2).max(80),
+  text: z.string().min(20).max(420),
+  lat: LatSchema,
+  lng: LngSchema,
+  altitude: z.number().min(0.3).max(4),
+});
+export type StoryChapter = z.infer<typeof StoryChapterSchema>;
+
+/** Optional long-form content for world-shaping events, shown in the immersive story view. */
+export const StorySchema = z.object({
+  tagline: z.string().min(10).max(140),
+  /** A real, attributed quotation; `by` names the speaker or document and, where known, the date. */
+  quote: z.object({ text: z.string().min(3).max(240), by: z.string().min(3).max(160) }).optional(),
+  facts: z
+    .array(z.object({ label: z.string().min(1).max(40), value: z.string().min(1).max(80) }))
+    .min(2)
+    .max(6),
+  chapters: z.array(StoryChapterSchema).min(2).max(8),
+  /** What it led to, one or two sentences. */
+  legacy: z.string().min(20).max(300).optional(),
+});
+export type Story = z.infer<typeof StorySchema>;
+
 export const HistoryEventSchema = z
   .object({
     /** kebab-case, unique, stable — tours reference it. e.g. "fall-of-constantinople" */
@@ -67,6 +94,8 @@ export const HistoryEventSchema = z
     /** License/author line shown under the player, e.g. "NASA · Public domain". */
     videoCredit: z.string().max(160).optional(),
     belligerents: z.array(BelligerentSchema).min(2).optional(),
+    /** Hand-written chapters, quote and facts for the immersive view (see StorySchema). */
+    story: StorySchema.optional(),
     /** At least one URL the curated summary can be checked against. */
     sources: z.array(z.url()).min(1),
   })
