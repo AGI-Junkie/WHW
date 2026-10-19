@@ -241,8 +241,10 @@ function Shell() {
   }, [quiz, quizEvent, visible, state.year, storyEvent]);
   const chapter = story && state.story ? story.chapters[state.story.chapter] : undefined;
   const rings = useMemo<GlobeRing[]>(() => {
-    if (quiz) return [];
-    const pulses = (reducedMotion ? [] : state.pulses).map((p) => ({
+    // Every ring is a continuously propagating circle (ringRepeatPeriod), so reduced motion means
+    // none — the static highlight survives on the pins (selected pin is gold, the chapter pin too).
+    if (quiz || reducedMotion) return [];
+    const pulses = state.pulses.map((p) => ({
       id: p.id,
       lat: p.lat,
       lng: p.lng,
