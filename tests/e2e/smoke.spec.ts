@@ -116,11 +116,10 @@ test.describe("World History Web", () => {
 
   test("an event can be opened without a mouse via the events list", async ({ page }) => {
     await page.goto("/");
-    await page
-      .getByRole("navigation", { name: "Events in view" })
-      .getByRole("button")
-      .first()
-      .focus();
+    const nav = page.getByRole("navigation", { name: "Events in view" });
+    await nav.getByRole("button").first().focus();
+    // The hidden list must reveal itself on focus, so sighted keyboard users see where they are.
+    expect((await nav.boundingBox())!.width).toBeGreaterThan(200);
     await page.keyboard.press("Enter");
     await expect(page.getByRole("complementary", { name: /^Event:/ })).toBeVisible();
     await page.keyboard.press("Escape");

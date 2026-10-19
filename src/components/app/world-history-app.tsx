@@ -471,6 +471,13 @@ function YearCounter({ year }: { year: number }) {
   const { fy } = useI18n();
   const [shown, setShown] = useState(year);
   const shownRef = useRef(year);
+  // Playback changes the year 3–12×/s, so announce only the value that settles after a pause in
+  // changes — a live region fed every tick would swamp any other screen-reader feedback.
+  const [settled, setSettled] = useState(year);
+  useEffect(() => {
+    const id = window.setTimeout(() => setSettled(year), 700);
+    return () => window.clearTimeout(id);
+  }, [year]);
   useEffect(() => {
     const from = shownRef.current;
     if (from === year) return;
@@ -496,7 +503,7 @@ function YearCounter({ year }: { year: number }) {
       </div>
       {/* The settled year only: the animated counter above must not flood a live region. */}
       <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">
-        {fy(year)}
+        {fy(settled)}
       </span>
     </>
   );
@@ -508,7 +515,7 @@ function EventList({ events }: { events: HistoryEvent[] }) {
   const { t, fy } = useI18n();
   const shown = events.slice(0, 100);
   return (
-    <nav className="sr-only" aria-label={t("Events in view")}>
+    <nav className="sr-only events-list" aria-label={t("Events in view")}>
       <ul>
         {shown.map((e) => (
           <li key={e.id}>

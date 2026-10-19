@@ -88,6 +88,45 @@ body {
   outline-offset: 2px;
 }
 
+/* The events list is the keyboard alternative to the pointer-only globe: reveal it while it has
+   focus so a sighted keyboard user sees where the focus went instead of a hidden 1px box. */
+.events-list:focus-within {
+  position: fixed;
+  left: 24px;
+  bottom: 148px;
+  z-index: 8;
+  width: 320px;
+  height: auto;
+  max-height: 42vh;
+  overflow: auto;
+  clip: auto;
+  white-space: normal;
+  background: rgba(244, 234, 212, 0.96);
+  border: 1px solid #b8892b;
+  box-shadow: 0 10px 40px rgba(28, 25, 19, 0.25);
+  padding: 8px 12px;
+}
+.events-list:focus-within ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.events-list:focus-within button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #d8c69b;
+  padding: 5px 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.events-list:focus-within button:hover {
+  color: var(--color-oxblood);
+}
+
 .masthead {
   position: absolute;
   top: 18px;

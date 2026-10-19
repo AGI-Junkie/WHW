@@ -32,7 +32,8 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm data:borders
+      # `pnpm build` also runs `pnpm data:borders`; `pnpm start` (the e2e webServer under CI) needs the .next output.
+      - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
       - uses: actions/upload-artifact@v4
