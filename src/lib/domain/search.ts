@@ -13,7 +13,10 @@ export function normalize(s: string): string {
 
 /** "1453", "500 BC", "AD 79", "-44", "公元前500年", "1453年" → a calendar year (never 0), or null. */
 export function parseYearQuery(q: string): number | null {
-  const zh = normalize(q).replace(/年$/, "").replace(/^(?:公元前|前)\s*(\d+)$/, "$1 bc").replace(/^公元\s*(\d+)$/, "$1");
+  const zh = normalize(q)
+    .replace(/年$/, "")
+    .replace(/^(?:公元前|前)\s*(\d+)$/, "$1 bc")
+    .replace(/^公元\s*(\d+)$/, "$1");
   const m = zh.match(/^(ad\s*)?(-?\d{1,4})\s*(bc|bce|ad|ce)?$/);
   if (!m) return null;
   let year = Number(m[2]);
@@ -30,12 +33,16 @@ function textScore(hay: string, q: string): number {
   return 0;
 }
 
-/** Ranked matches across events (title, summary, place) and countries, plus a jump-to-year. */
+/**
+ * Ranked matches across events (title, summary, place) and countries, plus a jump-to-year.
+ * `altTitles` (event id → title in the other language) lets a translated list match English too.
+ */
 export function search(
   query: string,
   events: readonly HistoryEvent[],
   countries: readonly Country[],
   limit = 12,
+  altTitles?: ReadonlyMap<string, string>,
 ): SearchResult[] {
   const q = normalize(query);
   if (!q) return [];
@@ -44,13 +51,15 @@ export function search(
   if (year !== null) out.push({ kind: "year", year, score: 1000 });
 
   for (const event of events) {
-    let s = textScore(normalize(event.title), q);
+    const alt = altTitles?.get(event.id);
+    let s = Math.max(textScore(normalize(event.title), q), alt ? textScore(normalize(alt), q) : 0);
     if (!s && q.length >= 3) {
       if (normalize(event.summary).includes(q)) s = 20;
       else if ((event.belligerents ?? []).some((b) => normalize(b.name).includes(q))) s = 25;
     }
     if (year !== null && event.year === year) s = Math.max(s, 90);
-    if (s) out.push({ kind: "event", event, score: s + event.importance * 2 + (event.story ? 3 : 0) });
+    if (s)
+      out.push({ kind: "event", event, score: s + event.importance * 2 + (event.story ? 3 : 0) });
   }
   for (const country of countries) {
     const s = textScore(normalize(country.name), q);

@@ -1,21 +1,25 @@
 import eventsJson from "@/data/events.json";
+import eventsZhJson from "@/data/events-zh.json";
 import toursJson from "@/data/tours.json";
 import erasJson from "@/data/eras.json";
 import {
   BorderSnapshotSchema,
   CountriesSchema,
   ErasSchema,
+  EventsZhSchema,
   HistoryEventsSchema,
   SnapshotIndexSchema,
   ToursSchema,
   type BorderFeature,
   type Country,
   type Era,
+  type EventZh,
   type HistoryEvent,
   type Tour,
 } from "@/lib/data/schemas";
 import { COUNTRIES_URL, SNAPSHOT_INDEX_URL, snapshotUrl } from "@/lib/data/paths";
 import { rewindFeature } from "@/lib/domain/rewind";
+import { localizeEvent } from "@/lib/domain/localize";
 
 /** Curated JSON is parsed once through the contracts (AI_RULES R8): bad data fails at startup, loudly. */
 let events: HistoryEvent[] | undefined;
@@ -28,6 +32,18 @@ export function getEvents(): HistoryEvent[] {
 let eventsById: Map<string, HistoryEvent> | undefined;
 export function getEventById(id: string): HistoryEvent | undefined {
   return (eventsById ??= new Map(getEvents().map((e) => [e.id, e]))).get(id);
+}
+let eventsZh: Record<string, EventZh> | undefined;
+/** Chinese texts by event id; an event without an entry keeps its English. */
+export function getEventsZh(): Record<string, EventZh> {
+  return (eventsZh ??= EventsZhSchema.parse(eventsZhJson));
+}
+let localizedZh: HistoryEvent[] | undefined;
+/** The events with their Chinese texts swapped in; ids, years and places are unchanged. */
+export function getEventsIn(locale: "en" | "zh"): HistoryEvent[] {
+  if (locale === "en") return getEvents();
+  const zh = getEventsZh();
+  return (localizedZh ??= getEvents().map((e) => localizeEvent(e, zh[e.id])));
 }
 export function getTours(): Tour[] {
   return (tours ??= ToursSchema.parse(toursJson));

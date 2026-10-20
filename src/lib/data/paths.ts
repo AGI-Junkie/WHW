@@ -4,7 +4,8 @@
  * (negative = BC; `-1` is the file `world_bc1.geojson`).
  */
 export const SNAPSHOT_YEARS: readonly number[] = [
-  -500, -1, 400, 800, 1279, 1492, 1650, 1815, 1914, 1920, 1945, 1994, 2010,
+  -3000, -2000, -1500, -1000, -700, -500, -1, 400, 800, 1279, 1492, 1650, 1715, 1783, 1815, 1878,
+  1914, 1920, 1938, 1945, 1994, 2010,
 ];
 
 export const COUNTRIES_URL = "/data/countries.json";

@@ -194,4 +194,8 @@ export const ZH: Record<string, string> = {
   "This help": "本帮助",
   "The address bar always holds a link to what you are looking at: copy it to share a year, an event or a story.":
     "地址栏始终是当前画面的链接：复制它即可分享某一年、某个事件或某个故事。",
+  "Events in view as a list (L)": "以列表查看视野内的事件（L）",
+  List: "列表",
+  "{count} events in {year}": "{year}：{count} 个事件",
+  "Show the events in view as a list": "以列表显示视野内的事件",
 };

@@ -10,14 +10,30 @@ import {
   type Dispatch,
   type ReactNode,
 } from "react";
-import type { Era, HistoryEvent, Tour } from "@/lib/data/schemas";
-import { fetchCountries, fetchSnapshot, fetchSnapshotIndex, getEras, getEvents, getTours } from "@/lib/data/loaders";
+import type { Category, Era, HistoryEvent, Tour } from "@/lib/data/schemas";
+import {
+  fetchCountries,
+  fetchSnapshot,
+  fetchSnapshotIndex,
+  getEras,
+  getEvents,
+  getEventsIn,
+  getTours,
+} from "@/lib/data/loaders";
+import { useI18n } from "@/lib/i18n";
 import { pickSnapshotYear } from "@/lib/domain/snapshot";
 import type { DiscoveryState } from "@/lib/domain/discovery";
 import { chapterDurationMs, storyFor } from "@/lib/domain/story";
 import { buildDeepLink, parseDeepLink } from "@/lib/domain/deep-link";
 import { MY_TOUR_ID } from "@/lib/domain/my-tour";
-import { initialState, reducer, TICKS_PER_SECOND, type Action, type DataSource, type HistoryState } from "./reducer";
+import {
+  initialState,
+  reducer,
+  TICKS_PER_SECOND,
+  type Action,
+  type DataSource,
+  type HistoryState,
+} from "./reducer";
 
 export * from "./reducer";
 
@@ -48,7 +64,11 @@ function loadDiscovery(): DiscoveryState | null {
     const p = parsed as Partial<DiscoveryState>;
     const arr = (v: unknown): string[] =>
       Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
-    return { events: arr(p.events), countries: arr(p.countries), toursCompleted: arr(p.toursCompleted) };
+    return {
+      events: arr(p.events),
+      countries: arr(p.countries),
+      toursCompleted: arr(p.toursCompleted),
+    };
   } catch {
     return null;
   }
@@ -67,8 +87,10 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const wantedSnapshot = useRef<number | null>(null);
 
-  // Static data is parsed once through the Zod contracts.
-  const events = useMemo(() => getEvents(), []);
+  // Static data is parsed once through the Zod contracts. The UI gets the events in its language;
+  // the reducer works on ids and places, which are the same in both.
+  const { locale } = useI18n();
+  const events = useMemo(() => getEventsIn(locale), [locale]);
   const tours = useMemo(() => getTours(), []);
   const eras = useMemo(() => getEras(), []);
 
@@ -96,8 +118,12 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
         // Warm the neighbouring snapshots so scrubbing or playing across a boundary does not stall.
         const sorted = [...state.snapshotYears].sort((a, b) => a - b);
         const i = sorted.indexOf(target);
-        const warm = () => [sorted[i - 1], sorted[i + 1]].forEach((y) => y !== undefined && void fetchSnapshot(y).catch(() => {}));
-        if ("requestIdleCallback" in window) window.requestIdleCallback(warm, { timeout: 2000 }); // a busy WebGL frame loop may never go idle
+        const warm = () =>
+          [sorted[i - 1], sorted[i + 1]].forEach(
+            (y) => y !== undefined && void fetchSnapshot(y).catch(() => {}),
+          );
+        if ("requestIdleCallback" in window)
+          window.requestIdleCallback(warm, { timeout: 2000 }); // a busy WebGL frame loop may never go idle
         else setTimeout(warm, 500); // Safari has no requestIdleCallback
       })
       .catch((e: unknown) => {
@@ -159,7 +185,10 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     const ev = events.find((e) => e.id === st.id);
     const chapter = ev && storyFor(ev, events).chapters[st.chapter];
     if (!chapter) return;
-    const id = window.setTimeout(() => dispatch({ type: "storyStep", delta: 1 }), chapterDurationMs(chapter));
+    const id = window.setTimeout(
+      () => dispatch({ type: "storyStep", delta: 1 }),
+      chapterDurationMs(chapter),
+    );
     return () => window.clearTimeout(id);
   }, [state.story, events]);
 
@@ -167,7 +196,8 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   // scrubbing does not flood the history). Throttled because play mode changes the year 3–12×/s.
   useEffect(() => {
     const link = parseDeepLink(window.location.hash);
-    const ev = link.eventId ? events.find((e) => e.id === link.eventId) : undefined;
+    const ev = link.eventId ? getEvents().find((e) => e.id === link.eventId) : undefined;
+    if (link.hidden) dispatch({ type: "setHiddenCategories", categories: link.hidden });
     if (link.tour) {
       dispatch({ type: "myTourLoaded", ids: link.tour });
       dispatch({ type: "startTour", id: MY_TOUR_ID });
@@ -176,23 +206,34 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
       dispatch({ type: "setYear", year: link.year ?? ev.year });
       dispatch({ type: "select", selection: { kind: "event", id: ev.id }, fly: true });
     } else if (link.year !== undefined) dispatch({ type: "setYear", year: link.year });
-  }, [events]);
+  }, []);
   const linkYear = state.year;
   const linkEvent = state.selection?.kind === "event" ? state.selection.id : undefined;
   const linkStory = state.story !== null;
   // While My tour plays, the address keeps the tour itself, so reloading or copying it reopens the tour.
   const linkTour = state.tour?.id === MY_TOUR_ID ? state.myTour.join(",") : "";
+  const linkHidden = state.hiddenCategories.join(",");
   useEffect(() => {
     const id = window.setTimeout(() => {
+      const hidden = linkHidden ? (linkHidden.split(",") as Category[]) : [];
       const hash = linkTour
-        ? buildDeepLink({ tour: linkTour.split(",") })
-        : buildDeepLink({ year: linkYear, story: linkStory, ...(linkEvent ? { eventId: linkEvent } : {}) });
+        ? buildDeepLink({ tour: linkTour.split(","), hidden })
+        : buildDeepLink({
+            year: linkYear,
+            story: linkStory,
+            hidden,
+            ...(linkEvent ? { eventId: linkEvent } : {}),
+          });
       if (hash !== window.location.hash) {
-        window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}${hash}`);
+        window.history.replaceState(
+          null,
+          "",
+          `${window.location.pathname}${window.location.search}${hash}`,
+        );
       }
     }, 400);
     return () => window.clearTimeout(id);
-  }, [linkYear, linkEvent, linkStory, linkTour]);
+  }, [linkYear, linkEvent, linkStory, linkTour, linkHidden]);
 
   // Keyboard: space = play/pause (story: autoplay), escape = close the innermost layer,
   // ← → = story chapters, tour stops, or the previous/next event in time.
@@ -222,7 +263,11 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
         if (story) dispatch({ type: "storyStep", delta });
         else if (state.tour) dispatch({ type: "tourStep", delta });
         else dispatch({ type: "stepEvent", delta });
-      } else if ((e.key === "s" || e.key === "Enter") && !story && state.selection?.kind === "event") {
+      } else if (
+        (e.key === "s" || e.key === "Enter") &&
+        !story &&
+        state.selection?.kind === "event"
+      ) {
         dispatch({ type: "openStory", id: state.selection.id });
       } else if (e.key === "r" && !story) {
         dispatch({ type: "randomEvent", seed: Math.random() * 1e9 });

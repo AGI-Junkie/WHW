@@ -75,6 +75,8 @@ function Shell() {
   const selectedId = state.selection?.kind === "event" ? state.selection.id : null;
   const selectedFeature = state.selection?.kind === "country" ? state.selection.feature : null;
   const [overlay, setOverlay] = useState<Overlay>(null);
+  const [listOpen, setListOpen] = useState(false);
+  const listButton = useRef<HTMLButtonElement>(null);
   const storyEvent = state.story ? events.find((e) => e.id === state.story?.id) : undefined;
   const story = useMemo(
     () => (storyEvent ? storyFor(storyEvent, events) : null),
@@ -100,6 +102,8 @@ function Shell() {
         setOverlay("search");
       } else if (!typing && e.key === "?") {
         setOverlay((o) => (o === "help" ? null : "help"));
+      } else if (!typing && !e.metaKey && !e.ctrlKey && !e.altKey && e.key.toLowerCase() === "l") {
+        setListOpen((o) => !o);
       }
     };
     window.addEventListener("keydown", onKey);
@@ -126,8 +130,11 @@ function Shell() {
 
   const visible = useMemo(
     () =>
-      visibleEvents(events, state.year).filter((e) => !state.hiddenCategories.includes(e.category)),
-    [events, state.year, state.hiddenCategories],
+      // A filtered-out event opened from search or a link still gets its pin while it is selected.
+      visibleEvents(events, state.year).filter(
+        (e) => !state.hiddenCategories.includes(e.category) || e.id === selectedId,
+      ),
+    [events, state.year, state.hiddenCategories, selectedId],
   );
   const countryPins = useMemo<GlobePin[]>(
     () =>
@@ -385,6 +392,15 @@ function Shell() {
                 ✦ {t("Stories")}
               </button>
               <button
+                ref={listButton}
+                className={`btn secondary ${listOpen ? "active" : ""}`}
+                onClick={() => setListOpen((o) => !o)}
+                aria-expanded={listOpen}
+                title={t("Events in view as a list (L)")}
+              >
+                ☰ {t("List")}
+              </button>
+              <button
                 className="btn secondary"
                 onClick={() => dispatch({ type: "randomEvent", seed: Math.random() * 1e9 })}
                 title={t("A random event (R)")}
@@ -442,7 +458,16 @@ function Shell() {
           </div>
           {!quiz && <Badges />}
           {!quiz && <Legend count={visible.length} />}
-          {!state.story && <EventList events={visible} />}
+          {!quiz && (
+            <EventList
+              events={visible}
+              open={listOpen}
+              onClose={() => {
+                setListOpen(false);
+                listButton.current?.focus();
+              }}
+            />
+          )}
           {quiz && <QuizPanel />}
           {!quiz && state.selection?.kind === "event" && <EventPanel id={state.selection.id} />}
           {!quiz && state.selection?.kind === "country" && (
@@ -511,13 +536,46 @@ function YearCounter({ year }: { year: number }) {
   );
 }
 
-/** Keyboard and screen-reader route to the events the canvas pins show; the globe itself is pointer-only. */
-function EventList({ events }: { events: HistoryEvent[] }) {
-  const { dispatch } = useHistory();
+/**
+ * Keyboard and screen-reader route to the events the canvas pins show; the globe itself is pointer-only.
+ * Always in the accessibility tree; the List button (or L) also shows it on screen.
+ */
+function EventList({
+  events,
+  open,
+  onClose,
+}: {
+  events: HistoryEvent[];
+  open: boolean;
+  onClose: () => void;
+}) {
+  const { state, dispatch } = useHistory();
   const { t, fy } = useI18n();
-  const shown = events.slice(0, 100);
+  const ref = useRef<HTMLElement>(null);
+  const shown = [...events].sort((a, b) => a.year - b.year).slice(0, 100);
+  useEffect(() => {
+    if (open) ref.current?.querySelector<HTMLButtonElement>("ul button")?.focus();
+  }, [open]);
   return (
-    <nav className="sr-only events-list" aria-label={t("Events in view")}>
+    <nav
+      ref={ref}
+      className={`events-list ${open ? "open" : "sr-only"}`}
+      aria-label={t("Events in view")}
+      onKeyDown={(e) => {
+        if (e.key === "Escape" && open) {
+          e.stopPropagation(); // the store would also clear the selection
+          onClose();
+        }
+      }}
+    >
+      {open && (
+        <div className="events-list-head">
+          <b>{t("{count} events in {year}", { count: events.length, year: fy(state.year) })}</b>
+          <button className="close" onClick={onClose} aria-label={t("Close")}>
+            ×
+          </button>
+        </div>
+      )}
       <ul>
         {shown.map((e) => (
           <li key={e.id}>
@@ -526,7 +584,8 @@ function EventList({ events }: { events: HistoryEvent[] }) {
                 dispatch({ type: "select", selection: { kind: "event", id: e.id }, fly: true })
               }
             >
-              {fy(e.year)}: {e.title}
+              <i className="dot" style={{ background: CATEGORY_COLORS[e.category] }} /> {fy(e.year)}
+              : {e.title}
             </button>
           </li>
         ))}

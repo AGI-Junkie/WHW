@@ -88,7 +88,10 @@ export const HistoryEventSchema = z
     /** Exact English Wikipedia article title; the proxy fetches its live summary + thumbnail. */
     wikipediaTitle: z.string().min(1).max(200),
     /** Wikimedia Commons file title ("File:….webm"). Resolved once by scripts/resolve-videos.ts. */
-    commonsVideo: z.string().regex(/^File:.+/).optional(),
+    commonsVideo: z
+      .string()
+      .regex(/^File:.+/)
+      .optional(),
     /** Direct playable derivative on upload.wikimedia.org (written by the resolve script). */
     videoUrl: z.url().startsWith("https://upload.wikimedia.org/").optional(),
     /** License/author line shown under the player, e.g. "NASA · Public domain". */
@@ -104,6 +107,37 @@ export const HistoryEventSchema = z
   });
 export type HistoryEvent = z.infer<typeof HistoryEventSchema>;
 export const HistoryEventsSchema = z.array(HistoryEventSchema);
+
+/**
+ * Simplified-Chinese text for an event, keyed by event id in src/data/events-zh.json. Every field is
+ * optional except the title; whatever is missing falls back to the English. Chapters line up with the
+ * English chapters by index, so the camera positions stay in events.json.
+ */
+export const EventZhSchema = z.object({
+  title: z.string().min(2).max(60),
+  summary: z.string().min(20).max(400).optional(),
+  story: z
+    .object({
+      tagline: z.string().min(5).max(100),
+      quote: z
+        .object({ text: z.string().min(3).max(200), by: z.string().min(3).max(120) })
+        .optional(),
+      facts: z.array(
+        z.object({ label: z.string().min(1).max(20), value: z.string().min(1).max(60) }),
+      ),
+      chapters: z.array(
+        z.object({
+          when: z.string().min(1).max(30),
+          heading: z.string().min(2).max(40),
+          text: z.string().min(10).max(300),
+        }),
+      ),
+      legacy: z.string().min(10).max(200).optional(),
+    })
+    .optional(),
+});
+export type EventZh = z.infer<typeof EventZhSchema>;
+export const EventsZhSchema = z.record(z.string(), EventZhSchema);
 
 export const TourStopSchema = z.object({
   eventId: z.string(),

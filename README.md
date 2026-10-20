@@ -25,7 +25,7 @@ During a war, arcs run between the belligerents while the year is inside its spa
 ## What it does
 
 - **A non-linear timeline** from 3000 BC to 2026. Antiquity moves in 50-year steps, the last 500 years move one year at a time, so the same slider covers Hammurabi and yesterday.
-- **Historical borders.** Thirteen snapshots (500 BC, 1 BC, 400, 800, 1279, 1492, 1650, 1815, 1914, 1920, 1945, 1994, 2010) recolour the globe as you scrub. Slide from 1914 to 1920 and the Ottoman Empire becomes Turkey.
+- **Historical borders.** Twenty-two snapshots (3000, 2000, 1500, 1000, 700, 500 and 1 BC; 400, 800, 1279, 1492, 1650, 1715, 1783, 1815, 1878, 1914, 1920, 1938, 1945, 1994, 2010) recolour the globe as you scrub. Slide from 1914 to 1920 and the Ottoman Empire becomes Turkey.
 - **Every country, pinned.** All current sovereign states come from one Wikidata query: founding year, capital, flag and population. A country's pin only appears once it exists.
 - **Curated events with live context.** Hand-written, sourced summaries for the world-shaping moments, plus the live Wikipedia extract and lead image for each one, fetched through a small same-origin proxy. Public-domain newsreels from Wikimedia Commons play inline where they exist.
 - **Play mode.** Press play (or the space bar) and history runs forward: pins pulse as events happen, wars draw animated arcs between the belligerents' capitals, borders swap snapshot by snapshot. The camera stays where you left it unless you switch on _Follow_.
@@ -33,7 +33,7 @@ During a war, arcs run between the belligerents while the year is inside its spa
 - **Story tours.** Ten guided journeys (the ancient world, Rome, the Silk Roads, the Mongols, the Age of Exploration, the scientific journey, the age of revolutions, WWI, WWII, the Cold War) fly the camera stop to stop with narration.
 - **Search and shareable links.** ⌘K (or `/`) searches events, countries and years ("1453", "500 BC"). The address bar always holds a link to the current year, event or story.
 - **Timeline you can read.** Major events are marked on the slider (gold diamonds have an immersive story); hover shows the year under the cursor, ⏮ ⏭ and ← → step from event to event, _Surprise me_ (R) picks one at random, and each event panel suggests related events.
-- **English and 简体中文.** The interface switches language with one button (it follows the browser on the first visit), and the live Wikipedia block reads from zh.wikipedia through each article's interlanguage link. Curated event texts stay in English.
+- **English and 简体中文.** The interface switches language with one button (it follows the browser on the first visit), and the live Wikipedia block reads from zh.wikipedia through each article's interlanguage link. Every event title, the 32 immersive stories and the summaries of the world-shaping events are translated (`src/data/events-zh.json`); the rest fall back to English, and search matches both languages.
 - **Compare borders.** Overlay any other snapshot as red outlines on the current map: 1914 over 1920 shows what the First World War redrew. Ticks under the timeline mark the snapshot years.
 - **Map quiz.** Five rounds of "where did this happen?": click the globe, see how many kilometres off you were.
 - **Your own tour.** Add events to _My tour_ from any event panel, play it like a guided tour, and share it as a link (`#t=event-a,event-b`).
@@ -47,7 +47,7 @@ No accounts, no database, no API keys. Two optional environment variables.
 git clone https://github.com/AGI-Junkie/WHW.git
 cd WHW
 pnpm install
-pnpm data:borders # one-time: fetch + simplify the 13 historical border snapshots (~1 min)
+pnpm data:borders # one-time: fetch + simplify the 22 historical border snapshots (~1 min)
 pnpm dev          # http://localhost:3000
 ```
 
