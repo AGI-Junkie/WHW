@@ -33,7 +33,7 @@ const LangLinksSchema = z.object({
     .optional(),
 });
 
-const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/haakram/WHW)";
+const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/AGI-Junkie/WHW)";
 const ALLOWED_IMAGE_HOSTS = new Set(["upload.wikimedia.org", "thumb.wikimedia.org"]);
 const allow = createRateLimiter(120, 60_000);
 

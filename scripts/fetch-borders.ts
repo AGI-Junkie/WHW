@@ -9,7 +9,7 @@ import mapshaper from "mapshaper";
 import { BorderSnapshotSchema } from "../src/lib/data/schemas";
 import { SNAPSHOT_YEARS, UPSTREAM_SNAPSHOT_BASE, snapshotFileName } from "../src/lib/data/paths";
 
-const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/haakram/WHW)";
+const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/AGI-Junkie/WHW)";
 const OUT_DIR = path.join(process.cwd(), "public/data/borders");
 
 async function fetchSnapshot(year: number): Promise<string> {

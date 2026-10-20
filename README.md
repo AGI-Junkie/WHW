@@ -9,7 +9,7 @@ Click any pin for the story, with live text and pictures from Wikipedia and Wiki
 
 [**Live demo**](https://whw-ten.vercel.app) · [Quick start](#quick-start) · [Use the globe in your own app](#use-the-globe-in-your-own-app) · [Add history](#add-history) · [Data & licenses](#data--licenses)
 
-[![CI](https://github.com/haakram/WHW/actions/workflows/ci.yml/badge.svg)](https://github.com/haakram/WHW/actions/workflows/ci.yml)
+[![CI](https://github.com/AGI-Junkie/WHW/actions/workflows/ci.yml/badge.svg)](https://github.com/AGI-Junkie/WHW/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2f6f5e.svg)](LICENSE)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16-1c1913.svg)](https://nextjs.org)
 [![react-globe.gl](https://img.shields.io/badge/react--globe.gl-2.38-8f1d2c.svg)](https://github.com/vasturiano/react-globe.gl)
@@ -44,7 +44,7 @@ No accounts, no database, no API keys. Two optional environment variables.
 ## Quick start
 
 ```bash
-git clone https://github.com/haakram/WHW.git
+git clone https://github.com/AGI-Junkie/WHW.git
 cd WHW
 pnpm install
 pnpm data:borders # one-time: fetch + simplify the 13 historical border snapshots (~1 min)
@@ -63,7 +63,7 @@ pnpm build        # production build
 
 ### Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/haakram/WHW)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/AGI-Junkie/WHW)
 
 Any host that runs Next.js works. Set `WIKI_USER_AGENT` to something that identifies *your* deployment (Wikimedia asks for a contact in the User-Agent and returns 403 without one):
 

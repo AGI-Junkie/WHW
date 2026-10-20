@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/haakram/WHW.git"
+    "url": "https://github.com/AGI-Junkie/WHW.git"
   },
   "keywords": [
     "globe",
@@ -20,7 +20,7 @@
     "geojson",
     "historical-maps"
   ],
-  "homepage": "https://github.com/haakram/WHW#readme",
+  "homepage": "https://github.com/AGI-Junkie/WHW#readme",
   "engines": {
     "node": ">=20"
   },
