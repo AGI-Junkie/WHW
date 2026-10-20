@@ -140,6 +140,11 @@ test("the List button shows the events in view and Esc hands focus back", async 
   await expect(toggle).toBeFocused();
   await page.keyboard.press("l");
   await expect(nav).toHaveClass(/open/);
+  await page.keyboard.press("l");
+  await expect(nav).not.toHaveClass(/open/);
+  await expect(toggle).toBeFocused();
+  await page.keyboard.press("l");
+  await expect(nav).toHaveClass(/open/);
   await nav.getByRole("button", { name: /The fall of Constantinople/ }).click();
   await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
 });

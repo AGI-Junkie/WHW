@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import GlobeLoader from "@/components/globe/globe-loader";
 import type {
   GlobeArc,
@@ -77,6 +77,7 @@ function Shell() {
   const [overlay, setOverlay] = useState<Overlay>(null);
   const [listOpen, setListOpen] = useState(false);
   const listButton = useRef<HTMLButtonElement>(null);
+  const focusListButton = useCallback(() => listButton.current?.focus(), []);
   const storyEvent = state.story ? events.find((e) => e.id === state.story?.id) : undefined;
   const story = useMemo(
     () => (storyEvent ? storyFor(storyEvent, events) : null),
@@ -462,10 +463,8 @@ function Shell() {
             <EventList
               events={visible}
               open={listOpen}
-              onClose={() => {
-                setListOpen(false);
-                listButton.current?.focus();
-              }}
+              onClose={() => setListOpen(false)}
+              returnFocus={focusListButton}
             />
           )}
           {quiz && <QuizPanel />}
@@ -544,10 +543,12 @@ function EventList({
   events,
   open,
   onClose,
+  returnFocus,
 }: {
   events: HistoryEvent[];
   open: boolean;
   onClose: () => void;
+  returnFocus: () => void;
 }) {
   const { state, dispatch } = useHistory();
   const { t, fy } = useI18n();
@@ -555,7 +556,9 @@ function EventList({
   const shown = [...events].sort((a, b) => a.year - b.year).slice(0, 100);
   useEffect(() => {
     if (open) ref.current?.querySelector<HTMLButtonElement>("ul button")?.focus();
-  }, [open]);
+    // However it closed (Esc, ×, L, the button), focus left inside would keep it on screen via :focus-within.
+    else if (ref.current?.contains(document.activeElement)) returnFocus();
+  }, [open, returnFocus]);
   return (
     <nav
       ref={ref}

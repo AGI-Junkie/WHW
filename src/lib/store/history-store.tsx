@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useReducer,
   useRef,
@@ -236,8 +237,10 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   }, [linkYear, linkEvent, linkStory, linkTour, linkHidden]);
 
   // Keyboard: space = play/pause (story: autoplay), escape = close the innermost layer,
-  // ← → = story chapters, tour stops, or the previous/next event in time.
-  useEffect(() => {
+  // ← → = story chapters, tour stops, or the previous/next event in time. A layout effect, so the
+  // handler sees the new state before the frame that shows it: a key pressed on a just-opened story
+  // must not hit the previous closure.
+  useLayoutEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
       if (target && ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)) return;
