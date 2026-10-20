@@ -176,6 +176,12 @@ test("the category filter is kept in the link", async ({ page }) => {
     "aria-pressed",
     "false",
   );
+  // A hidden war opened from a link gets its pin, but stays out of the list and the legend count.
+  await page.goto("/#y=1942&e=battle-of-midway&hide=war");
+  await page.reload();
+  await expect(page.locator(".panel h2")).toHaveText("Battle of Midway");
+  const nav = page.getByRole("navigation", { name: "Events in view" });
+  await expect(nav.getByRole("button", { name: /Battle of Midway/ })).toHaveCount(0);
 });
 
 test("in Chinese, event titles and stories are translated", async ({ page }) => {

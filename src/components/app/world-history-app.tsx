@@ -16,7 +16,7 @@ import type { BorderFeature, Category, HistoryEvent } from "@/lib/data/schemas";
 import { fetchSnapshot } from "@/lib/data/loaders";
 import { yearToSlider } from "@/lib/domain/time-scale";
 import { eraForYear } from "@/lib/domain/eras";
-import { visibleEvents } from "@/lib/domain/visible-events";
+import { isVisibleAt, visibleEvents } from "@/lib/domain/visible-events";
 import { battleArcs } from "@/lib/domain/battles";
 import { computeBadges } from "@/lib/domain/discovery";
 import { relatedEvents } from "@/lib/domain/related";
@@ -147,11 +147,8 @@ function Shell() {
 
   const visible = useMemo(
     () =>
-      // A filtered-out event opened from search or a link still gets its pin while it is selected.
-      visibleEvents(events, state.year).filter(
-        (e) => !state.hiddenCategories.includes(e.category) || e.id === selectedId,
-      ),
-    [events, state.year, state.hiddenCategories, selectedId],
+      visibleEvents(events, state.year).filter((e) => !state.hiddenCategories.includes(e.category)),
+    [events, state.year, state.hiddenCategories],
   );
   const countryPins = useMemo<GlobePin[]>(
     () =>
@@ -223,7 +220,14 @@ function Shell() {
         ...chapterPins,
       ];
     }
-    const evPins = visible.map<GlobePin>((e) => ({
+    // A filtered-out event opened from search or a link still gets its pin while selected, but
+    // only its pin: arcs, the legend count and the list keep following the filter.
+    const selected = selectedId ? events.find((e) => e.id === selectedId) : undefined;
+    const pinned =
+      selected && !visible.includes(selected) && isVisibleAt(selected, state.year)
+        ? [...visible, selected]
+        : visible;
+    const evPins = pinned.map<GlobePin>((e) => ({
       id: e.id,
       kind: "event",
       lat: e.lat,
@@ -240,6 +244,8 @@ function Shell() {
     countryPins,
     visible,
     selectedId,
+    events,
+    state.year,
     story,
     storyEvent,
     state.story?.chapter,
