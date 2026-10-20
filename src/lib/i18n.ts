@@ -5,13 +5,18 @@ import { ZH } from "./i18n-zh";
 
 /**
  * UI language. Keys are the English strings themselves, so a missing translation falls back to
- * readable English and call sites stay greppable. Curated data (event titles, summaries, tour
- * narration) stays English; in Chinese the live Wikipedia block switches to zh.wikipedia.
+ * readable English and call sites stay greppable. Event titles, summaries and stories come in
+ * Chinese from src/data/events-zh.json where translated (tour narration stays English); in
+ * Chinese the live Wikipedia block switches to zh.wikipedia.
  */
 export type Locale = "en" | "zh";
 const KEY = "whw-locale";
 
-export function translate(locale: Locale, text: string, vars?: Record<string, string | number>): string {
+export function translate(
+  locale: Locale,
+  text: string,
+  vars?: Record<string, string | number>,
+): string {
   let out = locale === "zh" ? (ZH[text] ?? text) : text;
   if (vars) for (const [k, v] of Object.entries(vars)) out = out.replaceAll(`{${k}}`, String(v));
   return out;
@@ -60,7 +65,10 @@ function setLocale(l: Locale): void {
 
 export function useI18n() {
   const locale = useSyncExternalStore(subscribe, getSnapshot, () => "en" as const);
-  const t = useCallback((text: string, vars?: Record<string, string | number>) => translate(locale, text, vars), [locale]);
+  const t = useCallback(
+    (text: string, vars?: Record<string, string | number>) => translate(locale, text, vars),
+    [locale],
+  );
   const fy = useCallback((year: number) => formatYearIn(locale, year), [locale]);
   return { locale, setLocale, t, fy };
 }

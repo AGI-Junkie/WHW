@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import GlobeLoader from "@/components/globe/globe-loader";
 import type {
   GlobeArc,
@@ -16,7 +16,7 @@ import type { BorderFeature, Category, HistoryEvent } from "@/lib/data/schemas";
 import { fetchSnapshot } from "@/lib/data/loaders";
 import { yearToSlider } from "@/lib/domain/time-scale";
 import { eraForYear } from "@/lib/domain/eras";
-import { visibleEvents } from "@/lib/domain/visible-events";
+import { isVisibleAt, visibleEvents } from "@/lib/domain/visible-events";
 import { battleArcs } from "@/lib/domain/battles";
 import { computeBadges } from "@/lib/domain/discovery";
 import { relatedEvents } from "@/lib/domain/related";
@@ -75,6 +75,18 @@ function Shell() {
   const selectedId = state.selection?.kind === "event" ? state.selection.id : null;
   const selectedFeature = state.selection?.kind === "country" ? state.selection.feature : null;
   const [overlay, setOverlay] = useState<Overlay>(null);
+  const [listOpen, setListOpen] = useState(false);
+  // The list only exists in the atlas view; leaving it (story, quiz) closes it, so it does not
+  // reappear and grab focus on the way back. Adjusted during render, not in an effect.
+  const inAtlas = !state.story && !state.quiz;
+  const [wasInAtlas, setWasInAtlas] = useState(inAtlas);
+  if (wasInAtlas !== inAtlas) {
+    setWasInAtlas(inAtlas);
+    if (!inAtlas) setListOpen(false);
+  }
+  const listButton = useRef<HTMLButtonElement>(null);
+  const focusListButton = useCallback(() => listButton.current?.focus(), []);
+  const closeList = useCallback(() => setListOpen(false), []);
   const storyEvent = state.story ? events.find((e) => e.id === state.story?.id) : undefined;
   const story = useMemo(
     () => (storyEvent ? storyFor(storyEvent, events) : null),
@@ -100,11 +112,20 @@ function Shell() {
         setOverlay("search");
       } else if (!typing && e.key === "?") {
         setOverlay((o) => (o === "help" ? null : "help"));
+      } else if (
+        inAtlas &&
+        !typing &&
+        !e.metaKey &&
+        !e.ctrlKey &&
+        !e.altKey &&
+        e.key.toLowerCase() === "l"
+      ) {
+        setListOpen((o) => !o);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [inAtlas]);
 
   // Compare mode: a second snapshot drawn as outlines over the current borders.
   const [compare, setCompare] = useState<{ year: number; paths: GlobePath[] } | null>(null);
@@ -199,7 +220,14 @@ function Shell() {
         ...chapterPins,
       ];
     }
-    const evPins = visible.map<GlobePin>((e) => ({
+    // A filtered-out event opened from search or a link still gets its pin while selected, but
+    // only its pin: arcs, the legend count and the list keep following the filter.
+    const selected = selectedId ? events.find((e) => e.id === selectedId) : undefined;
+    const pinned =
+      selected && !visible.includes(selected) && isVisibleAt(selected, state.year)
+        ? [...visible, selected]
+        : visible;
+    const evPins = pinned.map<GlobePin>((e) => ({
       id: e.id,
       kind: "event",
       lat: e.lat,
@@ -216,6 +244,8 @@ function Shell() {
     countryPins,
     visible,
     selectedId,
+    events,
+    state.year,
     story,
     storyEvent,
     state.story?.chapter,
@@ -385,6 +415,15 @@ function Shell() {
                 ✦ {t("Stories")}
               </button>
               <button
+                ref={listButton}
+                className={`btn secondary ${listOpen ? "active" : ""}`}
+                onClick={() => setListOpen((o) => !o)}
+                aria-expanded={listOpen}
+                title={t("Events in view as a list (L)")}
+              >
+                ☰ {t("List")}
+              </button>
+              <button
                 className="btn secondary"
                 onClick={() => dispatch({ type: "randomEvent", seed: Math.random() * 1e9 })}
                 title={t("A random event (R)")}
@@ -442,7 +481,14 @@ function Shell() {
           </div>
           {!quiz && <Badges />}
           {!quiz && <Legend count={visible.length} />}
-          {!state.story && <EventList events={visible} />}
+          {!quiz && (
+            <EventList
+              events={visible}
+              open={listOpen}
+              onClose={closeList}
+              returnFocus={focusListButton}
+            />
+          )}
           {quiz && <QuizPanel />}
           {!quiz && state.selection?.kind === "event" && <EventPanel id={state.selection.id} />}
           {!quiz && state.selection?.kind === "country" && (
@@ -511,13 +557,67 @@ function YearCounter({ year }: { year: number }) {
   );
 }
 
-/** Keyboard and screen-reader route to the events the canvas pins show; the globe itself is pointer-only. */
-function EventList({ events }: { events: HistoryEvent[] }) {
-  const { dispatch } = useHistory();
+/**
+ * Keyboard and screen-reader route to the events the canvas pins show; the globe itself is pointer-only.
+ * Always in the accessibility tree; the List button (or L) also shows it on screen.
+ */
+function EventList({
+  events,
+  open,
+  onClose,
+  returnFocus,
+}: {
+  events: HistoryEvent[];
+  open: boolean;
+  onClose: () => void;
+  returnFocus: () => void;
+}) {
+  const { state, dispatch } = useHistory();
   const { t, fy } = useI18n();
-  const shown = events.slice(0, 100);
+  const ref = useRef<HTMLElement>(null);
+  const shown = [...events].sort((a, b) => a.year - b.year).slice(0, 100);
+  const wasOpen = useRef(open);
+  useEffect(() => {
+    const closing = wasOpen.current && !open;
+    wasOpen.current = open;
+    const q = (sel: string) => ref.current?.querySelector<HTMLButtonElement>(sel);
+    // With no events in view the × is the focus target, so the list never opens unfocused.
+    if (open) (q("ul button") ?? q(".events-list-head button"))?.focus();
+    // However it closed (Esc, ×, L, the button), focus left inside would keep it on screen via
+    // :focus-within; focus on the body means it was on the × that just unmounted.
+    else if (
+      closing &&
+      (ref.current?.contains(document.activeElement) || document.activeElement === document.body)
+    ) {
+      returnFocus();
+    }
+  }, [open, returnFocus]);
+  // Esc closes the open list wherever focus is (timeline, toolbar…), before the store's handler
+  // would clear the selection instead.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      e.stopPropagation();
+      onClose();
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [open, onClose]);
   return (
-    <nav className="sr-only events-list" aria-label={t("Events in view")}>
+    <nav
+      ref={ref}
+      className={`events-list ${open ? "open" : "sr-only"}`}
+      aria-label={t("Events in view")}
+    >
+      {open && (
+        <div className="events-list-head">
+          <b>{t("{count} events in {year}", { count: events.length, year: fy(state.year) })}</b>
+          <button className="close" onClick={onClose} aria-label={t("Close")}>
+            ×
+          </button>
+        </div>
+      )}
       <ul>
         {shown.map((e) => (
           <li key={e.id}>
@@ -526,7 +626,8 @@ function EventList({ events }: { events: HistoryEvent[] }) {
                 dispatch({ type: "select", selection: { kind: "event", id: e.id }, fly: true })
               }
             >
-              {fy(e.year)}: {e.title}
+              <i className="dot" style={{ background: CATEGORY_COLORS[e.category] }} /> {fy(e.year)}
+              : {e.title}
             </button>
           </li>
         ))}

@@ -1,15 +1,16 @@
-import { YearSchema } from "@/lib/data/schemas";
+import { CategorySchema, YearSchema, type Category } from "@/lib/data/schemas";
 import { MY_TOUR_MAX } from "@/lib/domain/my-tour";
 
 /**
  * What the URL hash carries so a view can be shared: `#y=1453&e=fall-of-constantinople&s=1`, or a
- * visitor-made tour as `#t=event-a,event-b`.
+ * visitor-made tour as `#t=event-a,event-b`. `hide=war,disaster` carries the category filter.
  */
 export interface DeepLink {
   year?: number;
   eventId?: string;
   story?: boolean;
   tour?: string[];
+  hidden?: Category[];
 }
 
 const ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -22,8 +23,15 @@ export function parseDeepLink(hash: string): DeepLink {
   const e = params.get("e");
   if (e && ID.test(e) && e.length <= 120) out.eventId = e;
   if (out.eventId && params.get("s") === "1") out.story = true;
-  const t = (params.get("t") ?? "").split(",").filter((id) => ID.test(id) && id.length <= 120).slice(0, MY_TOUR_MAX);
+  const t = (params.get("t") ?? "")
+    .split(",")
+    .filter((id) => ID.test(id) && id.length <= 120)
+    .slice(0, MY_TOUR_MAX);
   if (t.length) out.tour = t;
+  const h = [...new Set((params.get("hide") ?? "").split(","))].filter(
+    (c) => CategorySchema.safeParse(c).success,
+  ) as Category[];
+  if (h.length) out.hidden = h;
   return out;
 }
 
@@ -33,7 +41,8 @@ export function buildDeepLink(link: DeepLink): string {
   if (link.eventId) params.set("e", link.eventId);
   if (link.eventId && link.story) params.set("s", "1");
   if (link.tour?.length) params.set("t", link.tour.join(","));
-  // Ids are [a-z0-9-] only, so the tour's commas can stay readable instead of %2C.
+  if (link.hidden?.length) params.set("hide", link.hidden.join(","));
+  // Ids and categories are [a-z0-9-] only, so the commas can stay readable instead of %2C.
   const s = params.toString().replaceAll("%2C", ",");
   return s ? `#${s}` : "";
 }

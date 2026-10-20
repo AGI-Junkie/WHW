@@ -96,6 +96,7 @@ export type Action =
   | { type: "error"; source: DataSource; message: string }
   | { type: "retry" }
   | { type: "toggleCategory"; category: Category }
+  | { type: "setHiddenCategories"; categories: Category[] }
   | { type: "discoveryLoaded"; discovery: DiscoveryState }
   | { type: "prunePulses"; now: number }
   | { type: "toggleMyTour"; id: string }
@@ -350,6 +351,8 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
           ? s.hiddenCategories.filter((c) => c !== a.category)
           : [...s.hiddenCategories, a.category],
       };
+    case "setHiddenCategories":
+      return { ...s, hiddenCategories: [...new Set(a.categories)] };
     case "discoveryLoaded":
       return { ...s, discovery: a.discovery };
     case "prunePulses":

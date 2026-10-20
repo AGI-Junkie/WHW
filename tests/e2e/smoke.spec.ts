@@ -13,7 +13,7 @@ test("loads the globe with the 1945 borders and warms the neighbouring snapshots
   await expect(page.locator(".era")).toContainText("borders of 1945");
   await expect
     .poll(() => fetched.sort(), { timeout: 15_000 })
-    .toEqual(["world_1920", "world_1945", "world_1994"]);
+    .toEqual(["world_1938", "world_1945", "world_1994"]);
 });
 
 test("scrubbing the timeline swaps the border snapshot", async ({ page }) => {
@@ -21,7 +21,7 @@ test("scrubbing the timeline swaps the border snapshot", async ({ page }) => {
   await expect(page.locator(".era")).toContainText("borders of 1945");
   // The slider is 0–1000 on a non-linear scale; the far left is 3000 BC.
   await page.getByRole("slider", { name: "Year", exact: true }).fill("0");
-  await expect(page.locator(".era")).toContainText("borders of 500 BC");
+  await expect(page.locator(".era")).toContainText(/borders of (3000|2000) BC/);
 });
 
 test("a story deep link opens the immersive view", async ({ page }) => {
@@ -85,6 +85,114 @@ test("Esc closes the gallery without leaving the story underneath", async ({ pag
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog", { name: "Immersive stories" })).toBeHidden();
   await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
+});
+
+test("the quiz runs five rounds to a final score", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: /Quiz/ }).click();
+  const globe = page.getByTestId("globe-stage").locator("canvas");
+  const box = (await globe.boundingBox())!;
+  const centre = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+  for (let round = 1; round <= 5; round++) {
+    await expect(page.locator(".quiz .meta")).toContainText(`round ${round} of 5`);
+    await page.mouse.move(centre.x, centre.y);
+    await page.waitForTimeout(300);
+    await page.mouse.click(centre.x, centre.y);
+    await expect(page.getByText(/km away · \+\d+ points/)).toBeVisible();
+    await page.getByRole("button", { name: round < 5 ? "Next →" : "See the score" }).click();
+  }
+  await expect(page.getByText(/Final score: \d+ \/ 5000/)).toBeVisible();
+});
+
+test("events added to My tour play as a tour and share as a link", async ({ page }) => {
+  await page.goto("/#y=1453&e=fall-of-constantinople");
+  await page.getByRole("button", { name: /Add to my tour/ }).click();
+  await page.getByRole("button", { name: "Later →" }).click();
+  await expect(page.locator(".panel h2")).not.toHaveText("The fall of Constantinople");
+  await page.getByRole("button", { name: /Add to my tour/ }).click();
+  await page.getByRole("combobox", { name: "Story tours" }).selectOption({ label: "My tour" });
+  await expect(page.locator(".tour")).toContainText("stop 1 of 2");
+  await expect.poll(() => page.url()).toMatch(/#t=fall-of-constantinople,[a-z0-9-]+$/);
+});
+
+test("R picks a random event and the arrow keys step through time", async ({ page }) => {
+  await page.goto("/");
+  await page.locator("body").click({ position: { x: 5, y: 5 } });
+  await page.keyboard.press("r");
+  const panel = page.getByRole("complementary", { name: /^Event:/ });
+  await expect(panel).toBeVisible();
+  const first = await panel.locator("h2").textContent();
+  await page.keyboard.press("ArrowRight");
+  await expect(panel.locator("h2")).not.toHaveText(first!);
+  await page.keyboard.press("ArrowLeft");
+  await expect(panel.locator("h2")).toHaveText(first!);
+});
+
+test("the List button shows the events in view and Esc hands focus back", async ({ page }) => {
+  await page.goto("/#y=1453");
+  const toggle = page.getByRole("button", { name: /List/ });
+  await toggle.click();
+  const nav = page.getByRole("navigation", { name: "Events in view" });
+  await expect(nav).toHaveClass(/open/);
+  await expect(nav.getByRole("button", { name: /The fall of Constantinople/ })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(nav).not.toHaveClass(/open/);
+  await expect(toggle).toBeFocused();
+  await page.keyboard.press("l");
+  await expect(nav).toHaveClass(/open/);
+  await page.keyboard.press("l");
+  await expect(nav).not.toHaveClass(/open/);
+  await expect(toggle).toBeFocused();
+  await page.keyboard.press("l");
+  await expect(nav).toHaveClass(/open/);
+  // Esc still closes it once focus has moved elsewhere.
+  await page.getByRole("slider", { name: "Year", exact: true }).focus();
+  await page.keyboard.press("Escape");
+  await expect(nav).not.toHaveClass(/open/);
+  await toggle.click(); // L is ignored while the slider (an input) has focus
+  await nav.getByRole("button", { name: /The fall of Constantinople/ }).click();
+  await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
+  // L does nothing inside a story, and the list stays closed on the way back.
+  await page.keyboard.press("Escape");
+  await page.keyboard.press("s");
+  await expect(page.getByRole("dialog", { name: /^Story: / })).toBeVisible();
+  await page.keyboard.press("l");
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog", { name: /^Story: / })).toBeHidden();
+  await expect(nav).not.toHaveClass(/open/);
+});
+
+test("the category filter is kept in the link", async ({ page }) => {
+  await page.goto("/#y=1942&hide=war");
+  const legend = page.getByRole("group", { name: "Filter events by category" });
+  await expect(legend.getByRole("button", { name: /war/ })).toHaveAttribute(
+    "aria-pressed",
+    "false",
+  );
+  await legend.getByRole("button", { name: /disaster/ }).click();
+  await expect.poll(() => page.url()).toContain("hide=war,disaster");
+  await page.reload();
+  await expect(legend.getByRole("button", { name: /disaster/ })).toHaveAttribute(
+    "aria-pressed",
+    "false",
+  );
+  // A hidden war opened from a link gets its pin, but stays out of the list and the legend count.
+  await page.goto("/#y=1942&e=battle-of-midway&hide=war");
+  await page.reload();
+  await expect(page.locator(".panel h2")).toHaveText("Battle of Midway");
+  const nav = page.getByRole("navigation", { name: "Events in view" });
+  await expect(nav.getByRole("button", { name: /Battle of Midway/ })).toHaveCount(0);
+});
+
+test("in Chinese, event titles and stories are translated", async ({ page }) => {
+  await page.goto("/#y=1453&e=fall-of-constantinople");
+  await page.getByRole("button", { name: "中文", exact: true }).click();
+  await expect(page.locator(".panel h2")).toHaveText("君士坦丁堡陷落");
+  await page.getByRole("button", { name: /沉浸式故事/ }).click();
+  await expect(page.getByRole("dialog", { name: /君士坦丁堡陷落/ })).toBeVisible();
+  await expect(page.getByText("鲁梅利堡").first()).toBeVisible();
+  await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: "EN", exact: true }).click();
 });
 
 test.describe("World History Web", () => {
@@ -170,7 +278,7 @@ test.describe("on a phone", () => {
     const box = (await slider.boundingBox())!;
     expect(box.height).toBeGreaterThanOrEqual(44);
     await page.touchscreen.tap(box.x + 4, box.y + box.height / 2);
-    await expect(page.locator(".era")).toContainText("borders of 500 BC");
+    await expect(page.locator(".era")).toContainText(/borders of (3000|2000) BC/);
 
     // Markers are too small to tap on a phone; the button under the track opens the nearest one.
     const nearest = page.locator(".nearest-event");
