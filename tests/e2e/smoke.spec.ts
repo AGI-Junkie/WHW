@@ -145,8 +145,21 @@ test("the List button shows the events in view and Esc hands focus back", async 
   await expect(toggle).toBeFocused();
   await page.keyboard.press("l");
   await expect(nav).toHaveClass(/open/);
+  // Esc still closes it once focus has moved elsewhere.
+  await page.getByRole("slider", { name: "Year", exact: true }).focus();
+  await page.keyboard.press("Escape");
+  await expect(nav).not.toHaveClass(/open/);
+  await toggle.click(); // L is ignored while the slider (an input) has focus
   await nav.getByRole("button", { name: /The fall of Constantinople/ }).click();
   await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
+  // L does nothing inside a story, and the list stays closed on the way back.
+  await page.keyboard.press("Escape");
+  await page.keyboard.press("s");
+  await expect(page.getByRole("dialog", { name: /^Story: / })).toBeVisible();
+  await page.keyboard.press("l");
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog", { name: /^Story: / })).toBeHidden();
+  await expect(nav).not.toHaveClass(/open/);
 });
 
 test("the category filter is kept in the link", async ({ page }) => {

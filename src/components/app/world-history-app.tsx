@@ -76,8 +76,17 @@ function Shell() {
   const selectedFeature = state.selection?.kind === "country" ? state.selection.feature : null;
   const [overlay, setOverlay] = useState<Overlay>(null);
   const [listOpen, setListOpen] = useState(false);
+  // The list only exists in the atlas view; leaving it (story, quiz) closes it, so it does not
+  // reappear and grab focus on the way back. Adjusted during render, not in an effect.
+  const inAtlas = !state.story && !state.quiz;
+  const [wasInAtlas, setWasInAtlas] = useState(inAtlas);
+  if (wasInAtlas !== inAtlas) {
+    setWasInAtlas(inAtlas);
+    if (!inAtlas) setListOpen(false);
+  }
   const listButton = useRef<HTMLButtonElement>(null);
   const focusListButton = useCallback(() => listButton.current?.focus(), []);
+  const closeList = useCallback(() => setListOpen(false), []);
   const storyEvent = state.story ? events.find((e) => e.id === state.story?.id) : undefined;
   const story = useMemo(
     () => (storyEvent ? storyFor(storyEvent, events) : null),
@@ -103,13 +112,20 @@ function Shell() {
         setOverlay("search");
       } else if (!typing && e.key === "?") {
         setOverlay((o) => (o === "help" ? null : "help"));
-      } else if (!typing && !e.metaKey && !e.ctrlKey && !e.altKey && e.key.toLowerCase() === "l") {
+      } else if (
+        inAtlas &&
+        !typing &&
+        !e.metaKey &&
+        !e.ctrlKey &&
+        !e.altKey &&
+        e.key.toLowerCase() === "l"
+      ) {
         setListOpen((o) => !o);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [inAtlas]);
 
   // Compare mode: a second snapshot drawn as outlines over the current borders.
   const [compare, setCompare] = useState<{ year: number; paths: GlobePath[] } | null>(null);
@@ -463,7 +479,7 @@ function Shell() {
             <EventList
               events={visible}
               open={listOpen}
-              onClose={() => setListOpen(false)}
+              onClose={closeList}
               returnFocus={focusListButton}
             />
           )}
@@ -554,22 +570,39 @@ function EventList({
   const { t, fy } = useI18n();
   const ref = useRef<HTMLElement>(null);
   const shown = [...events].sort((a, b) => a.year - b.year).slice(0, 100);
+  const wasOpen = useRef(open);
   useEffect(() => {
-    if (open) ref.current?.querySelector<HTMLButtonElement>("ul button")?.focus();
-    // However it closed (Esc, ×, L, the button), focus left inside would keep it on screen via :focus-within.
-    else if (ref.current?.contains(document.activeElement)) returnFocus();
+    const closing = wasOpen.current && !open;
+    wasOpen.current = open;
+    const q = (sel: string) => ref.current?.querySelector<HTMLButtonElement>(sel);
+    // With no events in view the × is the focus target, so the list never opens unfocused.
+    if (open) (q("ul button") ?? q(".events-list-head button"))?.focus();
+    // However it closed (Esc, ×, L, the button), focus left inside would keep it on screen via
+    // :focus-within; focus on the body means it was on the × that just unmounted.
+    else if (
+      closing &&
+      (ref.current?.contains(document.activeElement) || document.activeElement === document.body)
+    ) {
+      returnFocus();
+    }
   }, [open, returnFocus]);
+  // Esc closes the open list wherever focus is (timeline, toolbar…), before the store's handler
+  // would clear the selection instead.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      e.stopPropagation();
+      onClose();
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [open, onClose]);
   return (
     <nav
       ref={ref}
       className={`events-list ${open ? "open" : "sr-only"}`}
       aria-label={t("Events in view")}
-      onKeyDown={(e) => {
-        if (e.key === "Escape" && open) {
-          e.stopPropagation(); // the store would also clear the selection
-          onClose();
-        }
-      }}
     >
       {open && (
         <div className="events-list-head">
