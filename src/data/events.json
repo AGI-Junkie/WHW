@@ -10,9 +10,7 @@
     "importance": 5,
     "summary": "Around 3000 BC a ruler remembered as Narmer or Menes joined the Nile valley and delta into a single kingdom ruled from Thinis and later Memphis. The event opens Egypt's dynastic record and gives us the earliest surviving royal iconography, the Narmer Palette.",
     "wikipediaTitle": "Early Dynastic Period (Egypt)",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Early_Dynastic_Period_(Egypt)"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Early_Dynastic_Period_(Egypt)"]
   },
   {
     "id": "uruk-cuneiform",
@@ -25,9 +23,7 @@
     "importance": 5,
     "summary": "Scribes in the Sumerian city of Uruk pressed wedge-shaped marks into clay to track grain, livestock and labour, and by around 3000 BC those accounts had grown into the first writing system. Cuneiform served Sumerian, Akkadian, Hittite and Old Persian for three thousand years.",
     "wikipediaTitle": "Cuneiform",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Cuneiform"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Cuneiform"]
   },
   {
     "id": "great-pyramid-giza",
@@ -41,8 +37,74 @@
     "summary": "Pharaoh Khufu's tomb rose on the Giza plateau around 2560 BC, built from roughly 2.3 million limestone blocks by a rotating state workforce. It stood as the tallest structure made by humans for some 3,800 years and is the only one of the seven ancient wonders still standing.",
     "wikipediaTitle": "Great Pyramid of Giza",
     "sources": [
-      "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"
-    ]
+      "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza",
+      "https://en.wikipedia.org/wiki/Merer",
+      "https://en.wikipedia.org/wiki/Giza_pyramid_complex"
+    ],
+    "story": {
+      "tagline": "A king's tomb, two million blocks, and the tallest thing humans built for almost four thousand years.",
+      "facts": [
+        {
+          "label": "Built for",
+          "value": "Khufu, 4th Dynasty"
+        },
+        {
+          "label": "Completed",
+          "value": "c. 2560 BC"
+        },
+        {
+          "label": "Original height",
+          "value": "About 146.6 m"
+        },
+        {
+          "label": "Blocks",
+          "value": "Roughly 2.3 million"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "c. 2580 BC",
+          "heading": "A plateau above the Nile",
+          "text": "Khufu's builders choose the Giza plateau west of Memphis, level its bedrock and lay out a square base aligned almost exactly to the cardinal points.",
+          "lat": 29.98,
+          "lng": 31.13,
+          "altitude": 0.9
+        },
+        {
+          "when": "Quarry and river",
+          "heading": "Stone from near and far",
+          "text": "Most of the core is local limestone cut on the plateau itself. Fine white casing stone comes by boat from Tura across the river, and granite for the King's Chamber from Aswan, some 800 km upstream.",
+          "lat": 24.09,
+          "lng": 32.9,
+          "altitude": 1.6
+        },
+        {
+          "when": "The workers",
+          "heading": "A town beside the tomb",
+          "text": "Excavations south of the pyramid uncovered bakeries, breweries, barracks and the tombs of the builders: paid, fed crews rotating through the state's service, not slaves.",
+          "lat": 29.97,
+          "lng": 31.14,
+          "altitude": 0.6
+        },
+        {
+          "when": "Year 27 of Khufu",
+          "heading": "The Wadi al-Jarf papyri",
+          "text": "A logbook kept by an inspector called Merer, found at a Red Sea harbour, records his crew ferrying Tura limestone to Giza: the oldest inscribed papyri yet discovered.",
+          "lat": 29.0,
+          "lng": 32.6,
+          "altitude": 1.2
+        },
+        {
+          "when": "c. 2560 BC",
+          "heading": "The finished mountain",
+          "text": "Clad in polished limestone, the pyramid rises some 146 m. It will remain the tallest human-made structure until Lincoln Cathedral's spire in the 14th century AD.",
+          "lat": 29.98,
+          "lng": 31.13,
+          "altitude": 0.7
+        }
+      ],
+      "legacy": "The only one of the Seven Wonders of the Ancient World still standing, it has shaped every idea of ancient Egypt since Herodotus."
+    }
   },
   {
     "id": "indus-valley-mohenjo-daro",
@@ -55,9 +117,7 @@
     "importance": 4,
     "summary": "By 2500 BC the Indus Valley civilisation had built Mohenjo-daro and Harappa with gridded streets, brick drains and standardised weights across a territory larger than Egypt and Mesopotamia combined. Its script has never been deciphered, and the cities were largely abandoned by about 1900 BC.",
     "wikipediaTitle": "Mohenjo-daro",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Mohenjo-daro"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Mohenjo-daro"]
   },
   {
     "id": "stonehenge",
@@ -70,9 +130,7 @@
     "importance": 3,
     "summary": "Around 2500 BC Neolithic Britons raised the great sarsen circle and trilithons on Salisbury Plain, aligning the monument with the midsummer sunrise and midwinter sunset. The smaller bluestones had been hauled some 225 km from the Preseli Hills in Wales.",
     "wikipediaTitle": "Stonehenge",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Stonehenge"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Stonehenge"]
   },
   {
     "id": "sargon-of-akkad",
@@ -85,9 +143,7 @@
     "importance": 4,
     "summary": "Sargon of Akkad conquered the Sumerian city-states around 2334 BC and joined them with northern Mesopotamia under one ruler. Often called the first empire, Akkad set the model of a multi-ethnic state held together by a standing army, royal governors and a shared administrative language.",
     "wikipediaTitle": "Akkadian Empire",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Akkadian_Empire"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Akkadian_Empire"]
   },
   {
     "id": "epic-of-gilgamesh",
@@ -100,9 +156,7 @@
     "importance": 3,
     "summary": "Sumerian poems about Gilgamesh, a legendary king of Uruk, were written down around 2100 BC and later woven into a single Babylonian epic. Its story of friendship, a great flood and a failed quest for immortality makes it one of the oldest surviving works of literature.",
     "wikipediaTitle": "Epic of Gilgamesh",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Epic_of_Gilgamesh"]
   },
   {
     "id": "minoan-knossos",
@@ -115,9 +169,7 @@
     "importance": 3,
     "summary": "On Crete, the Minoans built the sprawling palace complex of Knossos around 1900 BC, with light wells, painted frescoes and storerooms for oil and grain. The palace economy of Bronze Age Crete traded across the Aegean and shaped the later Mycenaean world.",
     "wikipediaTitle": "Knossos",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Knossos"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Knossos"]
   },
   {
     "id": "code-of-hammurabi",
@@ -130,9 +182,7 @@
     "importance": 5,
     "summary": "Hammurabi of Babylon had some 282 legal rulings carved on a basalt stele, setting prices, wages, family law and famously proportional retribution. It is the fullest law code to survive from the ancient Near East and shaped later Mesopotamian legal thinking.",
     "wikipediaTitle": "Code of Hammurabi",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Code_of_Hammurabi"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Code_of_Hammurabi"],
     "story": {
       "tagline": "A king writes the law in stone, for everyone to see.",
       "quote": {
@@ -197,9 +247,7 @@
     "importance": 3,
     "summary": "Pharaoh Akhenaten broke with Egypt's traditional gods to worship the sun disc Aten, and around 1346 BC founded a new capital at Amarna. The revolution in religion and art barely outlived him: his successors, among them Tutankhamun, abandoned the city and restored the old cults.",
     "wikipediaTitle": "Amarna",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Amarna"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Amarna"]
   },
   {
     "id": "lapita-voyagers",
@@ -212,9 +260,7 @@
     "importance": 3,
     "summary": "From the Bismarck Archipelago, makers of distinctive stamped Lapita pottery sailed east in outrigger canoes, reaching Vanuatu, Fiji, Tonga and Samoa by about 850 BC. They were the ancestors of the Polynesians, who later settled the remotest islands on Earth.",
     "wikipediaTitle": "Lapita culture",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Lapita_culture"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Lapita_culture"]
   },
   {
     "id": "battle-of-kadesh",
@@ -241,9 +287,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Kadesh"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Kadesh"]
   },
   {
     "id": "shang-oracle-bones",
@@ -256,9 +300,7 @@
     "importance": 4,
     "summary": "At Anyang, the late Shang court asked its ancestors about harvests, wars and weather by cracking turtle shells and ox bones with heat and writing the question beside the cracks. These inscriptions are the earliest substantial body of Chinese writing, the direct ancestor of today's characters.",
     "wikipediaTitle": "Oracle bone script",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Oracle_bone_script"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Oracle_bone_script"]
   },
   {
     "id": "olmec-san-lorenzo",
@@ -271,9 +313,7 @@
     "importance": 3,
     "summary": "On the Gulf Coast of Mexico, the Olmecs built San Lorenzo, the first great centre of Mesoamerica, and carved colossal basalt heads weighing up to 40 tonnes. Their art, ballgame and calendar ideas passed on to the Maya and later peoples.",
     "wikipediaTitle": "San Lorenzo Tenochtitlán",
-    "sources": [
-      "https://en.wikipedia.org/wiki/San_Lorenzo_Tenochtitlán"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/San_Lorenzo_Tenochtitlán"]
   },
   {
     "id": "bronze-age-collapse",
@@ -286,9 +326,7 @@
     "importance": 4,
     "summary": "Within a few decades around 1200–1150 BC the Mycenaean palaces, the Hittite Empire and the great Levantine ports were destroyed or abandoned, and Egypt fought off the Sea Peoples. Literacy, long-distance trade and centralised states vanished across the eastern Mediterranean for centuries.",
     "wikipediaTitle": "Late Bronze Age collapse",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Late_Bronze_Age_collapse"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Late_Bronze_Age_collapse"]
   },
   {
     "id": "kingdom-of-kush",
@@ -301,9 +339,7 @@
     "importance": 3,
     "summary": "As Egypt's New Kingdom weakened after 1070 BC, the Nubian kingdom of Kush reasserted itself from Napata on the middle Nile. Its kings later conquered Egypt outright as the Twenty-fifth Dynasty, and the state endured at Meroë into the fourth century AD.",
     "wikipediaTitle": "Kingdom of Kush",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Kingdom_of_Kush"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Kingdom_of_Kush"]
   },
   {
     "id": "phoenician-alphabet",
@@ -316,9 +352,7 @@
     "importance": 4,
     "summary": "Merchants of Byblos, Tyre and Sidon used a script of 22 consonant signs, one per sound, that was far easier to learn than cuneiform or hieroglyphs. Carried along their sea trade routes, it became the parent of the Greek, Latin, Hebrew and Arabic alphabets.",
     "wikipediaTitle": "Phoenician alphabet",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Phoenician_alphabet"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Phoenician_alphabet"]
   },
   {
     "id": "first-olympic-games",
@@ -331,9 +365,7 @@
     "importance": 3,
     "summary": "By Greek tradition the first Olympic Games were held at the sanctuary of Zeus in Olympia in 776 BC, with a single footrace. The festival grew to include wrestling, chariot racing and the pentathlon, and was held every four years for more than a millennium.",
     "wikipediaTitle": "Ancient Olympic Games",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Ancient_Olympic_Games"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Ancient_Olympic_Games"]
   },
   {
     "id": "founding-of-rome",
@@ -346,9 +378,7 @@
     "importance": 5,
     "summary": "Roman tradition dated the founding of the city by Romulus to 753 BC on the hills above the Tiber. Archaeology confirms continuous settlement on the Palatine from the eighth century, the seed of a state that would govern the Mediterranean world.",
     "wikipediaTitle": "Founding of Rome",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Founding_of_Rome"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Founding_of_Rome"]
   },
   {
     "id": "fall-of-nineveh",
@@ -381,9 +411,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Nineveh_(612_BC)"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Nineveh_(612_BC)"]
   },
   {
     "id": "cyrus-takes-babylon",
@@ -397,8 +425,78 @@
     "summary": "In 539 BC the Persian king Cyrus II entered Babylon almost without a fight, ending the Neo-Babylonian Empire. His Achaemenid realm became the largest the world had seen, and he let deported peoples, among them the Judeans, return to their homelands.",
     "wikipediaTitle": "Fall of Babylon",
     "sources": [
-      "https://en.wikipedia.org/wiki/Fall_of_Babylon"
-    ]
+      "https://en.wikipedia.org/wiki/Fall_of_Babylon",
+      "https://en.wikipedia.org/wiki/Cyrus_Cylinder",
+      "https://en.wikipedia.org/wiki/Nabonidus_Chronicle"
+    ],
+    "story": {
+      "tagline": "The greatest city of its age opens its gates, and a Persian king writes his own version of the story in clay.",
+      "quote": {
+        "text": "I am Cyrus, king of the universe, the great king, the powerful king, king of Babylon, king of Sumer and Akkad, king of the four quarters of the world.",
+        "by": "The Cyrus Cylinder, after 539 BC (British Museum translation)"
+      },
+      "facts": [
+        {
+          "label": "Battle of Opis",
+          "value": "September 539 BC"
+        },
+        {
+          "label": "Babylon taken",
+          "value": "October 539 BC"
+        },
+        {
+          "label": "Last king",
+          "value": "Nabonidus"
+        },
+        {
+          "label": "Empire",
+          "value": "Achaemenid Persia"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "550 BC",
+          "heading": "A Persian rises",
+          "text": "Cyrus II, king of Anshan in southern Iran, overthrows his Median overlord and goes on to conquer Lydia in Anatolia.",
+          "lat": 29.98,
+          "lng": 52.41,
+          "altitude": 1.4
+        },
+        {
+          "when": "September 539 BC",
+          "heading": "Opis",
+          "text": "On the Tigris, Cyrus defeats the army of Nabonidus, whose long absences and religious reforms have alienated Babylon's priests.",
+          "lat": 33.5,
+          "lng": 44.3,
+          "altitude": 0.9
+        },
+        {
+          "when": "October 539 BC",
+          "heading": "Babylon",
+          "text": "According to the Nabonidus Chronicle, Cyrus's troops enter Babylon without a battle; Cyrus follows about two weeks later and is received peacefully.",
+          "lat": 32.54,
+          "lng": 44.42,
+          "altitude": 0.6
+        },
+        {
+          "when": "After 539 BC",
+          "heading": "The Cylinder",
+          "text": "A clay cylinder in Akkadian presents Cyrus as chosen by Marduk, restoring temples and letting displaced peoples to return to their homes.",
+          "lat": 32.54,
+          "lng": 44.42,
+          "altitude": 0.8
+        },
+        {
+          "when": "538 BC",
+          "heading": "Return to Jerusalem",
+          "text": "The biblical book of Ezra records a decree letting the Judean exiles return and rebuild their temple.",
+          "lat": 31.78,
+          "lng": 35.23,
+          "altitude": 0.9
+        }
+      ],
+      "legacy": "Babylon became a capital of an empire stretching from the Aegean to Central Asia, and Cyrus entered Greek and Hebrew tradition as a model ruler."
+    }
   },
   {
     "id": "buddha-enlightenment",
@@ -411,9 +509,7 @@
     "importance": 4,
     "summary": "Siddhartha Gautama, a prince of the Shakya clan, is said to have attained awakening beneath a fig tree at Bodh Gaya and then taught the four noble truths at Sarnath. Buddhism spread from the Ganges plain to Sri Lanka, Central Asia, China and beyond.",
     "wikipediaTitle": "Gautama Buddha",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Gautama_Buddha"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Gautama_Buddha"]
   },
   {
     "id": "athenian-democracy",
@@ -426,9 +522,7 @@
     "importance": 4,
     "summary": "In 508 BC Cleisthenes reorganised Athenian citizens into ten territorial tribes and gave the assembly and a council of 500 real power over the city. The system that resulted, direct rule by the adult male citizen body, is the ancestor of every later democracy.",
     "wikipediaTitle": "Athenian democracy",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Athenian_democracy"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Athenian_democracy"]
   },
   {
     "id": "confucius-teaching",
@@ -441,9 +535,7 @@
     "importance": 4,
     "summary": "Kong Qiu, known in the West as Confucius, taught ritual propriety, filial duty and government by moral example in the state of Lu during China's Spring and Autumn period. His disciples' record of his sayings, the Analects, became the backbone of Chinese statecraft and education.",
     "wikipediaTitle": "Confucius",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Confucius"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Confucius"]
   },
   {
     "id": "battle-of-marathon",
@@ -470,9 +562,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Marathon"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Marathon"]
   },
   {
     "id": "battle-of-salamis",
@@ -499,9 +589,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Salamis"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Salamis"]
   },
   {
     "id": "parthenon",
@@ -515,9 +603,7 @@
     "importance": 4,
     "summary": "Under Pericles, Athens spent the treasury of its Delian League on a marble temple to Athena on the Acropolis, built between 447 and 432 BC. Its sculpture and proportions became the reference point of classical architecture for the next two and a half thousand years.",
     "wikipediaTitle": "Parthenon",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Parthenon"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Parthenon"]
   },
   {
     "id": "peloponnesian-war",
@@ -545,9 +631,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Peloponnesian_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Peloponnesian_War"]
   },
   {
     "id": "alexander-gaugamela",
@@ -574,9 +658,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Gaugamela"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Gaugamela"],
     "story": {
       "tagline": "Twenty-five years old, Alexander gambles everything on one charge.",
       "facts": [
@@ -645,9 +727,7 @@
     "importance": 4,
     "summary": "The Ptolemaic kings made Alexandria the scholarly capital of the Hellenistic world, collecting hundreds of thousands of scrolls in the Library and its Mouseion. Scholars working there edited Homer, measured the Earth and laid the foundations of geometry and anatomy.",
     "wikipediaTitle": "Library of Alexandria",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Library_of_Alexandria"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Library_of_Alexandria"]
   },
   {
     "id": "punic-wars-begin",
@@ -675,9 +755,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Punic_Wars"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Punic_Wars"]
   },
   {
     "id": "ashoka-kalinga",
@@ -691,8 +769,78 @@
     "summary": "The Mauryan emperor Ashoka conquered Kalinga around 261 BC at a terrible cost in lives, then, by his own inscriptions, turned to Buddhism and a policy of moral rule. His edicts carved on rocks and pillars across South Asia and his missions helped carry Buddhism beyond India.",
     "wikipediaTitle": "Ashoka",
     "sources": [
-      "https://en.wikipedia.org/wiki/Ashoka"
-    ]
+      "https://en.wikipedia.org/wiki/Ashoka",
+      "https://en.wikipedia.org/wiki/Kalinga_War",
+      "https://en.wikipedia.org/wiki/Edicts_of_Ashoka"
+    ],
+    "story": {
+      "tagline": "An emperor counts the dead of his own war, and has his remorse carved into rock.",
+      "quote": {
+        "text": "Beloved-of-the-Gods, King Piyadasi, conquered the Kalingas eight years after his coronation. One hundred and fifty thousand were deported, one hundred thousand were killed and many more died (from other causes).",
+        "by": "Ashoka, Major Rock Edict XIII, c. 256 BC (tr. S. Dhammika)"
+      },
+      "facts": [
+        {
+          "label": "Emperor",
+          "value": "Ashoka, Maurya dynasty"
+        },
+        {
+          "label": "Kalinga War",
+          "value": "c. 261 BC"
+        },
+        {
+          "label": "Capital",
+          "value": "Pataliputra (Patna)"
+        },
+        {
+          "label": "Edicts",
+          "value": "More than 30 inscriptions"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "c. 268 BC",
+          "heading": "Pataliputra",
+          "text": "Ashoka, grandson of Chandragupta Maurya, rules most of the subcontinent from a capital on the Ganges.",
+          "lat": 25.61,
+          "lng": 85.14,
+          "altitude": 1.2
+        },
+        {
+          "when": "c. 261 BC",
+          "heading": "Kalinga",
+          "text": "He conquers Kalinga on the Bay of Bengal, the last major region outside Mauryan rule, at enormous cost of life.",
+          "lat": 20.26,
+          "lng": 85.84,
+          "altitude": 0.9
+        },
+        {
+          "when": "c. 256 BC",
+          "heading": "Remorse in stone",
+          "text": "In his thirteenth rock edict, carved at sites such as Shahbazgarhi in the north-west but left out of the copies in Kalinga itself, Ashoka voices deep regret and turns to conquest by dhamma.",
+          "lat": 34.22,
+          "lng": 72.17,
+          "altitude": 0.8
+        },
+        {
+          "when": "3rd century BC",
+          "heading": "Pillars and edicts",
+          "text": "Inscriptions in Prakrit, Greek and Aramaic appear from Afghanistan to Karnataka, preaching tolerance and care for people and animals.",
+          "lat": 31.6,
+          "lng": 65.7,
+          "altitude": 2.0
+        },
+        {
+          "when": "c. 250 BC",
+          "heading": "Missions abroad",
+          "text": "Buddhist missionaries, by tradition including Ashoka's son Mahinda, carry the teaching to Sri Lanka and beyond.",
+          "lat": 8.35,
+          "lng": 80.39,
+          "altitude": 1.4
+        }
+      ],
+      "legacy": "Ashoka's lion capital at Sarnath is India's national emblem, and his wheel of dhamma sits at the centre of its flag."
+    }
   },
   {
     "id": "eratosthenes-earth",
@@ -705,9 +853,7 @@
     "importance": 3,
     "summary": "Eratosthenes, head of the Library of Alexandria, compared the angle of the noon Sun at Alexandria and Syene and worked out the circumference of the Earth around 240 BC. Depending on the length of the stadion he used, his figure was close to the true value.",
     "wikipediaTitle": "Eratosthenes",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Eratosthenes"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Eratosthenes"]
   },
   {
     "id": "qin-unification",
@@ -721,8 +867,74 @@
     "summary": "King Zheng of Qin defeated the last of the warring states in 221 BC and declared himself First Emperor, standardising script, coinage, axle widths and law across the realm. His tomb near Xi'an is guarded by the terracotta army, and his short dynasty set the template for two millennia of imperial China.",
     "wikipediaTitle": "Qin Shi Huang",
     "sources": [
-      "https://en.wikipedia.org/wiki/Qin_Shi_Huang"
-    ]
+      "https://en.wikipedia.org/wiki/Qin_Shi_Huang",
+      "https://en.wikipedia.org/wiki/Qin_dynasty",
+      "https://en.wikipedia.org/wiki/Terracotta_Army"
+    ],
+    "story": {
+      "tagline": "The last of the Warring States falls, and one king takes a new title: First Emperor.",
+      "facts": [
+        {
+          "label": "Unification",
+          "value": "221 BC"
+        },
+        {
+          "label": "Capital",
+          "value": "Xianyang, near Xi'an"
+        },
+        {
+          "label": "Dynasty lasted",
+          "value": "Until 206 BC"
+        },
+        {
+          "label": "Terracotta army",
+          "value": "More than 8,000 figures"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "230–221 BC",
+          "heading": "The conquest",
+          "text": "King Zheng of Qin defeats the other Warring States one by one, ending with Qi on the eastern coast in 221 BC.",
+          "lat": 36.5,
+          "lng": 118.0,
+          "altitude": 2.0
+        },
+        {
+          "when": "221 BC",
+          "heading": "A new title",
+          "text": "Zheng proclaims himself Qin Shi Huangdi, the First Emperor, and divides the realm into commanderies run by appointed officials.",
+          "lat": 34.38,
+          "lng": 108.71,
+          "altitude": 0.9
+        },
+        {
+          "when": "After 221 BC",
+          "heading": "One script, one measure",
+          "text": "The Qin standardise writing, coins, weights and measures, and even the axle widths of carts, binding the conquered states together.",
+          "lat": 34.34,
+          "lng": 108.94,
+          "altitude": 1.4
+        },
+        {
+          "when": "After 215 BC",
+          "heading": "Walls and roads",
+          "text": "General Meng Tian links older frontier walls against the Xiongnu, and a network of roads and canals reaches the far south.",
+          "lat": 40.5,
+          "lng": 109.8,
+          "altitude": 1.8
+        },
+        {
+          "when": "210 BC",
+          "heading": "The tomb",
+          "text": "The emperor dies on tour and is buried near Mount Li, guarded by the terracotta army found by farmers digging a well in 1974.",
+          "lat": 34.38,
+          "lng": 109.25,
+          "altitude": 0.6
+        }
+      ],
+      "legacy": "The dynasty collapsed four years after his death, but the unified bureaucratic empire it created endured, and the name Qin probably lives on in 'China'."
+    }
   },
   {
     "id": "battle-of-cannae",
@@ -749,9 +961,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Cannae"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Cannae"]
   },
   {
     "id": "zhang-qian-silk-road",
@@ -765,9 +975,7 @@
     "importance": 4,
     "summary": "Sent west by Emperor Wu of Han in 138 BC to find allies against the Xiongnu, Zhang Qian spent years as a captive before reaching Central Asia. His reports of the lands beyond the Pamirs opened official Han contact with the west and the trade routes later called the Silk Road.",
     "wikipediaTitle": "Zhang Qian",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Zhang_Qian"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Zhang_Qian"]
   },
   {
     "id": "teotihuacan-rises",
@@ -780,9 +988,7 @@
     "importance": 3,
     "summary": "In the Valley of Mexico, Teotihuacan grew from around 100 BC into a planned city of perhaps 100,000 people, dominated by the Pyramids of the Sun and Moon along the Avenue of the Dead. Its influence reached Maya courts far to the south before the centre burned in the sixth century AD.",
     "wikipediaTitle": "Teotihuacan",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Teotihuacan"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Teotihuacan"]
   },
   {
     "id": "caesar-crosses-rubicon",
@@ -809,9 +1015,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Caesar%27s_Civil_War"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Caesar%27s_Civil_War"],
     "story": {
       "tagline": "A shallow river, a legal line, and a general who refuses to stop.",
       "quote": {
@@ -876,9 +1080,7 @@
     "importance": 4,
     "summary": "On the Ides of March, 44 BC, a group of senators led by Brutus and Cassius stabbed Julius Caesar to death at a meeting of the Senate. Meant to save the Republic, the murder set off civil wars that ended with Caesar's heir Octavian as sole ruler.",
     "wikipediaTitle": "Assassination of Julius Caesar",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar"]
   },
   {
     "id": "augustus-principate",
@@ -891,9 +1093,7 @@
     "importance": 5,
     "summary": "After defeating Antony and Cleopatra at Actium, Octavian accepted the name Augustus in 27 BC and ruled as first citizen while keeping republican forms. His settlement began two centuries of relative peace, the Pax Romana, across the Mediterranean world.",
     "wikipediaTitle": "Augustus",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Augustus"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Augustus"]
   },
   {
     "id": "crucifixion-of-jesus",
@@ -906,9 +1106,7 @@
     "importance": 5,
     "summary": "Jesus of Nazareth was executed in Roman Judaea under the prefect Pontius Pilate around AD 30–33. His followers, and above all the missions of Paul of Tarsus, carried the new faith across the empire until it became Rome's state religion in the fourth century.",
     "wikipediaTitle": "Crucifixion of Jesus",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Crucifixion_of_Jesus"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Crucifixion_of_Jesus"]
   },
   {
     "id": "vesuvius-pompeii",
@@ -921,9 +1119,7 @@
     "importance": 4,
     "summary": "In AD 79 Mount Vesuvius erupted and buried Pompeii, Herculaneum and nearby towns under ash and pyroclastic flows. Pliny the Younger described the eruption in letters, and the excavated cities preserve an unequalled picture of everyday Roman life.",
     "wikipediaTitle": "Eruption of Mount Vesuvius in 79 AD",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Eruption_of_Mount_Vesuvius_in_79_AD"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Eruption_of_Mount_Vesuvius_in_79_AD"]
   },
   {
     "id": "cai-lun-paper",
@@ -936,9 +1132,7 @@
     "importance": 4,
     "summary": "In AD 105 the Han court official Cai Lun presented the emperor with an improved method of making paper from bark, hemp, rags and fishing nets. Cheap writing material spread through East Asia and, centuries later, through the Islamic world to Europe.",
     "wikipediaTitle": "Cai Lun",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Cai_Lun"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Cai_Lun"]
   },
   {
     "id": "council-of-nicaea",
@@ -951,9 +1145,7 @@
     "importance": 3,
     "summary": "Emperor Constantine summoned bishops from across the Roman Empire to Nicaea in 325 to settle the Arian controversy over the nature of Christ. The council produced the first version of the Nicene Creed and set a pattern of emperors shaping church doctrine.",
     "wikipediaTitle": "First Council of Nicaea",
-    "sources": [
-      "https://en.wikipedia.org/wiki/First_Council_of_Nicaea"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/First_Council_of_Nicaea"]
   },
   {
     "id": "constantinople-founded",
@@ -966,9 +1158,7 @@
     "importance": 5,
     "summary": "Constantine the Great dedicated the rebuilt city of Byzantium as his new capital in AD 330 and legalised Christianity across the empire. Constantinople guarded the Bosphorus and outlasted Rome itself as the seat of the Eastern Roman state for eleven centuries.",
     "wikipediaTitle": "Constantinople",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Constantinople"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Constantinople"]
   },
   {
     "id": "sack-of-rome-410",
@@ -981,9 +1171,7 @@
     "importance": 3,
     "summary": "On 24 August 410 Alaric's Visigoths entered Rome and plundered it for three days, the first time in eight centuries that the city had fallen to a foreign enemy. The shock prompted Augustine to write The City of God.",
     "wikipediaTitle": "Sack of Rome (410)",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Sack_of_Rome_(410)"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Sack_of_Rome_(410)"]
   },
   {
     "id": "catalaunian-plains",
@@ -1010,9 +1198,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_the_Catalaunian_Plains"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_the_Catalaunian_Plains"]
   },
   {
     "id": "fall-of-western-rome",
@@ -1025,9 +1211,7 @@
     "importance": 5,
     "summary": "In 476 the Germanic commander Odoacer deposed the boy emperor Romulus Augustulus at Ravenna and sent the imperial insignia to Constantinople. Roman administration in the west gave way to Frankish, Gothic and Vandal kingdoms, while the eastern empire continued.",
     "wikipediaTitle": "Fall of the Western Roman Empire",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"]
   },
   {
     "id": "aryabhata",
@@ -1040,9 +1224,7 @@
     "importance": 4,
     "summary": "In 499 the mathematician Aryabhata completed the Aryabhatiya, a compact verse treatise of Gupta-era India covering arithmetic, algebra, trigonometry and astronomy. He gave an accurate value of pi and argued that the Earth rotates on its axis.",
     "wikipediaTitle": "Aryabhata",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Aryabhata"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Aryabhata"]
   },
   {
     "id": "hagia-sophia",
@@ -1055,9 +1237,7 @@
     "importance": 4,
     "summary": "Emperor Justinian rebuilt the great church of Constantinople in under six years and dedicated it in 537. Its vast dome, seemingly floating on a ring of windows, was the largest in the world for nearly a thousand years; it later served as a mosque, a museum and again a mosque.",
     "wikipediaTitle": "Hagia Sophia",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Hagia_Sophia"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Hagia_Sophia"]
   },
   {
     "id": "plague-of-justinian",
@@ -1071,9 +1251,7 @@
     "importance": 4,
     "summary": "Bubonic plague appeared at Pelusium in Egypt in 541 and spread along trade routes to Constantinople and across the Mediterranean, killing a large share of the population. It was the first recorded plague pandemic and returned in waves for two centuries.",
     "wikipediaTitle": "Plague of Justinian",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Plague_of_Justinian"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Plague_of_Justinian"]
   },
   {
     "id": "maya-classic-tikal",
@@ -1086,9 +1264,7 @@
     "importance": 3,
     "summary": "By AD 600 Tikal in the Petén rainforest was a Maya city-state of temple pyramids, causeways and carved stelae, locked in dynastic war with Calakmul. Maya scribes kept the most sophisticated writing and calendar systems of the pre-Columbian Americas before the southern cities were abandoned after 900.",
     "wikipediaTitle": "Tikal",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Tikal"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Tikal"]
   },
   {
     "id": "tang-dynasty",
@@ -1102,9 +1278,7 @@
     "importance": 4,
     "summary": "Founded in 618, the Tang dynasty ruled from Chang'an, then the largest city in the world, at the eastern end of the Silk Road. Tang China saw a golden age of poetry, printing and a cosmopolitan culture that absorbed Buddhism and influenced Korea and Japan.",
     "wikipediaTitle": "Tang dynasty",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Tang_dynasty"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Tang_dynasty"]
   },
   {
     "id": "hijra-of-muhammad",
@@ -1118,8 +1292,74 @@
     "summary": "Muhammad and his followers moved from Mecca to Medina in 622, an emigration that starts the Islamic calendar and created the first Muslim community. Within a century of his death in 632 Arab armies ruled from the Atlantic coast of Iberia to the Indus.",
     "wikipediaTitle": "Hijrah",
     "sources": [
-      "https://en.wikipedia.org/wiki/Hijrah"
-    ]
+      "https://en.wikipedia.org/wiki/Hijrah",
+      "https://en.wikipedia.org/wiki/Islamic_calendar",
+      "https://en.wikipedia.org/wiki/Constitution_of_Medina"
+    ],
+    "story": {
+      "tagline": "A secret journey north from Mecca to Medina that became the first year of a calendar.",
+      "facts": [
+        {
+          "label": "Journey",
+          "value": "September 622"
+        },
+        {
+          "label": "Distance",
+          "value": "More than 300 km"
+        },
+        {
+          "label": "Calendar",
+          "value": "Year 1 AH"
+        },
+        {
+          "label": "Calendar adopted",
+          "value": "Under Caliph Umar, c. 638"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "c. 610–622",
+          "heading": "Mecca",
+          "text": "In Mecca, Muhammad's preaching wins followers but also the hostility of the leaders of his own tribe, the Quraysh, and his small community faces persecution.",
+          "lat": 21.42,
+          "lng": 39.83,
+          "altitude": 0.8
+        },
+        {
+          "when": "621–622",
+          "heading": "The pledges of Aqaba",
+          "text": "Men from Yathrib, an oasis to the north riven by feuds, pledge to accept Muhammad and protect him and his followers.",
+          "lat": 21.43,
+          "lng": 39.87,
+          "altitude": 0.7
+        },
+        {
+          "when": "622",
+          "heading": "The journey",
+          "text": "Muhammad and Abu Bakr leave Mecca secretly, sheltering in the cave of Thawr before taking a little-used route north.",
+          "lat": 21.38,
+          "lng": 39.85,
+          "altitude": 0.7
+        },
+        {
+          "when": "622",
+          "heading": "Quba and Medina",
+          "text": "They arrive at Quba, where the first mosque is built, then enter Yathrib, which comes to be called Medina, the City of the Prophet.",
+          "lat": 24.47,
+          "lng": 39.61,
+          "altitude": 0.7
+        },
+        {
+          "when": "622 onwards",
+          "heading": "The Constitution of Medina",
+          "text": "A charter binds the emigrants, Medina's tribes and its Jewish clans into one community with shared obligations.",
+          "lat": 24.47,
+          "lng": 39.61,
+          "altitude": 0.9
+        }
+      ],
+      "legacy": "The Hijra marks the founding of the first Muslim polity; the Islamic calendar still counts its years from it."
+    }
   },
   {
     "id": "battle-of-yarmouk",
@@ -1146,9 +1386,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_the_Yarmuk"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_the_Yarmuk"]
   },
   {
     "id": "battle-of-tours",
@@ -1175,9 +1413,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Tours"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Tours"]
   },
   {
     "id": "battle-of-talas",
@@ -1204,9 +1440,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Talas"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Talas"]
   },
   {
     "id": "abbasid-baghdad-founded",
@@ -1219,9 +1453,7 @@
     "importance": 4,
     "summary": "Caliph al-Mansur laid out his round city on the Tigris in 762 as the Abbasid capital. Baghdad became the centre of a translation movement that preserved and extended Greek, Persian and Indian science, mathematics and medicine for centuries.",
     "wikipediaTitle": "Baghdad",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Baghdad"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Baghdad"]
   },
   {
     "id": "lindisfarne-raid",
@@ -1234,9 +1466,7 @@
     "importance": 3,
     "summary": "In June 793 Norse raiders plundered the monastery on the island of Lindisfarne off Northumbria, an attack that shocked Christian Europe. It is conventionally taken as the start of the Viking Age, three centuries of raiding, trading and settlement from Russia to Newfoundland.",
     "wikipediaTitle": "Lindisfarne",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Lindisfarne"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Lindisfarne"]
   },
   {
     "id": "charlemagne-crowned",
@@ -1249,9 +1479,7 @@
     "importance": 5,
     "summary": "On Christmas Day 800, Pope Leo III crowned the Frankish king Charlemagne emperor of the Romans in St Peter's Basilica. The coronation revived the idea of a Western empire and tied it to the papacy, an alliance that shaped medieval Europe.",
     "wikipediaTitle": "Charlemagne",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Charlemagne"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Charlemagne"]
   },
   {
     "id": "angkor-founded",
@@ -1264,9 +1492,7 @@
     "importance": 3,
     "summary": "Jayavarman II declared himself universal ruler on Phnom Kulen in 802, founding the Khmer Empire that would build Angkor. Its vast reservoirs and the temple of Angkor Wat, raised under Suryavarman II in the twelfth century, served a city of several hundred thousand people.",
     "wikipediaTitle": "Khmer Empire",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Khmer_Empire"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Khmer_Empire"]
   },
   {
     "id": "house-of-wisdom",
@@ -1279,9 +1505,7 @@
     "importance": 4,
     "summary": "Under the Abbasid caliph al-Ma'mun, scholars in Baghdad translated Greek, Persian and Indian works into Arabic and built on them. Al-Khwarizmi's work there gave the world the words algebra and algorithm, and carried Hindu-Arabic numerals westward.",
     "wikipediaTitle": "House of Wisdom",
-    "sources": [
-      "https://en.wikipedia.org/wiki/House_of_Wisdom"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/House_of_Wisdom"]
   },
   {
     "id": "song-dynasty",
@@ -1295,9 +1519,7 @@
     "importance": 3,
     "summary": "Founded in 960 and ruling from Kaifeng, then Hangzhou, the Song dynasty presided over a commercial revolution: paper money, movable type, the magnetic compass and gunpowder weapons. Its economy was the most advanced in the world until the Mongol conquest.",
     "wikipediaTitle": "Song dynasty",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Song_dynasty"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Song_dynasty"]
   },
   {
     "id": "baptism-of-kievan-rus",
@@ -1310,9 +1532,7 @@
     "importance": 3,
     "summary": "Around 988 Grand Prince Vladimir of Kiev accepted Byzantine Christianity and had his people baptised in the Dnieper. The choice bound the eastern Slavs to Constantinople's church, script and art, shaping the cultures of Ukraine, Belarus and Russia.",
     "wikipediaTitle": "Christianization of Kievan Rus'",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Christianization_of_Kievan_Rus'"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Christianization_of_Kievan_Rus'"]
   },
   {
     "id": "leif-erikson-vinland",
@@ -1325,9 +1545,7 @@
     "importance": 3,
     "summary": "Around the year 1000 Leif Erikson and other Greenlanders reached the coast of North America, and a Norse camp at L'Anse aux Meadows in Newfoundland has been excavated and dated to that time. The settlement lasted only a few years, five centuries before Columbus.",
     "wikipediaTitle": "L'Anse aux Meadows",
-    "sources": [
-      "https://en.wikipedia.org/wiki/L%27Anse_aux_Meadows"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/L%27Anse_aux_Meadows"]
   },
   {
     "id": "tale-of-genji",
@@ -1340,9 +1558,7 @@
     "importance": 3,
     "summary": "Murasaki Shikibu, a lady-in-waiting at the Heian court in Kyoto, wrote The Tale of Genji in the early eleventh century. Following the loves and losses of a prince, it is often called the world's first novel.",
     "wikipediaTitle": "The Tale of Genji",
-    "sources": [
-      "https://en.wikipedia.org/wiki/The_Tale_of_Genji"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/The_Tale_of_Genji"]
   },
   {
     "id": "cahokia",
@@ -1355,9 +1571,7 @@
     "importance": 3,
     "summary": "Around 1050 Cahokia, near present-day St. Louis, grew into the largest city north of Mexico, with perhaps 10,000 to 20,000 people. Its Monks Mound is the largest earthwork in the Americas; the city was largely abandoned by 1350.",
     "wikipediaTitle": "Cahokia",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Cahokia"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Cahokia"]
   },
   {
     "id": "east-west-schism",
@@ -1370,9 +1584,7 @@
     "importance": 4,
     "summary": "In 1054 papal legates laid a bull of excommunication against the Patriarch of Constantinople on the altar of Hagia Sophia, and the patriarch replied in kind. The break between the Latin and Greek churches hardened over the following centuries and has never been fully healed.",
     "wikipediaTitle": "East–West Schism",
-    "sources": [
-      "https://en.wikipedia.org/wiki/East–West_Schism"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/East–West_Schism"]
   },
   {
     "id": "battle-of-hastings",
@@ -1399,9 +1611,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Hastings"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Hastings"]
   },
   {
     "id": "university-of-bologna",
@@ -1414,9 +1624,7 @@
     "importance": 3,
     "summary": "Students in Bologna banded together to hire teachers of Roman law, and by tradition the university dates from 1088. It is the oldest university in continuous operation and the model for the self-governing universities that spread across Europe.",
     "wikipediaTitle": "University of Bologna",
-    "sources": [
-      "https://en.wikipedia.org/wiki/University_of_Bologna"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/University_of_Bologna"]
   },
   {
     "id": "first-crusade",
@@ -1443,9 +1651,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/First_Crusade"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/First_Crusade"]
   },
   {
     "id": "angkor-wat",
@@ -1459,9 +1665,7 @@
     "importance": 3,
     "summary": "King Suryavarman II began Angkor Wat in the early twelfth century as a temple to Vishnu at the heart of the Khmer capital. The largest religious monument in the world, it later became a Buddhist shrine and appears on Cambodia's flag.",
     "wikipediaTitle": "Angkor Wat",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Angkor_Wat"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Angkor_Wat"]
   },
   {
     "id": "great-zimbabwe",
@@ -1474,9 +1678,7 @@
     "importance": 3,
     "summary": "From about 1200 the Shona built Great Zimbabwe's mortarless granite enclosures, the capital of a state that grew rich on cattle and on gold traded to the Swahili coast. Chinese and Persian imports found in the ruins show how far that trade reached.",
     "wikipediaTitle": "Great Zimbabwe",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Great_Zimbabwe"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Great_Zimbabwe"]
   },
   {
     "id": "genghis-khan-proclaimed",
@@ -1490,8 +1692,74 @@
     "summary": "A council of Mongol chiefs on the Onon river acclaimed Temüjin as Genghis Khan in 1206, uniting the steppe tribes under one law and decimal army. Within a lifetime his family ruled the largest contiguous land empire in history.",
     "wikipediaTitle": "Genghis Khan",
     "sources": [
-      "https://en.wikipedia.org/wiki/Genghis_Khan"
-    ]
+      "https://en.wikipedia.org/wiki/Genghis_Khan",
+      "https://en.wikipedia.org/wiki/Mongol_Empire",
+      "https://en.wikipedia.org/wiki/Mongol_invasion_of_the_Khwarazmian_Empire"
+    ],
+    "story": {
+      "tagline": "An outcast boy unites the steppe, and the largest land empire in history begins on the banks of the Onon.",
+      "facts": [
+        {
+          "label": "Born",
+          "value": "Temüjin, c. 1162"
+        },
+        {
+          "label": "Proclaimed",
+          "value": "Kurultai of 1206"
+        },
+        {
+          "label": "Died",
+          "value": "August 1227"
+        },
+        {
+          "label": "Mongol Empire at peak",
+          "value": "About 24 million km²"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "c. 1171",
+          "heading": "An outcast",
+          "text": "After his father is poisoned, Temüjin's family is abandoned by its clan and survives by hunting and foraging on the steppe.",
+          "lat": 48.6,
+          "lng": 110.5,
+          "altitude": 1.0
+        },
+        {
+          "when": "1206",
+          "heading": "The kurultai",
+          "text": "At an assembly near the source of the Onon, the tribes acclaim Temüjin as Genghis Khan. He reorganises them into units of tens, hundreds and thousands.",
+          "lat": 48.8,
+          "lng": 108.8,
+          "altitude": 0.8
+        },
+        {
+          "when": "1215",
+          "heading": "Zhongdu",
+          "text": "Mongol armies take the Jin capital Zhongdu, the future Beijing, after a long siege.",
+          "lat": 39.9,
+          "lng": 116.4,
+          "altitude": 1.0
+        },
+        {
+          "when": "1219–1221",
+          "heading": "Khwarazm",
+          "text": "When the Khwarazmian shah has his envoys killed, Genghis destroys his empire, sacking Bukhara, Samarkand and Merv.",
+          "lat": 39.65,
+          "lng": 66.96,
+          "altitude": 1.6
+        },
+        {
+          "when": "1227",
+          "heading": "Death and succession",
+          "text": "He dies during a campaign against the Western Xia. His sons and grandsons go on to conquer China, Persia and Russia.",
+          "lat": 38.5,
+          "lng": 106.3,
+          "altitude": 1.4
+        }
+      ],
+      "legacy": "The Mongol empire reopened the Silk Roads under one rule, moving goods, ideas and, in time, the Black Death across Eurasia."
+    }
   },
   {
     "id": "fall-of-zhongdu",
@@ -1518,9 +1786,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Zhongdu"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Zhongdu"]
   },
   {
     "id": "magna-carta",
@@ -1533,9 +1799,7 @@
     "importance": 4,
     "summary": "Rebel barons forced King John to seal a charter at Runnymede in June 1215 that bound the crown to due process and consent to taxation. Though annulled within weeks, it was reissued repeatedly and became a founding text for constitutional limits on power.",
     "wikipediaTitle": "Magna Carta",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Magna_Carta"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Magna_Carta"],
     "story": {
       "tagline": "In a meadow by the Thames, a king is told he is not above the law.",
       "quote": {
@@ -1614,9 +1878,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Siege_of_Baghdad_(1258)"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Siege_of_Baghdad_(1258)"]
   },
   {
     "id": "battle-of-ain-jalut",
@@ -1643,9 +1905,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Ain_Jalut"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Ain_Jalut"]
   },
   {
     "id": "kublai-founds-yuan",
@@ -1658,9 +1918,7 @@
     "importance": 4,
     "summary": "Kublai Khan declared the Yuan dynasty in 1271 and completed the conquest of Song China by 1279, ruling from Dadu, today's Beijing. For the first time all of China was governed by a steppe dynasty, and travellers such as Marco Polo crossed a continent under one authority.",
     "wikipediaTitle": "Yuan dynasty",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Yuan_dynasty"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Yuan_dynasty"]
   },
   {
     "id": "marco-polo",
@@ -1674,9 +1932,7 @@
     "importance": 3,
     "summary": "In 1271 the Venetian merchant Marco Polo set out with his father and uncle for the court of Kublai Khan, returning only in 1295. His account of the Mongol empire and China became one of the most widely read books of medieval Europe.",
     "wikipediaTitle": "Marco Polo",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Marco_Polo"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Marco_Polo"]
   },
   {
     "id": "osman-founds-ottomans",
@@ -1689,9 +1945,7 @@
     "importance": 4,
     "summary": "Around 1299 Osman, leader of a small Turkish principality in northwestern Anatolia, began raiding and absorbing Byzantine territory. The dynasty named after him grew into the Ottoman Empire, which lasted until 1922.",
     "wikipediaTitle": "Osman I",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Osman_I"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Osman_I"]
   },
   {
     "id": "swahili-coast-kilwa",
@@ -1704,9 +1958,7 @@
     "importance": 2,
     "summary": "Kilwa Kisiwani controlled the gold trade from Sofala in the fourteenth century, its coral-stone palace of Husuni Kubwa the grandest building in sub-Saharan Africa. Ibn Battuta called it one of the finest cities he had seen, and Swahili grew as the coast's trading language.",
     "wikipediaTitle": "Kilwa Sultanate",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Kilwa_Sultanate"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Kilwa_Sultanate"]
   },
   {
     "id": "mansa-musa-hajj",
@@ -1720,8 +1972,74 @@
     "summary": "The Mali emperor Mansa Musa crossed the Sahara to Mecca in 1324 with a caravan so laden with gold that his spending unsettled Egyptian prices for years. His journey put Mali and Timbuktu on European maps and funded the city's mosques and scholarship.",
     "wikipediaTitle": "Mansa Musa",
     "sources": [
-      "https://en.wikipedia.org/wiki/Mansa_Musa"
-    ]
+      "https://en.wikipedia.org/wiki/Mansa_Musa",
+      "https://en.wikipedia.org/wiki/Catalan_Atlas",
+      "https://en.wikipedia.org/wiki/Djinguereber_Mosque"
+    ],
+    "story": {
+      "tagline": "A West African emperor crosses the Sahara, and the Mediterranean world learns where the gold comes from.",
+      "facts": [
+        {
+          "label": "Ruler",
+          "value": "Mansa Musa of Mali"
+        },
+        {
+          "label": "Pilgrimage",
+          "value": "1324–1325"
+        },
+        {
+          "label": "Route",
+          "value": "Mali – Sahara – Cairo – Mecca"
+        },
+        {
+          "label": "Witness",
+          "value": "al-Umari, writing in Cairo"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "1324",
+          "heading": "The caravan leaves Mali",
+          "text": "Musa sets out from the Niger heartland of his empire with a vast retinue of attendants and camels carrying gold, heading north-east across the Sahara.",
+          "lat": 12.0,
+          "lng": -8.0,
+          "altitude": 1.6
+        },
+        {
+          "when": "July 1324",
+          "heading": "Gold in Cairo",
+          "text": "In Cairo he gives and spends so freely that, according to the historian al-Umari who heard it from locals more than a decade later, the value of gold in the city was still depressed.",
+          "lat": 30.04,
+          "lng": 31.24,
+          "altitude": 0.9
+        },
+        {
+          "when": "1324",
+          "heading": "Mecca",
+          "text": "He completes the hajj, and returns with scholars, jurists and the Andalusian poet and architect al-Sahili, who is credited with building in Timbuktu and Gao.",
+          "lat": 21.42,
+          "lng": 39.83,
+          "altitude": 1.0
+        },
+        {
+          "when": "1325",
+          "heading": "Timbuktu",
+          "text": "Back in Mali, Musa sponsors the Djinguereber Mosque. Timbuktu grows into a centre of Islamic learning whose manuscript libraries survive today.",
+          "lat": 16.77,
+          "lng": -3.01,
+          "altitude": 0.7
+        },
+        {
+          "when": "1375",
+          "heading": "On the map",
+          "text": "The Catalan Atlas drawn in Majorca shows a crowned African king holding a gold nugget, labelled Musse Melly, lord of the Black people of Guinea.",
+          "lat": 39.57,
+          "lng": 2.65,
+          "altitude": 1.4
+        }
+      ],
+      "legacy": "Musa's journey fixed Mali in the European imagination as a land of gold, a reputation that helped pull Portuguese ships down the African coast a century later."
+    }
   },
   {
     "id": "tenochtitlan-founded",
@@ -1734,9 +2052,7 @@
     "importance": 4,
     "summary": "By tradition in 1325 the Mexica settled on an island in Lake Texcoco where, as prophesied, they saw an eagle on a cactus. Tenochtitlan grew into the capital of the Aztec Empire, a city of causeways and canals of perhaps 200,000 people.",
     "wikipediaTitle": "Tenochtitlan",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Tenochtitlan"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Tenochtitlan"]
   },
   {
     "id": "hundred-years-war",
@@ -1764,9 +2080,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Hundred_Years'_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Hundred_Years'_War"]
   },
   {
     "id": "black-death",
@@ -1780,9 +2094,7 @@
     "importance": 5,
     "summary": "Plague carried from the Black Sea reached Sicily and Genoa in 1347 and killed perhaps a third to half of Europe's people within four years, with equally severe losses in the Middle East. Labour shortages broke serfdom's grip, raised wages and unsettled the church's authority.",
     "wikipediaTitle": "Black Death",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Black_Death"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Black_Death"],
     "story": {
       "tagline": "In four years, a third of Europe dies.",
       "quote": {
@@ -1855,9 +2167,7 @@
     "importance": 3,
     "summary": "Zhu Yuanzhang, a peasant rebel leader, took Dadu in 1368, drove the Mongol court back to the steppe and founded the Ming dynasty from Nanjing. The Mongol world empire had now lost China, its richest province.",
     "wikipediaTitle": "Ming dynasty",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Ming_dynasty"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Ming_dynasty"]
   },
   {
     "id": "timur-samarkand",
@@ -1870,9 +2180,7 @@
     "importance": 3,
     "summary": "Timur took power in Transoxiana in 1370 and campaigned from Delhi to Ankara, funnelling plunder and captured craftsmen into Samarkand. His Registan and Gur-e Amir made the city a centre of Persianate art, and his descendants founded the Mughal Empire.",
     "wikipediaTitle": "Timur",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Timur"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Timur"]
   },
   {
     "id": "kalmar-union",
@@ -1885,9 +2193,7 @@
     "importance": 2,
     "summary": "In 1397 Margaret I brought Denmark, Norway and Sweden under a single monarch at Kalmar. The union held, uneasily, until Gustav Vasa led Sweden out of it in 1523, while Denmark and Norway stayed joined until 1814.",
     "wikipediaTitle": "Kalmar Union",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Kalmar_Union"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Kalmar_Union"]
   },
   {
     "id": "zheng-he-voyages",
@@ -1901,9 +2207,7 @@
     "importance": 4,
     "summary": "Between 1405 and 1433 the admiral Zheng He led seven Ming fleets of hundreds of ships to Southeast Asia, India, Arabia and the East African coast. The voyages projected Ming prestige and gathered tribute before the court abandoned them for good.",
     "wikipediaTitle": "Ming treasure voyages",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Ming_treasure_voyages"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Ming_treasure_voyages"]
   },
   {
     "id": "forbidden-city",
@@ -1916,9 +2220,7 @@
     "importance": 3,
     "summary": "The Yongle Emperor moved the Ming capital to Beijing and completed the Forbidden City in 1420, a walled palace of nearly a thousand buildings. It was the seat of 24 emperors until 1912 and is now the Palace Museum.",
     "wikipediaTitle": "Forbidden City",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Forbidden_City"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Forbidden_City"]
   },
   {
     "id": "pachacuti-inca",
@@ -1931,9 +2233,7 @@
     "importance": 4,
     "summary": "From 1438 the ruler Pachacuti turned the kingdom of Cusco into Tawantinsuyu, the Inca Empire, rebuilding the capital and probably commissioning Machu Picchu. Within a century it stretched 4,000 km along the Andes, joined by roads and run without writing, using knotted khipu.",
     "wikipediaTitle": "Pachacuti",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Pachacuti"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Pachacuti"]
   },
   {
     "id": "sejong-hangul",
@@ -1946,9 +2246,7 @@
     "importance": 3,
     "summary": "King Sejong of Joseon published Hunminjeongeum in 1446, a new alphabet designed so that ordinary Koreans could read and write without mastering Chinese characters. Hangul is now the script of both Koreas and is celebrated as a feat of deliberate linguistic design.",
     "wikipediaTitle": "Hangul",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Hangul"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Hangul"]
   },
   {
     "id": "gutenberg-printing-press",
@@ -1961,9 +2259,7 @@
     "importance": 5,
     "summary": "Johannes Gutenberg combined movable metal type, oil-based ink and a screw press at Mainz around 1450, printing his 42-line Bible by 1455. Books became cheap enough to spread the Reformation, the scientific revolution and mass literacy across Europe.",
     "wikipediaTitle": "Printing press",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Printing_press"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Printing_press"],
     "story": {
       "tagline": "Movable metal type, and knowledge starts to multiply.",
       "facts": [
@@ -2038,9 +2334,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Fall_of_Constantinople"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Fall_of_Constantinople"],
     "story": {
       "tagline": "Fifty-three days, the greatest walls of the medieval world, and a 21-year-old sultan.",
       "facts": [
@@ -2109,9 +2403,7 @@
     "importance": 4,
     "summary": "In 1482 Portugal built São Jorge da Mina on the Gold Coast to trade for gold. Elmina later became a major holding point in the Atlantic slave trade, through which some 12 million Africans were shipped to the Americas between the 16th and 19th centuries.",
     "wikipediaTitle": "Elmina Castle",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Elmina_Castle"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Elmina_Castle"]
   },
   {
     "id": "dias-rounds-the-cape",
@@ -2124,9 +2416,7 @@
     "importance": 4,
     "summary": "Bartolomeu Dias was blown past the southern tip of Africa in 1488 and confirmed that the Atlantic and Indian Oceans joined. Portugal now had a sea route towards Asia, and King John II renamed his Cape of Storms the Cape of Good Hope.",
     "wikipediaTitle": "Bartolomeu Dias",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Bartolomeu_Dias"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Bartolomeu_Dias"]
   },
   {
     "id": "columbus-1492",
@@ -2139,9 +2429,7 @@
     "importance": 5,
     "summary": "Sailing for Castile, Christopher Columbus made landfall in the Bahamas on 12 October 1492 believing he had reached Asia. The permanent link he opened between the hemispheres began the Columbian exchange of crops, animals and diseases, and the catastrophic collapse of Indigenous populations.",
     "wikipediaTitle": "Voyages of Christopher Columbus",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Voyages_of_Christopher_Columbus"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Voyages_of_Christopher_Columbus"],
     "story": {
       "tagline": "Three ships sail west to find Asia, and two worlds collide.",
       "facts": [
@@ -2210,9 +2498,7 @@
     "importance": 4,
     "summary": "Vasco da Gama's fleet anchored at Calicut in May 1498, the first ships to sail from Europe to India around Africa. Portugal used the route to seize the spice trade by force, planting fortified posts from Mozambique to Malacca.",
     "wikipediaTitle": "Vasco da Gama",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Vasco_da_Gama"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Vasco_da_Gama"]
   },
   {
     "id": "cabral-brazil",
@@ -2225,9 +2511,7 @@
     "importance": 3,
     "summary": "Pedro Álvares Cabral's India-bound fleet made landfall on the Bahian coast in April 1500 and claimed the land under the Treaty of Tordesillas. Portuguese sugar plantations followed, worked by enslaved Africans, making Brazil the largest destination of the Atlantic slave trade.",
     "wikipediaTitle": "Pedro Álvares Cabral",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Pedro_%C3%81lvares_Cabral"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Pedro_%C3%81lvares_Cabral"]
   },
   {
     "id": "sistine-chapel-ceiling",
@@ -2241,9 +2525,7 @@
     "importance": 3,
     "summary": "Between 1508 and 1512 Michelangelo painted the ceiling of the Sistine Chapel for Pope Julius II, covering it with scenes from Genesis including the Creation of Adam. It is a summit of High Renaissance art.",
     "wikipediaTitle": "Sistine Chapel ceiling",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Sistine_Chapel_ceiling"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Sistine_Chapel_ceiling"]
   },
   {
     "id": "luther-95-theses",
@@ -2256,9 +2538,7 @@
     "importance": 5,
     "summary": "Martin Luther published his objections to the sale of indulgences at Wittenberg in October 1517, and printing carried them across Germany within weeks. The Reformation split western Christianity, remade European politics and fuelled more than a century of religious war.",
     "wikipediaTitle": "Ninety-five Theses",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Ninety-five_Theses"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Ninety-five_Theses"]
   },
   {
     "id": "magellan-elcano-circumnavigation",
@@ -2272,9 +2552,7 @@
     "importance": 4,
     "summary": "Five ships left Sanlúcar in 1519 under Ferdinand Magellan; he was killed in the Philippines and Juan Sebastián Elcano brought the Victoria home in 1522 with 18 survivors. The voyage proved the world could be sailed around and revealed the true scale of the Pacific.",
     "wikipediaTitle": "Magellan expedition",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Magellan_expedition"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Magellan_expedition"]
   },
   {
     "id": "fall-of-tenochtitlan",
@@ -2302,8 +2580,78 @@
       }
     ],
     "sources": [
-      "https://en.wikipedia.org/wiki/Fall_of_Tenochtitlan"
-    ]
+      "https://en.wikipedia.org/wiki/Fall_of_Tenochtitlan",
+      "https://en.wikipedia.org/wiki/Siege_of_Tenochtitlan",
+      "https://en.wikipedia.org/wiki/The_Broken_Spears"
+    ],
+    "story": {
+      "tagline": "An island city of perhaps 200,000, a siege of nearly three months, and an epidemic no one could see.",
+      "quote": {
+        "text": "Broken spears lie in the roads; we have torn our hair in our grief. The houses are roofless now, and their walls are red with blood.",
+        "by": "Anonymous Nahuatl poem from Tlatelolco, in Miguel León-Portilla, The Broken Spears (1959)"
+      },
+      "facts": [
+        {
+          "label": "Siege",
+          "value": "26 May – 13 August 1521"
+        },
+        {
+          "label": "Spanish",
+          "value": "About 900 soldiers"
+        },
+        {
+          "label": "Indigenous allies",
+          "value": "Tens of thousands, led by Tlaxcala"
+        },
+        {
+          "label": "Last tlatoani",
+          "value": "Cuauhtémoc"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "8 November 1519",
+          "heading": "The meeting",
+          "text": "Moctezuma II receives Hernán Cortés on the causeway into Tenochtitlan, a city of canals and temples on Lake Texcoco larger than any in Spain.",
+          "lat": 19.43,
+          "lng": -99.13,
+          "altitude": 0.7
+        },
+        {
+          "when": "30 June 1520",
+          "heading": "La Noche Triste",
+          "text": "After Moctezuma's death the city rises. The Spanish flee across the causeways by night and lose hundreds of men and most of their gold.",
+          "lat": 19.45,
+          "lng": -99.17,
+          "altitude": 0.6
+        },
+        {
+          "when": "Autumn 1520",
+          "heading": "Smallpox",
+          "text": "An epidemic carried from the Caribbean sweeps the valley, killing a large share of the population and the new ruler Cuitláhuac.",
+          "lat": 19.43,
+          "lng": -99.13,
+          "altitude": 1.2
+        },
+        {
+          "when": "1521",
+          "heading": "Brigantines on the lake",
+          "text": "Cortés rebuilds his army in Tlaxcala, launches thirteen brigantines on the lake and cuts the causeways and the aqueduct from Chapultepec.",
+          "lat": 19.42,
+          "lng": -99.18,
+          "altitude": 0.9
+        },
+        {
+          "when": "13 August 1521",
+          "heading": "Tlatelolco",
+          "text": "After street-by-street fighting, Cuauhtémoc is captured fleeing by canoe, and the last defenders in Tlatelolco surrender.",
+          "lat": 19.45,
+          "lng": -99.14,
+          "altitude": 0.5
+        }
+      ],
+      "legacy": "Mexico City was built on the ruins, the capital of New Spain; the Templo Mayor lay buried under it until 1978."
+    }
   },
   {
     "id": "first-battle-of-panipat",
@@ -2330,9 +2678,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/First_Battle_of_Panipat"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/First_Battle_of_Panipat"]
   },
   {
     "id": "pizarro-cajamarca",
@@ -2345,9 +2691,7 @@
     "importance": 3,
     "summary": "Francisco Pizarro's small band ambushed and captured Atahualpa at Cajamarca in November 1532, collected an enormous ransom in gold and silver, then executed him. Spanish rule over the Andes and the silver of Potosí followed.",
     "wikipediaTitle": "Battle of Cajamarca",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Cajamarca"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Cajamarca"]
   },
   {
     "id": "copernicus-de-revolutionibus",
@@ -2360,9 +2704,7 @@
     "importance": 5,
     "summary": "Nicolaus Copernicus, a canon of Frombork, published De revolutionibus in 1543, the year he died, arguing that the Earth and planets orbit the Sun. The book began the Scientific Revolution's long overthrow of the Earth-centred cosmos.",
     "wikipediaTitle": "De revolutionibus orbium coelestium",
-    "sources": [
-      "https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"]
   },
   {
     "id": "potosi-silver",
@@ -2375,9 +2717,7 @@
     "importance": 3,
     "summary": "Spanish miners opened the Cerro Rico at Potosí in 1545, drawing forced Indigenous labour through the mita system into the richest silver deposit on earth. Its bullion paid for Habsburg wars and flowed through Manila to China, creating the first truly global money supply.",
     "wikipediaTitle": "Potosí",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Potos%C3%AD"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Potos%C3%AD"]
   },
   {
     "id": "battle-of-lepanto",
@@ -2410,9 +2750,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Lepanto"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Lepanto"]
   },
   {
     "id": "spanish-armada",
@@ -2439,9 +2777,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Spanish_Armada"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Spanish_Armada"]
   },
   {
     "id": "dutch-east-india-company",
@@ -2454,9 +2790,7 @@
     "importance": 3,
     "summary": "The States General granted the VOC a monopoly on Asian trade in 1602 and the power to make war and treaties, funded by the first publicly traded shares. It seized the spice islands by force and ruled Java for nearly two centuries as a corporate state.",
     "wikipediaTitle": "Dutch East India Company",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Dutch_East_India_Company"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Dutch_East_India_Company"]
   },
   {
     "id": "tokugawa-shogunate",
@@ -2469,9 +2803,7 @@
     "importance": 4,
     "summary": "Tokugawa Ieyasu took the title of shogun in 1603 after winning at Sekigahara and ruled Japan from Edo. His successors closed the country to most foreign contact for over two centuries, a period of internal peace, urban growth and a flourishing merchant culture.",
     "wikipediaTitle": "Tokugawa shogunate",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Tokugawa_shogunate"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Tokugawa_shogunate"]
   },
   {
     "id": "jamestown",
@@ -2484,9 +2816,7 @@
     "importance": 3,
     "summary": "In 1607 the Virginia Company landed settlers at Jamestown on Powhatan land in Chesapeake Bay. Nearly wiped out by famine and conflict, it survived on tobacco to become the first permanent English settlement in North America.",
     "wikipediaTitle": "Jamestown, Virginia",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Jamestown,_Virginia"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Jamestown,_Virginia"]
   },
   {
     "id": "galileo-telescope",
@@ -2499,9 +2829,7 @@
     "importance": 4,
     "summary": "In 1610 Galileo Galilei, a professor at Padua, published Sidereus Nuncius, reporting mountains on the Moon, countless new stars and four moons orbiting Jupiter. His observations gave strong support to Copernicus and led to his trial by the Inquisition in 1633.",
     "wikipediaTitle": "Sidereus Nuncius",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Sidereus_Nuncius"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Sidereus_Nuncius"]
   },
   {
     "id": "thirty-years-war",
@@ -2529,9 +2857,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Thirty_Years%27_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Thirty_Years%27_War"]
   },
   {
     "id": "taj-mahal",
@@ -2545,9 +2871,7 @@
     "importance": 3,
     "summary": "The Mughal emperor Shah Jahan began the Taj Mahal at Agra in 1632 as a tomb for his wife Mumtaz Mahal, who had died in childbirth. Built in white marble inlaid with stone by some 20,000 workers, it is the crowning work of Mughal architecture.",
     "wikipediaTitle": "Taj Mahal",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Taj_Mahal"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Taj_Mahal"]
   },
   {
     "id": "ming-qing-transition",
@@ -2560,9 +2884,7 @@
     "importance": 4,
     "summary": "In 1644 rebels took Beijing and the last Ming emperor hanged himself; weeks later Manchu armies entered the city and proclaimed the Qing dynasty. The Qing went on to double the size of the empire and ruled China until 1912.",
     "wikipediaTitle": "Transition from Ming to Qing",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Transition_from_Ming_to_Qing"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Transition_from_Ming_to_Qing"]
   },
   {
     "id": "peace-of-westphalia",
@@ -2575,9 +2897,7 @@
     "importance": 4,
     "summary": "Treaties signed at Münster and Osnabrück in 1648 ended the Thirty Years' War and the Eighty Years' War. They confirmed the princes' right to choose their territory's religion and are often cited as the origin of the modern system of sovereign states.",
     "wikipediaTitle": "Peace of Westphalia",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Peace_of_Westphalia"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Peace_of_Westphalia"]
   },
   {
     "id": "benin-kingdom-bronzes",
@@ -2590,9 +2910,7 @@
     "importance": 2,
     "summary": "The Edo kingdom of Benin, walled and powerful in the Niger delta, had its guilds cast brass plaques and heads for the oba's palace from the sixteenth century. British troops sacked the city in 1897 and the looted works are still contested in museums worldwide.",
     "wikipediaTitle": "Kingdom of Benin",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Kingdom_of_Benin"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Kingdom_of_Benin"]
   },
   {
     "id": "battle-of-vienna-1683",
@@ -2619,9 +2937,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Vienna"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Vienna"]
   },
   {
     "id": "newton-principia",
@@ -2634,9 +2950,7 @@
     "importance": 5,
     "summary": "Isaac Newton's Principia, published in 1687, set out the laws of motion and universal gravitation and showed that one set of laws governs falling apples and orbiting planets. It became the foundation of physics for more than two centuries.",
     "wikipediaTitle": "Philosophiæ Naturalis Principia Mathematica",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Philosophiæ_Naturalis_Principia_Mathematica"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Philosophiæ_Naturalis_Principia_Mathematica"]
   },
   {
     "id": "glorious-revolution",
@@ -2649,9 +2963,7 @@
     "importance": 4,
     "summary": "Parliament invited William of Orange to replace James II in 1688, and the Bill of Rights of 1689 made the crown answerable to Parliament for taxes, laws and armies. The settlement underpinned Britain's constitutional monarchy and the credit that funded its later wars.",
     "wikipediaTitle": "Glorious Revolution",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Glorious_Revolution"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Glorious_Revolution"]
   },
   {
     "id": "encyclopedie",
@@ -2665,9 +2977,7 @@
     "importance": 3,
     "summary": "Denis Diderot and Jean le Rond d'Alembert began publishing the Encyclopédie in Paris in 1751, gathering the knowledge of the age, from trades to philosophy, in 28 volumes. Repeatedly banned, it became the flagship of the Enlightenment.",
     "wikipediaTitle": "Encyclopédie",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Encyclopédie"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Encyclopédie"]
   },
   {
     "id": "lisbon-earthquake",
@@ -2680,9 +2990,7 @@
     "importance": 4,
     "summary": "On All Saints' Day 1755 an earthquake, tsunami and fires destroyed most of Lisbon and killed tens of thousands. The disaster shook Enlightenment confidence in a benevolent order, inspired Voltaire's Candide and led to the first modern anti-seismic city plan.",
     "wikipediaTitle": "1755 Lisbon earthquake",
-    "sources": [
-      "https://en.wikipedia.org/wiki/1755_Lisbon_earthquake"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/1755_Lisbon_earthquake"]
   },
   {
     "id": "seven-years-war",
@@ -2722,9 +3030,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Seven_Years'_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Seven_Years'_War"]
   },
   {
     "id": "cook-reaches-australia",
@@ -2737,9 +3043,7 @@
     "importance": 3,
     "summary": "James Cook's Endeavour anchored in Botany Bay in April 1770 and charted the eastern coastline, which he claimed for Britain. Penal settlement at Sydney Cove followed in 1788, beginning the dispossession of Aboriginal peoples who had lived there for tens of thousands of years.",
     "wikipediaTitle": "First voyage of James Cook",
-    "sources": [
-      "https://en.wikipedia.org/wiki/First_voyage_of_James_Cook"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/First_voyage_of_James_Cook"]
   },
   {
     "id": "american-declaration-independence",
@@ -2752,9 +3056,7 @@
     "importance": 5,
     "summary": "Thirteen British colonies declared themselves independent states on 4 July 1776 in a text drafted mainly by Thomas Jefferson. French intervention helped secure the victory at Yorktown in 1781, and Britain recognised the United States in 1783.",
     "wikipediaTitle": "United States Declaration of Independence",
-    "sources": [
-      "https://en.wikipedia.org/wiki/United_States_Declaration_of_Independence"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/United_States_Declaration_of_Independence"],
     "story": {
       "tagline": "Thirteen colonies break with an empire, in the name of equality.",
       "quote": {
@@ -2819,9 +3121,7 @@
     "importance": 5,
     "summary": "James Watt and Matthew Boulton sold their first commercial separate-condenser engines from Birmingham in 1776, cutting coal use dramatically. Cheap rotary power drove mills, mines and later railways, and began the sustained growth and fossil-fuel emissions of the industrial age.",
     "wikipediaTitle": "Watt steam engine",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Watt_steam_engine"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Watt_steam_engine"]
   },
   {
     "id": "storming-of-the-bastille",
@@ -2834,9 +3134,7 @@
     "importance": 5,
     "summary": "A Paris crowd stormed the Bastille on 14 July 1789, weeks after the Third Estate declared itself a National Assembly. The revolution abolished feudal privilege and proclaimed the rights of man, then turned to terror and war before Napoleon took power.",
     "wikipediaTitle": "French Revolution",
-    "sources": [
-      "https://en.wikipedia.org/wiki/French_Revolution"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/French_Revolution"],
     "story": {
       "tagline": "A fortress falls, and a kingdom of eleven centuries begins to come apart.",
       "quote": {
@@ -2917,8 +3215,86 @@
       }
     ],
     "sources": [
-      "https://en.wikipedia.org/wiki/Haitian_Revolution"
-    ]
+      "https://en.wikipedia.org/wiki/Haitian_Revolution",
+      "https://en.wikipedia.org/wiki/Toussaint_Louverture",
+      "https://en.wikipedia.org/wiki/Battle_of_Vertières"
+    ],
+    "story": {
+      "tagline": "The richest colony on Earth, half a million enslaved people, and the only slave revolt that founded a nation.",
+      "quote": {
+        "text": "I want Liberty and Equality to reign in Saint-Domingue. I am working to make that happen. Unite yourselves to us, brothers, and fight with us for the same cause.",
+        "by": "Toussaint Louverture, proclamation at Camp Turel, 29 August 1793"
+      },
+      "facts": [
+        {
+          "label": "Uprising",
+          "value": "Night of 22 August 1791"
+        },
+        {
+          "label": "Enslaved in 1789",
+          "value": "About 500,000"
+        },
+        {
+          "label": "Decisive battle",
+          "value": "Vertières, 18 November 1803"
+        },
+        {
+          "label": "Independence",
+          "value": "1 January 1804"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "14 August 1791",
+          "heading": "Bois Caïman",
+          "text": "Enslaved leaders meet in the woods of the Northern Plain. Within a week the plantations around Cap-Français are burning.",
+          "lat": 19.7,
+          "lng": -72.2,
+          "altitude": 0.7
+        },
+        {
+          "when": "1793–1794",
+          "heading": "Abolition",
+          "text": "With Spain and Britain invading, French commissioners free the enslaved of the colony, and in 1794 Paris abolishes slavery across the empire.",
+          "lat": 48.86,
+          "lng": 2.35,
+          "altitude": 1.4
+        },
+        {
+          "when": "1801",
+          "heading": "Toussaint's constitution",
+          "text": "Toussaint Louverture, now master of the whole island, issues a constitution making himself governor for life.",
+          "lat": 19.76,
+          "lng": -72.2,
+          "altitude": 0.9
+        },
+        {
+          "when": "1802",
+          "heading": "Napoleon's expedition",
+          "text": "Napoleon sends some 20,000 troops under Leclerc to restore French control. Toussaint is seized and dies at Fort de Joux in the Jura in April 1803.",
+          "lat": 46.87,
+          "lng": 6.37,
+          "altitude": 1.4
+        },
+        {
+          "when": "18 November 1803",
+          "heading": "Vertières",
+          "text": "Jean-Jacques Dessalines's army, helped by yellow fever in the French ranks, routs the last French force outside Cap-Français.",
+          "lat": 19.73,
+          "lng": -72.21,
+          "altitude": 0.6
+        },
+        {
+          "when": "1 January 1804",
+          "heading": "Haiti",
+          "text": "At Gonaïves, Dessalines declares independence and restores the island's Taíno name.",
+          "lat": 19.45,
+          "lng": -72.68,
+          "altitude": 0.8
+        }
+      ],
+      "legacy": "The first Black republic and the second independent state in the Americas, Haiti was forced in 1825 to pay France an indemnity for recognition that burdened it for over a century."
+    }
   },
   {
     "id": "jenner-smallpox-vaccine",
@@ -2931,9 +3307,7 @@
     "importance": 4,
     "summary": "In 1796 the country doctor Edward Jenner inoculated a boy with cowpox and showed that he was then protected against smallpox. Vaccination spread worldwide within a decade, and in 1980 smallpox became the first human disease to be eradicated.",
     "wikipediaTitle": "Edward Jenner",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Edward_Jenner"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Edward_Jenner"]
   },
   {
     "id": "battle-of-austerlitz",
@@ -2966,9 +3340,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Austerlitz"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Austerlitz"]
   },
   {
     "id": "battle-of-waterloo",
@@ -3001,9 +3373,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Waterloo"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Waterloo"],
     "story": {
       "tagline": "Napoleon's last throw: one day in Belgium decides the fate of Europe.",
       "quote": {
@@ -3068,9 +3438,7 @@
     "importance": 4,
     "summary": "In April 1815 Mount Tambora on Sumbawa produced the largest volcanic eruption in recorded history. Its ash veil cooled the planet, and 1816 became the Year Without a Summer, with crop failures and famine across Europe, North America and China.",
     "wikipediaTitle": "1815 eruption of Mount Tambora",
-    "sources": [
-      "https://en.wikipedia.org/wiki/1815_eruption_of_Mount_Tambora"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/1815_eruption_of_Mount_Tambora"]
   },
   {
     "id": "argentina-independence",
@@ -3083,9 +3451,7 @@
     "importance": 2,
     "summary": "The Congress of Tucumán declared the United Provinces of the Río de la Plata independent from Spain on 9 July 1816. José de San Martín then crossed the Andes to carry the war to Chile and Peru.",
     "wikipediaTitle": "Argentine Declaration of Independence",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Argentine_Declaration_of_Independence"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Argentine_Declaration_of_Independence"]
   },
   {
     "id": "bolivar-boyaca",
@@ -3112,9 +3478,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Boyac%C3%A1"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Boyac%C3%A1"]
   },
   {
     "id": "liverpool-manchester-railway",
@@ -3127,9 +3491,7 @@
     "importance": 4,
     "summary": "Opened in 1830, the Liverpool and Manchester Railway was the first to run scheduled passenger and freight trains between two cities entirely by steam locomotive. Within twenty years railways were transforming trade, time-keeping and warfare across the world.",
     "wikipediaTitle": "Liverpool and Manchester Railway",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Liverpool_and_Manchester_Railway"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Liverpool_and_Manchester_Railway"]
   },
   {
     "id": "first-opium-war",
@@ -3157,9 +3519,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/First_Opium_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/First_Opium_War"]
   },
   {
     "id": "irish-great-famine",
@@ -3173,9 +3533,7 @@
     "importance": 3,
     "summary": "Potato blight destroyed the crop that fed most of rural Ireland from 1845, and about a million people died while food continued to be exported under British policy. Another million emigrated, and Ireland's population has never returned to its pre-famine level.",
     "wikipediaTitle": "Great Famine (Ireland)",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Great_Famine_(Ireland)"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Great_Famine_(Ireland)"]
   },
   {
     "id": "revolutions-of-1848",
@@ -3189,9 +3547,7 @@
     "importance": 4,
     "summary": "Starting in Paris in February 1848, revolutions spread to Vienna, Berlin, Milan, Budapest and dozens of other cities, demanding constitutions, national unity and social reform. Most were crushed within a year, but serfdom ended in Austria and new ideas of nationhood took hold.",
     "wikipediaTitle": "Revolutions of 1848",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Revolutions_of_1848"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Revolutions_of_1848"]
   },
   {
     "id": "darwin-origin-of-species",
@@ -3204,9 +3560,7 @@
     "importance": 5,
     "summary": "Charles Darwin set out evolution by natural selection in 1859 after two decades of evidence gathered since the Beagle voyage. The theory unified biology and reframed humanity's place in nature, provoking argument that continues in some quarters today.",
     "wikipediaTitle": "On the Origin of Species",
-    "sources": [
-      "https://en.wikipedia.org/wiki/On_the_Origin_of_Species"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/On_the_Origin_of_Species"],
     "story": {
       "tagline": "A voyage, twenty years of evidence, and one idea that explains life's diversity.",
       "quote": {
@@ -3286,9 +3640,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/American_Civil_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/American_Civil_War"]
   },
   {
     "id": "emancipation-of-serfs",
@@ -3301,9 +3653,7 @@
     "importance": 3,
     "summary": "In 1861 Tsar Alexander II abolished serfdom across the Russian Empire, freeing some 23 million people bound to private landowners. Peasants had to pay for their land over decades, and the half-measure fed the unrest that followed.",
     "wikipediaTitle": "Emancipation reform of 1861",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Emancipation_reform_of_1861"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Emancipation_reform_of_1861"]
   },
   {
     "id": "italian-unification",
@@ -3316,9 +3666,7 @@
     "importance": 3,
     "summary": "After wars against Austria and Garibaldi's expedition through Sicily and Naples, a parliament in Turin proclaimed Victor Emmanuel II king of Italy in 1861. Venice joined in 1866 and Rome in 1870, completing the Risorgimento.",
     "wikipediaTitle": "Italian unification",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Italian_unification"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Italian_unification"]
   },
   {
     "id": "meiji-restoration",
@@ -3332,8 +3680,86 @@
     "summary": "Samurai from Satsuma and Chōshū overthrew the shogunate in 1868 and restored the emperor, moving the court to Tokyo. In a generation Japan built railways, conscription, a constitution and heavy industry, becoming the first non-Western industrial great power.",
     "wikipediaTitle": "Meiji Restoration",
     "sources": [
-      "https://en.wikipedia.org/wiki/Meiji_Restoration"
-    ]
+      "https://en.wikipedia.org/wiki/Meiji_Restoration",
+      "https://en.wikipedia.org/wiki/Charter_Oath",
+      "https://en.wikipedia.org/wiki/Boshin_War"
+    ],
+    "story": {
+      "tagline": "Samurai overthrow the shogun in the emperor's name, then abolish the samurai.",
+      "quote": {
+        "text": "Knowledge shall be sought throughout the world so as to strengthen the foundation of imperial rule.",
+        "by": "The Charter Oath, article 5, 6 April 1868"
+      },
+      "facts": [
+        {
+          "label": "Restoration",
+          "value": "3 January 1868"
+        },
+        {
+          "label": "Emperor",
+          "value": "Meiji (Mutsuhito)"
+        },
+        {
+          "label": "Domains abolished",
+          "value": "1871"
+        },
+        {
+          "label": "Constitution",
+          "value": "1889"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "July 1853",
+          "heading": "Black ships",
+          "text": "Commodore Matthew Perry's American warships anchor off Uraga and demand that Japan open its ports, shaking the Tokugawa shogunate.",
+          "lat": 35.25,
+          "lng": 139.72,
+          "altitude": 0.8
+        },
+        {
+          "when": "3 January 1868",
+          "heading": "Kyoto",
+          "text": "Satsuma and Chōshū leaders proclaim the restoration of imperial rule in the name of the 15-year-old emperor.",
+          "lat": 35.02,
+          "lng": 135.76,
+          "altitude": 0.7
+        },
+        {
+          "when": "1868–1869",
+          "heading": "The Boshin War",
+          "text": "Shogunate loyalists are defeated in a civil war that ends at Hakodate. The emperor moves to Edo, renamed Tokyo.",
+          "lat": 41.8,
+          "lng": 140.76,
+          "altitude": 1.2
+        },
+        {
+          "when": "1871–1873",
+          "heading": "Remaking the state",
+          "text": "The domains become prefectures, the Iwakura Mission tours the US and Europe, and conscription replaces the samurai as Japan's army.",
+          "lat": 35.68,
+          "lng": 139.75,
+          "altitude": 1.0
+        },
+        {
+          "when": "1872",
+          "heading": "Railway",
+          "text": "Japan's first railway opens between Shinbashi in Tokyo and Yokohama.",
+          "lat": 35.47,
+          "lng": 139.62,
+          "altitude": 0.7
+        },
+        {
+          "when": "1889",
+          "heading": "A constitution",
+          "text": "The Meiji Constitution creates an elected Diet under a sovereign emperor.",
+          "lat": 35.68,
+          "lng": 139.75,
+          "altitude": 0.8
+        }
+      ],
+      "legacy": "Within forty years Japan defeated China and then Russia, the first Asian power to industrialise on Western terms and an empire of its own."
+    }
   },
   {
     "id": "suez-canal-opens",
@@ -3346,9 +3772,7 @@
     "importance": 4,
     "summary": "Opened in November 1869 after a decade of work by Egyptian labourers, the Suez Canal joined the Mediterranean and the Red Sea. It cut the sea voyage from Europe to India by thousands of kilometres and became one of the world's most strategic waterways.",
     "wikipediaTitle": "Suez Canal",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Suez_Canal"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Suez_Canal"]
   },
   {
     "id": "german-unification",
@@ -3361,9 +3785,7 @@
     "importance": 4,
     "summary": "After defeating France, Bismarck had Wilhelm I proclaimed German emperor in the Hall of Mirrors at Versailles in January 1871. A unified Germany became continental Europe's strongest economy and army, and the humiliation poisoned French politics until 1914.",
     "wikipediaTitle": "Unification of Germany",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Unification_of_Germany"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Unification_of_Germany"]
   },
   {
     "id": "telephone-patent",
@@ -3376,9 +3798,7 @@
     "importance": 3,
     "summary": "In March 1876 Alexander Graham Bell received a US patent for the telephone and spoke the first intelligible words over a wire to his assistant in Boston. Within a few decades telephone networks connected homes and businesses around the world.",
     "wikipediaTitle": "Invention of the telephone",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Invention_of_the_telephone"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Invention_of_the_telephone"]
   },
   {
     "id": "krakatoa-eruption",
@@ -3391,9 +3811,7 @@
     "importance": 3,
     "summary": "In August 1883 the volcanic island of Krakatoa in the Sunda Strait blew itself apart, with explosions heard thousands of kilometres away. Tsunamis killed more than 36,000 people, and the telegraph made it the first global news disaster.",
     "wikipediaTitle": "1883 eruption of Krakatoa",
-    "sources": [
-      "https://en.wikipedia.org/wiki/1883_eruption_of_Krakatoa"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/1883_eruption_of_Krakatoa"]
   },
   {
     "id": "berlin-conference",
@@ -3407,9 +3825,7 @@
     "importance": 4,
     "summary": "In 1884–85 European powers met in Berlin, without any African representatives, to set rules for claiming African territory. The conference accelerated the Scramble for Africa, and by 1914 nearly the whole continent was under European rule.",
     "wikipediaTitle": "Berlin Conference",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Berlin_Conference"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Berlin_Conference"]
   },
   {
     "id": "nz-womens-suffrage",
@@ -3422,9 +3838,7 @@
     "importance": 3,
     "summary": "New Zealand became the first self-governing country to give all adult women the parliamentary vote in September 1893, after a petition organised by Kate Sheppard. Australia followed in 1902 and the idea spread through the suffrage movements of Europe and North America.",
     "wikipediaTitle": "Women's suffrage in New Zealand",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Women%27s_suffrage_in_New_Zealand"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Women%27s_suffrage_in_New_Zealand"]
   },
   {
     "id": "battle-of-adwa",
@@ -3451,9 +3865,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Adwa"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Adwa"]
   },
   {
     "id": "australian-federation",
@@ -3466,9 +3878,7 @@
     "importance": 2,
     "summary": "Six British colonies federated as the Commonwealth of Australia on 1 January 1901 with a written constitution and a federal parliament. The new parliament's early laws also built the restrictive White Australia policy, dismantled only in the 1970s.",
     "wikipediaTitle": "Federation of Australia",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Federation_of_Australia"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Federation_of_Australia"]
   },
   {
     "id": "wright-flyer",
@@ -3481,9 +3891,7 @@
     "importance": 4,
     "summary": "On 17 December 1903 at Kitty Hawk, North Carolina, Orville and Wilbur Wright made the first controlled, sustained flights of a powered heavier-than-air aircraft; the longest lasted 59 seconds. Within forty years aircraft had reshaped travel and war.",
     "wikipediaTitle": "Wright Flyer",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Wright_Flyer"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Wright_Flyer"]
   },
   {
     "id": "russo-japanese-war",
@@ -3511,9 +3919,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Russo-Japanese_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Russo-Japanese_War"]
   },
   {
     "id": "einstein-annus-mirabilis",
@@ -3526,9 +3932,7 @@
     "importance": 4,
     "summary": "In 1905, while working as a clerk at the patent office in Bern, Albert Einstein published four papers on the photoelectric effect, Brownian motion, special relativity and the equivalence of mass and energy. Together they laid the foundations of modern physics.",
     "wikipediaTitle": "Annus mirabilis papers",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Annus_mirabilis_papers"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Annus_mirabilis_papers"]
   },
   {
     "id": "mexican-revolution",
@@ -3542,9 +3946,7 @@
     "importance": 3,
     "summary": "An uprising against the long dictatorship of Porfirio Díaz in 1910 grew into a decade of civil war involving Madero, Zapata, Villa and Carranza. It produced the 1917 Constitution, with land reform and labour rights, and cost perhaps a million lives.",
     "wikipediaTitle": "Mexican Revolution",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Mexican_Revolution"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Mexican_Revolution"]
   },
   {
     "id": "xinhai-revolution",
@@ -3558,9 +3960,7 @@
     "importance": 4,
     "summary": "An army mutiny at Wuchang in October 1911 spread across southern China, and in February 1912 the last Qing emperor, the child Puyi, abdicated. More than two thousand years of imperial rule ended, and the Republic of China was founded with Sun Yat-sen as provisional president.",
     "wikipediaTitle": "1911 Revolution",
-    "sources": [
-      "https://en.wikipedia.org/wiki/1911_Revolution"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/1911_Revolution"]
   },
   {
     "id": "sinking-of-titanic",
@@ -3572,9 +3972,7 @@
     "importance": 3,
     "summary": "On its maiden voyage, the liner Titanic struck an iceberg in the North Atlantic on the night of 14–15 April 1912 and sank in under three hours. More than 1,500 people died, and the disaster led to the first international safety rules for ships at sea.",
     "wikipediaTitle": "Titanic",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Titanic"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Titanic"]
   },
   {
     "id": "first-battle-of-the-marne",
@@ -3607,9 +4005,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/First_Battle_of_the_Marne"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/First_Battle_of_the_Marne"]
   },
   {
     "id": "panama-canal-opens",
@@ -3622,9 +4018,7 @@
     "importance": 3,
     "summary": "The canal opened in August 1914 after a decade of American construction, following a French attempt that cost tens of thousands of lives to disease. The United States backed Panama's secession from Colombia in 1903 to get the route, and handed the canal over in 1999.",
     "wikipediaTitle": "Panama Canal",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Panama_Canal"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Panama_Canal"]
   },
   {
     "id": "sarajevo-assassination",
@@ -3637,9 +4031,7 @@
     "importance": 5,
     "summary": "Gavrilo Princip shot Archduke Franz Ferdinand and his wife Sophie in Sarajevo on 28 June 1914. Austria-Hungary's ultimatum to Serbia set the alliance system in motion, and within five weeks the great powers of Europe were at war.",
     "wikipediaTitle": "Assassination of Archduke Franz Ferdinand",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand"]
   },
   {
     "id": "gallipoli-campaign",
@@ -3673,9 +4065,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Gallipoli_campaign"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Gallipoli_campaign"]
   },
   {
     "id": "battle-of-verdun",
@@ -3702,9 +4092,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Verdun"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Verdun"]
   },
   {
     "id": "russian-revolution-1917",
@@ -3717,9 +4105,7 @@
     "importance": 5,
     "summary": "Bread riots in Petrograd toppled the tsar in March 1917, and in November Lenin's Bolsheviks seized power from the provisional government. A civil war and the creation of the Soviet Union followed, making communism a force in world politics for seventy years.",
     "wikipediaTitle": "Russian Revolution",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Russian_Revolution"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Russian_Revolution"]
   },
   {
     "id": "us-entry-world-war-i",
@@ -3732,9 +4118,7 @@
     "importance": 4,
     "summary": "Congress declared war on Germany on 6 April 1917 after unrestricted submarine warfare and the Zimmermann telegram. American manpower and industry tipped the balance on the Western Front in 1918 and made the United States a decisive world power.",
     "wikipediaTitle": "American entry into World War I",
-    "sources": [
-      "https://en.wikipedia.org/wiki/American_entry_into_World_War_I"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/American_entry_into_World_War_I"]
   },
   {
     "id": "armistice-1918",
@@ -3747,9 +4131,7 @@
     "importance": 5,
     "summary": "German delegates signed the armistice in a railway carriage at Compiègne, and the guns fell silent at 11 a.m. on 11 November 1918. Around ten million soldiers had died; the Treaty of Versailles the following June imposed terms that embittered German politics.",
     "wikipediaTitle": "Armistice of 11 November 1918",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Armistice_of_11_November_1918"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Armistice_of_11_November_1918"]
   },
   {
     "id": "spanish-flu",
@@ -3763,9 +4145,7 @@
     "importance": 5,
     "summary": "An unusually deadly influenza spread around the world in waves from 1918, carried by troop movements at the end of the First World War. It infected about a third of humanity and killed somewhere between 25 and 50 million people, more than the war itself.",
     "wikipediaTitle": "Spanish flu",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Spanish_flu"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Spanish_flu"]
   },
   {
     "id": "treaty-of-versailles",
@@ -3778,9 +4158,7 @@
     "importance": 4,
     "summary": "Signed in the Hall of Mirrors on 28 June 1919, the Treaty of Versailles made Germany accept responsibility for the war, give up territory and colonies and pay reparations. It created the League of Nations, and its terms were bitterly resented in Germany.",
     "wikipediaTitle": "Treaty of Versailles",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Treaty_of_Versailles"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Treaty_of_Versailles"]
   },
   {
     "id": "treaty-of-lausanne",
@@ -3793,9 +4171,7 @@
     "importance": 3,
     "summary": "Signed in July 1923, the Treaty of Lausanne recognised the borders of the new Turkish state that had fought off the post-war partition of Anatolia. Months later Mustafa Kemal proclaimed the Republic of Turkey, and the Ottoman sultanate was already gone.",
     "wikipediaTitle": "Treaty of Lausanne",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Treaty_of_Lausanne"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Treaty_of_Lausanne"]
   },
   {
     "id": "discovery-of-penicillin",
@@ -3808,9 +4184,7 @@
     "importance": 4,
     "summary": "In 1928 Alexander Fleming saw that mould had killed the bacteria around it in a culture dish at St Mary's Hospital, London. Developed into a drug by Florey and Chain's team in Oxford during the Second World War, penicillin opened the age of antibiotics.",
     "wikipediaTitle": "History of penicillin",
-    "sources": [
-      "https://en.wikipedia.org/wiki/History_of_penicillin"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/History_of_penicillin"]
   },
   {
     "id": "wall-street-crash",
@@ -3823,9 +4197,7 @@
     "importance": 5,
     "summary": "Share prices collapsed on the New York exchange in late October 1929, and banking failures and trade barriers turned the slump into a worldwide depression. A quarter of American workers were jobless by 1933, and the crisis helped bring Hitler to power in Germany.",
     "wikipediaTitle": "Wall Street Crash of 1929",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Wall_Street_Crash_of_1929"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Wall_Street_Crash_of_1929"]
   },
   {
     "id": "salt-march",
@@ -3838,9 +4210,7 @@
     "importance": 4,
     "summary": "Mohandas Gandhi walked 385 kilometres to the sea at Dandi in March and April 1930 and made salt in defiance of the British monopoly. Tens of thousands were arrested in the civil disobedience that followed, and Indian independence became a question of when, not whether.",
     "wikipediaTitle": "Salt March",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Salt_March"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Salt_March"]
   },
   {
     "id": "holodomor",
@@ -3854,9 +4224,7 @@
     "importance": 4,
     "summary": "In 1932–33 Soviet grain requisitions, blacklisting of villages and a ban on peasants leaving caused a man-made famine in Soviet Ukraine that killed millions. Many countries recognise it as a genocide against the Ukrainian people.",
     "wikipediaTitle": "Holodomor",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Holodomor"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Holodomor"]
   },
   {
     "id": "spanish-civil-war",
@@ -3884,9 +4252,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Spanish_Civil_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Spanish_Civil_War"]
   },
   {
     "id": "hindenburg-disaster",
@@ -3901,9 +4267,7 @@
     "wikipediaTitle": "Hindenburg disaster",
     "commonsVideo": "File:1937-05-10 Special Release - Zeppelin Explodes Scores Dead.ogv",
     "videoCredit": "Universal Newsreel · Public domain",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Hindenburg_disaster"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Hindenburg_disaster"],
     "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/e/e4/1937-05-10_Special_Release_-_Zeppelin_Explodes_Scores_Dead.ogv/1937-05-10_Special_Release_-_Zeppelin_Explodes_Scores_Dead.ogv.480p.vp9.webm"
   },
   {
@@ -3937,9 +4301,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Invasion_of_Poland"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Invasion_of_Poland"]
   },
   {
     "id": "battle-of-britain",
@@ -3966,9 +4328,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Britain"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Britain"],
     "story": {
       "tagline": "The first major campaign fought entirely in the air.",
       "quote": {
@@ -4047,9 +4407,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Attack_on_Pearl_Harbor"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Attack_on_Pearl_Harbor"],
     "story": {
       "tagline": "A Sunday morning surprise that brings the United States into the war.",
       "quote": {
@@ -4128,9 +4486,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Operation_Barbarossa"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Operation_Barbarossa"]
   },
   {
     "id": "battle-of-midway",
@@ -4156,9 +4512,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Midway"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Midway"]
   },
   {
     "id": "battle-of-stalingrad",
@@ -4186,9 +4540,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Battle_of_Stalingrad"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Battle_of_Stalingrad"],
     "story": {
       "tagline": "Five months in the ruins of a city on the Volga.",
       "quote": {
@@ -4276,9 +4628,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Guadalcanal_campaign"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Guadalcanal_campaign"]
   },
   {
     "id": "d-day-normandy-landings",
@@ -4319,9 +4669,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Normandy_landings"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Normandy_landings"],
     "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/12/D-Day_1944_Office_of_War_Information.webm/D-Day_1944_Office_of_War_Information.webm.480p.vp9.webm",
     "story": {
       "tagline": "The largest seaborne invasion in history.",
@@ -4395,9 +4743,7 @@
     "importance": 5,
     "summary": "A United States B-29 dropped a uranium bomb on Hiroshima on 6 August 1945, killing tens of thousands instantly and around 140,000 by the end of the year; Nagasaki was bombed three days later. Japan surrendered on 15 August, and the nuclear age began.",
     "wikipediaTitle": "Atomic bombings of Hiroshima and Nagasaki",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Atomic_bombings_of_Hiroshima_and_Nagasaki"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Atomic_bombings_of_Hiroshima_and_Nagasaki"],
     "story": {
       "tagline": "One bomber, one bomb, one city.",
       "quote": {
@@ -4470,9 +4816,7 @@
     "importance": 5,
     "summary": "Soviet troops reached the Auschwitz-Birkenau camp complex in occupied Poland on 27 January 1945 and found about 7,000 surviving prisoners. More than a million people, the overwhelming majority of them Jews, were murdered there as part of the Holocaust, in which Nazi Germany killed six million European Jews. The date is now International Holocaust Remembrance Day.",
     "wikipediaTitle": "Auschwitz concentration camp",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Auschwitz_concentration_camp"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Auschwitz_concentration_camp"]
   },
   {
     "id": "united-nations-charter",
@@ -4485,9 +4829,7 @@
     "importance": 5,
     "summary": "Delegates of 50 nations signed the Charter of the United Nations in San Francisco on 26 June 1945, and it came into force that October. The UN replaced the failed League of Nations, with a Security Council led by the war's victors.",
     "wikipediaTitle": "Charter of the United Nations",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Charter_of_the_United_Nations"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Charter_of_the_United_Nations"]
   },
   {
     "id": "partition-of-india",
@@ -4501,8 +4843,78 @@
     "summary": "British India became independent on 14–15 August 1947 and was divided into India and Pakistan along hastily drawn lines. Between ten and twenty million people fled across the new borders and hundreds of thousands were killed in the violence.",
     "wikipediaTitle": "Partition of India",
     "sources": [
-      "https://en.wikipedia.org/wiki/Partition_of_India"
-    ]
+      "https://en.wikipedia.org/wiki/Partition_of_India",
+      "https://en.wikipedia.org/wiki/Tryst_with_Destiny",
+      "https://en.wikipedia.org/wiki/Radcliffe_Line"
+    ],
+    "story": {
+      "tagline": "Freedom at midnight, and a border line drawn in five weeks that uprooted millions.",
+      "quote": {
+        "text": "At the stroke of the midnight hour, when the world sleeps, India will awake to life and freedom.",
+        "by": "Jawaharlal Nehru, 'Tryst with Destiny', Constituent Assembly, 14 August 1947"
+      },
+      "facts": [
+        {
+          "label": "Independence",
+          "value": "14–15 August 1947"
+        },
+        {
+          "label": "Border published",
+          "value": "17 August 1947"
+        },
+        {
+          "label": "Displaced",
+          "value": "Estimated 10–20 million"
+        },
+        {
+          "label": "Killed",
+          "value": "Estimates 200,000 to 2 million"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "3 June 1947",
+          "heading": "The plan",
+          "text": "Viceroy Louis Mountbatten announces that British India will be partitioned and brings independence forward to August 1947.",
+          "lat": 28.61,
+          "lng": 77.21,
+          "altitude": 1.2
+        },
+        {
+          "when": "July 1947",
+          "heading": "The Radcliffe Line",
+          "text": "A British lawyer who had never been to India, Cyril Radcliffe, is given about five weeks to divide Punjab and Bengal.",
+          "lat": 31.0,
+          "lng": 74.5,
+          "altitude": 1.4
+        },
+        {
+          "when": "14 August 1947",
+          "heading": "Pakistan",
+          "text": "Pakistan becomes independent, with Muhammad Ali Jinnah as governor-general, in two wings 1,600 km apart.",
+          "lat": 24.86,
+          "lng": 67.0,
+          "altitude": 1.6
+        },
+        {
+          "when": "15 August 1947",
+          "heading": "India",
+          "text": "At midnight Nehru addresses the Constituent Assembly; on 16 August he raises the flag over Delhi's Red Fort.",
+          "lat": 28.66,
+          "lng": 77.24,
+          "altitude": 0.7
+        },
+        {
+          "when": "August–November 1947",
+          "heading": "Punjab",
+          "text": "Refugee columns and trains cross the new border in both directions amid massacres, abductions and the destruction of whole communities.",
+          "lat": 31.6,
+          "lng": 74.6,
+          "altitude": 0.9
+        }
+      ],
+      "legacy": "The partition shaped every later relationship between India and Pakistan, including the war over Kashmir that began within months, and the creation of Bangladesh in 1971."
+    }
   },
   {
     "id": "berlin-blockade",
@@ -4516,9 +4928,7 @@
     "importance": 4,
     "summary": "The Soviet Union cut road and rail links to West Berlin in June 1948, and Western aircraft flew in food and coal for eleven months until the blockade was lifted. The crisis hardened the division of Germany and led directly to the founding of NATO.",
     "wikipediaTitle": "Berlin Blockade",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Berlin_Blockade"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Berlin_Blockade"]
   },
   {
     "id": "founding-of-israel",
@@ -4531,9 +4941,7 @@
     "importance": 5,
     "summary": "David Ben-Gurion declared the State of Israel in Tel Aviv on 14 May 1948 as the British mandate ended, and neighbouring Arab states attacked the next day. Israel survived and expanded its territory, while around 700,000 Palestinians fled or were expelled in what Palestinians call the Nakba.",
     "wikipediaTitle": "1948 Arab–Israeli War",
-    "sources": [
-      "https://en.wikipedia.org/wiki/1948_Arab%E2%80%93Israeli_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/1948_Arab%E2%80%93Israeli_War"]
   },
   {
     "id": "chinese-revolution-1949",
@@ -4546,9 +4954,7 @@
     "importance": 5,
     "summary": "Mao Zedong proclaimed the People's Republic from Tiananmen on 1 October 1949 after the Communists won the civil war; the Nationalists withdrew to Taiwan. A quarter of humanity came under communist rule, and the Great Leap Forward and Cultural Revolution followed.",
     "wikipediaTitle": "Chinese Communist Revolution",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Chinese_Communist_Revolution"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Chinese_Communist_Revolution"]
   },
   {
     "id": "korean-war",
@@ -4588,9 +4994,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Korean_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Korean_War"]
   },
   {
     "id": "dna-double-helix",
@@ -4644,9 +5048,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Suez_Crisis"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Suez_Crisis"]
   },
   {
     "id": "ghana-independence",
@@ -4659,9 +5061,7 @@
     "importance": 4,
     "summary": "The Gold Coast became Ghana on 6 March 1957 under Kwame Nkrumah, the first sub-Saharan colony to win independence. Nkrumah's pan-Africanism inspired a wave of decolonisation that freed most of the continent within a decade.",
     "wikipediaTitle": "Ghana",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Ghana"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Ghana"]
   },
   {
     "id": "sputnik",
@@ -4674,9 +5074,7 @@
     "importance": 5,
     "summary": "On 4 October 1957 the Soviet Union launched Sputnik 1 from Baikonur, the first artificial satellite to orbit the Earth. Its radio beeps, picked up around the world, began the Space Race and spurred the creation of NASA.",
     "wikipediaTitle": "Sputnik 1",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Sputnik_1"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Sputnik_1"]
   },
   {
     "id": "great-chinese-famine",
@@ -4690,9 +5088,7 @@
     "importance": 4,
     "summary": "The Great Leap Forward's collectivisation, inflated harvest reports and continued grain exports produced a famine in China from 1959 to 1961. Estimates of the dead range from about 15 to 45 million, making it the deadliest famine in history.",
     "wikipediaTitle": "Great Chinese Famine",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Great_Chinese_Famine"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Great_Chinese_Famine"]
   },
   {
     "id": "congo-independence-crisis",
@@ -4705,9 +5101,7 @@
     "importance": 3,
     "summary": "The Belgian Congo became independent on 30 June 1960 with Patrice Lumumba as prime minister, but Katanga seceded within days and Lumumba was murdered in January 1961 with Belgian and American complicity. Mobutu's thirty-two-year dictatorship followed.",
     "wikipediaTitle": "Congo Crisis",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Congo_Crisis"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Congo_Crisis"]
   },
   {
     "id": "gagarin-vostok-1",
@@ -4720,9 +5114,7 @@
     "importance": 4,
     "summary": "On 12 April 1961 the Soviet pilot Yuri Gagarin became the first human in space, completing one orbit of the Earth in Vostok 1 in 108 minutes. He parachuted down near Engels on the Volga, an instant worldwide celebrity.",
     "wikipediaTitle": "Yuri Gagarin",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Yuri_Gagarin"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Yuri_Gagarin"]
   },
   {
     "id": "algerian-independence",
@@ -4749,9 +5141,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Algerian_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Algerian_War"]
   },
   {
     "id": "cuban-missile-crisis",
@@ -4764,9 +5154,7 @@
     "importance": 5,
     "summary": "American reconnaissance found Soviet nuclear missiles in Cuba in October 1962; Kennedy imposed a naval quarantine and after thirteen days Khrushchev agreed to remove them, with US missiles quietly withdrawn from Turkey in return. It was the closest the Cold War came to nuclear war.",
     "wikipediaTitle": "Cuban Missile Crisis",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Cuban_Missile_Crisis"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Cuban_Missile_Crisis"],
     "story": {
       "tagline": "Thirteen days at the edge of nuclear war.",
       "facts": [
@@ -4835,9 +5223,7 @@
     "importance": 2,
     "summary": "Western Samoa gained independence from New Zealand administration on 1 January 1962, the first Pacific island country to do so. Its constitution blends parliamentary government with the authority of matai, the traditional family chiefs.",
     "wikipediaTitle": "Samoa",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Samoa"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Samoa"]
   },
   {
     "id": "march-on-washington",
@@ -4850,9 +5236,7 @@
     "importance": 4,
     "summary": "On 28 August 1963 some 250,000 people marched in Washington for civil and economic rights for African Americans, and Martin Luther King Jr. gave his I Have a Dream speech at the Lincoln Memorial. The Civil Rights Act and the Voting Rights Act followed in 1964 and 1965.",
     "wikipediaTitle": "March on Washington for Jobs and Freedom",
-    "sources": [
-      "https://en.wikipedia.org/wiki/March_on_Washington_for_Jobs_and_Freedom"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/March_on_Washington_for_Jobs_and_Freedom"]
   },
   {
     "id": "singapore-independence",
@@ -4865,9 +5249,7 @@
     "importance": 2,
     "summary": "Singapore was expelled from the Federation of Malaysia on 9 August 1965 after two years of political and communal friction. Under Lee Kuan Yew the small island state turned to manufacturing, shipping and finance and became one of the richest countries in Asia.",
     "wikipediaTitle": "Singapore in Malaysia",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Singapore_in_Malaysia"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Singapore_in_Malaysia"]
   },
   {
     "id": "apollo-11",
@@ -4882,9 +5264,7 @@
     "wikipediaTitle": "Apollo 11",
     "commonsVideo": "File:Partially Restored Apollo 11 Video.ogv",
     "videoCredit": "NASA · Public domain",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Apollo_11"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Apollo_11"],
     "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/5/56/Partially_Restored_Apollo_11_Video.ogv/Partially_Restored_Apollo_11_Video.ogv.480p.vp9.webm",
     "story": {
       "tagline": "Four days to the Moon, and two and a half hours on its surface.",
@@ -4950,9 +5330,7 @@
     "importance": 2,
     "summary": "Fiji gained independence from Britain on 10 October 1970 after 96 years of colonial rule. Tension between Indigenous Fijians and the Indo-Fijian community descended from indentured labourers has since produced four coups.",
     "wikipediaTitle": "Fiji",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Fiji"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Fiji"]
   },
   {
     "id": "bangladesh-independence",
@@ -4979,9 +5357,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Bangladesh_Liberation_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Bangladesh_Liberation_War"]
   },
   {
     "id": "chile-coup-1973",
@@ -4994,9 +5370,7 @@
     "importance": 3,
     "summary": "The armed forces under Augusto Pinochet bombarded the presidential palace in Santiago on 11 September 1973; President Salvador Allende died during the assault. The dictatorship that followed killed or disappeared over 3,000 people and imposed radical free-market reforms until 1990.",
     "wikipediaTitle": "1973 Chilean coup d'état",
-    "sources": [
-      "https://en.wikipedia.org/wiki/1973_Chilean_coup_d%27%C3%A9tat"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/1973_Chilean_coup_d%27%C3%A9tat"]
   },
   {
     "id": "oil-crisis-1973",
@@ -5010,9 +5384,7 @@
     "importance": 4,
     "summary": "During the Yom Kippur War, Arab oil producers led by Saudi Arabia imposed an embargo on the United States and other supporters of Israel, and OPEC raised prices. Oil prices quadrupled, ending the post-war boom and bringing stagflation to the West.",
     "wikipediaTitle": "1973 oil crisis",
-    "sources": [
-      "https://en.wikipedia.org/wiki/1973_oil_crisis"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/1973_oil_crisis"]
   },
   {
     "id": "fall-of-saigon",
@@ -5045,9 +5417,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Fall_of_Saigon"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Fall_of_Saigon"]
   },
   {
     "id": "papua-new-guinea-independence",
@@ -5060,9 +5430,7 @@
     "importance": 2,
     "summary": "Papua New Guinea gained independence from Australia on 16 September 1975 under Michael Somare. The country is one of the most linguistically diverse on earth, with over 800 languages spoken across its highlands and islands.",
     "wikipediaTitle": "Papua New Guinea",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Papua_New_Guinea"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Papua_New_Guinea"]
   },
   {
     "id": "chinese-economic-reform",
@@ -5075,9 +5443,7 @@
     "importance": 4,
     "summary": "From December 1978 Deng Xiaoping's reform and opening-up let farmers sell surplus crops and created special economic zones such as Shenzhen open to foreign investment. Over four decades hundreds of millions left poverty and China became the world's second-largest economy.",
     "wikipediaTitle": "Chinese economic reform",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Chinese_economic_reform"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Chinese_economic_reform"]
   },
   {
     "id": "iranian-revolution",
@@ -5090,9 +5456,7 @@
     "importance": 5,
     "summary": "Mass protests drove the shah from Iran in January 1979 and Ayatollah Khomeini returned from exile to found an Islamic republic confirmed by referendum that April. The hostage crisis at the US embassy followed, and the region's politics have turned on the revolution ever since.",
     "wikipediaTitle": "Iranian Revolution",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Iranian_Revolution"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Iranian_Revolution"]
   },
   {
     "id": "chernobyl-disaster",
@@ -5105,9 +5469,7 @@
     "importance": 4,
     "summary": "Reactor four at the Chernobyl plant in Soviet Ukraine exploded during a test on 26 April 1986, spreading radioactive fallout across Europe. Over 100,000 people were permanently evacuated, and the cover-up damaged trust in the Soviet system at a critical moment.",
     "wikipediaTitle": "Chernobyl disaster",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Chernobyl_disaster"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Chernobyl_disaster"]
   },
   {
     "id": "philippine-people-power",
@@ -5120,9 +5482,7 @@
     "importance": 2,
     "summary": "Millions of Filipinos filled EDSA in Manila in February 1986 after a stolen election, and the army turned against Ferdinand Marcos, who fled into exile. Corazon Aquino became president, and the largely non-violent template was copied from Seoul to Eastern Europe.",
     "wikipediaTitle": "People Power Revolution",
-    "sources": [
-      "https://en.wikipedia.org/wiki/People_Power_Revolution"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/People_Power_Revolution"]
   },
   {
     "id": "tear-down-this-wall",
@@ -5137,9 +5497,7 @@
     "wikipediaTitle": "Tear down this wall!",
     "commonsVideo": "File:President Ronald Reagan's Speech at the Berlin Wall, June 12, 1987.webm",
     "videoCredit": "Reagan Library · CC BY 3.0",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Tear_down_this_wall!"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Tear_down_this_wall!"],
     "videoUrl": "https://upload.wikimedia.org/wikipedia/commons/transcoded/1/13/President_Ronald_Reagan%27s_Speech_at_the_Berlin_Wall%2C_June_12%2C_1987.webm/President_Ronald_Reagan%27s_Speech_at_the_Berlin_Wall%2C_June_12%2C_1987.webm.480p.vp9.webm"
   },
   {
@@ -5153,9 +5511,7 @@
     "importance": 5,
     "summary": "A muddled East German announcement on the evening of 9 November 1989 sent crowds to the crossings, and the guards opened the gates. The wall that had divided Berlin since 1961 came down, and Germany was reunified within a year.",
     "wikipediaTitle": "Fall of the Berlin Wall",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
-    ],
+    "sources": ["https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"],
     "story": {
       "tagline": "A press conference slip, and a wall that stood for 28 years opens overnight.",
       "facts": [
@@ -5224,9 +5580,7 @@
     "importance": 4,
     "summary": "In spring 1989 students and workers occupied Tiananmen Square in Beijing for weeks, calling for political reform and free speech. On the night of 3–4 June the army cleared the square and surrounding streets by force, killing hundreds, possibly thousands.",
     "wikipediaTitle": "1989 Tiananmen Square protests and massacre",
-    "sources": [
-      "https://en.wikipedia.org/wiki/1989_Tiananmen_Square_protests_and_massacre"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/1989_Tiananmen_Square_protests_and_massacre"]
   },
   {
     "id": "mandela-released",
@@ -5239,9 +5593,7 @@
     "importance": 4,
     "summary": "Nelson Mandela walked free from Victor Verster prison on 11 February 1990 after 27 years, days after F. W. de Klerk unbanned the ANC. Negotiations followed that dismantled apartheid law and led to the first democratic election four years later.",
     "wikipediaTitle": "Nelson Mandela",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Nelson_Mandela"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Nelson_Mandela"]
   },
   {
     "id": "dissolution-of-the-ussr",
@@ -5254,9 +5606,7 @@
     "importance": 5,
     "summary": "After a failed August coup against Gorbachev, the republics declared independence and the Soviet Union was formally dissolved on 26 December 1991. Fifteen new states emerged, the Cold War ended, and Russia inherited the nuclear arsenal and UN seat.",
     "wikipediaTitle": "Dissolution of the Soviet Union",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Dissolution_of_the_Soviet_Union"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Dissolution_of_the_Soviet_Union"]
   },
   {
     "id": "world-wide-web",
@@ -5269,9 +5619,7 @@
     "importance": 5,
     "summary": "Tim Berners-Lee, working at CERN near Geneva, put the first website online in 1991 and CERN placed the web in the public domain in 1993. Hypertext over the internet reshaped commerce, politics and daily life within a generation.",
     "wikipediaTitle": "World Wide Web",
-    "sources": [
-      "https://en.wikipedia.org/wiki/World_Wide_Web"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/World_Wide_Web"]
   },
   {
     "id": "maastricht-treaty",
@@ -5284,9 +5632,7 @@
     "importance": 3,
     "summary": "Signed in February 1992, the Maastricht Treaty turned the European Communities into the European Union, created EU citizenship and set the path to a single currency. The euro followed in 1999, and in notes and coins in 2002.",
     "wikipediaTitle": "Maastricht Treaty",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Maastricht_Treaty"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Maastricht_Treaty"]
   },
   {
     "id": "yugoslav-wars-sarajevo",
@@ -5320,9 +5666,7 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Bosnian_War"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Bosnian_War"]
   },
   {
     "id": "end-of-apartheid",
@@ -5336,8 +5680,78 @@
     "summary": "South Africans of all races voted together for the first time on 27 April 1994, and Nelson Mandela was inaugurated as president in Pretoria in May. A Truth and Reconciliation Commission followed, trading amnesty for public testimony about apartheid-era crimes.",
     "wikipediaTitle": "1994 South African general election",
     "sources": [
-      "https://en.wikipedia.org/wiki/1994_South_African_general_election"
-    ]
+      "https://en.wikipedia.org/wiki/1994_South_African_general_election",
+      "https://en.wikipedia.org/wiki/Inauguration_of_Nelson_Mandela",
+      "https://en.wikipedia.org/wiki/Truth_and_Reconciliation_Commission_(South_Africa)"
+    ],
+    "story": {
+      "tagline": "Queues that stretched for miles, and a prisoner of 27 years sworn in as president.",
+      "quote": {
+        "text": "Never, never and never again shall it be that this beautiful land will again experience the oppression of one by another.",
+        "by": "Nelson Mandela, inaugural address, Pretoria, 10 May 1994"
+      },
+      "facts": [
+        {
+          "label": "Election",
+          "value": "26–29 April 1994"
+        },
+        {
+          "label": "Votes cast",
+          "value": "About 19.7 million"
+        },
+        {
+          "label": "ANC share",
+          "value": "62.6%"
+        },
+        {
+          "label": "Inauguration",
+          "value": "10 May 1994"
+        }
+      ],
+      "chapters": [
+        {
+          "when": "11 February 1990",
+          "heading": "Out of prison",
+          "text": "F. W. de Klerk lifts the ban on the ANC and other parties, and Nelson Mandela walks free from Victor Verster prison after 27 years.",
+          "lat": -33.83,
+          "lng": 18.96,
+          "altitude": 0.8
+        },
+        {
+          "when": "1991–1993",
+          "heading": "Negotiating a country",
+          "text": "At the CODESA talks and after them, the government and the ANC hammer out an interim constitution through assassinations and township violence.",
+          "lat": -26.0,
+          "lng": 28.1,
+          "altitude": 1.0
+        },
+        {
+          "when": "27 April 1994",
+          "heading": "The vote",
+          "text": "For the first time, South Africans of every race vote together. Lines wind for kilometres; many wait all day to cast a ballot they had been denied all their lives.",
+          "lat": -26.2,
+          "lng": 28.05,
+          "altitude": 0.9
+        },
+        {
+          "when": "10 May 1994",
+          "heading": "Union Buildings",
+          "text": "Mandela takes the oath in Pretoria before world leaders, as air force jets that once served apartheid trail the colours of the new flag.",
+          "lat": -25.74,
+          "lng": 28.21,
+          "altitude": 0.6
+        },
+        {
+          "when": "1996",
+          "heading": "Truth and Reconciliation",
+          "text": "Under Archbishop Desmond Tutu, a commission hears victims and perpetrators in public, offering amnesty in return for full disclosure.",
+          "lat": -33.92,
+          "lng": 18.42,
+          "altitude": 0.9
+        }
+      ],
+      "legacy": "A negotiated end to white-minority rule, a constitution with one of the world's broadest bills of rights, and an enduring model for transitional justice."
+    }
   },
   {
     "id": "rwandan-genocide",
@@ -5350,9 +5764,7 @@
     "importance": 5,
     "summary": "Between April and July 1994 extremist Hutu militias and state forces murdered around 800,000 Tutsi and moderate Hutu in about a hundred days while UN forces stood by under a limited mandate. The RPF's victory ended the killing and sent millions of refugees into neighbouring Zaire.",
     "wikipediaTitle": "Rwandan genocide",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Rwandan_genocide"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Rwandan_genocide"]
   },
   {
     "id": "hong-kong-handover",
@@ -5365,9 +5777,7 @@
     "importance": 3,
     "summary": "Britain returned Hong Kong to Chinese sovereignty at midnight on 1 July 1997 under a promise of \"one country, two systems\" for fifty years. The territory's separate courts and freedoms were sharply curtailed by the national security law of 2020.",
     "wikipediaTitle": "Handover of Hong Kong",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Handover_of_Hong_Kong"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Handover_of_Hong_Kong"]
   },
   {
     "id": "september-11-attacks",
@@ -5380,9 +5790,7 @@
     "importance": 5,
     "summary": "Al-Qaeda hijackers flew airliners into the World Trade Center and the Pentagon on 11 September 2001, killing 2,977 people. The United States invaded Afghanistan within weeks and built a global counter-terrorism apparatus that reshaped travel, surveillance and law.",
     "wikipediaTitle": "September 11 attacks",
-    "sources": [
-      "https://en.wikipedia.org/wiki/September_11_attacks"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/September_11_attacks"]
   },
   {
     "id": "indian-ocean-tsunami",
@@ -5395,9 +5803,7 @@
     "importance": 4,
     "summary": "A magnitude 9.1 earthquake off Sumatra on 26 December 2004 sent waves across the Indian Ocean, killing around 228,000 people in fourteen countries. Aceh was worst hit, and the disaster prompted the first basin-wide tsunami warning system.",
     "wikipediaTitle": "2004 Indian Ocean earthquake and tsunami",
-    "sources": [
-      "https://en.wikipedia.org/wiki/2004_Indian_Ocean_earthquake_and_tsunami"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/2004_Indian_Ocean_earthquake_and_tsunami"]
   },
   {
     "id": "financial-crisis-2008",
@@ -5411,9 +5817,7 @@
     "importance": 4,
     "summary": "The collapse of the US housing bubble left banks holding worthless mortgage securities, and the bankruptcy of Lehman Brothers in September 2008 froze the global financial system. Governments spent trillions on bailouts and the world fell into the deepest recession since the 1930s.",
     "wikipediaTitle": "2008 financial crisis",
-    "sources": [
-      "https://en.wikipedia.org/wiki/2008_financial_crisis"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/2008_financial_crisis"]
   },
   {
     "id": "arab-spring",
@@ -5426,9 +5830,7 @@
     "importance": 5,
     "summary": "The self-immolation of Mohamed Bouazizi in Sidi Bouzid in December 2010 set off protests that toppled rulers in Tunisia, Egypt, Libya and Yemen. Tunisia built a democracy, while Syria, Libya and Yemen fell into wars still unresolved.",
     "wikipediaTitle": "Arab Spring",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Arab_Spring"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Arab_Spring"]
   },
   {
     "id": "fukushima-accident",
@@ -5441,9 +5843,7 @@
     "importance": 4,
     "summary": "On 11 March 2011 a magnitude 9.0 earthquake off Japan sent a tsunami ashore that killed nearly 20,000 people and flooded the Fukushima Daiichi nuclear plant, causing three reactor meltdowns. More than 150,000 people were evacuated, and several countries rethought nuclear power.",
     "wikipediaTitle": "Fukushima nuclear accident",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Fukushima_nuclear_accident"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Fukushima_nuclear_accident"]
   },
   {
     "id": "paris-agreement",
@@ -5456,9 +5856,7 @@
     "importance": 3,
     "summary": "At the COP21 conference near Paris in December 2015, nearly every country agreed to hold global warming well below 2 °C above pre-industrial levels and to aim for 1.5 °C. Each country sets and reports its own emission targets.",
     "wikipediaTitle": "Paris Agreement",
-    "sources": [
-      "https://en.wikipedia.org/wiki/Paris_Agreement"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Paris_Agreement"]
   },
   {
     "id": "covid-19-pandemic",
@@ -5471,9 +5869,7 @@
     "importance": 5,
     "summary": "A novel coronavirus identified in Wuhan in late 2019 spread worldwide; the WHO declared a pandemic on 11 March 2020. Billions were placed under restrictions, recorded deaths passed seven million, and vaccines were developed and deployed in under a year.",
     "wikipediaTitle": "COVID-19 pandemic",
-    "sources": [
-      "https://en.wikipedia.org/wiki/COVID-19_pandemic"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/COVID-19_pandemic"]
   },
   {
     "id": "russian-invasion-of-ukraine",
@@ -5500,8 +5896,6 @@
         "side": "b"
       }
     ],
-    "sources": [
-      "https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine"
-    ]
+    "sources": ["https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine"]
   }
 ]
