@@ -207,7 +207,6 @@ The application code is MIT-licensed. Historical boundaries are approximate and 
 - Deeper coverage: 5–15 curated events for every country.
 - Layers: trade routes, migrations, day/night terminator.
 - Compare two years side by side.
-- Mobile layout.
 
 Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md). Adding well-sourced events is the most valuable thing you can do.
 

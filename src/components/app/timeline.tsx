@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, type PointerEvent } from "react";
 import { useHistory } from "@/lib/store/history-store";
 import { CATEGORY_COLORS } from "@/lib/domain/palette";
 import { eraForYear } from "@/lib/domain/eras";
@@ -14,12 +14,15 @@ const MARKER_MIN_IMPORTANCE = 4;
  * The slider, its era bands, and a row of markers for the major events: hover shows the year
  * under the cursor and the event's title, click jumps there. Gold diamonds have an immersive story;
  * the small ticks under the track are the border snapshots (the map shown is the latest one ≤ the year).
+ * On touch there is no hover: the year readout follows the finger while it is down, and on phones,
+ * where the markers are too small to tap, a button under the track opens the nearest major event.
  */
 export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void }) {
   const { state, dispatch, eras, events, tours } = useHistory();
   const { t, fy } = useI18n();
   const track = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<{ x: number; year: number } | null>(null);
+  const touching = useRef(false);
   const currentEra = eraForYear(state.year, eras);
   const selectedId = state.selection?.kind === "event" ? state.selection.id : null;
   const markers = useMemo(
@@ -30,6 +33,30 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
       ),
     [events, state.hiddenCategories],
   );
+  const nearest = useMemo(() => {
+    const at = yearToSlider(state.year);
+    let best: (typeof markers)[number] | null = null;
+    for (const e of markers) {
+      if (!best || Math.abs(yearToSlider(e.year) - at) < Math.abs(yearToSlider(best.year) - at))
+        best = e;
+    }
+    return best;
+  }, [markers, state.year]);
+  const openEvent = (id: string, year: number) => {
+    dispatch({ type: "setYear", year });
+    dispatch({ type: "select", selection: { kind: "event", id }, fly: true });
+  };
+  const trackHover = (clientX: number) => {
+    const r = track.current?.getBoundingClientRect();
+    if (!r) return;
+    const x = Math.min(Math.max(0, clientX - r.left), r.width);
+    setHover({ x, year: sliderToYear(x / r.width) });
+  };
+  const endTouch = (e: PointerEvent) => {
+    if (e.pointerType === "mouse") return;
+    touching.current = false;
+    setHover(null);
+  };
 
   return (
     <div className="timeline">
@@ -100,13 +127,19 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
       <div
         className="track"
         ref={track}
-        onMouseMove={(e) => {
-          const r = track.current?.getBoundingClientRect();
-          if (!r) return;
-          const x = Math.min(Math.max(0, e.clientX - r.left), r.width);
-          setHover({ x, year: sliderToYear(x / r.width) });
+        onPointerDown={(e) => {
+          if (e.pointerType === "mouse") return;
+          touching.current = true;
+          trackHover(e.clientX);
         }}
-        onMouseLeave={() => setHover(null)}
+        onPointerMove={(e) => {
+          if (e.pointerType === "mouse" || touching.current) trackHover(e.clientX);
+        }}
+        onPointerUp={endTouch}
+        onPointerCancel={endTouch}
+        onPointerLeave={(e) => {
+          if (e.pointerType === "mouse") setHover(null);
+        }}
       >
         <div className="eras">
           {eras.map((e) => {
@@ -136,10 +169,7 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
               }}
               title={`${fy(e.year)} — ${e.title}${e.story ? ` (${t("immersive story")})` : ""}`}
               aria-label={`${fy(e.year)}: ${e.title}`}
-              onClick={() => {
-                dispatch({ type: "setYear", year: e.year });
-                dispatch({ type: "select", selection: { kind: "event", id: e.id }, fly: true });
-              }}
+              onClick={() => openEvent(e.id, e.year)}
             />
           ))}
         </div>
@@ -168,12 +198,23 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
           aria-valuetext={fy(state.year)}
         />
         {hover && (
-          <div className="hover-year" style={{ left: hover.x }}>
+          <div
+            className="hover-year"
+            style={{ left: `clamp(32px, ${hover.x}px, calc(100% - 32px))` }}
+          >
             {fy(hover.year)}
           </div>
         )}
       </div>
       <div className="readout">{fy(state.year)}</div>
+      {nearest && (
+        <button
+          className={`btn secondary nearest-event ${nearest.story ? "gold" : ""}`}
+          onClick={() => openEvent(nearest.id, nearest.year)}
+        >
+          {nearest.story ? "◆" : "•"} {fy(nearest.year)} · {nearest.title}
+        </button>
+      )}
     </div>
   );
 }

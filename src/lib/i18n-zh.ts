@@ -144,6 +144,7 @@ export const ZH: Record<string, string> = {
   "Chapter {n} of {total}": "第 {n}/{total} 章",
   "Chapter {n}: {heading}": "第 {n} 章：{heading}",
   "Legacy.": "影响。",
+  "Key facts": "关键信息",
   "Continue the journey": "继续旅程",
   story: "故事",
   "❚❚ Pause": "❚❚ 暂停",

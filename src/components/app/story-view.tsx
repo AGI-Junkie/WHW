@@ -20,7 +20,10 @@ export default function StoryView() {
   const st = state.story;
   const ev = st ? events.find((e) => e.id === st.id) : undefined;
   const story = useMemo(() => (ev ? storyFor(ev, events) : null), [ev, events]);
-  const related = useMemo(() => (ev ? relatedEvents(ev, events, tours, 4) : []), [ev, events, tours]);
+  const related = useMemo(
+    () => (ev ? relatedEvents(ev, events, tours, 4) : []),
+    [ev, events, tours],
+  );
   const wiki = useWiki(ev?.wikipediaTitle ?? null, locale);
   if (!st || !ev || !story) return null;
 
@@ -28,16 +31,42 @@ export default function StoryView() {
   const last = st.chapter === story.chapters.length - 1;
   const color = CATEGORY_COLORS[ev.category];
   const image = wiki?.ok ? wiki.thumbnailUrl : null;
+  // Shown in the side column on wide screens; phones have no room for it, so it folds into the card.
+  const factsAndQuote = (
+    <>
+      <dl className="story-facts">
+        {story.facts.map((f) => (
+          <div key={f.label}>
+            <dt>{t(f.label)}</dt>
+            <dd>{t(f.value)}</dd>
+          </div>
+        ))}
+      </dl>
+      {story.quote && (
+        <blockquote className="story-quote">
+          <p>“{story.quote.text}”</p>
+          <cite>— {story.quote.by}</cite>
+        </blockquote>
+      )}
+    </>
+  );
 
   return (
-    <div className="story" role="dialog" aria-modal="false" aria-label={`${t("Story:")} ${ev.title}`}>
+    <div
+      className="story"
+      role="dialog"
+      aria-modal="false"
+      aria-label={`${t("Story:")} ${ev.title}`}
+    >
       <div className="story-bar top" />
       <div className="story-bar bottom" />
       <div className="story-vignette" />
 
       <header className="story-head">
         <div className="story-kicker">
-          <span className="chip" style={{ background: color }}>{t(ev.category)}</span>
+          <span className="chip" style={{ background: color }}>
+            {t(ev.category)}
+          </span>
           <span>{story.curated ? t("Immersive story") : t("Story mode")}</span>
           <span>·</span>
           <span>{ev.endYear ? `${fy(ev.year)} – ${fy(ev.endYear)}` : fy(ev.year)}</span>
@@ -46,16 +75,31 @@ export default function StoryView() {
         <p className="story-tagline">{story.tagline}</p>
       </header>
 
-      <button className="story-exit" onClick={() => dispatch({ type: "closeStory" })} aria-label={t("Leave the story")}>
+      <button
+        className="story-exit"
+        onClick={() => dispatch({ type: "closeStory" })}
+        aria-label={t("Leave the story")}
+      >
         {t("Esc · leave story ×")}
       </button>
 
       <aside className="story-side">
         <div className="story-photo">
           {image ? (
-            <Image key={image} src={image} alt={ev.title} fill unoptimized sizes="360px" className="kenburns" />
+            <Image
+              key={image}
+              src={image}
+              alt={ev.title}
+              fill
+              unoptimized
+              sizes="360px"
+              className="kenburns"
+            />
           ) : (
-            <div className="story-photo-empty" style={{ background: `radial-gradient(circle at 30% 30%, ${color}, #1c1913)` }}>
+            <div
+              className="story-photo-empty"
+              style={{ background: `radial-gradient(circle at 30% 30%, ${color}, #1c1913)` }}
+            >
               <span>{fy(ev.year)}</span>
             </div>
           )}
@@ -65,31 +109,32 @@ export default function StoryView() {
             </a>
           )}
         </div>
-        <dl className="story-facts">
-          {story.facts.map((f) => (
-            <div key={f.label}>
-              <dt>{t(f.label)}</dt>
-              <dd>{t(f.value)}</dd>
-            </div>
-          ))}
-        </dl>
-        {story.quote && (
-          <blockquote className="story-quote">
-            <p>“{story.quote.text}”</p>
-            <cite>— {story.quote.by}</cite>
-          </blockquote>
-        )}
+        {factsAndQuote}
       </aside>
 
       <section className="story-card" aria-live="polite">
-        <div className="story-when" key={`w${st.chapter}`}>{chapter.when}</div>
-        <div className="meta">{t("Chapter {n} of {total}", { n: st.chapter + 1, total: story.chapters.length })}</div>
+        <div className="story-when" key={`w${st.chapter}`}>
+          {chapter.when}
+        </div>
+        <div className="meta">
+          {t("Chapter {n} of {total}", { n: st.chapter + 1, total: story.chapters.length })}
+        </div>
         <h3 key={`h${st.chapter}`}>{t(chapter.heading)}</h3>
-        <p key={`p${st.chapter}`} className="story-text">{chapter.text}</p>
+        <p key={`p${st.chapter}`} className="story-text">
+          {chapter.text}
+        </p>
+        <details className="story-extra">
+          <summary>{t("Key facts")}</summary>
+          {factsAndQuote}
+        </details>
 
         {last && (
           <div className="story-end">
-            {story.legacy && <p className="story-legacy"><b>{t("Legacy.")}</b> {story.legacy}</p>}
+            {story.legacy && (
+              <p className="story-legacy">
+                <b>{t("Legacy.")}</b> {story.legacy}
+              </p>
+            )}
             {related.length > 0 && (
               <>
                 <div className="meta">{t("Continue the journey")}</div>
@@ -117,21 +162,42 @@ export default function StoryView() {
               aria-label={t("Chapter {n}: {heading}", { n: i + 1, heading: t(c.heading) })}
             >
               {i === st.chapter && st.autoplay && (
-                <span key={st.chapter} className="fill" style={{ animationDuration: `${chapterDurationMs(chapter)}ms` }} />
+                <span
+                  key={st.chapter}
+                  className="fill"
+                  style={{ animationDuration: `${chapterDurationMs(chapter)}ms` }}
+                />
               )}
             </button>
           ))}
         </div>
 
         <div className="controls">
-          <button className="btn" disabled={st.chapter === 0} onClick={() => dispatch({ type: "storyStep", delta: -1 })}>{t("← Back")}</button>
-          <button className="btn" onClick={() => dispatch({ type: "storyAutoplay", autoplay: !st.autoplay })} disabled={last}>
+          <button
+            className="btn"
+            disabled={st.chapter === 0}
+            onClick={() => dispatch({ type: "storyStep", delta: -1 })}
+          >
+            {t("← Back")}
+          </button>
+          <button
+            className="btn"
+            onClick={() => dispatch({ type: "storyAutoplay", autoplay: !st.autoplay })}
+            disabled={last}
+          >
             {st.autoplay ? t("❚❚ Pause") : t("▶ Autoplay")}
           </button>
           {last ? (
-            <button className="btn active" onClick={() => dispatch({ type: "closeStory" })}>{t("Finish")}</button>
+            <button className="btn active" onClick={() => dispatch({ type: "closeStory" })}>
+              {t("Finish")}
+            </button>
           ) : (
-            <button className="btn active" onClick={() => dispatch({ type: "storyStep", delta: 1 })}>{t("Next →")}</button>
+            <button
+              className="btn active"
+              onClick={() => dispatch({ type: "storyStep", delta: 1 })}
+            >
+              {t("Next →")}
+            </button>
           )}
         </div>
       </section>

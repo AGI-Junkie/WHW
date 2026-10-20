@@ -1382,7 +1382,12 @@ kbd {
   }
 }
 
-/* ── Phones: bottom-sheet panels, scrollable controls, touch-sized slider ── */
+/* ── Phones: bottom sheets, scrollable controls, touch-sized targets ────── */
+/* Phone-only pieces: the nearest-event button under the timeline and the facts fold in the story card. */
+.nearest-event,
+.story-extra {
+  display: none;
+}
 @media (max-width: 900px) {
   .year-badge {
     left: 8px;
@@ -1410,22 +1415,226 @@ kbd {
   .timeline .controls > * {
     flex: none;
   }
-  .track input[type="range"] {
-    height: 28px;
+  .masthead {
+    display: none;
   }
+
+  /* WCAG 2.5.5: every control a finger can hit is at least 44 × 44 px. */
+  .btn,
+  .toolbar .btn,
+  .btn.small,
+  .panel-nav .btn,
+  .story-exit {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .panel .close,
+  .quiz .close,
+  .gallery .close,
+  .help .close {
+    width: 44px;
+    height: 44px;
+    top: 2px;
+    right: 2px;
+    font-size: 26px;
+  }
+  /* Sits above the timeline, which is about 200 px tall on phones. */
+  .tour {
+    bottom: 208px;
+  }
+  .list button,
+  .palette li button,
+  .story-next button {
+    min-height: 44px;
+  }
+  /* The chapter bars stay 4 px tall but take taps across a 44 px band. */
+  .story-progress button {
+    height: 44px;
+    padding: 20px 0;
+    background-clip: content-box;
+  }
+  /* Listed with the state selectors so their `background` shorthand can't reset the clip. */
+  .story-progress button.on,
+  .story-progress button.done,
+  .story-progress button.on:has(.fill) {
+    background-clip: content-box;
+  }
+  .story-progress .fill {
+    inset: 20px 0;
+  }
+  .story-progress {
+    margin: 0 0 4px;
+  }
+
+  /* Timeline: a 44 px slider; markers and snapshot ticks are too small to tap, so taps fall
+     through to the slider and the nearest-event button below the track opens events instead. */
+  .track {
+    height: 66px;
+    touch-action: none;
+  }
+  .track input[type="range"] {
+    height: 44px;
+  }
+  .markers {
+    top: 28px;
+  }
+  .snapshots {
+    top: 56px;
+  }
+  .markers,
+  .snapshots,
+  .snapshots button {
+    pointer-events: none;
+  }
+  .hover-year {
+    top: -20px;
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+  .nearest-event {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  /* Event, place and quiz panels become bottom sheets over the timeline. */
   .panel,
   .quiz {
+    left: 0;
+    right: 0;
+    width: auto;
+    top: auto;
+    bottom: 0;
+    z-index: 9;
+    max-height: 70dvh;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
+    border-width: 1px 0 0;
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 -10px 40px rgba(28, 25, 19, 0.3);
+    box-sizing: border-box;
+    animation: sheet-in 0.3s ease-out;
+  }
+  .panel::before,
+  .quiz::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 4px;
+    margin: -8px auto 10px;
+    border-radius: 2px;
+    background: #b8892b;
+    opacity: 0.6;
+  }
+  /* Search, gallery and help slide up from the bottom too. */
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .palette,
+  .gallery,
+  .help {
+    width: 100%;
+    max-height: 85dvh;
+    border-width: 1px 0 0;
+    border-radius: 14px 14px 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
+    animation: sheet-in 0.25s ease-out;
+  }
+  .palette {
+    display: flex;
+    flex-direction: column;
+  }
+  .palette ul {
+    max-height: none;
+    flex: 1;
+  }
+  .gallery,
+  .help {
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+  .events-list:focus-within {
     left: 8px;
     right: 8px;
     width: auto;
-    top: auto;
-    bottom: 168px;
-    max-height: 45vh;
-    border-radius: 10px 10px 0 0;
-    animation: rise-in 0.3s ease-out;
+    bottom: auto;
+    top: 140px;
   }
-  .masthead {
+  .events-list:focus-within button {
+    min-height: 44px;
+  }
+
+  /* Story view in portrait: the letterbox bars hold the exit button and the progress, the card
+     scrolls, and the facts and quote fold into it. */
+  .story-bar {
+    height: 6dvh;
+  }
+  .story-head {
+    top: calc(6dvh + 12px);
+  }
+  .story-head h2 {
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+  }
+  .story-tagline {
+    font-size: 1rem;
+  }
+  .story-exit {
+    top: max(4px, calc(6dvh / 2 - 22px));
+    right: 8px;
+  }
+  .story-card {
+    left: 8px;
+    right: 8px;
+    bottom: calc(6dvh + 8px);
+    max-height: 56dvh;
+    padding: 12px 14px 10px;
+  }
+  .story-when {
+    font-size: 1.6rem;
+  }
+  .story-card h3 {
+    font-size: 1.25rem;
+  }
+  .story-extra {
+    display: block;
+    margin: 0 0 8px;
+  }
+  .story-extra summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #d4a73a;
+    list-style: none;
+  }
+  .story-extra summary::-webkit-details-marker {
     display: none;
+  }
+  .story-extra summary::before {
+    content: "▸";
+    margin-right: 6px;
+  }
+  .story-extra[open] summary::before {
+    content: "▾";
+  }
+  .story-extra .story-quote {
+    margin-top: 8px;
+  }
+}
+@keyframes sheet-in {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
   }
 }
 @media (max-width: 560px) {
@@ -1439,7 +1648,6 @@ kbd {
     display: none;
   }
   .tour {
-    bottom: 168px;
     padding: 10px 12px;
   }
   .tour .controls {
