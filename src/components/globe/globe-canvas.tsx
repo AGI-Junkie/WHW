@@ -44,7 +44,11 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
     const g = globeRef.current;
     const t = props.cameraTarget;
     if (!g || !t) return;
-    g.pointOfView({ lat: t.lat, lng: t.lng, altitude: t.altitude }, t.durationMs ?? 1200);
+    g.pointOfView(
+      { lat: t.lat, lng: t.lng, altitude: t.altitude },
+      props.reducedMotion ? 0 : (t.durationMs ?? 1200),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.cameraTarget]);
 
   // The latest camera target, so a deep link that set one before the globe was ready still wins.
@@ -97,7 +101,9 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
           polygonLabel={(d) =>
             `<div class="globe-tip">${esc(polityDisplayName(d as BorderFeature))}</div>`
           }
-          onPolygonClick={(d, _e, at) => onPolygonClick?.(d as BorderFeature, { lat: at.lat, lng: at.lng })}
+          onPolygonClick={(d, _e, at) =>
+            onPolygonClick?.(d as BorderFeature, { lat: at.lat, lng: at.lng })
+          }
           pathsData={props.paths ?? []}
           pathPoints="points"
           pathPointLat={(p: number[]) => p[1]!}
@@ -125,7 +131,7 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
           arcStroke={0.9}
           arcDashLength={0.35}
           arcDashGap={0.18}
-          arcDashAnimateTime={1600}
+          arcDashAnimateTime={props.reducedMotion ? 0 : 1600}
           arcLabel={(d) => `<div class="globe-tip">${esc((d as GlobeArc).label ?? "")}</div>`}
           ringsData={props.rings}
           ringLat="lat"
@@ -135,7 +141,10 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
           ringRepeatPeriod={650}
           ringColor={(d: object) => {
             const c = (d as GlobeRing).color;
-            return (t: number) => `${c}${Math.round((1 - t) * 255).toString(16).padStart(2, "0")}`;
+            return (t: number) =>
+              `${c}${Math.round((1 - t) * 255)
+                .toString(16)
+                .padStart(2, "0")}`;
           }}
         />
       )}

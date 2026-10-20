@@ -3,12 +3,17 @@
  * counts on its own and a restart resets it; move to a shared store (Upstash, Vercel KV) if the
  * proxy is ever abused at scale.
  */
-export function createRateLimiter(limit: number, windowMs: number) {
+export function createRateLimiter(limit: number, windowMs: number, maxKeys = 10_000) {
   const hits = new Map<string, { count: number; reset: number }>();
   return (key: string, now = Date.now()): boolean => {
     const h = hits.get(key);
     if (!h || h.reset <= now) {
-      if (hits.size > 10_000) hits.clear(); // bound memory under a flood of distinct keys
+      if (!h && hits.size >= maxKeys) {
+        // Bound memory without punishing counted clients: drop expired buckets first, and if every
+        // bucket is still active, refuse new keys until one expires instead of resetting all limits.
+        for (const [k, v] of hits) if (v.reset <= now) hits.delete(k);
+        if (hits.size >= maxKeys) return false;
+      }
       hits.set(key, { count: 1, reset: now + windowMs });
       return true;
     }
@@ -27,6 +32,11 @@ export function createRateLimiter(limit: number, windowMs: number) {
 export function clientKey(headers: Headers): string {
   const real = headers.get("x-real-ip")?.trim();
   if (real) return real;
-  const hops = headers.get("x-forwarded-for")?.split(",").map((h) => h.trim()).filter(Boolean) ?? [];
+  const hops =
+    headers
+      .get("x-forwarded-for")
+      ?.split(",")
+      .map((h) => h.trim())
+      .filter(Boolean) ?? [];
   return hops.at(-1) ?? "direct";
 }

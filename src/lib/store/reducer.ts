@@ -1,5 +1,5 @@
 import type { BorderFeature, Category, Country, HistoryEvent, Tour } from "@/lib/data/schemas";
-import { getEvents, getTours } from "@/lib/data/loaders";
+import { getEventById, getEvents, getTours } from "@/lib/data/loaders";
 import { MAX_YEAR } from "@/lib/data/schemas";
 import { nextYear } from "@/lib/domain/time-scale";
 import { eventsHappening, headlineEvent } from "@/lib/domain/visible-events";
@@ -20,9 +20,7 @@ import type { GlobeCameraTarget } from "@/components/globe/globe-types";
 /** The app's state machine: pure, so every transition can be unit-tested without React. */
 export type Speed = 1 | 2 | 4;
 export type Selection =
-  | { kind: "event"; id: string }
-  | { kind: "country"; feature: BorderFeature }
-  | null;
+  { kind: "event"; id: string } | { kind: "country"; feature: BorderFeature } | null;
 
 export interface Pulse {
   id: string;
@@ -135,7 +133,9 @@ export const initialState: HistoryState = {
 };
 
 function findTour(s: HistoryState, id: string): Tour | undefined {
-  return id === MY_TOUR_ID ? (buildMyTour(s.myTour, getEvents()) ?? undefined) : getTours().find((t) => t.id === id);
+  return id === MY_TOUR_ID
+    ? (buildMyTour(s.myTour, getEvents()) ?? undefined)
+    : getTours().find((t) => t.id === id);
 }
 
 /** Editing My tour while it plays would leave the player on a stop index that no longer matches: end it. */
@@ -144,7 +144,13 @@ function endEditedTour(s: HistoryState, myTour: string[]): HistoryState {
 }
 
 /** A quiz round: jump to the event's year (its borders are the hint) and pull the camera back. */
-function quizRound(s: HistoryState, ev: HistoryEvent, round: number, asked: string[], total: number): HistoryState {
+function quizRound(
+  s: HistoryState,
+  ev: HistoryEvent,
+  round: number,
+  asked: string[],
+  total: number,
+): HistoryState {
   return {
     ...s,
     year: ev.year,
@@ -152,14 +158,28 @@ function quizRound(s: HistoryState, ev: HistoryEvent, round: number, asked: stri
     selection: null,
     tour: null,
     story: null,
-    cameraTarget: { lat: 25, lng: ev.lng > 60 ? 80 : ev.lng < -40 ? -70 : 15, altitude: 2.4, durationMs: 1200 },
-    quiz: { round, asked: [...asked, ev.id], eventId: ev.id, guess: null, km: null, points: null, total, done: false },
+    cameraTarget: {
+      lat: 25,
+      lng: ev.lng > 60 ? 80 : ev.lng < -40 ? -70 : 15,
+      altitude: 2.4,
+      durationMs: 1200,
+    },
+    quiz: {
+      round,
+      asked: [...asked, ev.id],
+      eventId: ev.id,
+      guess: null,
+      km: null,
+      points: null,
+      total,
+      done: false,
+    },
   };
 }
 
 function applyStop(s: HistoryState, tour: Tour, idx: number): HistoryState {
   const stop = tour.stops[idx];
-  const ev = stop ? getEvents().find((e) => e.id === stop.eventId) : undefined;
+  const ev = stop ? getEventById(stop.eventId) : undefined;
   if (!stop || !ev) return s;
   return {
     ...s,
@@ -172,9 +192,14 @@ function applyStop(s: HistoryState, tour: Tour, idx: number): HistoryState {
   };
 }
 
-function applyChapter(s: HistoryState, id: string, chapter: number, autoplay: boolean): HistoryState {
+function applyChapter(
+  s: HistoryState,
+  id: string,
+  chapter: number,
+  autoplay: boolean,
+): HistoryState {
   const events = getEvents();
-  const ev = events.find((e) => e.id === id);
+  const ev = getEventById(id);
   if (!ev) return s;
   const story = storyFor(ev, events);
   const idx = Math.max(0, Math.min(story.chapters.length - 1, chapter));
@@ -236,7 +261,11 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       };
     }
     case "setPlaying":
-      return { ...s, playing: a.playing, ...(a.playing ? { tour: null, story: null, quiz: null } : {}) };
+      return {
+        ...s,
+        playing: a.playing,
+        ...(a.playing ? { tour: null, story: null, quiz: null } : {}),
+      };
     case "setSpeed":
       return { ...s, speed: a.speed };
     case "toggleFollow":
@@ -245,7 +274,7 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       if (a.selection === null) return { ...s, selection: null };
       if (a.selection.kind === "event") {
         const sel = a.selection;
-        const ev = getEvents().find((e) => e.id === sel.id);
+        const ev = getEventById(sel.id);
         return {
           ...s,
           quiz: null,
@@ -296,7 +325,9 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       return ev ? selectEvent({ ...s, tour: null, quiz: null }, ev) : s;
     }
     case "randomEvent": {
-      const pool = getEvents().filter((e) => e.importance >= 3 && !s.hiddenCategories.includes(e.category));
+      const pool = getEvents().filter(
+        (e) => e.importance >= 3 && !s.hiddenCategories.includes(e.category),
+      );
       const ev = pool[Math.abs(Math.floor(a.seed)) % Math.max(1, pool.length)];
       return ev ? selectEvent({ ...s, tour: null, story: null, quiz: null }, ev) : s;
     }
@@ -330,7 +361,10 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
     case "myTourLoaded": {
       // Storage and #t= links are untrusted: keep known, unique event ids only, capped.
       const known = new Set(getEvents().map((e) => e.id));
-      return endEditedTour(s, [...new Set(a.ids)].filter((id) => known.has(id)).slice(0, MY_TOUR_MAX));
+      return endEditedTour(
+        s,
+        [...new Set(a.ids)].filter((id) => known.has(id)).slice(0, MY_TOUR_MAX),
+      );
     }
     case "setCompare":
       return { ...s, compareYear: a.year };
@@ -340,14 +374,19 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
     }
     case "quizGuess": {
       const q = s.quiz;
-      const ev = q && !q.guess ? getEvents().find((e) => e.id === q.eventId) : undefined;
+      const ev = q && !q.guess ? getEventById(q.eventId) : undefined;
       if (!q || !ev) return s;
       const km = distanceKm({ lat: a.lat, lng: a.lng }, ev);
       const points = quizPoints(km);
       return {
         ...s,
         quiz: { ...q, guess: { lat: a.lat, lng: a.lng }, km, points, total: q.total + points },
-        cameraTarget: { lat: (a.lat + ev.lat) / 2, lng: ev.lng, altitude: Math.min(2.6, 0.9 + km / 4000), durationMs: 1400 },
+        cameraTarget: {
+          lat: (a.lat + ev.lat) / 2,
+          lng: ev.lng,
+          altitude: Math.min(2.6, 0.9 + km / 4000),
+          durationMs: 1400,
+        },
         discovery: discoverEvent(s.discovery, ev.id),
       };
     }
@@ -356,7 +395,9 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       if (!q?.guess) return s;
       if (q.round >= QUIZ_ROUNDS) return { ...s, quiz: { ...q, done: true } };
       const ev = pickQuizEvent(getEvents(), a.seed, q.asked);
-      return ev ? quizRound(s, ev, q.round + 1, q.asked, q.total) : { ...s, quiz: { ...q, done: true } };
+      return ev
+        ? quizRound(s, ev, q.round + 1, q.asked, q.total)
+        : { ...s, quiz: { ...q, done: true } };
     }
     case "quizEnd":
       return { ...s, quiz: null };

@@ -53,6 +53,8 @@ export interface GlobeCanvasProps {
   /** When this object identity changes, the camera flies to it. `null` leaves the camera alone. */
   cameraTarget: GlobeCameraTarget | null;
   autoRotate: boolean;
+  /** Honour prefers-reduced-motion: instant camera moves, static arcs. */
+  reducedMotion?: boolean;
   onPinClick?: (pin: GlobePin) => void;
   /** Click handlers also get the clicked point on the globe. */
   onPolygonClick?: (feature: BorderFeature, at: GlobeLatLng) => void;

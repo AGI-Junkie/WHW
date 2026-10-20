@@ -108,9 +108,14 @@ export const ZH: Record<string, string> = {
   "{n} people": "{n} 人",
   "Events here over time": "这里发生过的事件（时间轴）",
   "Events here": "这里发生过的事件",
+  "Events in view": "视野内的事件",
+  "Filter events by category": "按类别筛选事件",
+  "Event: {title}": "事件：{title}",
+  "Country: {name}": "国家：{name}",
 
   // Tours
   "My tour": "我的导览",
+  "Story tour: {title}": "故事导览：{title}",
   "stop {n} of {total}": "第 {n}/{total} 站",
   "← Back": "← 上一步",
   "Next →": "下一步 →",
@@ -161,6 +166,7 @@ export const ZH: Record<string, string> = {
   "Next event": "下一个事件",
   "Fly to the biggest event of each year while playing": "播放时镜头飞到每年最重要的事件",
   Follow: "跟随",
+  "Playback speed {n}×": "播放速度 {n}×",
   "Immersive stories and guided tours": "沉浸式故事与导览",
   "Story tours": "故事导览",
   "Tours…": "导览…",
@@ -168,15 +174,18 @@ export const ZH: Record<string, string> = {
 
   // Search
   "Search history": "搜索历史",
-  "Search events, countries, or a year like 1453 or 500 BC…": "搜索事件、国家，或年份，如 1453、公元前500年…",
+  "Search events, countries, or a year like 1453 or 500 BC…":
+    "搜索事件、国家，或年份，如 1453、公元前500年…",
   "Jump to {year}": "跳到{year}",
   Country: "国家",
   "Nothing found for “{query}”.": "没有找到“{query}”。",
-  "↑↓ choose · Enter open · Shift+Enter open as story · Esc close": "↑↓ 选择 · Enter 打开 · Shift+Enter 以故事打开 · Esc 关闭",
+  "↑↓ choose · Enter open · Shift+Enter open as story · Esc close":
+    "↑↓ 选择 · Enter 打开 · Shift+Enter 以故事打开 · Esc 关闭",
 
   // Help
   "Play / pause history (in a story: autoplay)": "播放 / 暂停历史（在故事中：自动播放）",
-  "Previous / next event in time (in a story or tour: chapters, stops)": "按时间上一个 / 下一个事件（在故事或导览中：章节、站点）",
+  "Previous / next event in time (in a story or tour: chapters, stops)":
+    "按时间上一个 / 下一个事件（在故事或导览中：章节、站点）",
   "Open the selected event as an immersive story": "把选中的事件打开为沉浸式故事",
   "Surprise me: a random event": "随便看看：随机一个事件",
   "Search events, countries and years": "搜索事件、国家和年份",

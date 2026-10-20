@@ -23,33 +23,78 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
   const currentEra = eraForYear(state.year, eras);
   const selectedId = state.selection?.kind === "event" ? state.selection.id : null;
   const markers = useMemo(
-    () => events.filter((e) => e.importance >= MARKER_MIN_IMPORTANCE && !state.hiddenCategories.includes(e.category)),
+    () =>
+      events.filter(
+        (e) =>
+          e.importance >= MARKER_MIN_IMPORTANCE && !state.hiddenCategories.includes(e.category),
+      ),
     [events, state.hiddenCategories],
   );
 
   return (
     <div className="timeline">
       <div className="controls">
-        <button className="btn" title={t("Previous event (←)")} aria-label={t("Previous event")} onClick={() => dispatch({ type: "stepEvent", delta: -1 })}>⏮</button>
-        <button className={`btn ${state.playing ? "active" : ""}`} onClick={() => dispatch({ type: "setPlaying", playing: !state.playing })}>
+        <button
+          className="btn"
+          title={t("Previous event (←)")}
+          aria-label={t("Previous event")}
+          onClick={() => dispatch({ type: "stepEvent", delta: -1 })}
+        >
+          ⏮
+        </button>
+        <button
+          className={`btn ${state.playing ? "active" : ""}`}
+          onClick={() => dispatch({ type: "setPlaying", playing: !state.playing })}
+        >
           {state.playing ? t("❚❚ Pause") : t("▶ Play")}
         </button>
-        <button className="btn" title={t("Next event (→)")} aria-label={t("Next event")} onClick={() => dispatch({ type: "stepEvent", delta: 1 })}>⏭</button>
-        <button className="btn secondary" onClick={() => dispatch({ type: "setSpeed", speed: state.speed === 1 ? 2 : state.speed === 2 ? 4 : 1 })}>
+        <button
+          className="btn"
+          title={t("Next event (→)")}
+          aria-label={t("Next event")}
+          onClick={() => dispatch({ type: "stepEvent", delta: 1 })}
+        >
+          ⏭
+        </button>
+        <button
+          className="btn secondary"
+          aria-label={t("Playback speed {n}×", { n: state.speed })}
+          onClick={() =>
+            dispatch({ type: "setSpeed", speed: state.speed === 1 ? 2 : state.speed === 2 ? 4 : 1 })
+          }
+        >
           {state.speed}×
         </button>
-        <button className={`btn secondary ${state.follow ? "active" : ""}`} onClick={() => dispatch({ type: "toggleFollow" })} title={t("Fly to the biggest event of each year while playing")}>
+        <button
+          className={`btn secondary ${state.follow ? "active" : ""}`}
+          aria-pressed={state.follow}
+          onClick={() => dispatch({ type: "toggleFollow" })}
+          title={t("Fly to the biggest event of each year while playing")}
+        >
           {t("Follow")}
         </button>
-        <button className="btn secondary gold" onClick={onOpenGallery} title={t("Immersive stories and guided tours")}>
+        <button
+          className="btn secondary gold"
+          onClick={onOpenGallery}
+          title={t("Immersive stories and guided tours")}
+        >
           ✦ {t("Stories")}
         </button>
-        <select className="btn secondary" value="" aria-label={t("Story tours")} onChange={(e) => {
+        <select
+          className="btn secondary"
+          value=""
+          aria-label={t("Story tours")}
+          onChange={(e) => {
             if (e.target.value) dispatch({ type: "startTour", id: e.target.value });
-          }}>
+          }}
+        >
           <option value="">{t("Tours…")}</option>
           {state.myTour.length > 0 && <option value={MY_TOUR_ID}>{t("My tour")}</option>}
-          {tours.map((x) => <option key={x.id} value={x.id}>{x.title}</option>)}
+          {tours.map((x) => (
+            <option key={x.id} value={x.id}>
+              {x.title}
+            </option>
+          ))}
         </select>
       </div>
       <div
@@ -65,10 +110,16 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
       >
         <div className="eras">
           {eras.map((e) => {
-            const l = yearToSlider(e.from) * 100, r = yearToSlider(e.to) * 100;
+            const l = yearToSlider(e.from) * 100,
+              r = yearToSlider(e.to) * 100;
             const current = e.id === currentEra?.id;
             return (
-              <span key={e.id} className={current ? "current" : ""} style={{ left: `${l}%`, width: `${r - l}%`, background: `var(--${e.tone})` }} title={t(e.name)}>
+              <span
+                key={e.id}
+                className={current ? "current" : ""}
+                style={{ left: `${l}%`, width: `${r - l}%`, background: `var(--${e.tone})` }}
+                title={t(e.name)}
+              >
                 {r - l > 11 && <label style={{ left: "50%" }}>{t(e.name)}</label>}
               </span>
             );
@@ -79,7 +130,10 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
             <button
               key={e.id}
               className={`marker ${e.story ? "story" : ""} ${e.id === selectedId ? "on" : ""}`}
-              style={{ left: `${yearToSlider(e.year) * 100}%`, background: e.story ? undefined : CATEGORY_COLORS[e.category] }}
+              style={{
+                left: `${yearToSlider(e.year) * 100}%`,
+                background: e.story ? undefined : CATEGORY_COLORS[e.category],
+              }}
               title={`${fy(e.year)} — ${e.title}${e.story ? ` (${t("immersive story")})` : ""}`}
               aria-label={`${fy(e.year)}: ${e.title}`}
               onClick={() => {
@@ -101,9 +155,23 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
             />
           ))}
         </div>
-        <input type="range" min={0} max={1000} step={1} value={Math.round(yearToSlider(state.year) * 1000)}
-          onChange={(e) => dispatch({ type: "setYear", year: sliderToYear(Number(e.target.value) / 1000) })} aria-label={t("Year")} />
-        {hover && <div className="hover-year" style={{ left: hover.x }}>{fy(hover.year)}</div>}
+        <input
+          type="range"
+          min={0}
+          max={1000}
+          step={1}
+          value={Math.round(yearToSlider(state.year) * 1000)}
+          onChange={(e) =>
+            dispatch({ type: "setYear", year: sliderToYear(Number(e.target.value) / 1000) })
+          }
+          aria-label={t("Year")}
+          aria-valuetext={fy(state.year)}
+        />
+        {hover && (
+          <div className="hover-year" style={{ left: hover.x }}>
+            {fy(hover.year)}
+          </div>
+        )}
       </div>
       <div className="readout">{fy(state.year)}</div>
     </div>

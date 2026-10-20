@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
 
-test("loads the globe with the 1945 borders and warms the neighbouring snapshots", async ({ page }) => {
+test("loads the globe with the 1945 borders and warms the neighbouring snapshots", async ({
+  page,
+}) => {
   const fetched: string[] = [];
   page.on("request", (r) => {
     const m = /\/data\/borders\/(world_\w+)\.geojson/.exec(r.url());
@@ -9,7 +11,9 @@ test("loads the globe with the 1945 borders and warms the neighbouring snapshots
   await page.goto("/");
   await expect(page.getByTestId("globe-stage").locator("canvas")).toBeVisible();
   await expect(page.locator(".era")).toContainText("borders of 1945");
-  await expect.poll(() => fetched.sort(), { timeout: 15_000 }).toEqual(["world_1920", "world_1945", "world_1994"]);
+  await expect
+    .poll(() => fetched.sort(), { timeout: 15_000 })
+    .toEqual(["world_1920", "world_1945", "world_1994"]);
 });
 
 test("scrubbing the timeline swaps the border snapshot", async ({ page }) => {
@@ -72,10 +76,77 @@ test("a shared tour link starts the visitor's tour", async ({ page }) => {
 test("Esc closes the gallery without leaving the story underneath", async ({ page }) => {
   await page.goto("/#y=1453&e=fall-of-constantinople");
   await expect(page.locator(".panel")).toBeVisible();
-  await page.getByRole("button", { name: /Stories/ }).first().click();
+  await page
+    .getByRole("button", { name: /Stories/ })
+    .first()
+    .click();
   await expect(page.getByRole("dialog", { name: "Immersive stories" })).toBeVisible();
   await page.keyboard.press("ArrowRight");
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog", { name: "Immersive stories" })).toBeHidden();
   await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
+});
+
+test.describe("World History Web", () => {
+  test("loads the atlas and shows the year, timeline and legend", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { name: "World History Web" })).toBeVisible();
+    await expect(page.getByRole("slider", { name: "Year" })).toBeVisible();
+    await expect(page.getByTestId("globe-stage")).toBeVisible();
+    await expect(page.getByRole("group", { name: "Filter events by category" })).toBeVisible();
+  });
+
+  test("the year slider is keyboard operable and announces the year", async ({ page }) => {
+    await page.goto("/");
+    const slider = page.getByRole("slider", { name: "Year" });
+    const before = await slider.getAttribute("aria-valuetext");
+    await slider.focus();
+    await page.keyboard.press("Home");
+    await expect.poll(() => slider.getAttribute("aria-valuetext")).not.toBe(before);
+  });
+
+  test("play button toggles and the space bar pauses", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "▶ Play" }).click();
+    await expect(page.getByRole("button", { name: "❚❚ Pause" })).toBeVisible();
+    await page.locator("body").click({ position: { x: 5, y: 5 } });
+    await page.keyboard.press("Space");
+    await expect(page.getByRole("button", { name: "▶ Play" })).toBeVisible();
+  });
+
+  test("an event can be opened without a mouse via the events list", async ({ page }) => {
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Events in view" });
+    await nav.getByRole("button").first().focus();
+    // The hidden list must reveal itself on focus, so sighted keyboard users see where they are.
+    expect((await nav.boundingBox())!.width).toBeGreaterThan(200);
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("complementary", { name: /^Event:/ })).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("complementary", { name: /^Event:/ })).toHaveCount(0);
+  });
+
+  test("category filter toggles", async ({ page }) => {
+    await page.goto("/");
+    const first = page
+      .getByRole("group", { name: "Filter events by category" })
+      .getByRole("button")
+      .first();
+    await expect(first).toHaveAttribute("aria-pressed", "true");
+    await first.click();
+    await expect(first).toHaveAttribute("aria-pressed", "false");
+  });
+
+  test("a story tour starts and exits", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("combobox", { name: "Story tours" }).selectOption({ index: 1 });
+    await expect(page.getByRole("region", { name: /^Story tour:/ })).toBeVisible();
+    await page.getByRole("button", { name: "Exit" }).click();
+    await expect(page.getByRole("region", { name: /^Story tour:/ })).toHaveCount(0);
+  });
+
+  test("the wiki proxy rejects bad titles", async ({ request }) => {
+    const res = await request.get("/api/wiki/summary?title=%3Cscript%3E");
+    expect(res.status()).toBe(400);
+  });
 });

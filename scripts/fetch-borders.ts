@@ -52,11 +52,14 @@ async function main(): Promise<void> {
       const raw = await fetchSnapshot(year);
       const simplified = await simplify(raw);
       // Some snapshots carry rows with null or non-polygon geometry; drop those before validating.
-      const raw2 = JSON.parse(simplified) as { features?: { geometry?: { type?: string } | null }[] };
+      const raw2 = JSON.parse(simplified) as {
+        features?: { geometry?: { type?: string } | null }[];
+      };
       const polygonsOnly = {
         type: "FeatureCollection",
         features: (raw2.features ?? []).filter(
-          (f) => f.geometry && (f.geometry.type === "Polygon" || f.geometry.type === "MultiPolygon"),
+          (f) =>
+            f.geometry && (f.geometry.type === "Polygon" || f.geometry.type === "MultiPolygon"),
         ),
       };
       const parsed = BorderSnapshotSchema.parse(polygonsOnly);
@@ -64,14 +67,21 @@ async function main(): Promise<void> {
       const json = JSON.stringify({ type: "FeatureCollection", features });
       await writeFile(target, json);
       done.push(year);
-      console.log(`${name}: ${features.length} polygons, ${(raw.length / 1e6).toFixed(2)} MB → ${(json.length / 1e6).toFixed(2)} MB`);
+      console.log(
+        `${name}: ${features.length} polygons, ${(raw.length / 1e6).toFixed(2)} MB → ${(json.length / 1e6).toFixed(2)} MB`,
+      );
     } catch (e) {
       console.error(`${name}: FAILED —`, e instanceof Error ? e.message : e);
     }
   }
   await writeFile(path.join(OUT_DIR, "index.json"), JSON.stringify({ years: done }));
   console.log(`index.json: ${done.length}/${SNAPSHOT_YEARS.length} snapshots`);
-  if (done.length === 0) process.exit(1);
+  // A partial set would ship a site whose borders silently jump between snapshots, so any miss fails the build.
+  if (done.length < SNAPSHOT_YEARS.length) {
+    const missing = SNAPSHOT_YEARS.filter((y) => !done.includes(y));
+    console.error(`Missing border snapshots: ${missing.join(", ")}`);
+    process.exit(1);
+  }
 }
 main().catch((e) => {
   console.error(e);

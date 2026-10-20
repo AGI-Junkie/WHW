@@ -51,13 +51,6 @@ skills-lock.json
 # Historical borders (GPL-3.0 dataset) are fetched at build time by `pnpm data:borders`, never redistributed here
 public/data/borders/
 
-# Agent-workflow files: kept locally for Claude Code sessions, not part of the open-source repo
-/CLAUDE.md
-/AGENTS.md
-/MEMORY.md
-/docs/*.md
-/.claude/
-/skills-lock.json
 .vercel
 
 # local Python virtualenvs (tooling, never part of the app)

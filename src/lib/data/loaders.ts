@@ -25,6 +25,10 @@ let eras: Era[] | undefined;
 export function getEvents(): HistoryEvent[] {
   return (events ??= HistoryEventsSchema.parse(eventsJson));
 }
+let eventsById: Map<string, HistoryEvent> | undefined;
+export function getEventById(id: string): HistoryEvent | undefined {
+  return (eventsById ??= new Map(getEvents().map((e) => [e.id, e]))).get(id);
+}
 export function getTours(): Tour[] {
   return (tours ??= ToursSchema.parse(toursJson));
 }
