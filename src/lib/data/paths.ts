@@ -20,5 +20,10 @@ export function snapshotUrl(year: number): string {
   return `/data/borders/${snapshotFileName(year)}`;
 }
 
-export const UPSTREAM_SNAPSHOT_BASE =
-  "https://raw.githubusercontent.com/aourednik/historical-basemaps/master/geojson/";
+/**
+ * Pinned commit of aourednik/historical-basemaps, so every build simplifies the same data. CI caches
+ * the generated snapshots keyed on this file, so bumping the pin also refreshes the cache.
+ */
+export const UPSTREAM_SNAPSHOT_REF = "da7a4b735ecef70aebdc9c73e409d8a2500d50f3";
+
+export const UPSTREAM_SNAPSHOT_BASE = `https://raw.githubusercontent.com/aourednik/historical-basemaps/${UPSTREAM_SNAPSHOT_REF}/geojson/`;

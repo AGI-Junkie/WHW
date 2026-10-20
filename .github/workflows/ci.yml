@@ -19,7 +19,24 @@ jobs:
       - run: pnpm lint:strict
       - run: pnpm typecheck
       - run: pnpm test
+      # `pnpm data:borders` skips snapshots already on disk, so a cache hit means no network for border data.
+      # paths.ts holds the pinned upstream commit and the snapshot years; the script and schemas shape the output.
+      - uses: actions/cache@v4
+        with:
+          path: public/data/borders/
+          key: borders-${{ hashFiles('scripts/fetch-borders.ts', 'src/lib/data/paths.ts', 'src/lib/data/schemas.ts', 'pnpm-lock.yaml') }}
       - run: pnpm build
+      # e2e serves this exact build instead of rebuilding (and refetching borders) itself.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: |
+            .next/
+            !.next/cache/
+            public/data/borders/
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: error
 
   e2e:
     runs-on: ubuntu-latest
@@ -32,8 +49,10 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      # `pnpm build` also runs `pnpm data:borders`; `pnpm start` (the e2e webServer under CI) needs the .next output.
-      - run: pnpm build
+      # `pnpm start` (the e2e webServer under CI) needs the .next output and the border snapshots.
+      - uses: actions/download-artifact@v4
+        with:
+          name: build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
       - uses: actions/upload-artifact@v4

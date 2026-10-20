@@ -150,3 +150,87 @@ test.describe("World History Web", () => {
     expect(res.status()).toBe(400);
   });
 });
+
+test.describe("on a phone", () => {
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+
+  const noHorizontalScroll = (page: import("@playwright/test").Page) =>
+    expect
+      .poll(() => page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth))
+      .toBeLessThanOrEqual(0);
+
+  test("scrub the timeline, open an event, open its story", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByTestId("globe-stage").locator("canvas")).toBeVisible();
+    await expect(page.locator(".era")).toContainText("borders of 1945");
+    await noHorizontalScroll(page);
+
+    // Scrub by touch: a tap near the left end of the slider jumps back to antiquity.
+    const slider = page.getByRole("slider", { name: "Year", exact: true });
+    const box = (await slider.boundingBox())!;
+    expect(box.height).toBeGreaterThanOrEqual(44);
+    await page.touchscreen.tap(box.x + 4, box.y + box.height / 2);
+    await expect(page.locator(".era")).toContainText("borders of 500 BC");
+
+    // Markers are too small to tap on a phone; the button under the track opens the nearest one.
+    const nearest = page.locator(".nearest-event");
+    await expect(nearest).toBeVisible();
+    const title = (await nearest.textContent())!.split(" · ").slice(1).join(" · ");
+    await nearest.tap();
+    const panel = page.getByRole("complementary", { name: /^Event:/ });
+    await expect(panel.locator("h2")).toHaveText(title);
+    // The panel is a bottom sheet: full width, flush with the bottom of the screen once it has slid in.
+    await expect
+      .poll(async () => {
+        const b = (await panel.boundingBox())!;
+        return [b.x, b.width, Math.round(b.y + b.height)];
+      })
+      .toEqual([0, 390, 844]);
+    await noHorizontalScroll(page);
+
+    await panel.locator(".story-cta").tap();
+    const story = page.getByRole("dialog", { name: /^Story: / });
+    await expect(story).toBeVisible();
+    const card = (await story.locator(".story-card").boundingBox())!;
+    expect(card.x).toBeGreaterThanOrEqual(0);
+    expect(card.x + card.width).toBeLessThanOrEqual(390);
+    await story.getByRole("button", { name: "Next →" }).tap();
+    await expect(story.locator(".story-card .meta").first()).toContainText("Chapter 2");
+    await noHorizontalScroll(page);
+    await story.getByRole("button", { name: "Leave the story" }).tap();
+    await expect(story).toBeHidden();
+  });
+
+  test("the facts and quote of a curated story fold into the card", async ({ page }) => {
+    await page.goto("/#y=1453&e=fall-of-constantinople&s=1");
+    const story = page.getByRole("dialog", { name: /^Story: / });
+    await expect(story.locator(".story-side")).toBeHidden();
+    await story.getByText("Key facts").tap();
+    await expect(story.locator(".story-extra .story-facts")).toBeVisible();
+  });
+
+  test("controls are at least 44px and nothing scrolls sideways at 360px", async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    for (const hash of [
+      "",
+      "#y=1453&e=fall-of-constantinople",
+      "#y=1453&e=fall-of-constantinople&s=1",
+    ]) {
+      await page.goto("/" + hash);
+      await page.reload();
+      await expect(page.getByTestId("globe-stage").locator("canvas")).toBeVisible();
+      await noHorizontalScroll(page);
+      const small = await page.evaluate(() =>
+        [...document.querySelectorAll<HTMLElement>("button, select, input")]
+          .filter((el) => {
+            const r = el.getBoundingClientRect();
+            const tappable =
+              getComputedStyle(el).pointerEvents !== "none" && !el.closest(".sr-only");
+            return tappable && r.width > 0 && (r.width < 44 || r.height < 44);
+          })
+          .map((el) => el.getAttribute("aria-label") ?? el.textContent),
+      );
+      expect(small).toEqual([]);
+    }
+  });
+});
