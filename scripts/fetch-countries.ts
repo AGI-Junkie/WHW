@@ -6,7 +6,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { CountriesSchema, MAX_YEAR, MIN_YEAR, type Country } from "../src/lib/data/schemas";
 
-const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/haakram/WHW)";
+const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/AGI-Junkie/WHW)";
 const QUERY = `SELECT ?item ?itemLabel ?iso ?inception ?capitalLabel ?coord ?flag ?population WHERE {
   ?item wdt:P31 wd:Q3624078 ; wdt:P297 ?iso .
   FILTER NOT EXISTS { ?item wdt:P576 ?d }

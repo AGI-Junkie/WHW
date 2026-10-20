@@ -7,7 +7,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { HistoryEventsSchema, type HistoryEvent } from "../src/lib/data/schemas";
 
-const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/haakram/WHW)";
+const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/AGI-Junkie/WHW)";
 const EVENTS = path.join(process.cwd(), "src/data/events.json");
 const PREFERRED = ["480p.vp9.webm", "480p.webm", "720p.vp9.webm", "360p.webm", "240p.vp9.webm"];
 
