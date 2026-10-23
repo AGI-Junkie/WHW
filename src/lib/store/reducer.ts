@@ -236,8 +236,7 @@ function loaded(s: HistoryState, patch: Partial<HistoryState>, source: DataSourc
 export function reducer(s: HistoryState, a: Action): HistoryState {
   switch (a.type) {
     case "setYear":
-      // Moving the timeline mid-quiz would swap the borders that are the round's clue: leave the quiz.
-      return { ...s, year: a.year, quiz: null };
+      return { ...s, year: a.year, story: null, tour: null, quiz: null };
     case "tick": {
       const next = nextYear(s.year, 1);
       if (next === s.year || s.year >= MAX_YEAR) return { ...s, playing: false };
@@ -278,6 +277,8 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
         const ev = getEventById(sel.id);
         return {
           ...s,
+          story: null,
+          tour: null,
           quiz: null,
           selection: sel,
           discovery: discoverEvent(s.discovery, sel.id),
@@ -288,6 +289,8 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       }
       return {
         ...s,
+        story: null,
+        tour: null,
         quiz: null,
         selection: a.selection,
         discovery: discoverCountry(s.discovery, polityDisplayName(a.selection.feature)),

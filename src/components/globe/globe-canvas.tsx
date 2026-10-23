@@ -72,8 +72,7 @@ export default function GlobeCanvas(props: GlobeCanvasProps) {
     controls.maxDistance = 600;
     // Textures load a moment after the globe is ready; a second POV set avoids the default zoom.
     window.setTimeout(() => g.pointOfView(start(), 800), 100);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.autoRotate]);
 
   return (
     <div ref={ref} className="globe-stage" data-testid="globe-stage">

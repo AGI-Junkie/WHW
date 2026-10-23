@@ -16,10 +16,11 @@ const KEYS: [string, string][] = [
 
 export default function HelpOverlay({ onClose }: { onClose: () => void }) {
   const { t } = useI18n();
-  useOverlayKeys(onClose);
+  const dialog = useOverlayKeys(onClose);
   return (
     <div className="overlay" onMouseDown={onClose}>
       <div
+        {...dialog}
         className="help"
         role="dialog"
         aria-label={t("Keyboard shortcuts")}
