@@ -93,6 +93,48 @@ test("dialogs contain keyboard focus, block atlas shortcuts and restore their op
   }
 });
 
+test("clearing My tour keeps focus and shortcuts inside the gallery", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("whw-my-tour-v1", JSON.stringify(["apollo-11"]));
+  });
+  await page.goto("/#y=1453&e=fall-of-constantinople");
+  const opener = page.getByRole("button", { name: /Stories/ }).first();
+  await opener.click();
+  const dialog = page.getByRole("dialog", { name: "Immersive stories" });
+  await dialog.getByRole("button", { name: "Clear", exact: true }).click();
+  await expect(dialog.locator(".my-tour")).toBeHidden();
+  await expect(dialog.getByRole("button", { name: "Close", exact: true })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect.poll(() => dialog.evaluate((el) => el.contains(document.activeElement))).toBe(true);
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  await expect(opener).toBeFocused();
+  await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
+});
+
+test("modal Escape leaves the open events list underneath unchanged", async ({ page }) => {
+  await page.goto("/#y=1453&e=fall-of-constantinople");
+  await page.getByRole("button", { name: /List/ }).click();
+  const list = page.getByRole("navigation", { name: "Events in view" });
+  await expect(list).toHaveClass(/open/);
+  for (const name of [/Search/, "Keyboard shortcuts", /Stories/]) {
+    const opener = page.getByRole("button", { name }).first();
+    await opener.click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+    await expect(list).toHaveClass(/open/);
+    await expect(opener).toBeFocused();
+    await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
+  }
+  await page.keyboard.press("Escape");
+  await expect(list).not.toHaveClass(/open/);
+  await expect(page.locator(".panel h2")).toHaveText("The fall of Constantinople");
+});
+
 test("the language switch translates the UI and is remembered", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "中文", exact: true }).click();

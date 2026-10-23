@@ -10,12 +10,16 @@ export function useOverlayKeys(onClose: () => void) {
   const ref = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const previous = document.activeElement;
-    const dialog = ref.current;
-    (dialog?.querySelector<HTMLElement>(FOCUSABLE) ?? dialog)?.focus();
     return () => {
       if (previous instanceof HTMLElement && previous.isConnected) previous.focus();
     };
   }, []);
+  useLayoutEffect(() => {
+    const dialog = ref.current;
+    if (dialog && !dialog.contains(document.activeElement)) {
+      (dialog.querySelector<HTMLElement>(FOCUSABLE) ?? dialog).focus();
+    }
+  });
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     e.stopPropagation();
