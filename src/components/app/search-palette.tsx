@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { useHistory } from "@/lib/store/history-store";
 import { CATEGORY_COLORS } from "@/lib/domain/palette";
 import { search, type SearchResult } from "@/lib/domain/search";
 import { useI18n } from "@/lib/i18n";
 import { getEvents } from "@/lib/data/loaders";
+import { useOverlayKeys } from "./use-overlay-keys";
 
 /** ⌘K / Ctrl+K / "/" palette: events, countries, or a year to jump to. */
 export default function SearchPalette({ onClose }: { onClose: () => void }) {
@@ -13,7 +14,7 @@ export default function SearchPalette({ onClose }: { onClose: () => void }) {
   const { t, fy, locale } = useI18n();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
-  const input = useRef<HTMLInputElement>(null);
+  const dialog = useOverlayKeys(onClose);
   // In Chinese the events carry Chinese titles; the English ones still match.
   const english = useMemo(
     () => (locale === "zh" ? new Map(getEvents().map((e) => [e.id, e.title])) : undefined),
@@ -23,8 +24,6 @@ export default function SearchPalette({ onClose }: { onClose: () => void }) {
     () => search(query, events, state.countries, 12, english),
     [query, events, state.countries, english],
   );
-
-  useEffect(() => input.current?.focus(), []);
 
   const choose = (r: SearchResult | undefined, story = false) => {
     if (!r) return;
@@ -59,13 +58,13 @@ export default function SearchPalette({ onClose }: { onClose: () => void }) {
   return (
     <div className="overlay" onMouseDown={onClose}>
       <div
+        {...dialog}
         className="palette"
         role="dialog"
         aria-label={t("Search history")}
         onMouseDown={(e) => e.stopPropagation()}
       >
         <input
-          ref={input}
           value={query}
           placeholder={t("Search events, countries, or a year like 1453 or 500 BC…")}
           aria-label={t("Search")}
@@ -74,8 +73,7 @@ export default function SearchPalette({ onClose }: { onClose: () => void }) {
             setActive(0);
           }}
           onKeyDown={(e) => {
-            if (e.key === "Escape") onClose();
-            else if (e.key === "ArrowDown") {
+            if (e.key === "ArrowDown") {
               e.preventDefault();
               setActive((a) => Math.min(results.length - 1, a + 1));
             } else if (e.key === "ArrowUp") {

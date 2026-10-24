@@ -485,6 +485,7 @@ function Shell() {
             <EventList
               events={visible}
               open={listOpen}
+              modalOpen={overlay !== null}
               onClose={closeList}
               returnFocus={focusListButton}
             />
@@ -564,11 +565,13 @@ function YearCounter({ year }: { year: number }) {
 function EventList({
   events,
   open,
+  modalOpen,
   onClose,
   returnFocus,
 }: {
   events: HistoryEvent[];
   open: boolean;
+  modalOpen: boolean;
   onClose: () => void;
   returnFocus: () => void;
 }) {
@@ -593,9 +596,9 @@ function EventList({
     }
   }, [open, returnFocus]);
   // Esc closes the open list wherever focus is (timeline, toolbar…), before the store's handler
-  // would clear the selection instead.
+  // would clear the selection instead. A modal above it owns Esc until it closes.
   useEffect(() => {
-    if (!open) return;
+    if (!open || modalOpen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
       e.stopPropagation();
@@ -603,7 +606,7 @@ function EventList({
     };
     window.addEventListener("keydown", onKey, true);
     return () => window.removeEventListener("keydown", onKey, true);
-  }, [open, onClose]);
+  }, [open, modalOpen, onClose]);
   return (
     <nav
       ref={ref}

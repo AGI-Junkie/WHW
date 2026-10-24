@@ -44,6 +44,33 @@ describe("reducer: playback", () => {
 });
 
 describe("reducer: selection and discovery", () => {
+  it("ordinary navigation leaves a story or tour instead of keeping its old playback", () => {
+    const story = reducer(initialState, { type: "openStory", id: "apollo-11" });
+    let s = reducer(story, { type: "setYear", year: 1066 });
+    s = reducer(s, { type: "select", selection: { kind: "event", id: "battle-of-hastings" } });
+    expect(s.story).toBeNull();
+    expect(s.selection).toEqual({ kind: "event", id: "battle-of-hastings" });
+    expect(reducer(s, { type: "storyStep", delta: 1 }).year).toBe(1066);
+    expect(
+      reducer(story, { type: "select", selection: { kind: "event", id: "battle-of-hastings" } })
+        .story,
+    ).toBeNull();
+    expect(
+      reducer(story, {
+        type: "select",
+        selection: {
+          kind: "country",
+          feature: {
+            type: "Feature",
+            properties: { NAME: "France" },
+            geometry: { type: "Polygon", coordinates: [] },
+          },
+        },
+      }).story,
+    ).toBeNull();
+    expect(reducer(start(), { type: "setYear", year: 1066 }).tour).toBeNull();
+  });
+
   it("selecting an event records discovery and optionally flies there", () => {
     const s = reducer(initialState, {
       type: "select",

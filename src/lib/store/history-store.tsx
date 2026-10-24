@@ -109,7 +109,11 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (state.snapshotYears.length === 0) return;
     const target = pickSnapshotYear(state.year, state.snapshotYears);
-    if (target === state.snapshotYear || wantedSnapshot.current === target) return;
+    if (target === state.snapshotYear) {
+      wantedSnapshot.current = target;
+      return;
+    }
+    if (wantedSnapshot.current === target) return;
     wantedSnapshot.current = target;
     fetchSnapshot(target)
       .then((features) => {
@@ -158,13 +162,9 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     const mine = loadMyTour();
     if (mine.length) dispatch({ type: "myTourLoaded", ids: mine });
   }, []);
-  const myTourLoaded = useRef(false);
   useEffect(() => {
-    // Skip the first run so the empty initial list does not overwrite what is saved.
-    if (!myTourLoaded.current) {
-      myTourLoaded.current = true;
-      return;
-    }
+    // The initial objects have not been restored from browser storage yet.
+    if (state.myTour === initialState.myTour) return;
     try {
       window.localStorage.setItem(MY_TOUR_KEY, JSON.stringify(state.myTour));
     } catch {
@@ -172,6 +172,7 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     }
   }, [state.myTour]);
   useEffect(() => {
+    if (state.discovery === initialState.discovery) return;
     try {
       window.localStorage.setItem(DISCOVERY_KEY, JSON.stringify(state.discovery));
     } catch {
@@ -193,20 +194,29 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     return () => window.clearTimeout(id);
   }, [state.story, events]);
 
-  // Deep links: the hash is read once on load, then kept in step with the view (replaceState, so
-  // scrubbing does not flood the history). Throttled because play mode changes the year 3–12×/s.
+  // replaceState does not fire hashchange, so writing the current view cannot reopen a link.
   useEffect(() => {
-    const link = parseDeepLink(window.location.hash);
-    const ev = link.eventId ? getEvents().find((e) => e.id === link.eventId) : undefined;
-    if (link.hidden) dispatch({ type: "setHiddenCategories", categories: link.hidden });
-    if (link.tour) {
-      dispatch({ type: "myTourLoaded", ids: link.tour });
-      dispatch({ type: "startTour", id: MY_TOUR_ID });
-    } else if (ev && link.story) dispatch({ type: "openStory", id: ev.id, chapter: 0 });
-    else if (ev) {
-      dispatch({ type: "setYear", year: link.year ?? ev.year });
-      dispatch({ type: "select", selection: { kind: "event", id: ev.id }, fly: true });
-    } else if (link.year !== undefined) dispatch({ type: "setYear", year: link.year });
+    const readLink = () => {
+      const link = parseDeepLink(window.location.hash);
+      const ev = link.eventId ? getEvents().find((e) => e.id === link.eventId) : undefined;
+      dispatch({ type: "setPlaying", playing: false });
+      dispatch({ type: "closeStory" });
+      dispatch({ type: "endTour" });
+      dispatch({ type: "quizEnd" });
+      dispatch({ type: "select", selection: null });
+      dispatch({ type: "setHiddenCategories", categories: link.hidden ?? [] });
+      if (link.tour) {
+        dispatch({ type: "myTourLoaded", ids: link.tour });
+        dispatch({ type: "startTour", id: MY_TOUR_ID });
+      } else if (ev && link.story) dispatch({ type: "openStory", id: ev.id, chapter: 0 });
+      else if (ev) {
+        dispatch({ type: "setYear", year: link.year ?? ev.year });
+        dispatch({ type: "select", selection: { kind: "event", id: ev.id }, fly: true });
+      } else dispatch({ type: "setYear", year: link.year ?? initialState.year });
+    };
+    readLink();
+    window.addEventListener("hashchange", readLink);
+    return () => window.removeEventListener("hashchange", readLink);
   }, []);
   const linkYear = state.year;
   const linkEvent = state.selection?.kind === "event" ? state.selection.id : undefined;
