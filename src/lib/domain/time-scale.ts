@@ -60,10 +60,3 @@ export function nextYear(year: number, direction: 1 | -1 = 1): number {
   if (next === 0) next = direction === 1 ? 1 : -1;
   return clamp(next, MIN_YEAR, MAX_YEAR);
 }
-
-/** "500 BC", "AD 476", "1950". */
-export function formatYear(year: number): string {
-  if (year < 0) return `${-year} BC`;
-  if (year < 1000) return `AD ${year}`;
-  return String(year);
-}

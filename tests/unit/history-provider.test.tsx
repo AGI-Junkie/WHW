@@ -108,6 +108,20 @@ it.each(["resolve", "reject"])(
   },
 );
 
+it("plays a shared tour link without replacing the visitor's saved tour", async () => {
+  window.localStorage.setItem("whw-my-tour-v1", JSON.stringify(["battle-of-hastings"]));
+  window.history.replaceState(null, "", "/#t=fall-of-constantinople,apollo-11");
+  await mount();
+  expect(history.state.tour).toEqual({ id: "shared", stop: 0 });
+  expect(history.state.sharedTour).toEqual(["fall-of-constantinople", "apollo-11"]);
+  expect(history.state.myTour).toEqual(["battle-of-hastings"]);
+  await act(async () => vi.advanceTimersByTime(500));
+  expect(JSON.parse(window.localStorage.getItem("whw-my-tour-v1")!)).toEqual([
+    "battle-of-hastings",
+  ]);
+  expect(window.location.hash).toBe("#t=fall-of-constantinople,apollo-11");
+});
+
 it("reads successive shared links and removes the previous mode, selection and filters", async () => {
   await mount();
   const navigate = async (hash: string) => {
@@ -125,7 +139,7 @@ it("reads successive shared links and removes the previous mode, selection and f
   expect(history.state.selection).toEqual({ kind: "event", id: "battle-of-hastings" });
   expect(history.state.hiddenCategories).toEqual([]);
   await navigate("#t=fall-of-constantinople,apollo-11");
-  expect(history.state.tour?.id).toBe("mine");
+  expect(history.state.tour?.id).toBe("shared");
   await navigate("#y=1453");
   expect(history.state.tour).toBeNull();
   expect(history.state.selection).toBeNull();

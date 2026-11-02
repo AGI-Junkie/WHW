@@ -29,6 +29,13 @@ describe("stories", () => {
     expect(s.chapters.some((c) => c.heading === "The two sides")).toBe(true);
   });
 
+  it("builds its years and texts in Chinese for the Chinese UI", () => {
+    const s = storyFor(byId("battle-of-hastings"), events, "zh");
+    expect(s.chapters[0]!.when).toBe("1066年");
+    expect(s.chapters.find((c) => c.heading === "The two sides")!.text).toContain("对阵");
+    expect(s.chapters.some((c) => /BC|AD |Around|against/.test(c.when + c.text))).toBe(false);
+  });
+
   it("lingers 6–16 s per chapter", () => {
     for (const c of storyFor(byId("apollo-11"), events).chapters) {
       expect(chapterDurationMs(c)).toBeGreaterThanOrEqual(6000);
@@ -75,8 +82,21 @@ describe("story reducer", () => {
     expect(s.story).toBeNull();
   });
 
+  it("openEvent jumps to the event's year, selects it and leaves the story", () => {
+    const story = reducer(initialState, { type: "openStory", id: "apollo-11" });
+    const s = reducer(story, { type: "openEvent", id: "battle-of-hastings" });
+    expect(s.year).toBe(1066);
+    expect(s.selection).toEqual({ kind: "event", id: "battle-of-hastings" });
+    expect(s.story).toBeNull();
+    expect(s.cameraTarget?.lat).toBe(byId("battle-of-hastings").lat);
+    expect(reducer(s, { type: "openEvent", id: "no-such-event" })).toBe(s);
+  });
+
   it("play mode leaves the story", () => {
-    const s = reducer(reducer(initialState, { type: "openStory", id: "apollo-11" }), { type: "setPlaying", playing: true });
+    const s = reducer(reducer(initialState, { type: "openStory", id: "apollo-11" }), {
+      type: "setPlaying",
+      playing: true,
+    });
     expect(s.story).toBeNull();
   });
 });

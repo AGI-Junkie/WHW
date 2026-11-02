@@ -26,7 +26,7 @@ import { pickSnapshotYear } from "@/lib/domain/snapshot";
 import type { DiscoveryState } from "@/lib/domain/discovery";
 import { chapterDurationMs, storyFor } from "@/lib/domain/story";
 import { buildDeepLink, parseDeepLink } from "@/lib/domain/deep-link";
-import { MY_TOUR_ID } from "@/lib/domain/my-tour";
+import { MY_TOUR_ID, SHARED_TOUR_ID } from "@/lib/domain/my-tour";
 import {
   initialState,
   reducer,
@@ -185,14 +185,14 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
     const st = state.story;
     if (!st?.autoplay) return;
     const ev = events.find((e) => e.id === st.id);
-    const chapter = ev && storyFor(ev, events).chapters[st.chapter];
+    const chapter = ev && storyFor(ev, events, locale).chapters[st.chapter];
     if (!chapter) return;
     const id = window.setTimeout(
       () => dispatch({ type: "storyStep", delta: 1 }),
       chapterDurationMs(chapter),
     );
     return () => window.clearTimeout(id);
-  }, [state.story, events]);
+  }, [state.story, events, locale]);
 
   // replaceState does not fire hashchange, so writing the current view cannot reopen a link.
   useEffect(() => {
@@ -205,10 +205,8 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
       dispatch({ type: "quizEnd" });
       dispatch({ type: "select", selection: null });
       dispatch({ type: "setHiddenCategories", categories: link.hidden ?? [] });
-      if (link.tour) {
-        dispatch({ type: "myTourLoaded", ids: link.tour });
-        dispatch({ type: "startTour", id: MY_TOUR_ID });
-      } else if (ev && link.story) dispatch({ type: "openStory", id: ev.id, chapter: 0 });
+      if (link.tour) dispatch({ type: "startSharedTour", ids: link.tour });
+      else if (ev && link.story) dispatch({ type: "openStory", id: ev.id, chapter: 0 });
       else if (ev) {
         dispatch({ type: "setYear", year: link.year ?? ev.year });
         dispatch({ type: "select", selection: { kind: "event", id: ev.id }, fly: true });
@@ -221,8 +219,14 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
   const linkYear = state.year;
   const linkEvent = state.selection?.kind === "event" ? state.selection.id : undefined;
   const linkStory = state.story !== null;
-  // While My tour plays, the address keeps the tour itself, so reloading or copying it reopens the tour.
-  const linkTour = state.tour?.id === MY_TOUR_ID ? state.myTour.join(",") : "";
+  // While My tour or a shared tour plays, the address keeps the tour itself, so reloading or copying
+  // it reopens the tour.
+  const linkTour =
+    state.tour?.id === MY_TOUR_ID
+      ? state.myTour.join(",")
+      : state.tour?.id === SHARED_TOUR_ID
+        ? state.sharedTour.join(",")
+        : "";
   const linkHidden = state.hiddenCategories.join(",");
   useEffect(() => {
     const id = window.setTimeout(() => {

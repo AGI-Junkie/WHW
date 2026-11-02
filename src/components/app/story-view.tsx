@@ -19,7 +19,7 @@ export default function StoryView() {
   const { t, fy, locale } = useI18n();
   const st = state.story;
   const ev = st ? events.find((e) => e.id === st.id) : undefined;
-  const story = useMemo(() => (ev ? storyFor(ev, events) : null), [ev, events]);
+  const story = useMemo(() => (ev ? storyFor(ev, events, locale) : null), [ev, events, locale]);
   const related = useMemo(
     () => (ev ? relatedEvents(ev, events, tours, 4) : []),
     [ev, events, tours],

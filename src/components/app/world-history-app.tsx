@@ -23,10 +23,11 @@ import { relatedEvents } from "@/lib/domain/related";
 import { storyFor } from "@/lib/domain/story";
 import { featureOutlines } from "@/lib/domain/compare";
 import { QUIZ_ROUNDS } from "@/lib/domain/quiz";
-import { buildMyTour, MY_TOUR_ID, MY_TOUR_MAX } from "@/lib/domain/my-tour";
+import { buildMyTour, MY_TOUR_ID, MY_TOUR_MAX, SHARED_TOUR_ID } from "@/lib/domain/my-tour";
 import {
   CATEGORY_COLORS,
   COUNTRY_PIN_COLOR,
+  countryFeature,
   RING_COLOR,
   polityColor,
   polityDisplayName,
@@ -89,8 +90,8 @@ function Shell() {
   const closeList = useCallback(() => setListOpen(false), []);
   const storyEvent = state.story ? events.find((e) => e.id === state.story?.id) : undefined;
   const story = useMemo(
-    () => (storyEvent ? storyFor(storyEvent, events) : null),
-    [storyEvent, events],
+    () => (storyEvent ? storyFor(storyEvent, events, locale) : null),
+    [storyEvent, events, locale],
   );
   const quiz = state.quiz;
   const quizEvent = quiz ? events.find((e) => e.id === quiz.eventId) : undefined;
@@ -343,21 +344,10 @@ function Shell() {
               dispatch({ type: "select", selection: { kind: "event", id: pin.id } });
             else {
               const c = state.countries.find((x) => `country:${x.iso2}` === pin.id);
-              const f = state.polygons.find(
-                (p) => c && (p.properties.NAME ?? "").toLowerCase() === c.name.toLowerCase(),
-              );
-              if (f) dispatch({ type: "select", selection: { kind: "country", feature: f } });
-              else if (c)
+              if (c)
                 dispatch({
                   type: "select",
-                  selection: {
-                    kind: "country",
-                    feature: {
-                      type: "Feature",
-                      properties: { NAME: c.name },
-                      geometry: { type: "Polygon", coordinates: [] },
-                    },
-                  },
+                  selection: { kind: "country", feature: countryFeature(c.name, state.polygons) },
                 });
             }
           }}
@@ -918,13 +908,7 @@ function EventPanel({ id }: { id: string }) {
             {t("Related")}
           </div>
           {related.map((r) => (
-            <button
-              key={r.id}
-              onClick={() => {
-                dispatch({ type: "setYear", year: r.year });
-                dispatch({ type: "select", selection: { kind: "event", id: r.id }, fly: true });
-              }}
-            >
+            <button key={r.id} onClick={() => dispatch({ type: "openEvent", id: r.id })}>
               <i className="dot" style={{ background: CATEGORY_COLORS[r.category] }} />{" "}
               <span className="meta">{fy(r.year)}</span> · {r.title}
               {r.story ? " ✦" : ""}
@@ -976,10 +960,7 @@ function CountryPanel({ feature }: { feature: BorderFeature }) {
     .filter((e) => country && e.countryIso === country.iso2)
     .sort((a, b) => a.year - b.year);
   const title = country ? `History of ${country.name}` : name;
-  const go = (e: HistoryEvent) => {
-    dispatch({ type: "setYear", year: e.year });
-    dispatch({ type: "select", selection: { kind: "event", id: e.id }, fly: true });
-  };
+  const go = (e: HistoryEvent) => dispatch({ type: "openEvent", id: e.id });
   return (
     <aside
       className="panel"
@@ -1053,20 +1034,18 @@ function CountryPanel({ feature }: { feature: BorderFeature }) {
 function TourPlayer() {
   const { state, tours, events, dispatch } = useHistory();
   const { t, fy } = useI18n();
-  const mine = state.tour?.id === MY_TOUR_ID;
-  const tour = mine
-    ? buildMyTour(state.myTour, events)
-    : tours.find((x) => x.id === state.tour?.id);
+  const id = state.tour?.id;
+  const own = id === MY_TOUR_ID ? state.myTour : id === SHARED_TOUR_ID ? state.sharedTour : null;
+  const tour = own ? buildMyTour(own, events) : tours.find((x) => x.id === id);
   const stop = tour?.stops[state.tour?.stop ?? 0];
   const ev = stop && events.find((e) => e.id === stop.eventId);
   if (!tour || !stop) return null;
+  const title =
+    id === MY_TOUR_ID ? t("My tour") : id === SHARED_TOUR_ID ? t("Shared tour") : tour.title;
   return (
-    <section
-      className="tour"
-      aria-label={t("Story tour: {title}", { title: mine ? t("My tour") : tour.title })}
-    >
+    <section className="tour" aria-label={t("Story tour: {title}", { title })}>
       <div className="meta" style={{ color: "#b8892b" }}>
-        {mine ? t("My tour") : tour.title} ·{" "}
+        {title} ·{" "}
         {t("stop {n} of {total}", { n: (state.tour?.stop ?? 0) + 1, total: tour.stops.length })}
       </div>
       <h3>{ev ? `${fy(ev.year)} — ${ev.title}` : stop.eventId}</h3>

@@ -42,10 +42,6 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
     }
     return best;
   }, [markers, state.year]);
-  const openEvent = (id: string, year: number) => {
-    dispatch({ type: "setYear", year });
-    dispatch({ type: "select", selection: { kind: "event", id }, fly: true });
-  };
   const trackHover = (clientX: number) => {
     const r = track.current?.getBoundingClientRect();
     if (!r) return;
@@ -169,7 +165,7 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
               }}
               title={`${fy(e.year)} — ${e.title}${e.story ? ` (${t("immersive story")})` : ""}`}
               aria-label={`${fy(e.year)}: ${e.title}`}
-              onClick={() => openEvent(e.id, e.year)}
+              onClick={() => dispatch({ type: "openEvent", id: e.id })}
             />
           ))}
         </div>
@@ -210,7 +206,7 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
       {nearest && (
         <button
           className={`btn secondary nearest-event ${nearest.story ? "gold" : ""}`}
-          onClick={() => openEvent(nearest.id, nearest.year)}
+          onClick={() => dispatch({ type: "openEvent", id: nearest.id })}
         >
           {nearest.story ? "◆" : "•"} {fy(nearest.year)} · {nearest.title}
         </button>

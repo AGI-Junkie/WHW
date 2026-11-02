@@ -115,6 +115,7 @@ export const ZH: Record<string, string> = {
 
   // Tours
   "My tour": "我的导览",
+  "Shared tour": "分享的导览",
   "Story tour: {title}": "故事导览：{title}",
   "stop {n} of {total}": "第 {n}/{total} 站",
   "← Back": "← 上一步",
@@ -151,6 +152,9 @@ export const ZH: Record<string, string> = {
   "▶ Autoplay": "▶ 自动播放",
   Finish: "完成",
   "The two sides": "交战双方",
+  "{a} against {b}. The arcs on the globe join the capitals of each side.":
+    "{a} 对阵 {b}。地球上的弧线连接双方的首都。",
+  "Around {year}": "{year}前后",
   "Meanwhile, elsewhere": "与此同时，在别处",
   "The wider view": "更大的图景",
   Span: "时间跨度",

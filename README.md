@@ -71,6 +71,12 @@ Any host that runs Next.js works. Set `WIKI_USER_AGENT` to something that identi
 WIKI_USER_AGENT="MyHistoryApp/1.0 (https://example.com; me@example.com)"
 ```
 
+Behind your own reverse proxy (Nginx, Caddy), set `X-Real-IP` from the connection, so the Wikipedia proxy's rate limit sees the real client and a client cannot send its own. Without it, requests are not rate-limited at all:
+
+```nginx
+proxy_set_header X-Real-IP $remote_addr;
+```
+
 ## Use the globe in your own app
 
 The globe is one self-contained client component with a plain props contract. Copy `src/components/globe/` (four files, no app-specific imports beyond the `BorderFeature` type) and render it inside a sized container:

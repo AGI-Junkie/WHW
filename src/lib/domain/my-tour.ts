@@ -2,17 +2,23 @@ import type { HistoryEvent, Tour } from "@/lib/data/schemas";
 
 /** The id the reducer and the URL use for the visitor's own tour. */
 export const MY_TOUR_ID = "mine";
+/** A tour opened from a `#t=` link: played as is, never written over the visitor's own tour. */
+export const SHARED_TOUR_ID = "shared";
 export const MY_TOUR_MAX = 14;
 
 /** The visitor's picked events as a tour, in time order; the event summaries narrate the stops. */
-export function buildMyTour(ids: readonly string[], events: readonly HistoryEvent[]): Tour | null {
+export function buildMyTour(
+  ids: readonly string[],
+  events: readonly HistoryEvent[],
+  id = MY_TOUR_ID,
+): Tour | null {
   const picked = ids
     .map((id) => events.find((e) => e.id === id))
     .filter((e): e is HistoryEvent => e !== undefined)
     .sort((a, b) => a.year - b.year);
   if (picked.length === 0) return null;
   return {
-    id: MY_TOUR_ID,
+    id,
     title: "My tour",
     subtitle: `${picked.length} events picked by you`,
     from: picked[0]!.year,

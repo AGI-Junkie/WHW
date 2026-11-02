@@ -58,7 +58,7 @@ test("shared links update the same tab between stories, events, tours and years"
       .getByRole("button", { name: "war", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
   await page.goto("/#t=fall-of-constantinople,apollo-11");
-  await expect(page.locator(".tour")).toContainText("My tour");
+  await expect(page.locator(".tour")).toContainText("Shared tour");
   await page.goto("/#y=1453");
   await expect(page.locator(".tour")).toBeHidden();
   await expect(page.locator(".panel")).toBeHidden();
@@ -168,9 +168,9 @@ test("compare mode overlays a second snapshot", async ({ page }) => {
   await expect(page.locator(".compare-key")).toContainText("1914");
 });
 
-test("a shared tour link starts the visitor's tour", async ({ page }) => {
+test("a shared tour link plays as a shared tour", async ({ page }) => {
   await page.goto("/#t=fall-of-constantinople,apollo-11");
-  await expect(page.locator(".tour")).toContainText("My tour");
+  await expect(page.locator(".tour")).toContainText("Shared tour");
   await expect(page.locator(".tour")).toContainText("stop 1 of 2");
   // The address keeps the tour after the hash sync runs, so reloading reopens it.
   await page.waitForTimeout(800);

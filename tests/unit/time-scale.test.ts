@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatYear, nextYear, playStep, sliderToYear, yearToSlider } from "@/lib/domain/time-scale";
+import { nextYear, playStep, sliderToYear, yearToSlider } from "@/lib/domain/time-scale";
 import { MAX_YEAR, MIN_YEAR } from "@/lib/data/schemas";
 
 describe("time scale", () => {
@@ -37,11 +37,5 @@ describe("time scale", () => {
     expect(nextYear(-25)).toBe(1);
     expect(nextYear(MAX_YEAR)).toBe(MAX_YEAR);
     expect(nextYear(1, -1)).toBeLessThan(0);
-  });
-
-  it("formats BC and AD years", () => {
-    expect(formatYear(-500)).toBe("500 BC");
-    expect(formatYear(476)).toBe("AD 476");
-    expect(formatYear(1950)).toBe("1950");
   });
 });

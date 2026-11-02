@@ -6,9 +6,22 @@ import type { BorderFeature, Category } from "@/lib/data/schemas";
  * stay legible; a polity keeps its tone across snapshots because the hash is on its name.
  */
 const POLITY_TONES = [
-  "#d8c49b", "#c9ab7c", "#b9a58d", "#cfb48c", "#ab9479", "#d7c8a8",
-  "#c5ae80", "#b49d78", "#a48e70", "#dccfaf", "#c8b38b", "#ae9b81",
-  "#d2bb95", "#bfa682", "#b09776", "#cdbf9f",
+  "#d8c49b",
+  "#c9ab7c",
+  "#b9a58d",
+  "#cfb48c",
+  "#ab9479",
+  "#d7c8a8",
+  "#c5ae80",
+  "#b49d78",
+  "#a48e70",
+  "#dccfaf",
+  "#c8b38b",
+  "#ae9b81",
+  "#d2bb95",
+  "#bfa682",
+  "#b09776",
+  "#cdbf9f",
 ] as const;
 
 export const CATEGORY_COLORS: Record<Category, string> = {
@@ -37,6 +50,17 @@ export function polityDisplayName(feature: BorderFeature): string {
   const name = (feature.properties.NAME || "Unnamed territory").trim();
   const subj = (feature.properties.SUBJECTO || "").trim();
   return subj && subj !== name ? `${name} (${subj})` : name;
+}
+
+/** A present-day country's polygon in the current snapshot, or a shapeless stand-in so its panel still opens. */
+export function countryFeature(name: string, polygons: readonly BorderFeature[]): BorderFeature {
+  return (
+    polygons.find((p) => (p.properties.NAME ?? "").toLowerCase() === name.toLowerCase()) ?? {
+      type: "Feature",
+      properties: { NAME: name },
+      geometry: { type: "Polygon", coordinates: [] },
+    }
+  );
 }
 
 function hash(s: string): number {
