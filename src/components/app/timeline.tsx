@@ -4,7 +4,7 @@ import { useMemo, useRef, useState, type PointerEvent } from "react";
 import { useHistory } from "@/lib/store/history-store";
 import { CATEGORY_COLORS } from "@/lib/domain/palette";
 import { eraForYear } from "@/lib/domain/eras";
-import { sliderToYear, yearToSlider } from "@/lib/domain/time-scale";
+import { sliderToYear, yearForSliderKey, yearToSlider } from "@/lib/domain/time-scale";
 import { useI18n } from "@/lib/i18n";
 import { MY_TOUR_ID } from "@/lib/domain/my-tour";
 
@@ -192,6 +192,13 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
           }
           aria-label={t("Year")}
           aria-valuetext={fy(state.year)}
+          onKeyDown={(e) => {
+            const year = yearForSliderKey(state.year, e.key);
+            if (year !== undefined) {
+              e.preventDefault();
+              dispatch({ type: "setYear", year });
+            }
+          }}
         />
         {hover && (
           <div

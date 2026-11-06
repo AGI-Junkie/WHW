@@ -60,3 +60,10 @@ export function nextYear(year: number, direction: 1 | -1 = 1): number {
   if (next === 0) next = direction === 1 ? 1 : -1;
   return clamp(next, MIN_YEAR, MAX_YEAR);
 }
+
+/** A rounded, controlled slider must step to a distinct year instead of an equivalent tick. */
+export function yearForSliderKey(year: number, key: string): number | undefined {
+  if (key === "ArrowRight" || key === "ArrowUp") return nextYear(year);
+  if (key === "ArrowLeft" || key === "ArrowDown") return nextYear(year, -1);
+  return undefined;
+}

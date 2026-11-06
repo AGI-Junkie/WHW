@@ -1,5 +1,32 @@
 import { expect, test } from "@playwright/test";
 
+test("year sliders advance with arrow keys and respect the year bounds", async ({ page }) => {
+  await page.goto("/#y=1945");
+  const timeline = page.getByRole("slider", { name: "Year", exact: true });
+  await expect(timeline).toHaveAttribute("aria-valuetext", "1945");
+  await timeline.press("ArrowRight");
+  await expect(timeline).toHaveAttribute("aria-valuetext", "1946");
+  await timeline.press("ArrowLeft");
+  await expect(timeline).toHaveAttribute("aria-valuetext", "1945");
+  await page.getByRole("button", { name: "🌐 Meanwhile", exact: true }).click();
+  const slider = page.getByRole("dialog").getByRole("slider", { name: "Explore year" });
+  for (const [key, year] of [
+    ["ArrowRight", "1946"],
+    ["ArrowLeft", "1945"],
+    ["ArrowUp", "1946"],
+    ["ArrowDown", "1945"],
+  ] as const) {
+    await slider.press(key);
+    await expect(slider).toHaveAttribute("aria-valuetext", year);
+  }
+  await slider.press("Home");
+  await slider.press("ArrowLeft");
+  await expect(slider).toHaveAttribute("aria-valuetext", "3000 BC");
+  await slider.press("End");
+  await slider.press("ArrowRight");
+  await expect(slider).toHaveAttribute("aria-valuetext", "2026");
+});
+
 test("compares regions, traps focus and opens an event at its actual year", async ({ page }) => {
   await page.goto("/#y=1945");
   await expect(page.locator(".readout")).toHaveText("1945");

@@ -1,8 +1,26 @@
 import { describe, expect, it } from "vitest";
-import { nextYear, playStep, sliderToYear, yearToSlider } from "@/lib/domain/time-scale";
+import {
+  nextYear,
+  playStep,
+  sliderToYear,
+  yearForSliderKey,
+  yearToSlider,
+} from "@/lib/domain/time-scale";
 import { MAX_YEAR, MIN_YEAR } from "@/lib/data/schemas";
 
 describe("time scale", () => {
+  it("moves controlled sliders to a distinct year for every arrow direction", () => {
+    expect(yearForSliderKey(1945, "ArrowRight")).toBe(1946);
+    expect(yearForSliderKey(1945, "ArrowUp")).toBe(1946);
+    expect(yearForSliderKey(1945, "ArrowLeft")).toBe(1944);
+    expect(yearForSliderKey(1945, "ArrowDown")).toBe(1944);
+    expect(yearForSliderKey(MAX_YEAR, "ArrowRight")).toBe(MAX_YEAR);
+    expect(yearForSliderKey(MIN_YEAR, "ArrowLeft")).toBe(MIN_YEAR);
+    expect(yearForSliderKey(-1, "ArrowRight")).toBe(1);
+    expect(yearForSliderKey(1, "ArrowLeft")).toBeLessThan(0);
+    expect(yearForSliderKey(1945, "Tab")).toBeUndefined();
+  });
+
   it("maps the slider ends to the year range", () => {
     expect(sliderToYear(0)).toBe(MIN_YEAR);
     expect(sliderToYear(1)).toBe(MAX_YEAR);

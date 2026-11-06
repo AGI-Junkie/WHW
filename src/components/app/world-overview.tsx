@@ -3,7 +3,7 @@
 import { useHistory } from "@/lib/store/history-store";
 import { useI18n } from "@/lib/i18n";
 import { worldAtYear } from "@/lib/domain/world-at-year";
-import { sliderToYear, yearToSlider } from "@/lib/domain/time-scale";
+import { sliderToYear, yearForSliderKey, yearToSlider } from "@/lib/domain/time-scale";
 import { CATEGORY_COLORS } from "@/lib/domain/palette";
 import { useOverlayKeys } from "./use-overlay-keys";
 
@@ -41,6 +41,13 @@ export default function WorldOverview({ onClose }: { onClose: () => void }) {
             value={Math.round(yearToSlider(state.year) * 1000)}
             aria-label={t("Explore year")}
             aria-valuetext={fy(state.year)}
+            onKeyDown={(e) => {
+              const year = yearForSliderKey(state.year, e.key);
+              if (year !== undefined) {
+                e.preventDefault();
+                dispatch({ type: "setYear", year });
+              }
+            }}
             onChange={(e) =>
               dispatch({ type: "setYear", year: sliderToYear(Number(e.target.value) / 1000) })
             }
