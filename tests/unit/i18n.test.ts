@@ -6,6 +6,7 @@ import { ZH } from "@/lib/i18n-zh";
 import { CategorySchema, ErasSchema } from "@/lib/data/schemas";
 import erasJson from "@/data/eras.json";
 import { computeBadges, EMPTY_DISCOVERY } from "@/lib/domain/discovery";
+import { WORLD_REGIONS } from "@/lib/domain/world-at-year";
 
 function sourceFiles(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((f) => {
@@ -15,14 +16,17 @@ function sourceFiles(dir: string): string[] {
 }
 
 describe("i18n", () => {
-  it("has a Chinese string for every t(\"…\") literal in the components", () => {
+  it('has a Chinese string for every t("…") literal in the components', () => {
     const keys = new Set<string>();
     for (const file of sourceFiles(path.join(process.cwd(), "src/components"))) {
       const src = readFileSync(file, "utf8");
       for (const m of src.matchAll(/\bt\(\s*"((?:[^"\\]|\\.)*)"/g)) keys.add(m[1]!);
     }
     // Help-overlay descriptions are translated through t(v).
-    const help = readFileSync(path.join(process.cwd(), "src/components/app/help-overlay.tsx"), "utf8");
+    const help = readFileSync(
+      path.join(process.cwd(), "src/components/app/help-overlay.tsx"),
+      "utf8",
+    );
     for (const m of help.matchAll(/\[\s*"[^"]*",\s*"([^"]*)"\s*\]/g)) keys.add(m[1]!);
     expect(keys.size).toBeGreaterThan(50);
     expect([...keys].filter((k) => !(k in ZH))).toEqual([]);
@@ -30,10 +34,18 @@ describe("i18n", () => {
 
   it("translates the data-driven labels: categories, eras, badges, story headings", () => {
     const labels = [
+      ...WORLD_REGIONS,
       ...CategorySchema.options,
       ...ErasSchema.parse(erasJson).map((e) => e.name),
       ...computeBadges(EMPTY_DISCOVERY, []).flatMap((b) => [b.name, b.description]),
-      "The two sides", "Meanwhile, elsewhere", "The wider view", "Span", "Year", "Theme", "Significance", "Belligerents",
+      "The two sides",
+      "Meanwhile, elsewhere",
+      "The wider view",
+      "Span",
+      "Year",
+      "Theme",
+      "Significance",
+      "Belligerents",
     ];
     expect(labels.filter((k) => !(k in ZH))).toEqual([]);
   });

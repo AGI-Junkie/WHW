@@ -39,10 +39,11 @@ import StoryView from "./story-view";
 import StoryGallery from "./story-gallery";
 import SearchPalette from "./search-palette";
 import HelpOverlay from "./help-overlay";
+import WorldOverview from "./world-overview";
 
 const STORY_PIN_COLOR = "#d4a73a";
 const COMPARE_COLOR = "#ff2a1a"; // bright, because the globe sits under a sepia filter
-type Overlay = "search" | "gallery" | "help" | null;
+type Overlay = "search" | "gallery" | "help" | "world" | null;
 
 const CATEGORIES = Object.keys(CATEGORY_COLORS) as Category[];
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -405,6 +406,18 @@ function Shell() {
                 ✦ {t("Stories")}
               </button>
               <button
+                className="btn secondary"
+                disabled={!!quiz}
+                onClick={() => {
+                  dispatch({ type: "setPlaying", playing: false });
+                  setOverlay("world");
+                }}
+                title={t("Meanwhile, around the world")}
+                aria-haspopup="dialog"
+              >
+                🌐 {t("Meanwhile")}
+              </button>
+              <button
                 ref={listButton}
                 className={`btn secondary ${listOpen ? "active" : ""}`}
                 onClick={() => setListOpen((o) => !o)}
@@ -501,6 +514,7 @@ function Shell() {
       {overlay === "search" && <SearchPalette onClose={() => setOverlay(null)} />}
       {overlay === "gallery" && <StoryGallery onClose={() => setOverlay(null)} />}
       {overlay === "help" && <HelpOverlay onClose={() => setOverlay(null)} />}
+      {overlay === "world" && <WorldOverview onClose={() => setOverlay(null)} />}
     </div>
   );
 }
