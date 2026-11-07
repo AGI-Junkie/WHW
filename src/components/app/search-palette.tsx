@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useHistory } from "@/lib/store/history-store";
-import { CATEGORY_COLORS } from "@/lib/domain/palette";
+import { CATEGORY_COLORS, countryFeature } from "@/lib/domain/palette";
 import { search, type SearchResult } from "@/lib/domain/search";
 import { useI18n } from "@/lib/i18n";
 import { getEvents } from "@/lib/data/loaders";
@@ -30,25 +30,12 @@ export default function SearchPalette({ onClose }: { onClose: () => void }) {
     if (r.kind === "year") dispatch({ type: "setYear", year: r.year });
     else if (r.kind === "event") {
       if (story) dispatch({ type: "openStory", id: r.event.id });
-      else {
-        dispatch({ type: "setYear", year: r.event.year });
-        dispatch({ type: "select", selection: { kind: "event", id: r.event.id }, fly: true });
-      }
+      else dispatch({ type: "openEvent", id: r.event.id });
     } else {
       const c = r.country;
-      const f = state.polygons.find(
-        (p) => (p.properties.NAME ?? "").toLowerCase() === c.name.toLowerCase(),
-      );
       dispatch({
         type: "select",
-        selection: {
-          kind: "country",
-          feature: f ?? {
-            type: "Feature",
-            properties: { NAME: c.name },
-            geometry: { type: "Polygon", coordinates: [] },
-          },
-        },
+        selection: { kind: "country", feature: countryFeature(c.name, state.polygons) },
       });
       dispatch({ type: "flyTo", target: { lat: c.lat, lng: c.lng, altitude: 1.4 } });
     }

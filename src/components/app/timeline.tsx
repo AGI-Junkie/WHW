@@ -4,7 +4,7 @@ import { useMemo, useRef, useState, type PointerEvent } from "react";
 import { useHistory } from "@/lib/store/history-store";
 import { CATEGORY_COLORS } from "@/lib/domain/palette";
 import { eraForYear } from "@/lib/domain/eras";
-import { sliderToYear, yearToSlider } from "@/lib/domain/time-scale";
+import { sliderToYear, yearForSliderKey, yearToSlider } from "@/lib/domain/time-scale";
 import { useI18n } from "@/lib/i18n";
 import { MY_TOUR_ID } from "@/lib/domain/my-tour";
 
@@ -42,10 +42,6 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
     }
     return best;
   }, [markers, state.year]);
-  const openEvent = (id: string, year: number) => {
-    dispatch({ type: "setYear", year });
-    dispatch({ type: "select", selection: { kind: "event", id }, fly: true });
-  };
   const trackHover = (clientX: number) => {
     const r = track.current?.getBoundingClientRect();
     if (!r) return;
@@ -169,7 +165,7 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
               }}
               title={`${fy(e.year)} — ${e.title}${e.story ? ` (${t("immersive story")})` : ""}`}
               aria-label={`${fy(e.year)}: ${e.title}`}
-              onClick={() => openEvent(e.id, e.year)}
+              onClick={() => dispatch({ type: "openEvent", id: e.id })}
             />
           ))}
         </div>
@@ -196,6 +192,13 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
           }
           aria-label={t("Year")}
           aria-valuetext={fy(state.year)}
+          onKeyDown={(e) => {
+            const year = yearForSliderKey(state.year, e.key);
+            if (year !== undefined) {
+              e.preventDefault();
+              dispatch({ type: "setYear", year });
+            }
+          }}
         />
         {hover && (
           <div
@@ -210,7 +213,7 @@ export default function Timeline({ onOpenGallery }: { onOpenGallery: () => void 
       {nearest && (
         <button
           className={`btn secondary nearest-event ${nearest.story ? "gold" : ""}`}
-          onClick={() => openEvent(nearest.id, nearest.year)}
+          onClick={() => dispatch({ type: "openEvent", id: nearest.id })}
         >
           {nearest.story ? "◆" : "•"} {fy(nearest.year)} · {nearest.title}
         </button>

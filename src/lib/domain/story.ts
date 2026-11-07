@@ -1,5 +1,6 @@
 import type { HistoryEvent, Story, StoryChapter } from "@/lib/data/schemas";
-import { formatYear, playStep } from "@/lib/domain/time-scale";
+import { playStep } from "@/lib/domain/time-scale";
+import { formatYearIn, translate, type Locale } from "@/lib/i18n";
 
 export interface ResolvedStory extends Story {
   eventId: string;
@@ -32,7 +33,10 @@ export function contemporaries(e: HistoryEvent, events: readonly HistoryEvent[])
   const window = playStep(e.year) * 6;
   return events
     .filter((x) => x.id !== e.id && Math.abs(x.year - e.year) <= window && x.importance >= 3)
-    .sort((a, b) => b.importance - a.importance || Math.abs(a.year - e.year) - Math.abs(b.year - e.year))
+    .sort(
+      (a, b) =>
+        b.importance - a.importance || Math.abs(a.year - e.year) - Math.abs(b.year - e.year),
+    )
     .slice(0, MAX_ELSEWHERE);
 }
 
@@ -40,10 +44,16 @@ export function contemporaries(e: HistoryEvent, events: readonly HistoryEvent[])
  * The story the immersive view plays for an event: its hand-written chapters when it has them,
  * otherwise a short story assembled from the summary, the two sides of a war and what else was
  * happening in the world at the time. Pure, so the reducer can compute camera targets from it.
+ * Built texts and years are in `locale`; headings and fact labels stay English keys the view translates.
  */
-export function storyFor(e: HistoryEvent, events: readonly HistoryEvent[]): ResolvedStory {
+export function storyFor(
+  e: HistoryEvent,
+  events: readonly HistoryEvent[],
+  locale: Locale = "en",
+): ResolvedStory {
   if (e.story) return { ...e.story, eventId: e.id, curated: true };
 
+  const formatYear = (y: number) => formatYearIn(locale, y);
   const when = e.endYear ? `${formatYear(e.year)} – ${formatYear(e.endYear)}` : formatYear(e.year);
   const chapters: StoryChapter[] = [
     { when, heading: e.title, text: e.summary, lat: e.lat, lng: e.lng, altitude: 0.9 },
@@ -55,7 +65,14 @@ export function storyFor(e: HistoryEvent, events: readonly HistoryEvent[]): Reso
     chapters.push({
       when,
       heading: "The two sides",
-      text: `${a.join(", ")} against ${b.join(", ")}. The arcs on the globe join the capitals of each side.`,
+      text: translate(
+        locale,
+        "{a} against {b}. The arcs on the globe join the capitals of each side.",
+        {
+          a: a.join(", "),
+          b: b.join(", "),
+        },
+      ),
       lat: m.lat,
       lng: m.lng,
       altitude: 2.2,
@@ -64,7 +81,7 @@ export function storyFor(e: HistoryEvent, events: readonly HistoryEvent[]): Reso
   const others = contemporaries(e, events);
   if (others.length) {
     chapters.push({
-      when: `Around ${formatYear(e.year)}`,
+      when: translate(locale, "Around {year}", { year: formatYear(e.year) }),
       heading: "Meanwhile, elsewhere",
       text: others.map((o) => `${o.title} (${formatYear(o.year)})`).join(" · "),
       lat: e.lat,
@@ -73,7 +90,14 @@ export function storyFor(e: HistoryEvent, events: readonly HistoryEvent[]): Reso
     });
   }
   if (chapters.length < 2) {
-    chapters.push({ when, heading: "The wider view", text: e.summary, lat: e.lat, lng: e.lng, altitude: 2.4 });
+    chapters.push({
+      when,
+      heading: "The wider view",
+      text: e.summary,
+      lat: e.lat,
+      lng: e.lng,
+      altitude: 2.4,
+    });
   }
 
   const facts = [

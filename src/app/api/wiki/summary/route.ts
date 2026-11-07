@@ -28,12 +28,16 @@ const UpstreamSchema = z.object({
 const LangLinksSchema = z.object({
   query: z
     .object({
-      pages: z.record(z.string(), z.object({ langlinks: z.array(z.object({ "*": z.string() })).optional() })),
+      pages: z.record(
+        z.string(),
+        z.object({ langlinks: z.array(z.object({ "*": z.string() })).optional() }),
+      ),
     })
     .optional(),
 });
 
-const UA = process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/AGI-Junkie/WHW)";
+const UA =
+  process.env["WIKI_USER_AGENT"] ?? "WorldHistoryWeb/0.1 (https://github.com/AGI-Junkie/WHW)";
 const ALLOWED_IMAGE_HOSTS = new Set(["upload.wikimedia.org", "thumb.wikimedia.org"]);
 const allow = createRateLimiter(120, 60_000);
 
@@ -52,7 +56,10 @@ function reply(body: WikiSummaryResponse, status = 200): NextResponse {
     status,
     // Browsers keep a summary for an hour, the CDN for a day (and serves it stale while refreshing).
     headers: {
-      "Cache-Control": status === 200 ? "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800" : "no-store",
+      "Cache-Control":
+        status === 200
+          ? "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800"
+          : "no-store",
     },
   });
 }
@@ -60,16 +67,27 @@ function reply(body: WikiSummaryResponse, status = 200): NextResponse {
 function upstream(url: string, lang: "en" | "zh"): Promise<Response> {
   return fetch(url, {
     // zh.wikipedia converts between script variants by Accept-Language; ask for Simplified.
-    headers: { "User-Agent": UA, Accept: "application/json", ...(lang === "zh" ? { "Accept-Language": "zh-cn" } : {}) },
+    headers: {
+      "User-Agent": UA,
+      Accept: "application/json",
+      ...(lang === "zh" ? { "Accept-Language": "zh-cn" } : {}),
+    },
     signal: AbortSignal.timeout(8000),
-    next: { revalidate: 86400 },
+    // No Next data cache: titles are caller-chosen, and a self-hosted cache keeps every one on disk
+    // with no eviction. Browsers and a CDN still cache the reply through Cache-Control.
+    cache: "no-store",
   });
 }
 
 /** The Chinese article linked from an English one, or null when there is none. */
 async function zhTitle(enTitle: string): Promise<string | null> {
   const params = new URLSearchParams({
-    action: "query", prop: "langlinks", lllang: "zh", redirects: "1", format: "json", titles: enTitle,
+    action: "query",
+    prop: "langlinks",
+    lllang: "zh",
+    redirects: "1",
+    format: "json",
+    titles: enTitle,
   });
   const res = await upstream(`https://en.wikipedia.org/w/api.php?${params}`, "en");
   if (!res.ok) return null;
@@ -79,11 +97,15 @@ async function zhTitle(enTitle: string): Promise<string | null> {
 
 async function summary(title: string, lang: "en" | "zh"): Promise<Response> {
   const host = lang === "zh" ? "zh.wikipedia.org" : "en.wikipedia.org";
-  return upstream(`https://${host}/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}?redirect=true`, lang);
+  return upstream(
+    `https://${host}/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, "_"))}?redirect=true`,
+    lang,
+  );
 }
 
 export async function GET(req: Request): Promise<NextResponse> {
-  if (process.env["CONTENT_PROVIDER"] === "static") return reply({ ok: false, reason: "static-mode" });
+  if (process.env["CONTENT_PROVIDER"] === "static")
+    return reply({ ok: false, reason: "static-mode" });
   // Without a proxy there is no trustworthy client identity, and one shared bucket would lock everyone out.
   const key = clientKey(req.headers);
   if (key !== "direct" && !allow(key)) return reply({ ok: false, reason: "rate-limited" }, 429);
@@ -105,7 +127,9 @@ export async function GET(req: Request): Promise<NextResponse> {
       description: data.description ?? null,
       extract: data.extract ?? "",
       thumbnailUrl: safeImage(data.thumbnail?.source),
-      pageUrl: data.content_urls?.desktop.page ?? `https://en.wikipedia.org/wiki/${encodeURIComponent(title.replace(/ /g, "_"))}`,
+      pageUrl:
+        data.content_urls?.desktop.page ??
+        `https://en.wikipedia.org/wiki/${encodeURIComponent(title.replace(/ /g, "_"))}`,
     });
   } catch (e) {
     const reason = e instanceof Error && e.name === "TimeoutError" ? "timeout" : "unavailable";

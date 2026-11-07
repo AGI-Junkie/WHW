@@ -1,4 +1,17 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+async function guessOnGlobe(page: Page) {
+  const globe = page.getByTestId("globe-stage").locator("canvas");
+  await expect(globe).toBeVisible();
+  const box = (await globe.boundingBox())!;
+  const position = { x: box.width / 2, y: box.height / 2 };
+  // Per-frame hover raycasts can lag behind a moving camera on software-rendered CI workers.
+  await expect(async () => {
+    await globe.hover({ position });
+    await globe.click({ position });
+    await expect(page.getByText(/km away · \+\d+ points/)).toBeVisible({ timeout: 1000 });
+  }).toPass({ timeout: 15_000 });
+}
 
 test("loads the globe with the 1945 borders and warms the neighbouring snapshots", async ({
   page,
@@ -58,7 +71,7 @@ test("shared links update the same tab between stories, events, tours and years"
       .getByRole("button", { name: "war", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
   await page.goto("/#t=fall-of-constantinople,apollo-11");
-  await expect(page.locator(".tour")).toContainText("My tour");
+  await expect(page.locator(".tour")).toContainText("Shared tour");
   await page.goto("/#y=1453");
   await expect(page.locator(".tour")).toBeHidden();
   await expect(page.locator(".panel")).toBeHidden();
@@ -150,13 +163,7 @@ test("the quiz scores a click on the globe", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: /Quiz/ }).click();
   await expect(page.getByText("Where did this happen?")).toBeVisible();
-  const globe = page.getByTestId("globe-stage").locator("canvas");
-  const box = (await globe.boundingBox())!;
-  // react-globe.gl resolves a click from the last hover raycast (done per frame), so hover first.
-  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-  await page.waitForTimeout(300);
-  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
-  await expect(page.getByText(/km away · \+\d+ points/)).toBeVisible();
+  await guessOnGlobe(page);
   await page.keyboard.press("Escape");
   await expect(page.locator(".quiz")).toBeHidden();
 });
@@ -168,9 +175,9 @@ test("compare mode overlays a second snapshot", async ({ page }) => {
   await expect(page.locator(".compare-key")).toContainText("1914");
 });
 
-test("a shared tour link starts the visitor's tour", async ({ page }) => {
+test("a shared tour link plays as a shared tour", async ({ page }) => {
   await page.goto("/#t=fall-of-constantinople,apollo-11");
-  await expect(page.locator(".tour")).toContainText("My tour");
+  await expect(page.locator(".tour")).toContainText("Shared tour");
   await expect(page.locator(".tour")).toContainText("stop 1 of 2");
   // The address keeps the tour after the hash sync runs, so reloading reopens it.
   await page.waitForTimeout(800);
@@ -194,15 +201,9 @@ test("Esc closes the gallery without leaving the story underneath", async ({ pag
 test("the quiz runs five rounds to a final score", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: /Quiz/ }).click();
-  const globe = page.getByTestId("globe-stage").locator("canvas");
-  const box = (await globe.boundingBox())!;
-  const centre = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
   for (let round = 1; round <= 5; round++) {
     await expect(page.locator(".quiz .meta")).toContainText(`round ${round} of 5`);
-    await page.mouse.move(centre.x, centre.y);
-    await page.waitForTimeout(300);
-    await page.mouse.click(centre.x, centre.y);
-    await expect(page.getByText(/km away · \+\d+ points/)).toBeVisible();
+    await guessOnGlobe(page);
     await page.getByRole("button", { name: round < 5 ? "Next →" : "See the score" }).click();
   }
   await expect(page.getByText(/Final score: \d+ \/ 5000/)).toBeVisible();

@@ -709,6 +709,35 @@ select.btn {
   gap: 10px;
   margin-top: 10px;
 }
+.world-overview h2 {
+  padding-right: 36px;
+}
+.world-year {
+  display: block;
+}
+.world-year input {
+  display: block;
+  width: 100%;
+  height: 44px;
+  accent-color: var(--color-oxblood);
+}
+.world-regions {
+  align-items: start;
+}
+.world-regions h3 {
+  font-family: var(--font-display);
+  margin: 0 0 8px;
+}
+.world-regions .card {
+  width: 100%;
+  margin-bottom: 8px;
+}
+.world-regions .tag-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
 .card {
   display: flex;
   flex-direction: column;

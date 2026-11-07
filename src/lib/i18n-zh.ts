@@ -8,6 +8,23 @@ export const ZH: Record<string, string> = {
   Search: "搜索",
   "Immersive stories": "沉浸式故事",
   Stories: "故事",
+  Meanwhile: "同一时代",
+  "Meanwhile, around the world": "同一时代，世界各地",
+  "Explore nearby and ongoing events by location. Each card shows its actual dates.":
+    "按发生地点对照这一时期及持续中的事件，每张卡片均标明实际年代。",
+  "Explore year": "探索年份",
+  "Time window: {from} – {to}": "时间范围：{from} – {to}",
+  "Up to three events per region, using your category filters.":
+    "每个地区最多显示三个事件，沿用当前类别筛选。",
+  "No curated events in this time window.": "这一时间范围内暂无符合筛选的精选事件。",
+  Europe: "欧洲",
+  Africa: "非洲",
+  "West & Central Asia": "西亚与中亚",
+  "South Asia": "南亚",
+  "East & Southeast Asia": "东亚与东南亚",
+  Americas: "美洲",
+  Oceania: "大洋洲",
+  "Other locations": "其他地点",
   "A random event (R)": "随机事件（R）",
   "Surprise me": "随便看看",
   "Where did it happen? A five-round map quiz": "它发生在哪里？五轮地图问答",
@@ -115,6 +132,7 @@ export const ZH: Record<string, string> = {
 
   // Tours
   "My tour": "我的导览",
+  "Shared tour": "分享的导览",
   "Story tour: {title}": "故事导览：{title}",
   "stop {n} of {total}": "第 {n}/{total} 站",
   "← Back": "← 上一步",
@@ -151,6 +169,9 @@ export const ZH: Record<string, string> = {
   "▶ Autoplay": "▶ 自动播放",
   Finish: "完成",
   "The two sides": "交战双方",
+  "{a} against {b}. The arcs on the globe join the capitals of each side.":
+    "{a} 对阵 {b}。地球上的弧线连接双方的首都。",
+  "Around {year}": "{year}前后",
   "Meanwhile, elsewhere": "与此同时，在别处",
   "The wider view": "更大的图景",
   Span: "时间跨度",

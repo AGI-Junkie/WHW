@@ -13,7 +13,13 @@ import {
 import { polityDisplayName } from "@/lib/domain/palette";
 import { storyFor } from "@/lib/domain/story";
 import { adjacentEvent } from "@/lib/domain/navigation";
-import { buildMyTour, MY_TOUR_ID, MY_TOUR_MAX, toggleMyTour } from "@/lib/domain/my-tour";
+import {
+  buildMyTour,
+  MY_TOUR_ID,
+  MY_TOUR_MAX,
+  SHARED_TOUR_ID,
+  toggleMyTour,
+} from "@/lib/domain/my-tour";
 import { distanceKm, pickQuizEvent, QUIZ_ROUNDS, quizPoints } from "@/lib/domain/quiz";
 import type { GlobeCameraTarget } from "@/components/globe/globe-types";
 
@@ -67,6 +73,8 @@ export interface HistoryState {
   retry: number;
   /** Event ids of the visitor's own tour (persisted per browser, shareable by link). */
   myTour: string[];
+  /** Event ids of a tour opened from a `#t=` link; kept apart so it never replaces `myTour`. */
+  sharedTour: string[];
   /** A second border snapshot drawn as outlines over the current one, or null. */
   compareYear: number | null;
   quiz: QuizState | null;
@@ -87,6 +95,7 @@ export type Action =
   | { type: "storyGo"; chapter: number }
   | { type: "storyAutoplay"; autoplay: boolean }
   | { type: "closeStory" }
+  | { type: "openEvent"; id: string }
   | { type: "stepEvent"; delta: 1 | -1 }
   | { type: "randomEvent"; seed: number }
   | { type: "flyTo"; target: GlobeCameraTarget }
@@ -101,6 +110,7 @@ export type Action =
   | { type: "prunePulses"; now: number }
   | { type: "toggleMyTour"; id: string }
   | { type: "myTourLoaded"; ids: string[] }
+  | { type: "startSharedTour"; ids: string[] }
   | { type: "setCompare"; year: number | null }
   | { type: "quizStart"; seed: number }
   | { type: "quizGuess"; lat: number; lng: number }
@@ -129,14 +139,21 @@ export const initialState: HistoryState = {
   error: null,
   retry: 0,
   myTour: [],
+  sharedTour: [],
   compareYear: null,
   quiz: null,
 };
 
 function findTour(s: HistoryState, id: string): Tour | undefined {
-  return id === MY_TOUR_ID
-    ? (buildMyTour(s.myTour, getEvents()) ?? undefined)
-    : getTours().find((t) => t.id === id);
+  if (id === MY_TOUR_ID) return buildMyTour(s.myTour, getEvents()) ?? undefined;
+  if (id === SHARED_TOUR_ID) return buildMyTour(s.sharedTour, getEvents(), id) ?? undefined;
+  return getTours().find((t) => t.id === id);
+}
+
+/** Storage and #t= links are untrusted: keep known, unique event ids only, capped. */
+function knownTourIds(ids: readonly string[]): string[] {
+  const known = new Set(getEvents().map((e) => e.id));
+  return [...new Set(ids)].filter((id) => known.has(id)).slice(0, MY_TOUR_MAX);
 }
 
 /** Editing My tour while it plays would leave the player on a stop index that no longer matches: end it. */
@@ -217,9 +234,13 @@ function applyChapter(
   };
 }
 
+/** Jump to an event's year and fly to it, leaving any story, tour or quiz. */
 function selectEvent(s: HistoryState, ev: HistoryEvent): HistoryState {
   return {
     ...s,
+    story: null,
+    tour: null,
+    quiz: null,
     year: ev.year,
     playing: false,
     selection: { kind: "event", id: ev.id },
@@ -323,17 +344,21 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
       return s.story ? { ...s, story: { ...s.story, autoplay: a.autoplay } } : s;
     case "closeStory":
       return { ...s, story: null };
+    case "openEvent": {
+      const ev = getEventById(a.id);
+      return ev ? selectEvent(s, ev) : s;
+    }
     case "stepEvent": {
       const selectedId = s.selection?.kind === "event" ? s.selection.id : null;
       const ev = adjacentEvent(getEvents(), s.year, selectedId, a.delta, s.hiddenCategories);
-      return ev ? selectEvent({ ...s, tour: null, quiz: null }, ev) : s;
+      return ev ? selectEvent(s, ev) : s;
     }
     case "randomEvent": {
       const pool = getEvents().filter(
         (e) => e.importance >= 3 && !s.hiddenCategories.includes(e.category),
       );
       const ev = pool[Math.abs(Math.floor(a.seed)) % Math.max(1, pool.length)];
-      return ev ? selectEvent({ ...s, tour: null, story: null, quiz: null }, ev) : s;
+      return ev ? selectEvent(s, ev) : s;
     }
     case "flyTo":
       return { ...s, cameraTarget: a.target };
@@ -364,13 +389,12 @@ export function reducer(s: HistoryState, a: Action): HistoryState {
         : s;
     case "toggleMyTour":
       return endEditedTour(s, toggleMyTour(s.myTour, a.id));
-    case "myTourLoaded": {
-      // Storage and #t= links are untrusted: keep known, unique event ids only, capped.
-      const known = new Set(getEvents().map((e) => e.id));
-      return endEditedTour(
-        s,
-        [...new Set(a.ids)].filter((id) => known.has(id)).slice(0, MY_TOUR_MAX),
-      );
+    case "myTourLoaded":
+      return endEditedTour(s, knownTourIds(a.ids));
+    case "startSharedTour": {
+      const next = { ...s, sharedTour: knownTourIds(a.ids), story: null, quiz: null };
+      const tour = findTour(next, SHARED_TOUR_ID);
+      return tour ? applyStop(next, tour, 0) : next;
     }
     case "setCompare":
       return { ...s, compareYear: a.year };

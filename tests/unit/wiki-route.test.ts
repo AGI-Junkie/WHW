@@ -4,7 +4,11 @@ import { GET } from "@/app/api/wiki/summary/route";
 const call = (qs: string, ip = "10.0.0.1") =>
   GET(new Request(`http://x/api/wiki/summary?${qs}`, { headers: { "x-real-ip": ip } }));
 const upstream = (thumb?: string) =>
-  Response.json({ title: "Rome", extract: "x", ...(thumb ? { thumbnail: { source: thumb } } : {}) });
+  Response.json({
+    title: "Rome",
+    extract: "x",
+    ...(thumb ? { thumbnail: { source: thumb } } : {}),
+  });
 
 beforeEach(() => vi.stubEnv("CONTENT_PROVIDER", "live"));
 afterEach(() => {
@@ -13,6 +17,21 @@ afterEach(() => {
 });
 
 describe("/api/wiki/summary", () => {
+  it.each(["en", "zh"])(
+    "avoids disk caching upstream %s requests while caching successful replies",
+    async (lang) => {
+      const fetchMock = vi.fn<typeof fetch>(async () => upstream());
+      vi.stubGlobal("fetch", fetchMock);
+      const response = await call(`title=Rome&lang=${lang}`, "10.0.0.6");
+      expect(response.status).toBe(200);
+      expect(fetchMock).toHaveBeenCalled();
+      for (const [, options] of fetchMock.mock.calls) expect(options?.cache).toBe("no-store");
+      expect(response.headers.get("Cache-Control")).toBe(
+        "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800",
+      );
+    },
+  );
+
   it("rejects titles with forbidden characters", async () => {
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock);
@@ -21,31 +40,48 @@ describe("/api/wiki/summary", () => {
   });
 
   it("rate-limits the 121st request from one client", async () => {
-    vi.stubGlobal("fetch", vi.fn(async () => upstream()));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => upstream()),
+    );
     for (let i = 0; i < 120; i++) expect((await call("title=Rome", "10.0.0.2")).status).toBe(200);
     expect((await call("title=Rome", "10.0.0.2")).status).toBe(429);
   });
 
   it("drops thumbnails outside the Wikimedia hosts", async () => {
-    vi.stubGlobal("fetch", vi.fn(async () => upstream("https://evil.example/x.jpg")));
-    expect(await (await call("title=Rome", "10.0.0.3")).json()).toMatchObject({ ok: true, thumbnailUrl: null });
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => upstream("https://evil.example/x.jpg")),
+    );
+    expect(await (await call("title=Rome", "10.0.0.3")).json()).toMatchObject({
+      ok: true,
+      thumbnailUrl: null,
+    });
   });
 
   it("keeps Wikimedia thumbnails", async () => {
     const src = "https://upload.wikimedia.org/x.jpg";
-    vi.stubGlobal("fetch", vi.fn(async () => upstream(src)));
-    expect(await (await call("title=Rome", "10.0.0.4")).json()).toMatchObject({ thumbnailUrl: src });
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => upstream(src)),
+    );
+    expect(await (await call("title=Rome", "10.0.0.4")).json()).toMatchObject({
+      thumbnailUrl: src,
+    });
   });
 
   it("falls back to the English summary when the Chinese article is missing", async () => {
     const fetchMock = vi.fn(async (url: string) => {
-      if (url.includes("w/api.php")) return Response.json({ query: { pages: { 1: { langlinks: [{ "*": "罗马" }] } } } });
+      if (url.includes("w/api.php"))
+        return Response.json({ query: { pages: { 1: { langlinks: [{ "*": "罗马" }] } } } });
       return url.includes("zh.wikipedia.org") ? new Response("", { status: 404 }) : upstream();
     });
     vi.stubGlobal("fetch", fetchMock);
     expect((await call("title=Rome&lang=zh", "10.0.0.5")).status).toBe(200);
     expect(fetchMock.mock.calls.map(([u]) => new URL(u as string).host)).toEqual([
-      "en.wikipedia.org", "zh.wikipedia.org", "en.wikipedia.org",
+      "en.wikipedia.org",
+      "zh.wikipedia.org",
+      "en.wikipedia.org",
     ]);
   });
 

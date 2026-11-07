@@ -61,9 +61,9 @@ export function nextYear(year: number, direction: 1 | -1 = 1): number {
   return clamp(next, MIN_YEAR, MAX_YEAR);
 }
 
-/** "500 BC", "AD 476", "1950". */
-export function formatYear(year: number): string {
-  if (year < 0) return `${-year} BC`;
-  if (year < 1000) return `AD ${year}`;
-  return String(year);
+/** A rounded, controlled slider must step to a distinct year instead of an equivalent tick. */
+export function yearForSliderKey(year: number, key: string): number | undefined {
+  if (key === "ArrowRight" || key === "ArrowUp") return nextYear(year);
+  if (key === "ArrowLeft" || key === "ArrowDown") return nextYear(year, -1);
+  return undefined;
 }
